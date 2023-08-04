@@ -97,14 +97,14 @@ Route::post('clases_import', 'ImportExcelController@clases_import')->name('clase
 Route::post('fuentes_import', 'ImportExcelController@fuentes_import')->name('fuentes.import.excel');
 Route::post('modalidades_import', 'ImportExcelController@modalidades_import')->name('modalidades.import.excel');
 Route::post('productos_import', 'ImportExcelController@productos_import')->name('productos.import.excel');
-Route::post('planadquisicione_import', 'ImportExcelController@planadquisicione_import')->name('planadquisicione.import.excel');
+Route::post('inventario_import', 'ImportExcelController@planadquisicione_import')->name('planadquisicione.import.excel');
 
 
 //new
-Route::get('planadquisiciones-export', 'PlanadquisicioneController@export')->name('planadquisiciones.export');
+Route::get('inventario-export', 'PlanadquisicioneController@export')->name('planadquisiciones.export');
 Route::put('update-profile/{user}', 'UserController@updateProfile')->name('update.profile');
-Route::get('planadquisiciones/areas/{areaId}', 'PlanadquisicioneController@indexByArea')->name('planadquisiciones.indexByArea');
-Route::get('planadquisiciones/onlyadmin', 'PlanadquisicioneController@showOnlyAdmin')->name('planadquisiciones.showOnlyAdmin');
-Route::get('planadquisiciones', 'PlanadquisicioneController@index')->name('planadquisiciones.index');
-Route::get('planadquisiciones/area/{areaId}', 'PlanadquisicioneController@indexByArea')->name('planadquisiciones.indexByArea');
+Route::get('inventario/areas/{areaId}', 'PlanadquisicioneController@indexByArea')->name('planadquisiciones.indexByArea');
+Route::get('inventario/onlyadmin', 'PlanadquisicioneController@showOnlyAdmin')->name('planadquisiciones.showOnlyAdmin');
+Route::get('inventario', 'PlanadquisicioneController@index')->name('planadquisiciones.index');
+Route::get('inventario/area/{areaId}', 'PlanadquisicioneController@indexByArea')->name('planadquisiciones.indexByArea');
 
