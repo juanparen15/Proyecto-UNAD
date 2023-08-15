@@ -129,33 +129,25 @@ class PlanadquisicioneController extends Controller
         ]);
 
 
-        $planadquisicione = Planadquisicione::create($request->all() + [
-            'user_id' => auth()->user()->id,
-            'slug' => Str::slug($request->nota, '-')
-        ]);
+        $slug = Str::slug($request->nota, '-');
 
-        $slug = $planadquisicione->slug;
-
-        if (Planadquisicione::where('slug', $slug)->exists()) {
-            $counter = 1;
-            $uniqueSlug = $slug;
-
-            while (Planadquisicione::where('slug', $uniqueSlug)->exists()) {
-                $uniqueSlug = $slug . '-' . $counter;
-                $counter++;
-            }
-
-            // Asignar el slug único al modelo después de encontrarlo
-            $planadquisicione->slug = $uniqueSlug;
-            $planadquisicione->save();
+        // Verificar si ya existe un Planadquisicione con el mismo slug
+        $counter = 1;
+        while (Planadquisicione::where('slug', $slug)->exists()) {
+            $slug = Str::slug($request->nota, '-') . '-' . $counter;
+            $counter++;
         }
 
+        $planadquisicione = Planadquisicione::create(array_merge($request->all(), [
+            'user_id' => auth()->user()->id,
+            'slug' => $slug
+        ]));
 
-        // foreach ($request->producto_id as $key =>$product){
-        //     $results[] = array("producto_id" => $request->producto_id[$key]);
-        // }
-        // $planadquisicione->productos()->sync($results);
-        // planadquisicione_producto  create_planadquisicione_producto_table
+        // Realmente no necesitas volver a verificar si el slug es único aquí,
+        // ya que ya lo has asegurado antes de crear el registro.
+
+        // ... (código para manejar la relación muchos a muchos si es necesario)
+
         return redirect()->route('planadquisiciones.index')->with('flash', 'registrado');
     }
 
@@ -205,15 +197,21 @@ class PlanadquisicioneController extends Controller
             'area_id' => ['required']
         ]);
 
-        $inventario->update($request->all() + [
-            'user_id' => auth()->user()->id,
-            'slug' => Str::slug($request->nota, '-')
-        ]);
+        $slug = Str::slug($request->nota, '-');
 
-        // foreach ($request->producto_id as $key =>$product){
-        //     $results[] = array("producto_id" => $request->producto_id[$key]);
-        // }
-        // $planadquisicione->productos()->sync($results);
+        // Verificar si el nuevo slug ya existe para otro registro
+        $counter = 1;
+        while (Planadquisicione::where('slug', $slug)->where('id', '<>', $inventario->id)->exists()) {
+            $slug = Str::slug($request->nota, '-') . '-' . $counter;
+            $counter++;
+        }
+
+        $inventario->update(array_merge($request->all(), [
+            'user_id' => auth()->user()->id,
+            'slug' => $slug
+        ]));
+
+        // ... (código para manejar la relación muchos a muchos si es necesario)
 
         return redirect()->route('planadquisiciones.index')->with('flash', 'actualizado');
     }
