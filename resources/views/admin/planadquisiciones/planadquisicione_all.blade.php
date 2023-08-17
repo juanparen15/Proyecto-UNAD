@@ -20,6 +20,7 @@
             <th>SOPORTE</th>
             <th>FRECUENCIA DE CONSULTA</th>
             <th>NOTAS</th>
+            <th>USUARIO INSTITUCIONAL</th>
             <th>REGISTRO DE ENTRADA</th>
         </tr>
     </thead>
@@ -45,6 +46,7 @@
                 <td>{{ $planadquisicion->fuente->detfuente }}</td>
                 <td>{{ $planadquisicion->tipoprioridade->detprioridad }}</td>
                 <td>{{ $planadquisicion->nota }}</td>
+                <td>{{ $planadquisicion->user->email }}</td>
                 <td>{{ $planadquisicion->updated_at }}</td>
                 <td>
 

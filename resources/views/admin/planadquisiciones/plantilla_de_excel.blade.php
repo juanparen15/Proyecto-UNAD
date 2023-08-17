@@ -20,7 +20,8 @@
             <th>SOPORTE</th>
             <th>FRECUENCIA DE CONSULTA</th>
             <th>NOTAS</th>
-            <th>FECHA MODIFICACION</th>
+            <th>USUARIO INSTITUCIONAL</th>
+            <th>REGISTRO DE ENTRADA</th>
         </tr>
     </thead>
     <tbody>
@@ -45,6 +46,7 @@
             <td>{{ $plan->fuente->detfuente }}</td>
             <td>{{ $plan->tipoprioridade->detprioridad }}</td>
             <td>{{ $plan->nota }}</td>
+            <td>{{ $plan->user->email }}</td>
             <td>{{ $plan->updated_at }}</td>
             <td>
 
