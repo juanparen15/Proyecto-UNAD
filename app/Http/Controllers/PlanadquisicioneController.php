@@ -202,7 +202,7 @@ class PlanadquisicioneController extends Controller
         // Verificar si el nuevo slug ya existe para otro registro
         $counter = 1;
         while (Planadquisicione::where('slug', $slug)->where('id', '<>', $inventario->id)->exists()) {
-            $slug = Str::slug($request->nota, '-') . '-' . $counter;
+            $slug = $slug . '-' . $counter;
             $counter++;
         }
 
