@@ -2,6 +2,8 @@
 
 use App\Empresa;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ChartController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,4 +109,8 @@ Route::get('inventario/areas/{areaId}', 'PlanadquisicioneController@indexByArea'
 Route::get('inventario/onlyadmin', 'PlanadquisicioneController@showOnlyAdmin')->name('planadquisiciones.showOnlyAdmin');
 Route::get('inventario', 'PlanadquisicioneController@index')->name('planadquisiciones.index');
 Route::get('inventario/area/{areaId}', 'PlanadquisicioneController@indexByArea')->name('planadquisiciones.indexByArea');
+
+// Route::get('/chart', 'ChartController@handleChart')->name('inventarioDocumental.handleChart');
+Route::get('/chart', [ChartController::class, 'chart'])->name('/chart');
+// Route::get('home', [HomeController::class, 'index']);
 

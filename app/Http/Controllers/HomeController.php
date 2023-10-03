@@ -40,21 +40,99 @@ class HomeController extends Controller
         $dependencias = Dependencia::all()->count();
         $areas = Area::all()->count();
         $adquisiciones = Planadquisicione::all()->count();
-        
+        $adquisiciones1 = Planadquisicione::all()->count();
+        $adquisiciones2 = Planadquisicione::with('area')->get();
+
+
+
+
+        // return view("home", ["data" => json_encode($carpetas)]);
+
+        $carpetas = [];
+
+
         if (auth()->user()->hasRole('Admin')) {
             $planes = Planadquisicione::select(
                 DB::raw("count(*) as count"),
                 DB::raw("count(*) as totalmes"),
                 DB::raw("DATE_FORMAT(created_at,'%M %Y') as mes")
             )->groupBy('mes')->take(12)->get();
+
+
+            $adquisiciones = Planadquisicione::select(
+                'area_id',
+                DB::raw('count(*) as adq'),
+                DB::raw('MAX(areas.nomarea) as area_name'),
+                // ->groupby(DB::raw("carpeta"))
+                // ->pluck('count')
+                // DB::raw("DATE_FORMAT(fechaInicial,'%M %Y') as anyo"),
+                DB::raw("count(carpeta) as adq")
+            )
+                ->join('areas', 'planadquisiciones.area_id', '=', 'areas.id') // Realiza una join con la tabla de áreas
+                // DB::raw("count(area_id) as area_adq"))
+                // DB::raw("DATE_FORMAT(fechaInicial,'%M %Y') as anyo"))
+                ->groupBy(DB::raw("area_id"))
+                ->get();
+            // Accede a los datos de la relación
+            foreach ($adquisiciones as $adq) {
+                $area = $adq->area; // "area" es el nombre del método de relación en el modelo Planadquisicione
+                $nombreArea = $area->nomarea; // Accede a los campos de la relación (ejemplo: "nomarea")
+                // Puedes usar $nombreArea en tu lógica aquí
+            }
+
+            $carpetas = [];
+
+            foreach ($adquisiciones2 as $adq) {
+                $nombreArea = $adq->area->nomarea;
+                $carpetas[] = ['name' => $adq->carpeta, 'y' => floatval($nombreArea)];
+            }
         } else {
             $planes = Planadquisicione::where('user_id', auth()->user()->id)->select(
                 DB::raw("count(*) as count"),
                 DB::raw("count(*) as totalmes"),
                 DB::raw("DATE_FORMAT(created_at,'%M %Y') as mes")
             )->groupBy('mes')->take(12)->get();
+
+            $adquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->select(
+                'area_id',
+                DB::raw('count(*) as adq'),
+                DB::raw('MAX(areas.nomarea) as area_name'),
+                // ->groupby(DB::raw("carpeta"))
+                // ->pluck('count')
+                // DB::raw("DATE_FORMAT(fechaInicial,'%M %Y') as anyo"),
+                DB::raw("count(carpeta) as adq")
+            )
+                ->join('areas', 'planadquisiciones.area_id', '=', 'areas.id') // Realiza una join con la tabla de áreas
+                // DB::raw("count(area_id) as area_adq"))
+                // DB::raw("DATE_FORMAT(fechaInicial,'%M %Y') as anyo"))
+                ->groupBy(DB::raw("area_id"))
+                ->get();
+            // Accede a los datos de la relación
+            foreach ($adquisiciones as $adq) {
+                $area = $adq->area; // "area" es el nombre del método de relación en el modelo Planadquisicione
+                $nombreArea = $area->nomarea; // Accede a los campos de la relación (ejemplo: "nomarea")
+                // Puedes usar $nombreArea en tu lógica aquí
+            }
+
+            $carpetas = [];
+
+            foreach ($adquisiciones2 as $adq) {
+                $nombreArea = $adq->area->nomarea;
+                $carpetas[] = ['name' => $adq->carpeta, 'y' => floatval($nombreArea)];
+            }
         }
 
-        return view('home', compact('users', 'products', 'clases','segmentos','familias' ,'adquisiciones','dependencias','areas', 'planes'));
+
+
+
+        return view("home", ["data" => json_encode($carpetas)], compact('users', 'products', 'clases', 'segmentos', 'familias', 'adquisiciones', 'adquisiciones1', 'dependencias', 'areas', 'planes'));
     }
+
+    // , ["data" => json_encode($carpetas)]
 }
+
+// [<?php foreach ($adquisiciones as $area_adq) {
+//     //     echo '' . $area_adq->adq . ',';
+// } 
+// 
+?>]

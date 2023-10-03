@@ -58,7 +58,7 @@ class Planadquisicione extends Model
 
     //Relacion Uno a Muchos (Inversa)
    public function area(){
-      return $this->belongsTo(Area::class);
+      return $this->belongsTo(Area::class, 'area_id', 'id');
     }
 
     //Relacion Uno a Muchos (Inversa)
