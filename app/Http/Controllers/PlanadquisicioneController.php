@@ -24,6 +24,8 @@ use App\Vigenfutura;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Validator;
 
 class PlanadquisicioneController extends Controller
 {
@@ -122,19 +124,19 @@ class PlanadquisicioneController extends Controller
             'fuente_id' => ['required'],
             'tipoprioridade_id' => ['required'],
             'requiproyecto_id' => ['required'],
-            'fechaInicial' => ['required'],
-            'fechaFinal' => ['required'],
+            'fechaInicial' => ['required', 'date_format:d/m/Y'],
+            'fechaFinal' => 'required|after_or_equal:fechaInicial', 'date_format:d/m/Y',
             'requipoais_id' => ['required'],
             'area_id' => ['required']
         ]);
 
 
-        $slug = Str::slug($request->nota, '-');
+        $slug = Str::slug($request->nota . '-' . $request->id, '-');
 
-        // Verificar si ya existe un Planadquisicione con el mismo slug
+        // Verificar si ya existe un Inventario con el mismo slug
         $counter = 1;
         while (Planadquisicione::where('slug', $slug)->exists()) {
-            $slug = Str::slug($request->nota, '-') . '-' . $counter;
+            $slug = Str::slug($request->nota . '-' . $request->id . '-' . $counter, '-');
             $counter++;
         }
 
@@ -192,12 +194,13 @@ class PlanadquisicioneController extends Controller
             'fuente_id' => ['required'],
             'tipoprioridade_id' => ['required'],
             'requiproyecto_id' => ['required'],
-            'fechaInicial' => ['required'],
-            'fechaFinal' => ['required'],
+            'fechaInicial' => ['required', 'date_format:d/m/Y'],
+            'fechaFinal' => 'required|after_or_equal:fechaInicial', 'date_format:d/m/Y',
             'area_id' => ['required']
         ]);
 
-        $slug = Str::slug($request->nota, '-');
+        // Genera el slug a partir de la nota y el id
+        $slug = Str::slug($request->nota . '-' . $inventario->id, '-');
 
         // Verificar si el nuevo slug ya existe para otro registro
         $counter = 1;
@@ -253,4 +256,13 @@ class PlanadquisicioneController extends Controller
 
         return Excel::download(new PlanadquisicioneAllExport, 'Inventario Documental en General.xlsx');
     }
+
+    // public function chart()
+    // {
+    //     $planadquisiciones = Planadquisicione::select(\DB::raw("COUNT(*) as count"))
+    //         ->whereYear('created_at', date('Y'))
+    //         ->groupBy(\DB::raw("Second(created_at)"))
+    //         ->pluck('count');
+    //     return view('planadquisiciones.chart', compact('planadquisiciones'));
+    // }
 }

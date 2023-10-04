@@ -41,6 +41,7 @@ class HomeController extends Controller
         $areas = Area::all()->count();
         $adquisiciones = Planadquisicione::all()->count();
         $adquisiciones1 = Planadquisicione::all()->count();
+        $adquisiciones3 = Planadquisicione::all()->count();
         $adquisiciones2 = Planadquisicione::with('area')->get();
 
 
@@ -57,6 +58,30 @@ class HomeController extends Controller
                 DB::raw("count(*) as totalmes"),
                 DB::raw("DATE_FORMAT(created_at,'%M %Y') as mes")
             )->groupBy('mes')->take(12)->get();
+
+
+            $adquisiciones3 = Planadquisicione::select(
+                DB::raw("count(*) as count"),
+                DB::raw("count(carpeta) as adq"),
+                DB::raw("DATE_FORMAT(fechaInicial,'%Y') as anyo")
+            )->groupBy('anyo')->take(24)->get();
+
+            // Accede a los datos de la relación
+            foreach ($adquisiciones3 as $adq) {
+                // $area = $adq->area; // "area" es el nombre del método de relación en el modelo Planadquisicione
+                // $nombreArea = $area->nomarea; // Accede a los campos de la relación (ejemplo: "nomarea")
+                $fechaInicial = $adq->fechaInicial;
+                // Puedes usar $nombreArea en tu lógica aquí
+            }
+
+            $carpetas = [];
+
+            foreach ($adquisiciones2 as $adq) {
+                // $nombreArea = $adq->area->nomarea;
+                $fechaInicial = $adq->fechaInicial;
+                $carpetas[] = ['name' => $adq->carpeta, 'description' => $adq->$fechaInicial];
+            }
+
 
 
             $adquisiciones = Planadquisicione::select(
@@ -93,6 +118,32 @@ class HomeController extends Controller
                 DB::raw("DATE_FORMAT(created_at,'%M %Y') as mes")
             )->groupBy('mes')->take(12)->get();
 
+            $adquisiciones3 = Planadquisicione::where('user_id', auth()->user()->id)->select(
+                DB::raw("count(*) as count"),
+                DB::raw("count(carpeta) as adq"),
+                DB::raw("DATE_FORMAT(fechaInicial,'%Y') as anyo")
+            )
+                ->join('areas', 'planadquisiciones.area_id', '=', 'areas.id')
+                ->groupBy('anyo')->take(24)->get();
+
+            // Accede a los datos de la relación
+            foreach ($adquisiciones3 as $adq) {
+                // $area = $adq->area; // "area" es el nombre del método de relación en el modelo Planadquisicione
+                // $nombreArea = $area->nomarea; // Accede a los campos de la relación (ejemplo: "nomarea")
+                $fechaInicial = $adq->fechaInicial;
+                // Puedes usar $nombreArea en tu lógica aquí
+            }
+
+            $carpetas = [];
+
+            foreach ($adquisiciones2 as $adq) {
+                // $nombreArea = $adq->area->nomarea;
+                $fechaInicial = $adq->fechaInicial;
+                $carpetas[] = ['name' => $adq->carpeta, 'description' => $adq->$fechaInicial];
+            }
+
+
+
             $adquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->select(
                 'area_id',
                 DB::raw('count(*) as adq'),
@@ -125,7 +176,7 @@ class HomeController extends Controller
 
 
 
-        return view("home", ["data" => json_encode($carpetas)], compact('users', 'products', 'clases', 'segmentos', 'familias', 'adquisiciones', 'adquisiciones1', 'dependencias', 'areas', 'planes'));
+        return view("home", ["data" => json_encode($carpetas)], compact('users', 'products', 'clases', 'segmentos', 'familias', 'adquisiciones', 'adquisiciones1',  'adquisiciones3', 'dependencias', 'areas', 'planes'));
     }
 
     // , ["data" => json_encode($carpetas)]
