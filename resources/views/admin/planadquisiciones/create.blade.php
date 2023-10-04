@@ -151,17 +151,19 @@
                         <div class="col-md-4">
                             <label>FECHAS EXTREMAS | Fecha Inicial:</label>
                             <div class="form-label-group">
-                                <input placeholder="Escriba la fecha inical" type="date" class="form-control"
-                                    name="fechaInicial" id="fechaInicial" required>
+                                <input placeholder="Escriba la fecha inicial" type="text" class="form-control"
+                                    name="fechaInicial" id="fechaInicialInput" required>
                             </div>
+                            <span id="fechaMostrada"></span>
                         </div>
 
                         <div class="col-md-4">
                             <label for="fechaFinal">FECHAS EXTREMAS | Fecha Final:</label>
                             <div class="form-group">
-                                <input placeholder="Escriba la fecha final" type="date" class="form-control"
-                                    name="fechaFinal" id="fechaFinal" required>
+                                <input placeholder="Escriba la fecha final" type="text" class="form-control"
+                                    name="fechaFinal" id="fechaFinalInput" required>
                             </div>
+                            <span id="fechaFinalMostrada"></span>
                         </div>
 
                         <div class="col-md-4">
@@ -338,6 +340,101 @@
 
                 }
             });
+        });
+    </script>
+
+<script>
+        // Función para aplicar el formato condicional y validar una fecha
+        function validarYFormatearFecha(inputElement, outputElement) {
+            var inputValue = inputElement.value;
+            inputValue = inputValue.replace(/\D/g, ""); // Eliminar caracteres no numéricos
+            if (inputValue.length > 0) {
+                // Formatear la fecha con "/"
+                if (inputValue.length > 2) {
+                    inputValue = inputValue.slice(0, 2) + "/" + inputValue.slice(2);
+                }
+                if (inputValue.length > 5) {
+                    inputValue = inputValue.slice(0, 5) + "/" + inputValue.slice(5, 9);
+                }
+                // Validar la fecha
+                var parts = inputValue.split("/");
+                if (parts.length === 3) {
+                    var day = parseInt(parts[0]);
+                    var month = parseInt(parts[1]);
+                    var year = parseInt(parts[2]);
+                    var date = new Date(year, month - 1, day);
+                    if (date.getDate() === day && date.getMonth() === month - 1 && date.getFullYear() === year) {
+                        // La fecha es válida, actualizar el valor del campo de entrada
+                        inputElement.value = inputValue;
+                        // Mostrar la fecha en el elemento de visualización
+                        var options = {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        };
+                        outputElement.textContent = date.toLocaleDateString(undefined, options);
+                        outputElement.style.color = "green";
+                        return;
+                    }
+                }
+            }
+            // Si la fecha es inválida, mostrar un mensaje de error en rojo
+            outputElement.textContent = "Fecha inválida";
+            outputElement.style.color = "red";
+        }
+
+        // Obtener los elementos de entrada y salida para la fecha inicial y final
+        var fechaInicialInput = document.getElementById("fechaInicialInput");
+        var fechaFinalInput = document.getElementById("fechaFinalInput");
+        var fechaMostrada = document.getElementById("fechaMostrada");
+        var fechaFinalMostrada = document.getElementById("fechaFinalMostrada");
+
+        // Escuchar eventos de entrada para la fecha inicial
+        fechaInicialInput.addEventListener("input", function() {
+            validarYFormatearFecha(this, fechaMostrada);
+        });
+
+        // Escuchar eventos de entrada para la fecha final
+        fechaFinalInput.addEventListener("input", function() {
+            validarYFormatearFecha(this, fechaFinalMostrada);
+        });
+    </script>
+
+
+    <script>
+        // Obtener el elemento de entrada de fecha
+        var fechaInicialInput = document.getElementById("fechaInicialInput");
+        var fechaFinalInput = document.getElementById("fechaFinalInput");
+
+        // Escuchar eventos de entrada para formatear automáticamente la fecha
+        fechaFinalInput.addEventListener("input", function() {
+            var inputValue = this.value;
+            inputValue = inputValue.replace(/\D/g, ""); // Eliminar caracteres no numéricos
+            if (inputValue.length > 0) {
+                // Formatear la fecha con "/"
+                if (inputValue.length > 2) {
+                    inputValue = inputValue.slice(0, 2) + "/" + inputValue.slice(2);
+                }
+                if (inputValue.length > 5) {
+                    inputValue = inputValue.slice(0, 5) + "/" + inputValue.slice(5, 9);
+                }
+            }
+            this.value = inputValue; // Actualizar el valor del campo de entrada
+        });
+        // Escuchar eventos de entrada para formatear automáticamente la fecha
+        fechaInicialInput.addEventListener("input", function() {
+            var inputValue = this.value;
+            inputValue = inputValue.replace(/\D/g, ""); // Eliminar caracteres no numéricos
+            if (inputValue.length > 0) {
+                // Formatear la fecha con "/"
+                if (inputValue.length > 2) {
+                    inputValue = inputValue.slice(0, 2) + "/" + inputValue.slice(2);
+                }
+                if (inputValue.length > 5) {
+                    inputValue = inputValue.slice(0, 5) + "/" + inputValue.slice(5, 9);
+                }
+            }
+            this.value = inputValue; // Actualizar el valor del campo de entrada
         });
     </script>
 
