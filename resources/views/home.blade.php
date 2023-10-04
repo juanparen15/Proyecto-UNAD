@@ -206,6 +206,7 @@
                         cursor: 'pointer',
                         dataLabels: {
                             enabled: true,
+                            format: '<b>{point.name}</b>: <br>{point.percentage:.1f} %</br>',
                             style: {
                                 color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                             }
