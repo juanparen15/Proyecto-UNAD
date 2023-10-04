@@ -401,6 +401,7 @@
         });
     </script>
 
+
     <script>
         // Obtener el elemento de entrada de fecha
         var fechaInicialInput = document.getElementById("fechaInicialInput");
