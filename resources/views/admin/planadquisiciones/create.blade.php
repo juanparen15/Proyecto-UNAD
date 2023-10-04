@@ -82,6 +82,7 @@
                             </div>
                         </div>
 
+                        
                         <!-- {{-- <div class="col-md-4">
                         <div class="form-group">
                             <label for="objeto">Objeto:</label>
@@ -344,7 +345,11 @@
         });
     </script>
 
+<<<<<<< HEAD
     <script>
+=======
+<script>
+>>>>>>> b257af85f4d98a22187a58fe5fe2725f2e720ce9
         // Función para aplicar el formato condicional y validar una fecha
         function validarYFormatearFecha(inputElement, outputElement) {
             var inputValue = inputElement.value;
