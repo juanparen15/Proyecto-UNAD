@@ -82,7 +82,7 @@
                             </div>
                         </div>
 
-                        
+
                         <!-- {{-- <div class="col-md-4">
                         <div class="form-group">
                             <label for="objeto">Objeto:</label>
@@ -400,10 +400,6 @@
         fechaFinalInput.addEventListener("input", function() {
             validarYFormatearFecha(this, fechaFinalMostrada);
         });
-    </script>
-
-
-    <script>
         // Obtener el elemento de entrada de fecha
         var fechaInicialInput = document.getElementById("fechaInicialInput");
         var fechaFinalInput = document.getElementById("fechaFinalInput");

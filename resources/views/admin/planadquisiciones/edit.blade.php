@@ -409,6 +409,42 @@
             });
         });
     </script>
+    {{-- <script>
+        var fechaInicialInput = document.getElementById("fechaInicialInput");
+        var fechaFinalInput = document.getElementById("fechaFinalInput");
+
+        // Escuchar eventos de entrada para formatear automáticamente la fecha
+        fechaFinalInput.addEventListener("input", function() {
+            var inputValue = this.value;
+            inputValue = inputValue.replace(/\D/g, ""); // Eliminar caracteres no numéricos
+            if (inputValue.length > 0) {
+                // Formatear la fecha con "/"
+                if (inputValue.length > 2) {
+                    inputValue = inputValue.slice(0, 2) + "/" + inputValue.slice(2);
+                }
+                if (inputValue.length > 5) {
+                    inputValue = inputValue.slice(0, 5) + "/" + inputValue.slice(5, 9);
+                }
+            }
+            this.value = inputValue; // Actualizar el valor del campo de entrada
+        });
+        // Escuchar eventos de entrada para formatear automáticamente la fecha
+        fechaInicialInput.addEventListener("input", function() {
+            var inputValue = this.value;
+            inputValue = inputValue.replace(/\D/g, ""); // Eliminar caracteres no numéricos
+            if (inputValue.length > 0) {
+                // Formatear la fecha con "/"
+                if (inputValue.length > 2) {
+                    inputValue = inputValue.slice(0, 2) + "/" + inputValue.slice(2);
+                }
+                if (inputValue.length > 5) {
+                    inputValue = inputValue.slice(0, 5) + "/" + inputValue.slice(5, 9);
+                }
+            }
+            this.value = inputValue; // Actualizar el valor del campo de entrada
+        });
+    </script> --}}
+
     <script>
         // Función para aplicar el formato condicional y validar una fecha
         function validarYFormatearFecha(inputElement, outputElement) {
@@ -464,10 +500,6 @@
         fechaFinalInput.addEventListener("input", function() {
             validarYFormatearFecha(this, fechaFinalMostrada);
         });
-    </script>
-
-
-    <script>
         // Obtener el elemento de entrada de fecha
         var fechaInicialInput = document.getElementById("fechaInicialInput");
         var fechaFinalInput = document.getElementById("fechaFinalInput");

@@ -25,7 +25,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Validator;
 
 class PlanadquisicioneController extends Controller
 {
@@ -125,24 +124,37 @@ class PlanadquisicioneController extends Controller
             'tipoprioridade_id' => ['required'],
             'requiproyecto_id' => ['required'],
             'fechaInicial' => ['required', 'date_format:d/m/Y'],
-            'fechaFinal' => 'required|after_or_equal:fechaInicial', 'date_format:d/m/Y',
+            'fechaFinal' => ['required', 'date_format:d/m/Y', 'after_or_equal:fechaInicial'],
             'requipoais_id' => ['required'],
             'area_id' => ['required']
         ]);
 
 
-        $slug = Str::slug($request->nota . '-' . $request->id, '-');
+        $slug = Str::slug($request->nota);
 
         // Verificar si ya existe un Inventario con el mismo slug
         $counter = 1;
         while (Planadquisicione::where('slug', $slug)->exists()) {
-            $slug = Str::slug($request->nota . '-' . $request->id . '-' . $counter, '-');
+            $slug = Str::slug($request->nota . '-' . $counter, '-');
             $counter++;
         }
 
+        // Obtén el último ID en la tabla y agrega 1 para generar un número de orden único
+        $ultimoId = Planadquisicione::max('id') + 1;
+
+        $slugWithId = $slug . '-' . $ultimoId;
+
+        // // Agregar el ID al slug
+        // $slugWithId = $slug . '-' . $counter;
+
+        // // Generar un sufijo único aleatorio (por ejemplo, un número aleatorio)
+        // $uniqueSuffix = uniqid();
+
+        // $slugWithId = $slug . '-' . $uniqueSuffix;
+
         $planadquisicione = Planadquisicione::create(array_merge($request->all(), [
             'user_id' => auth()->user()->id,
-            'slug' => $slug
+            'slug' => $slugWithId  // Utiliza el slug con el ID agregado
         ]));
 
         // Realmente no necesitas volver a verificar si el slug es único aquí,
@@ -195,12 +207,30 @@ class PlanadquisicioneController extends Controller
             'tipoprioridade_id' => ['required'],
             'requiproyecto_id' => ['required'],
             'fechaInicial' => ['required', 'date_format:d/m/Y'],
-            'fechaFinal' => 'required|after_or_equal:fechaInicial', 'date_format:d/m/Y',
+            'fechaFinal' => ['required', 'date_format:d/m/Y', 'after_or_equal:fechaInicial'],
             'area_id' => ['required']
         ]);
 
-        // Genera el slug a partir de la nota y el id
-        $slug = Str::slug($request->nota . '-' . $inventario->id, '-');
+        // $slug = Str::slug($request->nota);
+
+        // // Verificar si el nuevo slug ya existe para otro registro
+        // $counter = 1;
+        // while (Planadquisicione::where('slug', $slug)->where('id', '<>', $inventario->id)->exists()) {
+        //     $slug = $slug . '-' . $counter;
+        //     $counter++;
+        // }
+    
+        // // Mantén el ID original seguido del nuevo Slug
+        // $slugWithId = $inventario->id . '-' . $slug;
+    
+        // $inventario->update(array_merge($request->all(), [
+        //     'user_id' => auth()->user()->id,
+        //     'slug' => $slugWithId  // Actualiza el Slug con el ID original seguido del nuevo Slug
+        // ]));
+    
+
+
+        $slug = Str::slug($request->nota);
 
         // Verificar si el nuevo slug ya existe para otro registro
         $counter = 1;
@@ -209,9 +239,18 @@ class PlanadquisicioneController extends Controller
             $counter++;
         }
 
+        // Obtén el último ID en la tabla y agrega 1 para generar un número de orden único
+        $ultimoId = Planadquisicione::max('id');
+
+        $slugWithId = $slug . '-' . $ultimoId;
+
+        // Contrato 435 del 2023
+        // // Agregar el ID al slug
+        // $slugWithId = $slug . '-' . $counter;
+
         $inventario->update(array_merge($request->all(), [
             'user_id' => auth()->user()->id,
-            'slug' => $slug
+            'slug' => $slugWithId  // Utiliza el slug con el ID agregado
         ]));
 
         // ... (código para manejar la relación muchos a muchos si es necesario)
