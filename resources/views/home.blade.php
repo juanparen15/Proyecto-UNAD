@@ -231,24 +231,7 @@
                 },
                 series: [{
                     name: 'Carpetas',
-                    data:
-                        [<?php foreach ($adquisiciones as $adq) { ?> {
-                                    name: '<?php echo $adq->area_name; ?>',
-                                    y: <?php echo $adq->adq; ?>
-                                },
-                                <?php } ?>,
-                            ]
-                        
-                    // [<?php foreach ($adquisiciones3 as $adq) { ?> {
-                    //         name: '<?php echo $adq->anyo; ?>',
-                    //         description: 'Total Carpetas: ' + <?php echo $adq->adq; ?>
-                    //     },
-                    //     <?php } ?>
-                    // ]
-
-
-
-                }]
+                    data:                }]
             });
         </script> --}}
 
