@@ -63,8 +63,11 @@ class HomeController extends Controller
             $adquisiciones3 = Planadquisicione::select(
                 DB::raw("count(*) as count"),
                 DB::raw("count(carpeta) as adq"),
-                DB::raw("DATE_FORMAT(fechaInicial,'%Y') as anyo")
-            )->groupBy('anyo')->take(24)->get();
+                DB::raw("DATE_FORMAT(fechaInicial, '%Y') as anyo")
+            )
+            ->orderBy('anyo', 'ASC')
+            ->groupBy('anyo')->take(24)->get();
+
 
             // Accede a los datos de la relación
             foreach ($adquisiciones3 as $adq) {

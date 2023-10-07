@@ -91,6 +91,7 @@ class PlanadquisicioneController extends Controller
 
     public function create()
     {
+
         $userArea = auth()->user()->area; // Obtener el área asociada al usuario
         $segmentos = Segmento::get();
         $familias = Familia::get();
@@ -130,6 +131,7 @@ class PlanadquisicioneController extends Controller
         ]);
 
 
+
         $slug = Str::slug($request->nota);
 
         // Verificar si ya existe un Inventario con el mismo slug
@@ -143,6 +145,7 @@ class PlanadquisicioneController extends Controller
         $ultimoId = Planadquisicione::max('id') + 1;
 
         $slugWithId = $slug . '-' . $ultimoId;
+        // $slugWithId = $slug . '-';
 
         // // Agregar el ID al slug
         // $slugWithId = $slug . '-' . $counter;
@@ -153,6 +156,8 @@ class PlanadquisicioneController extends Controller
         // $slugWithId = $slug . '-' . $uniqueSuffix;
 
         $planadquisicione = Planadquisicione::create(array_merge($request->all(), [
+            'fechaInicial' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->fechaInicial)->format('Y-m-d'),
+            'fechaFinal' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->fechaFinal)->format('Y-m-d'),
             'user_id' => auth()->user()->id,
             'slug' => $slugWithId  // Utiliza el slug con el ID agregado
         ]));
@@ -171,7 +176,6 @@ class PlanadquisicioneController extends Controller
         return view('admin.planadquisiciones.show', compact('inventario'));
     }
 
-
     public function edit(Planadquisicione $inventario)
     {
         $userArea = $inventario->user->area; // Obtener el área asociada al usuario
@@ -179,10 +183,14 @@ class PlanadquisicioneController extends Controller
         $familias = Familia::get();
         $modalidades = Modalidade::get();
         $fuentes = Fuente::get();
-        // $requiproyectos = Requiproyecto::get();
         $tipoprioridades = Tipoprioridade::get();
         $requipoais = Requipoai::get();
         $requiproyectos = Requiproyecto::where('areas_id', auth()->user()->area->id)->pluck('detproyeto', 'id');
+
+        // Formatear las fechas antes de pasarlas a la vista
+        $inventario->fechaInicial = \Carbon\Carbon::createFromFormat('Y-m-d', $inventario->fechaInicial)->format('d/m/Y');
+        $inventario->fechaFinal = \Carbon\Carbon::createFromFormat('Y-m-d', $inventario->fechaFinal)->format('d/m/Y');
+
         return view('admin.planadquisiciones.edit', compact('requipoais', 'modalidades', 'familias', 'segmentos', 'fuentes', 'requiproyectos', 'tipoprioridades', 'inventario', 'userArea'));
     }
 
@@ -219,16 +227,22 @@ class PlanadquisicioneController extends Controller
         //     $slug = $slug . '-' . $counter;
         //     $counter++;
         // }
-    
+
         // // Mantén el ID original seguido del nuevo Slug
         // $slugWithId = $inventario->id . '-' . $slug;
-    
+
         // $inventario->update(array_merge($request->all(), [
         //     'user_id' => auth()->user()->id,
         //     'slug' => $slugWithId  // Actualiza el Slug con el ID original seguido del nuevo Slug
         // ]));
-    
 
+
+        // $fechaInicial = \Carbon\Carbon::createFromFormat('d/m/Y', $request->fechaInicial)->format('Y-m-d');
+        // $fechaFinal = \Carbon\Carbon::createFromFormat('d/m/Y', $request->fechaFinal)->format('Y-m-d');
+
+        // Formatear las fechas antes de guardarlas en la base de datos
+        $fechaInicial = \Carbon\Carbon::createFromFormat('d/m/Y', $request->fechaInicial)->format('Y-m-d');
+        $fechaFinal = \Carbon\Carbon::createFromFormat('d/m/Y', $request->fechaFinal)->format('Y-m-d');
 
         $slug = Str::slug($request->nota);
 
@@ -249,6 +263,8 @@ class PlanadquisicioneController extends Controller
         // $slugWithId = $slug . '-' . $counter;
 
         $inventario->update(array_merge($request->all(), [
+            'fechaInicial' => $fechaInicial,
+            'fechaFinal' => $fechaFinal,
             'user_id' => auth()->user()->id,
             'slug' => $slugWithId  // Utiliza el slug con el ID agregado
         ]));

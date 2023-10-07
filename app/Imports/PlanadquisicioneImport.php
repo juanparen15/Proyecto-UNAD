@@ -16,6 +16,7 @@ class PlanadquisicioneImport implements ToModel
     public function model(array $row)
     {
         return new Planadquisicione([
+            // $ultimoId = Planadquisicione::max('id') + 1,
             // 'id'=> $row[0],
             'caja'=> $row[0],
             'carpeta'=> $row[1],
