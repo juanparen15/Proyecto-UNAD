@@ -1,9 +1,11 @@
 @extends('layouts.admin')
 @section('title', 'Inventario')
 @section('style')
+
     <!-- Select2 -->
     {!! Html::style('adminlte/plugins/select2/css/select2.min.css') !!}
     {!! Html::style('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') !!}
+
 @endsection
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -271,7 +273,8 @@
                             <label>NOTAS:</label>
                             <div class="input-group sm-3">
                                 <input placeholder="Escriba una nota" type="text" class="form-control" name="nota"
-                                    id="nota" required>
+                                    id="nota" required onkeypress="return validarCaracter(event)">
+
                             </div>
                         </div>
                     </div>
@@ -290,6 +293,26 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+    <!-- Agrega este código al final de tu vista -->
+    <div class="modal fade" id="notaModal" tabindex="-1" role="dialog" aria-labelledby="notaModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notaModalLabel">Mensaje de Validación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Por favor, ingrese solo letras, números o guión (-) en el campo de notas.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary float-right" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -298,6 +321,8 @@
 @section('script')
     <!-- Select2 -->
     {!! Html::script('adminlte/plugins/select2/js/select2.full.min.js') !!}
+    <!-- Tu otro script personalizado aquí -->
+
     <script>
         $(function() {
 
@@ -433,6 +458,45 @@
                 }
             }
             this.value = inputValue; // Actualizar el valor del campo de entrada
+        });
+    </script>
+
+
+    <!-- Agrega este script en la sección 'script' de tu vista -->
+
+    <script>
+        function validarCaracter(event) {
+            var input = event.key;
+            // Usar una expresión regular para permitir letras, números y el guión (-)
+            var regex = /^[a-zA-Z0-9\- ]$/;
+            if (!regex.test(input)) {
+                event.preventDefault(); // Prevenir la entrada del carácter no válido
+                $('#notaModal').modal('show'); // Mostrar el modal de validación
+            }
+        }
+
+        function validarNota() {
+            var notaInput = document.getElementById("nota");
+            var notaValue = notaInput.value;
+            // Usar una expresión regular para permitir solo caracteres alfanuméricos y el guión (-)
+            var regex = /^[a-zA-Z0-9\- ]+$/; // Permite letras, números, guiones y espacios
+
+            if (!regex.test(notaValue)) {
+                // alert("Por favor, la nota solo puede contener letras, números, guiones y espacios.");
+                notaInput.value = ""; // Borrar el contenido no válido
+                notaInput.focus(); // Colocar el foco en el campo de notas
+                return false;
+            }
+
+            return true;
+        }
+
+        // Asigna la función de validación al evento submit del formulario
+        var form = document.forms[0]; // Asegúrate de que este sea el índice correcto del formulario
+        form.addEventListener("submit", function(event) {
+            if (!validarNota()) {
+                event.preventDefault(); // Evita que se envíe el formulario si la nota es inválida
+            }
         });
     </script>
 
