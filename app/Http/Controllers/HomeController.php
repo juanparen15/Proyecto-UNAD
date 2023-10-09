@@ -182,12 +182,4 @@ class HomeController extends Controller
 
         return view("home", ["data" => json_encode($carpetas)], compact('users', 'products', 'clases', 'segmentos', 'familias', 'adquisiciones', 'adquisiciones1',  'adquisiciones3', 'dependencias', 'areas', 'planes'));
     }
-
-    // , ["data" => json_encode($carpetas)]
 }
-
-// [<?php foreach ($adquisiciones as $area_adq) {
-//     //     echo '' . $area_adq->adq . ',';
-// } 
-// 
-?>]
