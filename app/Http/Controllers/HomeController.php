@@ -65,8 +65,8 @@ class HomeController extends Controller
                 DB::raw("count(carpeta) as adq"),
                 DB::raw("DATE_FORMAT(fechaInicial, '%Y') as anyo")
             )
-                ->orderBy('anyo', 'ASC')
-                ->groupBy('anyo')->take(24)->get();
+                ->orderBy('anyo', 'DESC')
+                ->groupBy('anyo')->take(12)->get();
 
 
             // Accede a los datos de la relación
@@ -126,9 +126,9 @@ class HomeController extends Controller
                 DB::raw("count(carpeta) as adq"),
                 DB::raw("DATE_FORMAT(fechaInicial,'%Y') as anyo")
             )
-                ->orderBy('anyo', 'ASC')
+                ->orderBy('anyo', 'DESC')
                 ->join('areas', 'planadquisiciones.area_id', '=', 'areas.id')
-                ->groupBy('anyo')->take(24)->get();
+                ->groupBy('anyo')->take(12)->get();
 
             // Accede a los datos de la relación
             foreach ($adquisiciones3 as $adq) {
@@ -186,8 +186,3 @@ class HomeController extends Controller
     // , ["data" => json_encode($carpetas)]
 }
 
-// [<?php foreach ($adquisiciones as $area_adq) {
-//     //     echo '' . $area_adq->adq . ',';
-// } 
-// 
-?>]
