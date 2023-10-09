@@ -65,8 +65,8 @@ class HomeController extends Controller
                 DB::raw("count(carpeta) as adq"),
                 DB::raw("DATE_FORMAT(fechaInicial, '%Y') as anyo")
             )
-            ->orderBy('anyo', 'ASC')
-            ->groupBy('anyo')->take(24)->get();
+                ->orderBy('anyo', 'ASC')
+                ->groupBy('anyo')->take(24)->get();
 
 
             // Accede a los datos de la relación
@@ -126,6 +126,7 @@ class HomeController extends Controller
                 DB::raw("count(carpeta) as adq"),
                 DB::raw("DATE_FORMAT(fechaInicial,'%Y') as anyo")
             )
+                ->orderBy('anyo', 'ASC')
                 ->join('areas', 'planadquisiciones.area_id', '=', 'areas.id')
                 ->groupBy('anyo')->take(24)->get();
 

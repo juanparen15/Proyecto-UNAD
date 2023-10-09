@@ -149,11 +149,11 @@
                                 <label for="familias_id">Tipo de Subserie Documental:</label>
                                 <select class="select2 @error('familias_id') is-invalid @enderror" name="familias_id"
                                     id="familias_id" style="width: 100%;">
-                                    {{-- @foreach ($familias as $familia)
+                                    @foreach ($familias as $familia)
                                 <option value="{{$familia->id}}"
-                                    {{ old('familias_id', $planadquisicione->familias_id) == $familia->id ? 'selected' : ''}}>
+                                    {{ old('familias_id', $inventario->familias_id) == $familia->id ? 'selected' : ''}}>
                                     {{$familia->detfamilia}}</option>
-                                @endforeach --}}
+                                @endforeach
                                 </select>
                                 @error('familias_id')
                                     <span class="invalid-feedback" role="alert">
@@ -292,7 +292,7 @@
                             <label>NOTAS:</label>
                             <div class="input-group sm-3">
                                 <input placeholder="Escriba una nota" type="text" class="form-control" name="nota"
-                                    id="nota" value="{{ old('nota', $inventario->nota) }}" required>
+                                    id="nota" value="{{ old('nota', $inventario->nota) }}" required onkeypress="return validarCaracter(event)">
                             </div>
                         </div>
                     </div>
@@ -339,7 +339,25 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-
+    <div class="modal fade" id="notaModal" tabindex="-1" role="dialog" aria-labelledby="notaModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notaModalLabel">Mensaje de Validación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Por favor, ingrese solo letras, números o guión (-) en el campo de notas.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary float-right" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -409,41 +427,7 @@
             });
         });
     </script>
-    {{-- <script>
-        var fechaInicialInput = document.getElementById("fechaInicialInput");
-        var fechaFinalInput = document.getElementById("fechaFinalInput");
 
-        // Escuchar eventos de entrada para formatear automáticamente la fecha
-        fechaFinalInput.addEventListener("input", function() {
-            var inputValue = this.value;
-            inputValue = inputValue.replace(/\D/g, ""); // Eliminar caracteres no numéricos
-            if (inputValue.length > 0) {
-                // Formatear la fecha con "/"
-                if (inputValue.length > 2) {
-                    inputValue = inputValue.slice(0, 2) + "/" + inputValue.slice(2);
-                }
-                if (inputValue.length > 5) {
-                    inputValue = inputValue.slice(0, 5) + "/" + inputValue.slice(5, 9);
-                }
-            }
-            this.value = inputValue; // Actualizar el valor del campo de entrada
-        });
-        // Escuchar eventos de entrada para formatear automáticamente la fecha
-        fechaInicialInput.addEventListener("input", function() {
-            var inputValue = this.value;
-            inputValue = inputValue.replace(/\D/g, ""); // Eliminar caracteres no numéricos
-            if (inputValue.length > 0) {
-                // Formatear la fecha con "/"
-                if (inputValue.length > 2) {
-                    inputValue = inputValue.slice(0, 2) + "/" + inputValue.slice(2);
-                }
-                if (inputValue.length > 5) {
-                    inputValue = inputValue.slice(0, 5) + "/" + inputValue.slice(5, 9);
-                }
-            }
-            this.value = inputValue; // Actualizar el valor del campo de entrada
-        });
-    </script> --}}
 
     <script>
         // Función para aplicar el formato condicional y validar una fecha
@@ -535,5 +519,46 @@
             this.value = inputValue; // Actualizar el valor del campo de entrada
         });
     </script>
+
+
+    <!-- Agrega este script en la sección 'script' de tu vista -->
+
+    <script>
+        function validarCaracter(event) {
+            var input = event.key;
+            // Usar una expresión regular para permitir letras, números y el guión (-)
+            var regex = /^[a-zA-Z0-9\- ]$/;
+            if (!regex.test(input)) {
+                event.preventDefault(); // Prevenir la entrada del carácter no válido
+                $('#notaModal').modal('show'); // Mostrar el modal de validación
+            }
+        }
+
+        function validarNota() {
+            var notaInput = document.getElementById("nota");
+            var notaValue = notaInput.value;
+            // Usar una expresión regular para permitir solo caracteres alfanuméricos y el guión (-)
+            var regex = /^[a-zA-Z0-9\- ]+$/; // Permite letras, números, guiones y espacios
+
+            if (!regex.test(notaValue)) {
+                // alert("Por favor, la nota solo puede contener letras, números, guiones y espacios.");
+                notaInput.value = ""; // Borrar el contenido no válido
+                notaInput.focus(); // Colocar el foco en el campo de notas
+                return false;
+            }
+
+            return true;
+        }
+
+        // Asigna la función de validación al evento submit del formulario
+        var form = document.forms[0]; // Asegúrate de que este sea el índice correcto del formulario
+        form.addEventListener("submit", function(event) {
+            if (!validarNota()) {
+                event.preventDefault(); // Evita que se envíe el formulario si la nota es inválida
+            }
+        });
+    </script>
+
+
 
 @endsection
