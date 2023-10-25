@@ -1,14 +1,22 @@
 <script>
-    $(function () {
+    $(document).ready(function() {
         $('#example2').DataTable({
-            "paging": true,
+            "search": {
+                "smart": true,
+                "regex": true,
+                "caseInsensitive": true,
+                "full": true
+            },
+            "searching": true,
+            "paging": false,
+            "pageLength": 100000, // Un número grande para mostrar todos los registros
             "ordering": true,
             "info": true,
-            "autoWidth": false,
+            "autoWidth": true,
             "responsive": true,
             "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
             }
         });
     });
-  </script>
+</script>

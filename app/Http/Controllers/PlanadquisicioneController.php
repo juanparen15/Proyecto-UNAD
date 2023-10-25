@@ -69,10 +69,14 @@ class PlanadquisicioneController extends Controller
 
 
         if (auth()->user()->hasRole('Admin')) {
-            $planadquisiciones = Planadquisicione::get();
+            // $planadquisiciones = Planadquisicione::get();
+            $planadquisiciones = Planadquisicione::paginate(13);
+            // $planadquisiciones = Planadquisicione::limit(13)->get();
             // $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->get();
         } else {
-            $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->get();
+            // $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->limit(13)->get();
+            // $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->get();
+            $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->paginate(13);
             // $planadquisiciones = Planadquisicione::get();
         }
         return view('admin.planadquisiciones.index', compact('planadquisiciones'));
@@ -171,9 +175,17 @@ class PlanadquisicioneController extends Controller
     }
 
 
-    public function show(Planadquisicione $inventario)
+    // public function show(Planadquisicione $inventario)
+    // {
+    //     return view('admin.planadquisiciones.show', compact('inventario'));
+    // }
+
+    public function show($id)
     {
-        return view('admin.planadquisiciones.show', compact('inventario'));
+        $planadquisicione = Planadquisicione::with('user', 'fuente', 'requiproyecto', 'requipoais', 'tipoprioridade', 'area', 'segmento', 'modalidad', 'familias')
+            ->find($id);
+
+        return view('admin.planadquisiciones.show', compact('planadquisicione'));
     }
 
     public function edit(Planadquisicione $inventario)

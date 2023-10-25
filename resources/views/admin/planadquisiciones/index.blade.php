@@ -77,7 +77,8 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
-                        <table id="example2" class="table table-hover text-nowrap">
+                        
+                        <table id="example2" class="table table-hover text-nowrap" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th>NÚMERO DE ORDEN</th>
@@ -159,6 +160,7 @@
 
                             </tbody>
                         </table>
+                        {{ $planadquisiciones->links() }}
                     </div>
                     <!-- /.card-body -->
                 </div>

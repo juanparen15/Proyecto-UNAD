@@ -27,16 +27,27 @@ class Planadquisicione extends Model
         'user_id',
         'slug'
     ];
+    protected $with =[
+        'user',
+        'fuente',
+        'requiproyecto',
+        'requipoais',
+        'tipoprioridade',
+        'area',
+        'segmento',
+        'modalidad',
+        'familias'
+    ];
 
-    public function show($id, $slug)
-    {
-        // Buscar el plan de adquisición por ID y Slug
-        $planAdquisicion = Planadquisicione::where('id', $id)
-            ->where('slug', $slug)
-            ->firstOrFail();
+    // public function show($id, $slug)
+    // {
+    //     // Buscar el plan de adquisición por ID y Slug
+    //     $planAdquisicion = Planadquisicione::where('id', $id)
+    //         ->where('slug', $slug)
+    //         ->firstOrFail();
     
-        // Resto de tu lógica para mostrar el plan de adquisición
-    }
+    //     // Resto de tu lógica para mostrar el plan de adquisición
+    // }
 
     public function getRouteKeyName()
     {
