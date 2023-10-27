@@ -180,12 +180,12 @@ class PlanadquisicioneController extends Controller
     //     return view('admin.planadquisiciones.show', compact('inventario'));
     // }
 
-    public function show($id)
+    public function show(Planadquisicione $inventario)
     {
         $planadquisicione = Planadquisicione::with('user', 'fuente', 'requiproyecto', 'requipoais', 'tipoprioridade', 'area', 'segmento', 'modalidad', 'familias')
-            ->find($id);
+            ->find($inventario);
 
-        return view('admin.planadquisiciones.show', compact('planadquisicione'));
+        return view('admin.planadquisiciones.show', compact('inventario'));
     }
 
     public function edit(Planadquisicione $inventario)
