@@ -3,6 +3,7 @@
 @section('style')
 
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    
 
 @endsection
 @section('content')
@@ -24,8 +25,7 @@
         </div>
         <div class="content">
             <div class="container-fluid">
-
-                @if (auth()->user()->hasRole('Admin'))
+                @if (auth()->user()->hasRole('Supervisor'))
                     <div class="row">
                         <div class="col-lg-3 col-6">
                             <div class="small-box bg-danger">
@@ -36,8 +36,60 @@
                                 <div class="icon">
                                     <i class="fas fa-shopping-cart"></i>
                                 </div>
-                                <a href="{{ route('planadquisiciones.index') }}" class="small-box-footer">Ver Todo <i
-                                        class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <div class="small-box bg-blue">
+                                <div class="inner">
+                                    <h3>{{ $users }}</h3>
+                                    <p>Usuarios</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-maroon">
+                                <div class="inner">
+                                    <h3>{{ $dependencias }}</h3>
+                                    <p>Dependencias</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fab fa-xbox"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-pink">
+                                <div class="inner">
+                                    <h3>{{ $areas }}</h3>
+                                    <p>Areas</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fab fa-playstation"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+                @if (auth()->user()->hasRole('Admin'))
+                {{-- @if (auth()->user(1)) --}}
+                    <div class="row">
+                        <div class="col-lg-3 col-6">
+                            <div class="small-box bg-danger">
+                                <div class="inner">
+                                    <h3>{{ $adquisiciones1 }}</h3>
+                                    <p>Inventario</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <a href="{{ route('planadquisiciones.index') }}" class="small-box-footer">Ver Todo
+                                    <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <div class="col-lg-3 col-6">
@@ -55,58 +107,58 @@
                         </div>
                         <!-- ./col -->
                         <!-- <div class="col-lg-3 col-6">
-                                                                                                                                                                                             small box
-                                                                                                                                                                                            <div class="small-box bg-success">
-                                                                                                                                                                                                <div class="inner">
-                                                                                                                                                                                                    <h3>{{ $products }}</h3>
-                                                                                                                                                                                                    <p>Productos</p>
-                                                                                                                                                                                                </div>
-                                                                                                                                                                                                <div class="icon">
-                                                                                                                                                                                                    <i class="fab fa-bitcoin"></i>
-                                                                                                                                                                                                </div>
-                                                                                                                                                                                                <a href="{{ route('admin.productos.index') }}" class="small-box-footer">Ver Todo <i class="fas fa-arrow-circle-right"></i></a>
-                                                                                                                                                                                            </div>
-                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                                     small box
+                                                                                                                                                                                                                    <div class="small-box bg-success">
+                                                                                                                                                                                                                        <div class="inner">
+                                                                                                                                                                                                                            <h3>{{ $products }}</h3>
+                                                                                                                                                                                                                            <p>Productos</p>
+                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                        <div class="icon">
+                                                                                                                                                                                                                            <i class="fab fa-bitcoin"></i>
+                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                        <a href="{{ route('admin.productos.index') }}" class="small-box-footer">Ver Todo <i class="fas fa-arrow-circle-right"></i></a>
+                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                </div> -->
                         <!-- ./col -->
                         <!-- <div class="col-lg-3 col-6">
-                                                                                                                                                                                             small box --
-                                                                                                                                                                                            <div class="small-box bg-warning">
-                                                                                                                                                                                                <div class="inner">
-                                                                                                                                                                                                    <h3>{{ $clases }}</h3>
-                                                                                                                                                                                                    <p>Clases</p>
-                                                                                                                                                                                                </div>
-                                                                                                                                                                                                <div class="icon">
-                                                                                                                                                                                                    <i class="fas fa-calendar-alt"></i>
-                                                                                                                                                                                                </div>
-                                                                                                                                                                                                <a href="{{ route('admin.clases.index') }}" class="small-box-footer">Ver Todo <i class="fas fa-arrow-circle-right"></i></a>
-                                                                                                                                                                                            </div>
-                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                                     small box --
+                                                                                                                                                                                                                    <div class="small-box bg-warning">
+                                                                                                                                                                                                                        <div class="inner">
+                                                                                                                                                                                                                            <h3>{{ $clases }}</h3>
+                                                                                                                                                                                                                            <p>Clases</p>
+                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                        <div class="icon">
+                                                                                                                                                                                                                            <i class="fas fa-calendar-alt"></i>
+                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                        <a href="{{ route('admin.clases.index') }}" class="small-box-footer">Ver Todo <i class="fas fa-arrow-circle-right"></i></a>
+                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                </div> -->
                         <!-- <div class="col-lg-3 col-6">
-                                                                                                                                                                                             small box
-                                                                                                                                                                                            <div class="small-box bg-dark">
-                                                                                                                                                                                                <div class="inner">
-                                                                                                                                                                                                    <h3>{{ $familias }}</h3>
-                                                                                                                                                                                                    <p>Familias</p>
-                                                                                                                                                                                                </div>
-                                                                                                                                                                                                <div class="icon">
-                                                                                                                                                                                                    <i class="fas fa-users"></i>
-                                                                                                                                                                                                </div>
-                                                                                                                                                                                                <a href="{{ route('admin.familias.index') }}" class="small-box-footer">Ver Todo <i class="fas fa-arrow-circle-right"></i></a>
-                                                                                                                                                                                            </div>
-                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                                     small box
+                                                                                                                                                                                                                    <div class="small-box bg-dark">
+                                                                                                                                                                                                                        <div class="inner">
+                                                                                                                                                                                                                            <h3>{{ $familias }}</h3>
+                                                                                                                                                                                                                            <p>Familias</p>
+                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                        <div class="icon">
+                                                                                                                                                                                                                            <i class="fas fa-users"></i>
+                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                        <a href="{{ route('admin.familias.index') }}" class="small-box-footer">Ver Todo <i class="fas fa-arrow-circle-right"></i></a>
+                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                </div> -->
                         <!-- <div class="col-lg-3 col-6">
-                                                                                                                                                                                             small box
-                                                                                                                                                                                            <div class="small-box bg-purple">
-                                                                                                                                                                                                <div class="inner">
-                                                                                                                                                                                                    <h3>{{ $segmentos }}</h3>
-                                                                                                                                                                                                    <p>Segmentos</p>
-                                                                                                                                                                                                </div>
-                                                                                                                                                                                                <div class="icon">
-                                                                                                                                                                                                    <i class="fas fa-chess-king"></i>
-                                                                                                                                                                                                </div>
-                                                                                                                                                                                                <a href="{{ route('admin.segmentos.index') }}" class="small-box-footer">Ver Todo <i class="fas fa-arrow-circle-right"></i></a>
-                                                                                                                                                                                            </div>
-                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                                     small box
+                                                                                                                                                                                                                    <div class="small-box bg-purple">
+                                                                                                                                                                                                                        <div class="inner">
+                                                                                                                                                                                                                            <h3>{{ $segmentos }}</h3>
+                                                                                                                                                                                                                            <p>Segmentos</p>
+                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                        <div class="icon">
+                                                                                                                                                                                                                            <i class="fas fa-chess-king"></i>
+                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                        <a href="{{ route('admin.segmentos.index') }}" class="small-box-footer">Ver Todo <i class="fas fa-arrow-circle-right"></i></a>
+                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                </div> -->
                         <!-- ./col -->
                         <div class="col-lg-3 col-6">
                             <!-- small box -->
@@ -118,8 +170,8 @@
                                 <div class="icon">
                                     <i class="fab fa-xbox"></i>
                                 </div>
-                                <a href="{{ route('admin.dependencias.index') }}" class="small-box-footer">Ver Todo <i
-                                        class="fas fa-arrow-circle-right"></i></a>
+                                <a href="{{ route('admin.dependencias.index') }}" class="small-box-footer">Ver Todo
+                                    <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <div class="col-lg-3 col-6">

@@ -25,6 +25,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 
 class PlanadquisicioneController extends Controller
 {
@@ -33,7 +34,8 @@ class PlanadquisicioneController extends Controller
 
         $this->middleware([
             'auth',
-            'permission:planadquisiciones.index'
+            // 'permission:planadquisiciones.index',
+            // 'permission:supervisor.planadquisiciones.index',
         ]);
     }
 
@@ -67,11 +69,25 @@ class PlanadquisicioneController extends Controller
         //     $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->get();
         // }
 
-
-        if (auth()->user()->hasRole('Admin')) {
+        // $minutes = 60; //  duración de la caché en minutos
+        if (auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Supervisor')) {
             // $planadquisiciones = Planadquisicione::get();
             $planadquisiciones = Planadquisicione::paginate(13);
-            // $planadquisiciones = Planadquisicione::limit(13)->get();
+            // $planadquisiciones = Cache::remember('planadquisiciones', $minutes, function () {
+            //     return Planadquisicione::get();
+            // });
+            // $planadquisiciones = [];
+
+            // Planadquisicione::chunk(200, function ($resultados) use (&$planadquisiciones) {
+            //     $planadquisiciones = array_merge($planadquisiciones, $resultados->toArray());
+            // });
+
+
+            // $planadquisiciones = Cache::remember('planadquisiciones', $minutes, function () {
+            //     return Planadquisicione::get();
+            // });
+
+            // $planadquisiciones = Planadquisicione::limit(50)->get();
             // $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->get();
         } else {
             // $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->limit(13)->get();

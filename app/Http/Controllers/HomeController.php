@@ -52,7 +52,7 @@ class HomeController extends Controller
         $carpetas = [];
 
 
-        if (auth()->user()->hasRole('Admin')) {
+        if (auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Supervisor')) {
             $planes = Planadquisicione::select(
                 DB::raw("count(*) as count"),
                 DB::raw("count(*) as totalmes"),

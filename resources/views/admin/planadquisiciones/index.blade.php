@@ -63,21 +63,26 @@
                                 @endif
                             @endif --}}
 
-                            <a href="{{ route('planadquisiciones.create') }}" class="btn btn-primary">
-                                <i class="fas fa-parking"></i> Agregar Nuevo Inventario
-                            </a>
-                            @can('planadquisiciones.export')
-                                <a href="{{ route('planadquisiciones.export') }}" class="btn btn-success">
-                                    <i class="far fa-file-excel"></i> <i class="fas fa-file-export"></i> Exportar Todo
+
+                            @if (auth()->user()->hasRole('Admin') ||
+                                    auth()->user()->hasRole('User'))
+                                <a href="{{ route('planadquisiciones.create') }}" class="btn btn-primary">
+                                    <i class="fas fa-parking"></i> Agregar Nuevo Inventario
                                 </a>
-                            @endcan
+                            @endif
+
+                            {{-- @can('planadquisiciones.export') --}}
+                            <a href="{{ route('planadquisiciones.export') }}" class="btn btn-success">
+                                <i class="far fa-file-excel"></i> <i class="fas fa-file-export"></i> Exportar Todo
+                            </a>
+                            {{-- @endcan --}}
                         </div>
 
 
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
-                        
+
                         <table id="example2" class="table table-hover text-nowrap" style="width: 100%">
                             <thead>
                                 <tr>
@@ -132,23 +137,23 @@
                                                 @csrf
                                                 @method('delete')
 
-                                                @can('exportar_planadquisiciones_excel')
+                                                {{-- @can('exportar_planadquisiciones_excel') --}}
                                                     <a class="btn btn-success btn-sm"
                                                         href="{{ route('exportar_planadquisiciones_excel', $planadquisicion) }}">
                                                         <i class="far fa-file-excel"></i> Exportar
                                                     </a>
-                                                @endcan
+                                                {{-- @endcan --}}
 
-                                                @can('planadquisiciones.show')
+                                                {{-- @can('planadquisiciones.show') --}}
                                                     <a class="btn btn-info btn-sm"
                                                         href="{{ route('planadquisiciones.show', $planadquisicion) }}">Detalles</a>
-                                                @endcan
+                                                {{-- @endcan --}}
 
 
-                                                {{-- @can('planadquisiciones.edit') --}}
+                                                @can('planadquisiciones.edit')
                                                 <a class="btn btn-primary btn-sm"
                                                     href="{{ route('planadquisiciones.edit', $planadquisicion) }}">Editar</a>
-                                                {{-- @endcan --}}
+                                                @endcan
 
                                                 {{-- @can('planadquisiciones.destroy')
                                                     <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
