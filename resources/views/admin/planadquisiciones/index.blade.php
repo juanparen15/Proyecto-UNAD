@@ -150,10 +150,12 @@
                                                 {{-- @endcan --}}
 
 
-                                                @can('planadquisiciones.edit')
+                                                {{-- @can('planadquisiciones.edit') --}}
+                                                @if (auth()->user()->hasRole('Admin') || auth()->user()->hasRole('User'))
                                                 <a class="btn btn-primary btn-sm"
                                                     href="{{ route('planadquisiciones.edit', $planadquisicion) }}">Editar</a>
-                                                @endcan
+                                                @endif
+                                                    {{-- @endcan --}}
 
                                                 {{-- @can('planadquisiciones.destroy')
                                                     <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
