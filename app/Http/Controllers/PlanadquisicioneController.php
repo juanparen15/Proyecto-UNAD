@@ -34,6 +34,7 @@ class PlanadquisicioneController extends Controller
 
         $this->middleware([
             'auth',
+            // $this->middleware('role:supervisor', ['only' => ['index']]),
             // 'permission:planadquisiciones.index',
             // 'permission:supervisor.planadquisiciones.index',
         ]);

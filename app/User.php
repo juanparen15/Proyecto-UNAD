@@ -13,6 +13,12 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
     use HasRoles;
 
+    // public function hasRole()
+    // {
+    //     return $this->role === 'Admin';
+    // }
+
+
     /**
      * The attributes that are mass assignable.
      *

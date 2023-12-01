@@ -113,4 +113,12 @@ Route::get('inventario/area/{areaId}', 'PlanadquisicioneController@indexByArea')
 // Route::get('/chart', 'ChartController@handleChart')->name('inventarioDocumental.handleChart');
 Route::get('/chart', [ChartController::class, 'chart'])->name('/chart');
 // Route::get('home', [HomeController::class, 'index']);
+// Route::middleware(['role:Admin'])->group(function () {
+//     // Rutas que solo los admins pueden acceder
+//     Route::get('/users', 'UserController@index');
+// });
+// Route::middleware(['role:supervisor'])->group(function () {
+//     Route::get('/users', 'UserController@index');
+// });
+
 

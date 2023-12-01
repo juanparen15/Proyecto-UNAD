@@ -77,7 +77,6 @@
                 @endif
 
                 @if (auth()->user()->hasRole('Admin'))
-                {{-- @if (auth()->user(1)) --}}
                     <div class="row">
                         <div class="col-lg-3 col-6">
                             <div class="small-box bg-danger">
