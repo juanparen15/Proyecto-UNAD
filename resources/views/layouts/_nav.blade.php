@@ -86,7 +86,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="{{ route('planadquisiciones.index') }}"
                             class="nav-link 
             {!! active_class(route('planadquisiciones.index')) !!}
@@ -96,7 +96,7 @@
                                 Inventario
                             </p>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <!-- <li class="nav-item">
             <a href="{{ route('admin.estadovigencias.index') }}" class="nav-link 
