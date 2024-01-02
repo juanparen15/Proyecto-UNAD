@@ -3,9 +3,20 @@
 @section('style')
     <!-- SweetAlert2 -->
     {!! Html::style('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') !!}
+    {!! Html::style('adminlte/plugins/select2/css/select2.min.css') !!}
+    {!! Html::style('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') !!}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css"
+        integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <!-- DataTables -->
+    {!! Html::style('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') !!}
+    {!! Html::style('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') !!}
+    {!! Html::style('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') !!}
+
 @endsection
 @section('content')
-    <div class="content-wrapper">
+    <div class="content-wrapper bg-black">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
@@ -45,17 +56,17 @@
 
                                             <div class="form-group">
                                                 <label><i class="fas fa-map-marker-alt mr-1"></i> Correo electrónico
-                                                    Institucional</label>
+                                                    </label>
                                                 <p class="text-muted">
                                                     {{ $user->email }}
                                                 </p>
                                                 <hr>
                                             </div>
                                             <div class="form-group">
-                                                <label for="name"><i class="fas fa-book mr-1"></i> Nombre del Area o
-                                                    Dependencia </label>
+                                                <label for="name"><i class="fas fa-book mr-1"></i> Nombre</label>
                                                 <p class="text-muted">
-                                                    {{ $user->area->nomarea }}
+                                                    {{-- {{ $user->area->nomarea }} --}}
+                                                    {{ $user->name }}
                                                 </p>
                                                 <hr>
                                                 {{-- <input type="text" id="name" name="name" value="{{ old('name', $user->name) }}" class="form-control @error('name') is-invalid @enderror"> --}}
@@ -66,14 +77,13 @@
                                                 @enderror
                                             </div>
                                             <div class="form-group">
-                                                <label for="apellido"><i class="far fa-file-alt mr-1"></i> Nombres y
-                                                    Apellidos del Responsable</label>
+                                                <label for="lastname"><i class="far fa-file-alt mr-1"></i>Apellidos</label>
                                                 <p class="text-muted">
-                                                    {{ $user->apellido }}
+                                                    {{ $user->lastname }}
                                                 </p>
                                                 <hr>
                                                 {{-- <input type="text" id="apellido" name="apellido" value="{{ old('apellido', $user->apellido) }}" class="form-control @error('name') is-invalid @enderror"> --}}
-                                                @error('apellido')
+                                                @error('lastname')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -95,7 +105,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="documento"><i class="fas fa-map-marker-alt mr-1"></i> Número de
-                                                    documento del Responsable</label>
+                                                    documento</label>
                                                 <p class="text-muted">
                                                     {{ $user->documento }}
                                                 </p>
@@ -111,21 +121,22 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="text-center mb-3">
-                                                <img src="{{ asset('adminlte/dist/img/' . auth()->user()->avatar) }}"
+                                                {{-- <img src="{{ asset('adminlte/dist/img/' . auth()->user()->avatar) }}" --}}
+                                                <img src="{{ asset('adminlte/dist/img/' . $user->avatar) }}"
                                                     class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
                                                     alt="">
                                             </div>
 
-
+                                            {{-- 
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    {{-- <label>Cambiar Foto de Perfil</label> --}}
+                                                    <label>Cambiar Foto de Perfil</label>
                                                     <div class="custom-file">
-                                                        {{-- <input type="file" name="avatar" class="custom-file-input" id="avatar" lang="es"> --}}
-                                                        {{-- <label class="custom-file-label" for="avatar">Seleccionar Archivo</label> --}}
+                                                        <input type="file" name="avatar" class="custom-file-input" id="avatar" lang="es">
+                                                        <label class="custom-file-label" for="avatar">Seleccionar Archivo</label>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
 
                                         </div>
                                     </div>
@@ -155,25 +166,25 @@
 
         </section>
         <!-- /.content -->
-    </div>
-@endsection
-@section('script')
-    <!-- SweetAlert2 -->
-    {!! Html::script('adminlte/plugins/sweetalert2/sweetalert2.min.js') !!}
-    @if (session('flash') == 'actualizado')
-        <script>
-            $(function() {
-                var Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000
+        {{-- </div> --}}
+    @endsection
+    @section('script')
+        <!-- SweetAlert2 -->
+        {!! Html::script('adminlte/plugins/sweetalert2/sweetalert2.min.js') !!}
+        @if (session('flash') == 'actualizado')
+            <script>
+                $(function() {
+                    var Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Usuario actualizado correctamente.'
+                    })
                 });
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Usuario actualizado correctamente.'
-                })
-            });
-        </script>
-    @endif
-@endsection
+            </script>
+        @endif
+    @endsection

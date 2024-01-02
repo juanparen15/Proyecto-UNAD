@@ -8,6 +8,83 @@
 
 ### [Unreleased]
 
+### [v9.21.2] - 2022-07-12
+
+- Fix HasOneThrough (added tests) #2816
+- Fix #2738
+
+### [v9.21.1] - 2022-06-22
+
+- Fix sorting and pagination on empty records #2803
+
+### [v9.21.0] - 2022-06-21
+
+- Add support for dependency injection when using closure. #2521
+
+### [v9.20.0] - 2022-05-09
+
+- Added orthogonal sort and filter for collection #2380
+
+### [v9.19.2] - 2022-04-07
+
+- Changed PHPDocs to have the most specific class as their super return type #2771
+
+### [v9.19.1] - 2022-03-05
+
+- Fix Formatter::format() doc block.
+- Fix `are` Word in Description #2743
+- Update README #2735
+
+### [v9.19.0] - 2022-01-18
+
+- Support for Laravel 9 #2727
+- Don't trash the exception stack trace (#2714) #2724
+
+### [v9.18.2] - 2021-06-28
+
+- Return empty string for null request keyword #2700
+
+### [v9.18.1] - 2021-06-28
+
+- Query with subqueries exception fix. #2642
+
+### [v9.18.0] - 2021-04-16
+
+- Improve count performance for simple queries. #2616
+- Fixes #1928
+- Make prepareCountQuery() public so its easy to test.
+
+### [v9.17.4] - 2021-04-15
+
+- Revert changes on count. #2614
+- Fix #2613
+- Reverts: #2611 and #2612
+
+### [v9.17.3] - 2021-04-14
+
+- Fix the regression when using a having condition in a query. #2612
+- Fix #1928
+- Code cleanup in QueryDataTable class #2606
+
+### [v9.17.2] - 2021-04-12
+
+- Remove unnecessary wrap to avoid performance issues #2608.
+- Fixes #1928.
+
+### [v9.17.1] - 2021-03-23
+
+- Fix morph relation support with multi level relations. #2588 #2590
+- Fix tests and doc blocks. #2586
+- Fixes #2587, #2589, #2580
+
+### [v9.17.0] - 2021-03-19
+
+- feat(relations): add partial polymorphic support [#2580]
+
+### [v9.16.0] - 2021-03-19
+
+- Add set multi term on runtime [#2585]
+
 ### [v9.15.2] - 2020-12-04
 
 - Remove raw sql when using regex and wrap the column name.
@@ -430,7 +507,21 @@ return (new CollectionDataTable(User::all())->toJson();
 - Fix orderColumn api where related tables are not joined.
 - Fix nested with relation search and sort function.
 
-[Unreleased]: https://github.com/yajra/laravel-datatables/compare/v9.15.2...9.0
+[Unreleased]: https://github.com/yajra/laravel-datatables/compare/v9.21.2...9.0
+[v9.21.2]: https://github.com/yajra/laravel-datatables/compare/v9.21.1...v9.21.2
+[v9.21.0]: https://github.com/yajra/laravel-datatables/compare/v9.20.0...v9.21.0
+[v9.20.0]: https://github.com/yajra/laravel-datatables/compare/v9.19.1...v9.20.0
+[v9.19.1]: https://github.com/yajra/laravel-datatables/compare/v9.19.1...v9.19.1
+[v9.19.0]: https://github.com/yajra/laravel-datatables/compare/v9.18.2...v9.19.0
+[v9.18.2]: https://github.com/yajra/laravel-datatables/compare/v9.18.1...v9.18.2
+[v9.18.1]: https://github.com/yajra/laravel-datatables/compare/v9.18.0...v9.18.1
+[v9.18.0]: https://github.com/yajra/laravel-datatables/compare/v9.17.4...v9.18.0
+[v9.17.4]: https://github.com/yajra/laravel-datatables/compare/v9.17.3...v9.17.4
+[v9.17.3]: https://github.com/yajra/laravel-datatables/compare/v9.17.2...v9.17.3
+[v9.17.2]: https://github.com/yajra/laravel-datatables/compare/v9.17.1...v9.17.2
+[v9.17.1]: https://github.com/yajra/laravel-datatables/compare/v9.17.0...v9.17.1
+[v9.17.0]: https://github.com/yajra/laravel-datatables/compare/v9.16.0...v9.17.0
+[v9.16.0]: https://github.com/yajra/laravel-datatables/compare/v9.15.2...v9.16.0
 [v9.15.2]: https://github.com/yajra/laravel-datatables/compare/v9.15.1...v9.15.2
 [v9.15.1]: https://github.com/yajra/laravel-datatables/compare/v9.15.0...v9.15.1
 [v9.15.0]: https://github.com/yajra/laravel-datatables/compare/v9.14.2...v9.15.0
@@ -588,6 +679,8 @@ return (new CollectionDataTable(User::all())->toJson();
 [#2535]: https://github.com/yajra/laravel-datatables/pull/2535
 [#2536]: https://github.com/yajra/laravel-datatables/pull/2536
 [#2540]: https://github.com/yajra/laravel-datatables/pull/2540
+[#2585]: https://github.com/yajra/laravel-datatables/pull/2585
+[#2580]: https://github.com/yajra/laravel-datatables/pull/2580
 
 [#1934]: https://github.com/yajra/laravel-datatables/issues/1934
 [#2091]: https://github.com/yajra/laravel-datatables/issues/2091

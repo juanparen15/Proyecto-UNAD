@@ -1,13 +1,20 @@
 @extends('layouts.admin')
 @section('title', 'Panel administrador')
 @section('style')
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css"
+        integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    
+
+    {!! Html::style('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') !!}
+    <!-- DataTables -->
+    {!! Html::style('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') !!}
+    {!! Html::style('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') !!}
+    {!! Html::style('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') !!}
+
 
 @endsection
 @section('content')
-    <div class="content-wrapper">
+    <div class="content-wrapper bg-black ">
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
@@ -25,7 +32,7 @@
         </div>
         <div class="content">
             <div class="container-fluid">
-                @if (auth()->user()->hasRole('Supervisor'))
+                {{-- @if (auth()->user()->hasRole('Supervisor'))
                     <div class="row">
                         <div class="col-lg-3 col-6">
                             <div class="small-box bg-danger">
@@ -74,9 +81,9 @@
                             </div>
                         </div>
                     </div>
-                @endif
+                @endif --}}
 
-                @if (auth()->user()->hasRole('Admin'))
+                {{-- @if (auth()->user()->hasRole('Admin'))
                     <div class="row">
                         <div class="col-lg-3 col-6">
                             <div class="small-box bg-danger">
@@ -104,61 +111,6 @@
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
-                        <!-- ./col -->
-                        <!-- <div class="col-lg-3 col-6">
-                                                                                                                                                                                                                     small box
-                                                                                                                                                                                                                    <div class="small-box bg-success">
-                                                                                                                                                                                                                        <div class="inner">
-                                                                                                                                                                                                                            <h3>{{ $products }}</h3>
-                                                                                                                                                                                                                            <p>Productos</p>
-                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                        <div class="icon">
-                                                                                                                                                                                                                            <i class="fab fa-bitcoin"></i>
-                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                        <a href="{{ route('admin.productos.index') }}" class="small-box-footer">Ver Todo <i class="fas fa-arrow-circle-right"></i></a>
-                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                </div> -->
-                        <!-- ./col -->
-                        <!-- <div class="col-lg-3 col-6">
-                                                                                                                                                                                                                     small box --
-                                                                                                                                                                                                                    <div class="small-box bg-warning">
-                                                                                                                                                                                                                        <div class="inner">
-                                                                                                                                                                                                                            <h3>{{ $clases }}</h3>
-                                                                                                                                                                                                                            <p>Clases</p>
-                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                        <div class="icon">
-                                                                                                                                                                                                                            <i class="fas fa-calendar-alt"></i>
-                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                        <a href="{{ route('admin.clases.index') }}" class="small-box-footer">Ver Todo <i class="fas fa-arrow-circle-right"></i></a>
-                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                </div> -->
-                        <!-- <div class="col-lg-3 col-6">
-                                                                                                                                                                                                                     small box
-                                                                                                                                                                                                                    <div class="small-box bg-dark">
-                                                                                                                                                                                                                        <div class="inner">
-                                                                                                                                                                                                                            <h3>{{ $familias }}</h3>
-                                                                                                                                                                                                                            <p>Familias</p>
-                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                        <div class="icon">
-                                                                                                                                                                                                                            <i class="fas fa-users"></i>
-                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                        <a href="{{ route('admin.familias.index') }}" class="small-box-footer">Ver Todo <i class="fas fa-arrow-circle-right"></i></a>
-                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                </div> -->
-                        <!-- <div class="col-lg-3 col-6">
-                                                                                                                                                                                                                     small box
-                                                                                                                                                                                                                    <div class="small-box bg-purple">
-                                                                                                                                                                                                                        <div class="inner">
-                                                                                                                                                                                                                            <h3>{{ $segmentos }}</h3>
-                                                                                                                                                                                                                            <p>Segmentos</p>
-                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                        <div class="icon">
-                                                                                                                                                                                                                            <i class="fas fa-chess-king"></i>
-                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                        <a href="{{ route('admin.segmentos.index') }}" class="small-box-footer">Ver Todo <i class="fas fa-arrow-circle-right"></i></a>
-                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                </div> -->
-                        <!-- ./col -->
                         <div class="col-lg-3 col-6">
                             <!-- small box -->
                             <div class="small-box bg-maroon">
@@ -188,7 +140,7 @@
                             </div>
                         </div>
                     </div>
-                @endif
+                @endif --}}
 
                 <div class="row">
                     <section class="col-lg-12 connectedSortable">
@@ -196,9 +148,9 @@
                             <div class="card-header">
                                 <h3 class="card-title">
                                     <i class="fas fa-chart-pie mr-1"></i>
-                                    Inventario
+                                    CRC-UNAD
                                 </h3>
-                                @can('planadquisiciones.export')
+                                {{-- @can('planadquisiciones.export')
                                     <div class="card-tools">
                                         <ul class="nav nav-pills ml-auto">
                                             <li class="nav-item">
@@ -207,17 +159,70 @@
                                             </li>
                                         </ul>
                                     </div>
-                                @endcan
+                                @endcan --}}
                             </div>
-                            <figure class="highcharts-figure">
-                                <div id="container"></div>
-                            </figure>
-                            <figure class="highcharts-figure">
-                                <div id="containerTime"></div>
-                            </figure>
-                            <div class="card-body">
-                                <canvas id="planes"></canvas>
+                            <div class="row">
+                                <div class="col-lg-6 col-16">
+                                    <div class="small-box">
+                                        <div id="containerLine"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-16">
+                                    <div class="small-box">
+                                        <div id="containerBox"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-16">
+                                    <div class="small-box">
+                                        <div id="containerLine2"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-16">
+                                    <div class="small-box">
+                                        <div id="containerBox2"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-16">
+                                    <div class="small-box">
+                                        <div id="containerLine3"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-16">
+                                    <div class="small-box">
+                                        <div id="containerBox3"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-16">
+                                    <div class="small-box">
+                                        <div id="containerLine4"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-16">
+                                    <div class="small-box">
+                                        <div id="containerBox4"></div>
+                                    </div>
+                                </div>
+                                {{-- {<div class="col-lg-6 col-16">
+                                    <div class="small-box">
+                                        <div id="container"></div>
+                                    </div>
+                                </div> --}}
+                                {{-- <div class="col-lg-6 col-16">
+                                    <div class="small-box">
+                                        <div id="containerTime"></div>
+                                    </div>
+                                </div> --}}
+                                {{-- <div class="col-lg-6 col-16">
+                                    <div class="small-box">
+                                        <canvas id="planes"></canvas>
+                                    </div>
+                                </div> --}}
                             </div>
+
+                            {{-- <figure class="highcharts-figure">
+                            </figure> --}}
+
+
                             {{-- <figure class="highcharts-figure">
                                 <div id="containerLabel"></div>
                             </figure> --}}
@@ -227,78 +232,33 @@
             </div>
         </div>
 
+
     @endsection
+
     @section('script')
-        {{-- 
-        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>
-        <script src="https://code.highcharts.com/modules/export-data.js"></script>
-        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
-        <script>
-            // Data retrieved from https://fas.org/issues/nuclear-weapons/status-world-nuclear-forces/
-            Highcharts.chart('containerLabel', {
-                chart: {
-                    type: 'area'
-                },
-                accessibility: {
-                    // description: 'Image description: An area chart compares the nuclear stockpiles of the USA and the USSR/Russia between 1945 and 2017. The number of nuclear weapons is plotted on the Y-axis and the years on the X-axis. The chart is interactive, and the year-on-year stockpile levels can be traced for each country. The US has a stockpile of 6 nuclear weapons at the dawn of the nuclear age in 1945. This number has gradually increased to 369 by 1950 when the USSR enters the arms race with 6 weapons. At this point, the US starts to rapidly build its stockpile culminating in 32,040 warheads by 1966 compared to the USSR’s 7,089. From this peak in 1966, the US stockpile gradually decreases as the USSR’s stockpile expands. By 1978 the USSR has closed the nuclear gap at 25,393. The USSR stockpile continues to grow until it reaches a peak of 45,000 in 1986 compared to the US arsenal of 24,401. From 1986, the nuclear stockpiles of both countries start to fall. By 2000, the numbers have fallen to 10,577 and 21,000 for the US and Russia, respectively. The decreases continue until 2017 at which point the US holds 4,018 weapons compared to Russia’s 4,500.'
-                },
-                title: {
-                    text: 'Grafica de Carpetas'
-                },
-                subtitle: {
-                    // text: 'Source: <a href="https://fas.org/issues/nuclear-weapons/status-world-nuclear-forces/" ' +
-                    // 'target="_blank">FAS</a>'
-                },
-                xAxis: {
-                    allowDecimals: false,
-                    accessibility: {
-                        rangeDescription: 'Range: 2000 to 2023.'
-                    }
-                },
-                yAxis: {
-                    title: {
-                        text: 'Cantidad de Carpetas'
-                    }
-                },
-                tooltip: {
-                    pointFormat: '{series.name} almacenados <b>{point.y:,.0f}</b><br/>El año {point.x}'
-                },
-                plotOptions: {
-                    area: {
-                        pointStart: 2000,
-                        marker: {
-                            enabled: false,
-                            symbol: 'circle',
-                            radius: 2,
-                            states: {
-                                hover: {
-                                    enabled: true
-                                }
-                            }
-                        }
-                    }
-                },
-                series: [{
-                    name: 'Carpetas',
-                    data:                }]
-            });
-        </script> --}}
-
-
-
 
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://code.highcharts.com/modules/timeline.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
         <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+        <script src="https://code.highcharts.com/highcharts-more.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <link rel="stylesheet" href="https://code.highcharts.com/css/highcharts.css">
+        <script src="https://code.highcharts.com/themes/dark-unica.js"></script>
+        <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
 
-        <script>
-            Highcharts.chart('containerTime', {
+
+
+        {{-- <script> --}}
+        {{-- // import Highcharts from 'https://code.highcharts.com/es-modules/masters/highcharts.src.js'; --}}
+        {{-- Highcharts.chart('containerTime', {
                 chart: {
-                    type: 'timeline'
+                    type: 'timeline',
                 },
+                credits: {
+                    enabled: false
+                },
+
                 accessibility: {
                     screenReaderSection: {
                         beforeChartFormat: '<h5>{chartTitle}</h5>' +
@@ -318,10 +278,13 @@
                     visible: false
                 },
                 title: {
-                    text: '<br>Linea de tiempo</br> Inventario Documental Alcaldia Municipal'
+                    text: '<br>Linea de tiempo</br>'
                 },
                 subtitle: {
-                    text: 'Mas Información: <a href="https://www.puertoboyaca-boyaca.gov.co">https://www.puertoboyaca-boyaca.gov.co</a>'
+                    // backgroundColor: '#ffff',
+                    // color: '#ffffff',
+                    // text: 'Mas Información: <a href="https://www.puertoboyaca-boyaca.gov.co">https://www.puertoboyaca-boyaca.gov.co</a>'
+
                 },
                 colors: [
                     '#4185F3',
@@ -341,27 +304,24 @@
 
                 }]
             });
-        </script>
-
-        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>
-        <script src="https://code.highcharts.com/modules/export-data.js"></script>
-        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
 
-        <script>
-            // var planadquisiciones = <?php echo json_encode($adquisiciones); ?>;
-            // Data retrieved from https://netmarketshare.com
             Highcharts.chart('container', {
                 chart: {
                     plotBackgroundColor: null,
                     plotBorderWidth: null,
                     plotShadow: false,
-                    type: 'pie'
+                    type: 'pie',
+                    // backgroundColor: '#272727',
+
+
+                },
+                credits: {
+                    enabled: false
                 },
                 title: {
-                    text: 'Registros por Oficina Productora',
-                    align: 'left'
+                    text: 'Grafica',
+                    align: 'left',
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -378,9 +338,9 @@
                         dataLabels: {
                             enabled: true,
                             format: '<b>{point.name}</b>: {point.percentage:.1f}%',
-                            style: {
-                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                            }
+                            // style: {
+                            //     color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            // }
                         }
                     }
                 },
@@ -396,12 +356,729 @@
                         <?php } ?>
                     ]
 
+
                 }]
+            }); --}}
+        <script>
+            Highcharts.chart('containerLine', {
+                chart: {
+                    type: 'spline'
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    style: {
+                        color: '#E0E0E3',
+                        textTransform: 'uppercase',
+                        fontSize: '20px'
+                    },
+                    text: 'BOGOTA',
+                    // align: 'left',
+                },
+
+                subtitle: {
+                    // text: 'By Job Category. Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>.',
+                    align: 'left'
+                },
+
+                yAxis: {
+                    title: {
+                        // text: 'Number of Employees'
+                    }
+                },
+
+                xAxis: {
+                    accessibility: {
+
+                        // rangeDescription: 'Range: 2010 to 2020'
+                    }
+                },
+
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
+
+                plotOptions: {
+                    series: {
+                        label: {
+                            connectorAllowed: false
+                        },
+                        pointStart: 1
+                    }
+                },
+
+                series: [{
+                    color: 'yellow',
+                    name: 'Potencia',
+                    data: [81.4, 82.6, 83.7, 84.3, 85.4, 84.6, 84.7, 85.5, 86.5, 85.6, 87.5, 86.7, 87.5, 87,
+                        85.8, 84.2, 82.5, 83.7, 85.2, 87.8, 89.4, 90, 89.3, 90, 92.8, 92.9, 92.1, 87.7, 86,
+                        86.1, 89.2, 93, 97.1, 96.5, 94, 94.8, 98.5, 99.9, 96.4, 92.6, 88, 91.1, 96.8, 102.6,
+                        102.4, 99.7, 101.1, 102.5, 95.4, 91.2, 89.4, 89.2, 90.9, 94.1, 99.8, 108.2, 104.1,
+                        105.7, 100.8, 94.5, 89.9, 93.2, 95.3, 97.4, 99, 99.9, 104.7, 105.8, 107.6, 109.5,
+                        90.5, 96.3, 99.6, 102.1, 106, 106.3, 91.2, 96, 99.6, 103.6, 92.8, 99.1, 111.8,
+                        106.4, 99.7, 101.4, 102.8, 100.7, 92, 95.4, 90.2, 94.6, 98.5, 107.3, 104.4, 121.9,
+                        103.3, 98.6, 96.3, 93.9,
+                    ],
+
+                }],
+
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500,
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+
+            });
+
+            Highcharts.chart('containerBox', {
+
+
+                chart: {
+                    type: 'boxplot'
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: 'BOGOTÁ'
+                },
+
+                legend: {
+                    enabled: false
+                },
+                // accessibility: {
+                //     landmarkVerbosity: 'one'
+                // },
+
+                xAxis: {
+                    // crosshair: {
+                    //     enabled: true
+                    // },
+                    categories: ['Bogotá'],
+                    title: {
+                        text: 'Potencia No.'
+                    }
+                },
+
+                yAxis: {
+                    tooltip: {
+                        followPointer: true
+                    },
+                    title: {
+                        text: 'Observaciones'
+                    },
+                    plotLines: [{
+                        value: 932,
+                        color: 'red',
+                        width: 1,
+                        label: {
+                            // text: 'Theoretical mean: 932',
+                            align: 'center',
+                            style: {
+                                color: 'yellow'
+                            }
+                        }
+                    }]
+                },
+
+                series: [{
+                    type: 'boxplot',
+                    medianWidth: 3,
+                    stickyTracking: true,
+                    cursor: 'pointer',
+                    color: 'yellow',
+                    name: 'Observaciones',
+                    data: [
+
+                        [81.4, 82.6, 83.7, 84.3, 85.4, 84.6, 84.7, 85.5, 86.5, 85.6, 87.5, 86.7, 87.5, 87,
+                            85.8, 84.2, 82.5, 83.7, 85.2, 87.8, 89.4, 90, 89.3, 90, 92.8, 92.9, 92.1, 87.7,
+                            86, 86.1, 89.2, 93, 97.1, 96.5, 94, 94.8, 98.5, 99.9, 96.4, 92.6, 88, 91.1,
+                            96.8,
+                            102.6, 102.4, 99.7, 101.1, 102.5, 95.4, 91.2, 89.4, 89.2, 90.9, 94.1, 99.8,
+                            108.2,
+                            104.1, 105.7, 100.8, 94.5, 89.9, 93.2, 95.3, 97.4, 99, 99.9, 104.7, 105.8,
+                            107.6,
+                            109.5, 90.5, 96.3, 99.6, 102.1, 106, 106.3, 91.2, 96, 99.6, 103.6, 92.8, 99.1,
+                            111.8,
+                            106.4, 99.7, 101.4, 102.8, 100.7, 92, 95.4, 90.2, 94.6, 98.5, 107.3, 104.4,
+                            121.9, 103.3, 98.6, 96.3, 93.9
+                        ],
+                    ],
+                    tooltip: {
+                        headerFormat: '<em>Potencia {point.key}</em><br/>'
+                    }
+                }, {
+                    name: 'Outliers',
+                    color: Highcharts.getOptions().colors[0],
+                    type: 'scatter',
+                    data: [ // x, y positions where 0 is the first category
+                        // [0, 644],
+
+
+                    ],
+                    marker: {
+                        fillColor: 'white',
+                        lineWidth: 1,
+                        lineColor: Highcharts.getOptions().colors[0]
+                    },
+                    tooltip: {
+                        pointFormat: 'Observacion: {point.y}'
+                    }
+                }]
+
+            });
+
+            Highcharts.chart('containerLine2', {
+                chart: {
+                    type: 'spline'
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    style: {
+                        color: '#E0E0E3',
+                        textTransform: 'uppercase',
+                        fontSize: '20px'
+                    },
+                    text: 'BUCARAMANGA',
+                    // align: 'left',
+                },
+
+                subtitle: {
+                    // text: 'By Job Category. Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>.',
+                    align: 'left'
+                },
+
+                yAxis: {
+                    title: {
+                        // text: 'Number of Employees'
+                    }
+                },
+
+                xAxis: {
+                    accessibility: {
+
+                        // rangeDescription: 'Range: 2010 to 2020'
+                    }
+                },
+
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
+
+                plotOptions: {
+                    series: {
+                        label: {
+                            connectorAllowed: false
+                        },
+                        pointStart: 1
+                    }
+                },
+
+                series: [{
+                    color: 'blue',
+                    name: 'Potencia',
+                    data: [107.1, 104.7, 110.5, 109.7, 107.8, 105.8, 104.2, 103.9, 104.3, 105.7, 104.7, 106.4,
+                        108.9, 111.6, 112.6, 112.3, 109.7, 113.2, 116.2, 115.5, 111.8, 108.4, 105.7, 104.9,
+                        107.5, 110.8, 117.3, 131.4, 116.1, 116.2, 114.9, 120.5, 113.3, 109, 106.1, 104.7,
+                        107.1, 110.2, 114.4, 118.6, 112.6, 121.6, 113.4, 110.8, 106.6, 104.4, 104, 110.8,
+                        114.7, 117.2, 118.3, 113.6, 115.5, 112.6, 109.3, 107, 105.3, 106.6, 107.9, 112.6,
+                        116.1, 114.4, 117.5, 114.4, 109.8, 108.1, 106.7, 103.1, 102.4, 103.1, 117.8, 120.3,
+                        115.5, 110.1, 109.3, 102.6, 117.4, 112.6, 119.4, 118.6, 113.9, 113.2, 109, 106.1,
+                        101.7, 104.6, 106.6, 109, 103.2, 102.8, 87.4, 98.5, 102.2, 102.2, 102.5, 102.8,
+                        100.8, 101.5, 99, 87.5,
+                    ],
+
+                }],
+
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500,
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+
+            });
+
+            Highcharts.chart('containerBox2', {
+
+
+                chart: {
+                    type: 'boxplot'
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: 'BUCARAMANGA'
+                },
+
+                legend: {
+                    enabled: false
+                },
+                // accessibility: {
+                //     landmarkVerbosity: 'one'
+                // },
+
+                xAxis: {
+                    // crosshair: {
+                    //     enabled: true
+                    // },
+                    categories: ['Bucaramanga'],
+                    title: {
+                        text: 'Potencia No.'
+                    }
+                },
+
+                yAxis: {
+                    tooltip: {
+                        followPointer: true
+                    },
+                    title: {
+                        text: 'Observaciones'
+                    },
+                    plotLines: [{
+                        value: 932,
+                        color: 'blue',
+                        width: 1,
+                        label: {
+                            // text: 'Theoretical mean: 932',
+                            align: 'center',
+                            style: {
+                                color: 'blue'
+                            }
+                        }
+                    }]
+                },
+
+                series: [{
+                    type: 'boxplot',
+                    medianWidth: 3,
+                    stickyTracking: true,
+                    cursor: 'pointer',
+                    color: 'blue',
+                    name: 'Observaciones',
+                    data: [
+
+                        [107.1, 104.7, 110.5, 109.7, 107.8, 105.8, 104.2, 103.9, 104.3, 105.7, 104.7, 106.4,
+                            108.9, 111.6, 112.6, 112.3, 109.7, 113.2, 116.2, 115.5, 111.8, 108.4, 105.7,
+                            104.9, 107.5, 110.8, 117.3, 131.4, 116.1, 116.2, 114.9, 120.5, 113.3, 109,
+                            106.1, 104.7, 107.1, 110.2, 114.4, 118.6, 112.6, 121.6, 113.4, 110.8, 106.6,
+                            104.4, 104, 110.8, 114.7, 117.2, 118.3, 113.6, 115.5, 112.6, 109.3, 107, 105.3,
+                            106.6, 107.9, 112.6, 116.1, 114.4, 117.5, 114.4, 109.8, 108.1, 106.7, 103.1,
+                            102.4, 103.1, 117.8, 120.3, 115.5, 110.1, 109.3, 102.6, 117.4, 112.6, 119.4,
+                            118.6, 113.9, 113.2, 109, 106.1, 101.7, 104.6, 106.6, 109, 103.2, 102.8, 87.4,
+                            98.5, 102.2, 102.2, 102.5, 102.8, 100.8, 101.5, 99, 87.5,
+                        ],
+                    ],
+                    tooltip: {
+                        headerFormat: '<em>Potencia {point.key}</em><br/>'
+                    }
+                }, {
+                    name: 'Outliers',
+                    color: Highcharts.getOptions().colors[0],
+                    type: 'scatter',
+                    data: [ // x, y positions where 0 is the first category
+                        // [0, 644],
+
+
+                    ],
+                    marker: {
+                        fillColor: 'white',
+                        lineWidth: 1,
+                        lineColor: Highcharts.getOptions().colors[0]
+                    },
+                    tooltip: {
+                        pointFormat: 'Observacion: {point.y}'
+                    }
+                }]
+
+            });
+
+            Highcharts.chart('containerLine3', {
+                chart: {
+                    type: 'spline'
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    style: {
+                        color: '#E0E0E3',
+                        textTransform: 'uppercase',
+                        fontSize: '20px'
+                    },
+                    text: 'CALI',
+                    // align: 'left',
+                },
+
+                subtitle: {
+                    // text: 'By Job Category. Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>.',
+                    align: 'left'
+                },
+
+                yAxis: {
+                    title: {
+                        // text: 'Number of Employees'
+                    }
+                },
+
+                xAxis: {
+                    accessibility: {
+
+                        // rangeDescription: 'Range: 2010 to 2020'
+                    }
+                },
+
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
+
+                plotOptions: {
+                    series: {
+                        label: {
+                            connectorAllowed: false
+                        },
+                        pointStart: 1
+                    }
+                },
+
+                series: [{
+                    color: 'orange',
+                    name: 'Potencia',
+                    data: [98.7, 96.2, 102, 101.1, 99.2, 97.3, 95.6, 95.3, 95.7, 97.2, 96.1, 97.8, 100.3, 102.9,
+                        104, 103.8, 101.3, 104.8, 107.6, 99.6, 103.1, 99.7, 97.1, 96.3, 98.9, 102.2, 108.4,
+                        126.5, 107.7, 107.8, 106.4, 111.9, 104.6, 100.4, 97.5, 96.2, 98.5, 101.6, 105.8,
+                        110.1, 111.1, 113.1, 105, 102.4, 98, 95.9, 97.2, 102.4, 106.2, 108.7, 109.8, 105.1,
+                        107, 104.1, 100.9, 108.1, 95.7, 104.4, 101.4, 104.1, 107.6, 105.9, 109.1, 105.9,
+                        101.3, 99.6, 98.2, 103.8, 103.8, 100.4, 109.4, 111.8, 107.1, 101.7, 102.5, 102.9,
+                        109, 109.3, 111, 105.3, 105.5, 104.8, 110.3, 106.6, 94.7, 103.5, 102.7, 100.7, 95.7,
+                        94.3, 94.5, 93.6, 98.2, 95.6, 95.9, 121.3, 95.8, 95, 93.4, 84.8,
+                    ],
+
+                }],
+
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500,
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+
+            });
+
+            Highcharts.chart('containerBox3', {
+
+
+                chart: {
+                    type: 'boxplot'
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: 'CALI'
+                },
+
+                legend: {
+                    enabled: false
+                },
+                // accessibility: {
+                //     landmarkVerbosity: 'one'
+                // },
+
+                xAxis: {
+                    // crosshair: {
+                    //     enabled: true
+                    // },
+                    categories: ['Cali'],
+                    title: {
+                        text: 'Potencia No.'
+                    }
+                },
+
+                yAxis: {
+                    tooltip: {
+                        followPointer: true
+                    },
+                    title: {
+                        text: 'Observaciones'
+                    },
+                    plotLines: [{
+                        value: 932,
+                        color: 'orange',
+                        width: 1,
+                        label: {
+                            // text: 'Theoretical mean: 932',
+                            align: 'center',
+                            style: {
+                                color: 'orange'
+                            }
+                        }
+                    }]
+                },
+
+                series: [{
+                    type: 'boxplot',
+                    medianWidth: 3,
+                    stickyTracking: true,
+                    cursor: 'pointer',
+                    color: 'orange',
+                    name: 'Observaciones',
+                    data: [
+
+                        [
+                            98.7, 96.2, 102, 101.1, 99.2, 97.3, 95.6, 95.3, 95.7, 97.2, 96.1, 97.8, 100.3,
+                            102.9, 104, 103.8, 101.3, 104.8, 107.6, 99.6, 103.1, 99.7, 97.1, 96.3, 98.9,
+                            102.2, 108.4, 126.5, 107.7, 107.8, 106.4, 111.9, 104.6, 100.4, 97.5, 96.2, 98.5,
+                            101.6, 105.8, 110.1, 111.1, 113.1, 105, 102.4, 98, 95.9, 97.2, 102.4, 106.2,
+                            108.7, 109.8, 105.1, 107, 104.1, 100.9, 108.1, 95.7, 104.4, 101.4, 104.1, 107.6,
+                            105.9, 109.1, 105.9, 101.3, 99.6, 98.2, 103.8, 103.8, 100.4, 109.4, 111.8,
+                            107.1, 101.7, 102.5, 102.9, 109, 109.3, 111, 105.3, 105.5, 104.8, 110.3, 106.6,
+                            94.7, 103.5, 102.7, 100.7, 95.7, 94.3, 94.5, 93.6, 98.2, 95.6, 95.9, 121.3,
+                            95.8, 95, 93.4, 84.8,
+                        ],
+                    ],
+                    tooltip: {
+                        headerFormat: '<em>Potencia {point.key}</em><br/>'
+                    }
+                }, {
+                    name: 'Outliers',
+                    color: Highcharts.getOptions().colors[0],
+                    type: 'scatter',
+                    data: [ // x, y positions where 0 is the first category
+                        // [0, 644],
+
+
+                    ],
+                    marker: {
+                        fillColor: 'white',
+                        lineWidth: 1,
+                        lineColor: Highcharts.getOptions().colors[0]
+                    },
+                    tooltip: {
+                        pointFormat: 'Observacion: {point.y}'
+                    }
+                }]
+
+            });
+
+            Highcharts.chart('containerLine4', {
+                chart: {
+                    type: 'spline'
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    style: {
+                        color: '#E0E0E3',
+                        textTransform: 'uppercase',
+                        fontSize: '20px'
+                    },
+                    text: 'MEDELLIN',
+                    // align: 'left',
+                },
+
+                subtitle: {
+                    // text: 'By Job Category. Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>.',
+                    align: 'left'
+                },
+
+                yAxis: {
+                    title: {
+                        // text: 'Number of Employees'
+                    }
+                },
+
+                xAxis: {
+                    accessibility: {
+
+                        // rangeDescription: 'Range: 2010 to 2020'
+                    }
+                },
+
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
+
+                plotOptions: {
+                    series: {
+                        label: {
+                            connectorAllowed: false
+                        },
+                        pointStart: 1
+                    }
+                },
+
+                series: [{
+                    color: 'pink',
+                    name: 'Potencia',
+                    data: [
+                        93.25, 93.26, 100.67, 100.64, 100.73, 93.35, 93.37, 93.3, 93.37, 93.36, 93.36,
+                        100.61, 100.74, 100.86, 100.81, 100.7, 93.24, 100.65, 100.82, 100.91, 100.93,
+                        100.84, 100.61, 93.81, 101, 101.18, 101.14, 100.89, 100.79, 100.76, 100.99, 101.16,
+                        101.41, 101.18, 93.84, 93.87, 94, 101.58, 101.37, 101.1, 98.72, 0.94, 101.37,
+                        101.68, 101.43, 93.92, 93.81, 101.58, 101.09, 98.74, 98.8, 98.8, 98.84, 98.87,
+                        101.08, 94.12, 93.47, 93.96, 100.78, 98.82, 98.85, 98.88, 98.9, 98.95, 98.91, 93.41,
+                        99.72, 107.93, 108.05, 108.07, 98.85, 98.99, 99.02, 98.97, 99.07, 105.97, 98.9, 99,
+                        99.01, 99, 98.91, 98.98, 99.08, 106.26, 97.07, 97.34, 99.05, 98.97, 98.95, 98.98,
+                        98.91, 98.91, 97.39, 97.67, 97.54, 97.37, 97.56, 97.37, 98.95, 98.93,
+                    ],
+
+                }],
+
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500,
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+
+            });
+
+            Highcharts.chart('containerBox4', {
+
+
+                chart: {
+                    type: 'boxplot'
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: 'MEDELLIN'
+                },
+
+                legend: {
+                    enabled: false
+                },
+                // accessibility: {
+                //     landmarkVerbosity: 'one'
+                // },
+
+                xAxis: {
+                    // crosshair: {
+                    //     enabled: true
+                    // },
+                    categories: ['Medellin'],
+                    title: {
+                        text: 'Potencia No.'
+                    }
+                },
+
+                yAxis: {
+                    tooltip: {
+                        followPointer: true
+                    },
+                    title: {
+                        text: 'Observaciones'
+                    },
+                    plotLines: [{
+                        value: 932,
+                        color: 'pink',
+                        width: 1,
+                        label: {
+                            // text: 'Theoretical mean: 932',
+                            align: 'center',
+                            style: {
+                                color: 'pink'
+                            }
+                        }
+                    }]
+                },
+
+                series: [{
+                    type: 'boxplot',
+                    medianWidth: 3,
+                    stickyTracking: true,
+                    cursor: 'pointer',
+                    color: 'pink',
+                    name: 'Observaciones',
+                    data: [
+
+                        [
+                            93.25, 93.26, 100.67, 100.64, 100.73, 93.35, 93.37, 93.3, 93.37, 93.36, 93.36,
+                            100.61, 100.74, 100.86, 100.81, 100.7, 93.24, 100.65, 100.82, 100.91, 100.93,
+                            100.84, 100.61, 93.81, 101, 101.18, 101.14, 100.89, 100.79, 100.76, 100.99,
+                            101.16, 101.41, 101.18, 93.84, 93.87, 94, 101.58, 101.37, 101.1, 98.72, 0.94,
+                            101.37, 101.68, 101.43, 93.92, 93.81, 101.58, 101.09, 98.74, 98.8, 98.8, 98.84,
+                            98.87, 101.08, 94.12, 93.47, 93.96, 100.78, 98.82, 98.85, 98.88, 98.9, 98.95,
+                            98.91, 93.41, 99.72, 107.93, 108.05, 108.07, 98.85, 98.99, 99.02, 98.97, 99.07,
+                            105.97, 98.9, 99, 99.01, 99, 98.91, 98.98, 99.08, 106.26, 97.07, 97.34, 99.05,
+                            98.97, 98.95, 98.98, 98.91, 98.91, 97.39, 97.67, 97.54, 97.37, 97.56, 97.37,
+                            98.95, 98.93,
+                        ],
+                    ],
+                    tooltip: {
+                        headerFormat: '<em>Potencia {point.key}</em><br/>'
+                    }
+                }, {
+                    name: 'Outliers',
+                    color: Highcharts.getOptions().colors[0],
+                    type: 'scatter',
+                    data: [ // x, y positions where 0 is the first category
+                        // [0, 644],
+
+
+                    ],
+                    marker: {
+                        fillColor: 'white',
+                        lineWidth: 1,
+                        lineColor: Highcharts.getOptions().colors[0]
+                    },
+                    tooltip: {
+                        pointFormat: 'Observacion: {point.y}'
+                    }
+                }]
+
             });
         </script>
 
         <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
-
         <script>
             $(function() {
                 var varCompra = document.getElementById('planes').getContext('2d');
@@ -423,7 +1100,6 @@
 
                             backgroundColor: '#E91E63',
                             borderColor: '#E91E63',
-
                             borderWidth: 3
                         }]
                     },

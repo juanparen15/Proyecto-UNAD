@@ -1,0 +1,152 @@
+@import url("https://code.highcharts.com/css/highcharts.css");
+
+body {
+    margin: 0;
+}
+
+.chart-container .highcharts-area,
+.chart-container .highcharts-arearange {
+    fill-opacity: 1;
+    stroke: transparent;
+}
+
+.line {
+    color: #fff;
+    stroke: #fff;
+    opacity: 50%;
+    stroke-width: 1px;
+}
+
+.chart-container .highcharts-container {
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+    line-height: normal;
+    z-index: 0;
+    font-size: 12px;
+    user-select: none;
+    touch-action: manipulation;
+    outline: none;
+    top: 0 !important;
+}
+
+#charts {
+    width: 250px;
+    height: 250px;
+    border-radius: 4px;
+    background-color: #2f2b38;
+    border: 1px solid #46465c;
+}
+
+#charts .highcharts-plot-background,
+#charts .highcharts-background {
+    fill: #201836;
+    stroke: transparent;
+}
+
+#charts .particle-1,
+#charts .particle-2,
+#charts .particle-3,
+#charts .particle-4,
+#charts .particle-5,
+#charts .particle-6 {
+    opacity: 0;
+    transform: opacity 2s;
+}
+
+#charts .bigpie,
+#charts .midpie {
+    opacity: 0;
+    transform: opacity 2s;
+}
+
+#charts .bigpie .highcharts-color-0 {
+    fill: #a3edba;
+    stroke: transparent;
+}
+
+#charts .midpie .highcharts-color-0 {
+    fill: #6699a1;
+    stroke: transparent;
+}
+
+#charts .innerpie .highcharts-color-0 {
+    fill: #201836;
+    stroke: transparent;
+}
+
+#charts .dot .highcharts-color-0 {
+    fill: #fff;
+    stroke: transparent;
+    opacity: 1;
+}
+
+#charts .outerwedge,
+#charts .midwedge,
+#charts .topwedge {
+    opacity: 0;
+}
+
+#charts .outerwedge.show,
+#charts .midwedge.show,
+#charts .topwedge.show {
+    opacity: 1;
+}
+
+#charts .outerwedge .highcharts-color-0 {
+    fill: #8087e8;
+    stroke: transparent;
+}
+
+#charts .midwedge .highcharts-color-0 {
+    fill: #a3edba;
+    stroke: transparent;
+}
+
+#charts .topwedge .highcharts-color-0 {
+    fill: #fff;
+    stroke: transparent;
+}
+
+#charts .wall {
+    fill: #46445d;
+    stroke: transparent;
+}
+
+#charts .cover {
+    fill: #46465c;
+    stroke: transparent;
+    transition: fill 2s;
+}
+
+#charts .linecover {
+    fill: #201836;
+    stroke: transparent;
+    transition: fill 2s;
+}
+
+#charts .highcharts-grid-line {
+    fill: none;
+    stroke: rgb(255 255 255 / 0);
+}
+
+@media screen  and (min-width: 300px) {
+    #charts {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+@media screen  and (min-width: 400px) {
+    #charts {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media screen  and (min-width: 500px) {
+    #charts {
+        width: 500px;
+        height: 500px;
+    }
+}

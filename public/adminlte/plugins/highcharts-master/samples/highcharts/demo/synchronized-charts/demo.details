@@ -1,0 +1,11 @@
+---
+name: Synchronized charts
+authors:
+  - Torstein Hønsi
+js_wrap: b
+tags:
+  - Highcharts demo
+categories:
+  - Combinations
+use_png_thumbnail: true
+...

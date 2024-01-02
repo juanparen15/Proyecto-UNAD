@@ -1,0 +1,12 @@
+---
+name: Column range
+authors:
+  - Torstein Hønsi
+js_wrap: b
+tags:
+  - Highcharts Stock demo
+categories:
+  - Chart types:
+      priority: 1
+use_png_thumbnail: true
+...

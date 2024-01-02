@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Segmento extends Model
 {
     public $incrementing = false;
-    protected $fillable= ['id','detsegmento','slug'];
+    protected $fillable= ['detsegmento','slug'];
 
     public function getRouteKeyName() {
       return "slug";

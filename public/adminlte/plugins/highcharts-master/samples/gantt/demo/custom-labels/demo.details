@@ -1,0 +1,14 @@
+---
+name: Custom data labels with symbols
+js_wrap: b
+authors:
+  - Torstein Hønsi
+resources:
+  - 'https://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css'
+tags:
+  - Highcharts Gantt demo
+use_png_thumbnail: true
+categories:
+  - Highcharts Gantt:
+      priority: 2
+...

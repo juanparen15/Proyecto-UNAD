@@ -1,0 +1,10 @@
+---
+name: Map with marker clusters
+authors:
+  - Wojciech Chmiel
+js_wrap: b
+tags:
+  - Highcharts Maps demo
+categories:
+  - General
+...

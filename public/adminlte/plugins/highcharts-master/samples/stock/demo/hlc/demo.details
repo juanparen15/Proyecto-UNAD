@@ -1,0 +1,13 @@
+---
+name: HLC
+authors:
+  - Pawel Lysy
+compareTooltips: true
+js_wrap: b
+tags:
+  - Highcharts Stock demo
+categories:
+  - Chart types:
+      priority: 14
+use_png_thumbnail: true
+...

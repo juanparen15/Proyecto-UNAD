@@ -1,0 +1,7 @@
+@import url("https://code.highcharts.com/css/highcharts.css");
+
+#container {
+    width: 600px;
+    height: 250px;
+    margin: 0 auto;
+}

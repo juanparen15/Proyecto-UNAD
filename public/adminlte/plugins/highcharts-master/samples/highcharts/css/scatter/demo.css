@@ -1,0 +1,17 @@
+@import url("https://code.highcharts.com/css/highcharts.css");
+
+#container {
+    min-width: 310px;
+    height: 400px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+:root {
+    --highcharts-color-0: rgb(223 83 83 / 75%);
+    --highcharts-color-1: rgb(119 152 191 / 75%);
+}
+
+.highcharts-point-hover {
+    stroke: black;
+}

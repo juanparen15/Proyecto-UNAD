@@ -1,0 +1,11 @@
+---
+name: Step line
+authors:
+  - Torstein Hønsi
+js_wrap: b
+tags:
+  - Highcharts Stock demo
+categories:
+  - Chart types:
+      priority: 10
+...

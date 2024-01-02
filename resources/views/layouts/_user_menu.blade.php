@@ -1,3 +1,4 @@
+
 <li class="nav-item dropdown user-menu">
     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
 
@@ -7,7 +8,7 @@
     </a>
     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
       <!-- User image -->
-      <li class="user-header bg-primary">
+      <li class="user-header bg-dark">
         <img src="{{asset('adminlte/dist/img/'.auth()->user()->avatar)}}" class="img-circle elevation-2" alt="{{Auth::user()->name}}">
 
         <p>
@@ -16,7 +17,7 @@
         </p>
       </li>
       <!-- Menu Body -->
-      {{--  <li class="user-body">
+       {{-- <li class="user-body">
         <div class="row">
           <div class="col-4 text-center">
             <a href="#">Followers</a>

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Inventario')
+@section('title', 'Crear Mapa')
 @section('style')
 
     <!-- Select2 -->
@@ -9,20 +9,20 @@
 @endsection
 @section('content')
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper bg-black">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Inventario</h1>
+                        <h1>Inge</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('planadquisiciones.index') }}">Listado Inventario
+                            <li class="breadcrumb-item"><a href="{{ route('planadquisiciones.index') }}">Listado Mapa
                                 </a></li>
-                            <li class="breadcrumb-item active">Inventario</li>
+                            <li class="breadcrumb-item active">Mapa</li>
                         </ol>
                     </div>
                 </div>
@@ -32,91 +32,15 @@
         <!-- Main content -->
         <section class="content">
             {!! Form::open(['route' => 'planadquisiciones.store', 'method' => 'POST']) !!}
-            <div class="card">
+            <div class="card" style="width: 100%;">
                 <div class="card-body">
-
                     <div class="form-row">
-
-
-                        {{-- <div class="form-group has-success">
-                            <label class="form-label mt-4" for="inputValid">Valid input</label>
-                            <input type="text" value="correct value" class="form-control is-valid" id="inputValid">
-                            <div class="valid-feedback">Success! You've done it.</div>
-                          </div> --}}
-
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="area_id">OFICINA PRODUCTORA:</label>
-                                <select class="select2 @error('area_id') is-invalid @enderror" name="area_id" id="area_id"
-                                    style="width: 100%;">
-                                    <option disabled selected>Seleccione una Unidad Administrativa</option>
-                                    @foreach ($areas as $area)
-                                        <option value="{{ $area->id }}" selected>{{ $area->nomarea }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('area_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="modalidad_id">OBJETO:</label>
-                                <select class="select2 @error('modalidad_id') is-invalid @enderror" name="modalidad_id"
-                                    id="modalidad_id" style="width: 100%;">
-                                    <option disabled selected>Seleccione un Objeto</option>
-                                    @foreach ($modalidades as $modalidad)
-                                        <option value="{{ $modalidad->id }}"
-                                            {{ old('modalidad_id') == $modalidad->id ? 'selected' : '' }}>
-                                            {{ $modalidad->detmodalidad }}</option>
-                                    @endforeach
-                                </select>
-                                @error('modalidad_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-
-                        <!-- {{-- <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="objeto">Objeto:</label>
-                            <input type="text" placeholder="Escriba el Objeto Documental" name="objeto" id="objeto"
-                                class="form-control" required>
-                        </div>
-                    </div> --}} -->
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="requiproyecto_id">CODIGO DE DEPENDENCIA:</label>
-                                <select class="select2 @error('requiproyecto_id') is-invalid @enderror"
-                                    name="requiproyecto_id" id="requiproyecto_id" style="width: 100%;">
-                                    <option value="" disabled selected>Seleccione Codigo de Dependencia</option>
-                                    @foreach ($requiproyectos as $requiproyectoId => $requiproyecto)
-                                        <option value="{{ $requiproyectoId }}" selected>{{ $requiproyecto }}</option>
-                                    @endforeach
-                                </select>
-                                @error('requiproyecto_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="segmento_id">TIPO DE SERIE DOCUMENTAL:</label>
+                                <label for="segmento_id">CIUDAD:</label>
                                 <select class="select2 @error('segmento_id') is-invalid @enderror" name="segmento_id"
                                     id="segmento_id" style="width: 100%;">
-                                    <option value="" disabled selected>Seleccione un Tipo de Series Documentales:
+                                    <option value="" disabled selected>Seleccione una Ciudad:
                                     </option>
                                     @foreach ($segmentos as $segmento)
                                         <option value="{{ $segmento->id }}"
@@ -130,14 +54,11 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="familias_id">TIPO DE SUBSERIE DOCUMENTAL:</label>
+                                <label for="familias_id">ESTANDAR:</label>
                                 <select class="select2 @error('familias_id') is-invalid @enderror" name="familias_id"
                                     id="familias_id" style="width: 100%;">
-                                    <option value="" disabled selected>Seleccione un Tipo de Subserie Documental:
+                                    <option value="" disabled selected>Seleccione un Estandar:
                                     </option>
                                     {{-- @foreach ($familias as $familia)
                                 <option value="{{$familia->id}}">{{$familia->detfamilia}}</option>
@@ -149,92 +70,11 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label>FECHAS EXTREMAS | Fecha Inicial:</label>
-                            <div class="form-label-group">
-                                <input placeholder="Escriba la fecha inicial" type="text" class="form-control"
-                                    name="fechaInicial" id="fechaInicialInput" required>
-                            </div>
-                            <span id="fechaMostrada"></span>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label for="fechaFinal">FECHAS EXTREMAS | Fecha Final:</label>
                             <div class="form-group">
-                                <input placeholder="Escriba la fecha final" type="text" class="form-control"
-                                    name="fechaFinal" id="fechaFinalInput" required>
-                            </div>
-                            <span id="fechaFinalMostrada"></span>
-                        </div>
-
-
-                        <div class="col-md-4">
-                            <label>UNIDAD DE CONSERVACIÓN | CAJA:</label>
-                            <div class="form-group mb-3">
-                                <input placeholder="Escriba la unidad de las cajas" type="number" class="form-control"
-                                    name="caja" id="caja" required>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label>UNIDAD DE CONSERVACIÓN | CARPETA:</label>
-                            <div class="input-group mb-3">
-                                <input placeholder="Escriba la unidad de las carpetas" type="number" class="form-control"
-                                    name="carpeta" id="carpeta" required>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label>UNIDAD DE CONSERVACIÓN | TOMO:</label>
-                            <div class="input-group mb-3">
-                                <input placeholder="Escriba la unidad de tomos" type="number" class="form-control"
-                                    name="tomo" id="tomo" required>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="requipoais_id">OPCION OTRO:</label>
-                                <select class="select2 @error('requipoais_id') is-invalid @enderror" name="requipoais_id"
-                                    id="requipoais_id" style="width: 100%;">
-                                    <option disabled selected>Seleccione si es otro</option>
-                                    @foreach ($requipoais as $requipoai)
-                                        <option value="{{ $requipoai->id }}"
-                                            {{ old('requipoais_id') == $requipoai->id ? 'selected' : '' }}>
-                                            {{ $requipoai->detpoai }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('requipoais_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label>UNIDAD DE CONSERVACIÓN | OTRO:</label>
-                            <div class="input-group mb-3">
-                                <input hidden placeholder="Escriba la unidad de otros" type="text"
-                                    class="form-control" name="otro" id="otro">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label>NUMERO DE FOLIOS:</label>
-                            <div class="input-group mb-3">
-
-                                <input placeholder="Escriba el numero de folios" type="text" class="form-control"
-                                    name="folio" id="folio" required>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="fuente_id">SOPORTE DOCUMENTAL:</label>
+                                <label for="fuente_id">TIPO DE EMISORA:</label>
                                 <select class="select2 @error('fuente_id') is-invalid @enderror" name="fuente_id"
                                     id="fuente_id" style="width: 100%;">
-                                    <option disabled selected>Seleccione el soporte de los documentos</option>
+                                    <option disabled selected>Seleccione el Tipo de Emisora</option>
                                     @foreach ($fuentes as $fuentes)
                                         <option value="{{ $fuentes->id }}"
                                             {{ old('fuente_id') == $fuentes->id ? 'selected' : '' }}>
@@ -248,13 +88,11 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="tipoprioridade_id">FRECUENCIA DE CONSULTA:</label>
+                                <label for="tipoprioridade_id">EMISORA:</label>
                                 <select class="select2 @error('tipoprioridade_id') is-invalid @enderror"
                                     name="tipoprioridade_id" id="tipoprioridade_id" style="width: 100%;">
-                                    <option disabled selected>Seleccione la Frecuencia de consulta</option>
+                                    <option disabled selected>Seleccione la Emisora</option>
                                     @foreach ($tipoprioridades as $tipoprioridad)
                                         <option value="{{ $tipoprioridad->id }}"
                                             {{ old('tipoprioridade_id') == $tipoprioridad->id ? 'selected' : '' }}>
@@ -268,32 +106,24 @@
                                 @enderror
                             </div>
                         </div>
-
-                        <div class="col-lg-12">
-                            <label>NOTAS:</label>
-                            <div class="input-group sm-3">
-                                <input placeholder="Escriba una nota" type="text" class="form-control" name="nota"
-                                    id="nota" required onkeypress="return validarCaracter(event)">
-
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 mb-2">
+                            <input type="submit" value="Mostrar" class="btn btn-primary float-left">
+                            
+                            <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancelar</a>
                         </div>
                     </div>
                 </div>
                 <!-- /.card-body -->
             </div>
             <!-- /.card -->
-            <div class="row">
-                <div class="col-12 mb-2">
-                    <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancel</a>
-                    <input type="submit" value="Registrar" class="btn btn-primary float-right">
-                </div>
-            </div>
             {!! Form::close() !!}
         </section>
         <!-- /.content -->
-    </div>
+    {{-- </div> --}}
     <!-- /.content-wrapper -->
-    <div class="modal fade" id="notaModal" tabindex="-1" role="dialog" aria-labelledby="notaModalLabel"
+    {{-- <div class="modal fade" id="notaModal" tabindex="-1" role="dialog" aria-labelledby="notaModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -311,11 +141,7 @@
                 </div>
             </div>
         </div>
-    </div>
-
-
-
-
+    </div> --}}
 @endsection
 @section('script')
     <!-- Select2 -->
@@ -342,7 +168,7 @@
                 success: function(data) {
                     familia_id.empty();
                     familia_id.append(
-                        '<option disabled selected>Seleccione un Tipo de Subserie Documental:</option>'
+                        '<option disabled selected>Seleccione un Estandar:</option>'
                     );
                     $.each(data, function(index, element) {
                         familia_id.append('<option value="' + element.id + '">' + element
@@ -353,23 +179,23 @@
             });
         });
 
-        var otro = $('#otro');
-        var requipoais_id = $('#requipoais_id');
+        // var otro = $('#otro');
+        // var requipoais_id = $('#requipoais_id');
 
-        $(function() {
-            $("#requipoais_id").change(function() {
-                if ($(this).val() == 2) {
-                    $("#otro").prop("hidden", true);
-                    document.getElementById("otro").value = " ";
-                } else {
-                    $("#otro").prop("hidden", false);
+        // $(function() {
+        //     $("#requipoais_id").change(function() {
+        //         if ($(this).val() == 2) {
+        //             $("#otro").prop("hidden", true);
+        //             document.getElementById("otro").value = " ";
+        //         } else {
+        //             $("#otro").prop("hidden", false);
 
-                }
-            });
-        });
+        //         }
+        //     });
+        // });
     </script>
 
-    <script>
+    {{-- <script>
         // Función para aplicar el formato condicional y validar una fecha
         function validarYFormatearFecha(inputElement, outputElement) {
             var inputValue = inputElement.value;
@@ -458,12 +284,12 @@
             }
             this.value = inputValue; // Actualizar el valor del campo de entrada
         });
-    </script>
+    </script> --}}
 
 
     <!-- Agrega este script en la sección 'script' de tu vista -->
 
-    <script>
+    {{-- <script>
         function validarCaracter(event) {
             var input = event.key;
             // Usar una expresión regular para permitir letras, números y el guión (-)
@@ -497,7 +323,7 @@
                 event.preventDefault(); // Evita que se envíe el formulario si la nota es inválida
             }
         });
-    </script>
+    </script> --}}
 
 
 @endsection

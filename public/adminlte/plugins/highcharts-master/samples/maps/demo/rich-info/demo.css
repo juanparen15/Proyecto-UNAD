@@ -1,0 +1,59 @@
+* {
+    font-family: sans-serif;
+}
+
+#wrapper {
+    height: 500px;
+    width: 1000px;
+    margin: 0 auto;
+    padding: 10px;
+    overflow: visible;
+}
+
+#container {
+    float: left;
+    height: 500px;
+    width: 700px;
+    margin: 0;
+}
+
+#info {
+    float: left;
+    width: 270px;
+    padding-left: 20px;
+    margin: 100px 0 0;
+}
+
+#info h2 {
+    display: inline;
+    font-size: 13pt;
+    text-transform: none;
+}
+
+#info .f32 .flag {
+    vertical-align: bottom !important;
+}
+
+#info h4 {
+    margin: 1em 0 0;
+    font-size: 12pt;
+    text-transform: none;
+}
+
+@media screen and (max-width: 1000px) {
+    #container,
+    #info {
+        float: none;
+        width: 100%;
+        height: auto;
+        margin: 0.5em 0;
+        padding: 0;
+        border: none;
+    }
+
+    #wrapper {
+        width: auto;
+        height: auto;
+        margin: 0.5em 0;
+    }
+}

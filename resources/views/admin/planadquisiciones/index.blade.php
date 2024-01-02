@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Listado Inventario')
+@section('title', 'Listado Mapa')
 @section('style')
     <!-- SweetAlert2 -->
     {!! Html::style('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') !!}
@@ -9,7 +9,7 @@
     {!! Html::style('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') !!}
 @endsection
 @section('content')
-    <div class="content-wrapper">
+    <div class="content-wrapper bg-black">
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
@@ -20,7 +20,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                            <li class="breadcrumb-item active">Listado Inventario</li>
+                            <li class="breadcrumb-item active">Listado Mapa</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -33,7 +33,7 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Listado Inventario</h3>
+                        <h3 class="card-title">Listado Mapa</h3>
 
                         <div class="card-tools">
 
@@ -67,7 +67,7 @@
                             @if (auth()->user()->hasRole('Admin') ||
                                     auth()->user()->hasRole('User'))
                                 <a href="{{ route('planadquisiciones.create') }}" class="btn btn-primary">
-                                    <i class="fas fa-parking"></i> Agregar Nuevo Inventario
+                                    <i class="fas fa-parking"></i> Agregar Nuevo Mapa
                                 </a>
                             @endif
 
@@ -86,11 +86,11 @@
                         <table id="example2" class="table table-hover text-nowrap" style="width: 100%">
                             <thead>
                                 <tr>
-                                    <th>NÚMERO DE ORDEN</th>
-                                    <th>UNIDAD ADMINISTRATIVA</th>
-                                    <th>OFICINA PRODUCTORA</th>
-                                    <th>OBJETO</th>
-                                    <th>CODIGO</th>
+                                    <th>CIUDAD</th>
+                                    <th>ESTANDAR</th>
+                                    <th>TIPO EMISORA</th>
+                                    <th>EMISORA</th>
+                                    {{-- <th>CODIGO</th>
                                     <th>NOMBRE DE LA SERIE</th>
                                     <th>NOMBRE DE LA SUBSERIE O ASUNTOS</th>
                                     <th>FECHA INICIAL</th>
@@ -103,7 +103,7 @@
                                     <th>NÚMERO DE FOLIOS</th>
                                     <th>SOPORTE</th>
                                     <th>FRECUENCIA DE CONSULTA</th>
-                                    <th>NOTAS</th>
+                                    <th>NOTAS</th> --}}
                                     <th>ACCIONES</th>
                                 </tr>
                             </thead>
@@ -138,28 +138,29 @@
                                                 @method('delete')
 
                                                 {{-- @can('exportar_planadquisiciones_excel') --}}
-                                                    <a class="btn btn-success btn-sm"
-                                                        href="{{ route('exportar_planadquisiciones_excel', $planadquisicion) }}">
-                                                        <i class="far fa-file-excel"></i> Exportar
-                                                    </a>
+                                                <a class="btn btn-success btn-sm"
+                                                    href="{{ route('exportar_planadquisiciones_excel', $planadquisicion) }}">
+                                                    <i class="far fa-file-excel"></i> Exportar
+                                                </a>
                                                 {{-- @endcan --}}
 
                                                 {{-- @can('planadquisiciones.show') --}}
-                                                    <a class="btn btn-info btn-sm"
-                                                        href="{{ route('planadquisiciones.show', $planadquisicion) }}">Detalles</a>
+                                                <a class="btn btn-info btn-sm"
+                                                    href="{{ route('planadquisiciones.show', $planadquisicion) }}">Detalles</a>
                                                 {{-- @endcan --}}
 
 
                                                 {{-- @can('planadquisiciones.edit') --}}
-                                                @if (auth()->user()->hasRole('Admin') || auth()->user()->hasRole('User'))
-                                                <a class="btn btn-primary btn-sm"
-                                                    href="{{ route('planadquisiciones.edit', $planadquisicion) }}">Editar</a>
+                                                @if (auth()->user()->hasRole('Admin') ||
+                                                        auth()->user()->hasRole('User'))
+                                                    <a class="btn btn-primary btn-sm"
+                                                        href="{{ route('planadquisiciones.edit', $planadquisicion) }}">Editar</a>
                                                 @endif
-                                                    {{-- @endcan --}}
+                                                {{-- @endcan --}}
 
-                                                {{-- @can('planadquisiciones.destroy')
-                                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                                @endcan --}}
+                                                @can('planadquisiciones.destroy')
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="enviar_formulario()">Eliminar</button>
+                                                @endcan 
                                             </form>
                                         </td>
                                     </tr>
@@ -192,7 +193,7 @@
                 });
                 Toast.fire({
                     icon: 'success',
-                    title: 'El Inventario Documental se creó con exito.'
+                    title: 'El Mapa se creó con exito.'
                 })
             });
         </script>
@@ -208,7 +209,7 @@
                 });
                 Toast.fire({
                     icon: 'success',
-                    title: 'El Inventario Documental se actualizó con exito.'
+                    title: 'El Mapa se actualizó con exito.'
                 })
             });
         </script>
@@ -217,7 +218,7 @@
         <script>
             Swal.fire(
                 '¡Eliminado!',
-                'El Inventario Documental se eliminó con exito.',
+                'El Mapa se eliminó con exito.',
                 'success'
             )
         </script>

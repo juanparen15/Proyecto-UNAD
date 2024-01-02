@@ -1,0 +1,12 @@
+---
+name: Progress indicator
+js_wrap: b
+authors:
+  - Lars Cabrera
+compareTooltips: true
+tags:
+  - Highcharts Gantt demo
+categories:
+  - Highcharts Gantt:
+      priority: 6
+...

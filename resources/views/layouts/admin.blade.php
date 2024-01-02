@@ -13,7 +13,8 @@
     @yield('style')
     {!! Html::style('adminlte/dist/css/adminlte.min.css') !!}
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lumen/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css"
+        integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
 
     <style>
         .sidebar-dark-blue {
@@ -29,7 +30,7 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
@@ -47,27 +48,29 @@
         </nav>
         @include('layouts._nav')
         @yield('content')
-        <aside class="control-sidebar control-sidebar-dark">
+        {{-- <aside class="control-sidebar control-sidebar-dark">
             <div class="p-3">
                 <h5>Title</h5>
                 <p>Sidebar content</p>
             </div>
-        </aside>
-        <footer class="main-footer">
+        </aside> --}}
+        <footer class="card-footer footer-light">
 
             <div class="float-right d-none d-sm-inline">
                 <a href="#"><b>Contáctanos</a>
             </div>
-            <strong>Copyright &copy;
+            <strong style="color: #ffff">Copyright &copy;
                 <script type="text/javascript">
                     document.write(new Date().getFullYear());
                 </script>
                 <b>
-                    <a href="https://www.puertoboyaca-boyaca.gov.co/Paginas/default.aspx"target="_blank">Alcaldia de
-                        Puerto Boyacá</a>.
-            </strong> Todos los Derechos Reservados por la Alcaldia Municipal de Puerto Boyacá.
+                    <a href="#"target="_blank">CRC-UNAD</a>.
+            </strong>
+            <strong style="color: #ffff">
+                Todos los Derechos Reservados por CRC-UNAD.
+            </strong>
             <b><br>
-                <a>Analisis, Diseño y Desarrollo: Oficina de Sistemas Municipal y Contrato 105 de 2023</a></b>
+                <a style="color: #ffff">Analisis, Diseño y Desarrollo de Software</a></b>
         </footer>
     </div>
     {!! Html::script('adminlte/plugins/jquery/jquery.min.js') !!}

@@ -13,6 +13,7 @@ use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use Maatwebsite\Excel\Files\TemporaryFile;
 use Maatwebsite\Excel\Files\TemporaryFileFactory;
 use Maatwebsite\Excel\Jobs\AppendDataToSheet;
+use Maatwebsite\Excel\Jobs\AppendPaginatedToSheet;
 use Maatwebsite\Excel\Jobs\AppendQueryToSheet;
 use Maatwebsite\Excel\Jobs\AppendViewToSheet;
 use Maatwebsite\Excel\Jobs\CloseSheet;
@@ -38,8 +39,8 @@ class QueuedWriter
     protected $temporaryFileFactory;
 
     /**
-     * @param Writer               $writer
-     * @param TemporaryFileFactory $temporaryFileFactory
+     * @param  Writer  $writer
+     * @param  TemporaryFileFactory  $temporaryFileFactory
      */
     public function __construct(Writer $writer, TemporaryFileFactory $temporaryFileFactory)
     {
@@ -49,12 +50,11 @@ class QueuedWriter
     }
 
     /**
-     * @param object       $export
-     * @param string       $filePath
-     * @param string       $disk
-     * @param string|null  $writerType
-     * @param array|string $diskOptions
-     *
+     * @param  object  $export
+     * @param  string  $filePath
+     * @param  string  $disk
+     * @param  string|null  $writerType
+     * @param  array|string  $diskOptions
      * @return \Illuminate\Foundation\Bus\PendingDispatch
      */
     public function store($export, string $filePath, string $disk = null, string $writerType = null, $diskOptions = [])
@@ -77,10 +77,9 @@ class QueuedWriter
     }
 
     /**
-     * @param object        $export
-     * @param TemporaryFile $temporaryFile
-     * @param string        $writerType
-     *
+     * @param  object  $export
+     * @param  TemporaryFile  $temporaryFile
+     * @param  string  $writerType
      * @return Collection
      */
     private function buildExportJobs($export, TemporaryFile $temporaryFile, string $writerType): Collection
@@ -107,11 +106,10 @@ class QueuedWriter
     }
 
     /**
-     * @param FromCollection $export
-     * @param TemporaryFile  $temporaryFile
-     * @param string         $writerType
-     * @param int            $sheetIndex
-     *
+     * @param  FromCollection  $export
+     * @param  TemporaryFile  $temporaryFile
+     * @param  string  $writerType
+     * @param  int  $sheetIndex
      * @return Collection
      */
     private function exportCollection(
@@ -139,11 +137,10 @@ class QueuedWriter
     }
 
     /**
-     * @param FromQuery     $export
-     * @param TemporaryFile $temporaryFile
-     * @param string        $writerType
-     * @param int           $sheetIndex
-     *
+     * @param  FromQuery  $export
+     * @param  TemporaryFile  $temporaryFile
+     * @param  string  $writerType
+     * @param  int  $sheetIndex
      * @return Collection
      */
     private function exportQuery(
@@ -153,6 +150,10 @@ class QueuedWriter
         int $sheetIndex
     ): Collection {
         $query = $export->query();
+
+        if ($query instanceof \Laravel\Scout\Builder) {
+            return $this->exportScout($export, $temporaryFile, $writerType, $sheetIndex);
+        }
 
         $count = $export instanceof WithCustomQuerySize ? $export->querySize() : $query->count();
         $spins = ceil($count / $this->getChunkSize($export));
@@ -174,11 +175,50 @@ class QueuedWriter
     }
 
     /**
-     * @param FromView      $export
-     * @param TemporaryFile $temporaryFile
-     * @param string        $writerType
-     * @param int           $sheetIndex
-     *
+     * @param  FromQuery  $export
+     * @param  TemporaryFile  $temporaryFile
+     * @param  string  $writerType
+     * @param  int  $sheetIndex
+     * @return Collection
+     */
+    private function exportScout(
+        FromQuery $export,
+        TemporaryFile $temporaryFile,
+        string $writerType,
+        int $sheetIndex
+    ): Collection {
+        $jobs = new Collection();
+
+        $chunk = $export->query()->paginate($this->getChunkSize($export));
+        // Append first page
+        $jobs->push(new AppendDataToSheet(
+            $export,
+            $temporaryFile,
+            $writerType,
+            $sheetIndex,
+            $chunk->items()
+        ));
+
+        // Append rest of pages
+        for ($page = 2; $page <= $chunk->lastPage(); $page++) {
+            $jobs->push(new AppendPaginatedToSheet(
+                $export,
+                $temporaryFile,
+                $writerType,
+                $sheetIndex,
+                $page,
+                $this->getChunkSize($export)
+            ));
+        }
+
+        return $jobs;
+    }
+
+    /**
+     * @param  FromView  $export
+     * @param  TemporaryFile  $temporaryFile
+     * @param  string  $writerType
+     * @param  int  $sheetIndex
      * @return Collection
      */
     private function exportView(
@@ -199,8 +239,7 @@ class QueuedWriter
     }
 
     /**
-     * @param object|WithCustomChunkSize $export
-     *
+     * @param  object|WithCustomChunkSize  $export
      * @return int
      */
     private function getChunkSize($export): int

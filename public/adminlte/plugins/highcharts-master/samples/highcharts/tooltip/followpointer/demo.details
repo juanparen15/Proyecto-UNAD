@@ -1,0 +1,6 @@
+---
+ name: Tooltip follow pointer
+ authors:
+   - Jakub Januchta
+ js_wrap: b
+...

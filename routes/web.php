@@ -1,6 +1,6 @@
 <?php
 
-use App\Empresa;
+use App\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\HomeController;
@@ -17,8 +17,8 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    $empresa = Empresa::first();
-    return view('welcome', compact('empresa'));
+    $user = User::first();
+    return view('welcome', compact('user'));
 })->name('welcome');
 Route::get('/vista', function () {
     return view('vista');
@@ -112,6 +112,10 @@ Route::get('inventario/area/{areaId}', 'PlanadquisicioneController@indexByArea')
 
 // Route::get('/chart', 'ChartController@handleChart')->name('inventarioDocumental.handleChart');
 Route::get('/chart', [ChartController::class, 'chart'])->name('/chart');
+Route::get('/email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');
+Route::post('/email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+
 // Route::get('home', [HomeController::class, 'index']);
 // Route::middleware(['role:Admin'])->group(function () {
 //     // Rutas que solo los admins pueden acceder
@@ -121,4 +125,8 @@ Route::get('/chart', [ChartController::class, 'chart'])->name('/chart');
 //     Route::get('/users', 'UserController@index');
 // });
 
+Route::get('/home', 'HomeController@index')->name('home');
+// Route::middleware(['auth', 'verified'])->group(function () {
+//     // Tus rutas aquí
+// });
 

@@ -122,9 +122,9 @@ class PlanadquisicioneController extends Controller
         // $requiproyectos = Requiproyecto::get();
         $tipoprioridades = Tipoprioridade::get();
         $requipoais = Requipoai::get();
-        $requiproyectos = Requiproyecto::where('areas_id', auth()->user()->area->id)->pluck('detproyeto', 'id');
+        // $requiproyectos = Requiproyecto::where('areas_id', auth()->user()->area->id)->pluck('detproyeto', 'id');
 
-        return view('admin.planadquisiciones.create', compact('requipoais', 'modalidades', 'familias', 'segmentos', 'areas', 'fuentes', 'requiproyectos', 'tipoprioridades'));
+        return view('admin.planadquisiciones.create', compact('requipoais', 'modalidades', 'familias', 'segmentos', 'areas', 'fuentes', 'tipoprioridades'));
     }
 
 

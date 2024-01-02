@@ -4,7 +4,7 @@
 
 @endsection
 @section('content')
-<div class="content-wrapper">
+<div class="content-wrapper bg-black">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -37,7 +37,7 @@
                     @csrf
 
                     <input type="file" name="file" required>
-                    <button class="btn btn-primary float-right">Importar Inventario</button>
+                    <button class="btn btn-primary float-right">Importar Mapa</button>
                 </form>
             </div>
 {{-- 

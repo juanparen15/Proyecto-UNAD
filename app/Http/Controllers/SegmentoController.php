@@ -37,6 +37,7 @@ class SegmentoController extends Controller
     public function store(StoreRequest $request)
     {
         Segmento::create([
+            // 'id'=> $request->id,
             'detsegmento'=> $request->detsegmento,
             'slug'=> Str::slug($request->detsegmento , '-')
         ]);
@@ -59,6 +60,7 @@ class SegmentoController extends Controller
     public function update(UpdateRequest $request, Segmento $serie)
     {
         $serie->update([
+            // 'id'=> $request->id,
             'detsegmento'=> $request->detsegmento,
             'slug'=> Str::slug($request->detsegmento , '-')
         ]);

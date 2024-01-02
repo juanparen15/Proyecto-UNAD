@@ -69,10 +69,10 @@ class DataProcessor
     protected $exceptions = ['DT_RowId', 'DT_RowClass', 'DT_RowData', 'DT_RowAttr'];
 
     /**
-     * @param mixed $results
-     * @param array $columnDef
-     * @param array $templates
-     * @param int   $start
+     * @param  mixed  $results
+     * @param  array  $columnDef
+     * @param  array  $templates
+     * @param  int  $start
      */
     public function __construct($results, array $columnDef, array $templates, $start)
     {
@@ -93,7 +93,7 @@ class DataProcessor
     /**
      * Process data to output on browser.
      *
-     * @param bool $object
+     * @param  bool  $object
      * @return array
      */
     public function process($object = false)
@@ -122,8 +122,8 @@ class DataProcessor
     /**
      * Process add columns.
      *
-     * @param mixed $data
-     * @param mixed $row
+     * @param  mixed  $data
+     * @param  mixed  $row
      * @return array
      */
     protected function addColumns($data, $row)
@@ -146,8 +146,8 @@ class DataProcessor
     /**
      * Process edit columns.
      *
-     * @param mixed $data
-     * @param mixed $row
+     * @param  mixed  $data
+     * @param  mixed  $row
      * @return array
      */
     protected function editColumns($data, $row)
@@ -163,8 +163,8 @@ class DataProcessor
     /**
      * Setup additional DT row variables.
      *
-     * @param mixed $data
-     * @param mixed $row
+     * @param  mixed  $data
+     * @param  mixed  $row
      * @return array
      */
     protected function setupRowVariables($data, $row)
@@ -182,32 +182,31 @@ class DataProcessor
     /**
      * Get only needed columns.
      *
-     * @param array $data
+     * @param  array  $data
      * @return array
      */
     protected function selectOnlyNeededColumns(array $data)
     {
         if (is_null($this->onlyColumns)) {
             return $data;
-        } else {
-            $results = [];
-            foreach ($this->onlyColumns as $onlyColumn) {
-                Arr::set($results, $onlyColumn, Arr::get($data, $onlyColumn));
-            }
-            foreach ($this->exceptions as $exception) {
-                if ($column = Arr::get($data, $exception)) {
-                    Arr::set($results, $exception, $column);
-                }
-            }
-
-            return $results;
         }
+        $results = [];
+        foreach ($this->onlyColumns as $onlyColumn) {
+            Arr::set($results, $onlyColumn, Arr::get($data, $onlyColumn));
+        }
+        foreach ($this->exceptions as $exception) {
+            if ($column = Arr::get($data, $exception)) {
+                Arr::set($results, $exception, $column);
+            }
+        }
+
+        return $results;
     }
 
     /**
      * Remove declared hidden columns.
      *
-     * @param array $data
+     * @param  array  $data
      * @return array
      */
     protected function removeExcessColumns(array $data)
@@ -222,7 +221,7 @@ class DataProcessor
     /**
      * Flatten array with exceptions.
      *
-     * @param array $array
+     * @param  array  $array
      * @return array
      */
     public function flatten(array $array)
@@ -242,7 +241,7 @@ class DataProcessor
     /**
      * Escape column values as declared.
      *
-     * @param array $output
+     * @param  array  $output
      * @return array
      */
     protected function escapeColumns(array $output)
@@ -264,7 +263,7 @@ class DataProcessor
     /**
      * Escape all string or Htmlable values of row.
      *
-     * @param array $row
+     * @param  array  $row
      * @return array
      */
     protected function escapeRow(array $row)

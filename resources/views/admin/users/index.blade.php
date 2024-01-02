@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 @section('title', 'Usuarios')
 @section('style')
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css"
+        integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- SweetAlert2 -->
     {!! Html::style('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') !!}
     <!-- DataTables -->
@@ -9,7 +13,7 @@
     {!! Html::style('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') !!}
 @endsection
 @section('content')
-    <div class="content-wrapper">
+    <div class="content-wrapper bg-black ">
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
@@ -26,104 +30,105 @@
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
-        <!-- /.content-header -->
+    <!-- /.content-header -->
 
-        <!-- Main content -->
-        <div class="content">
-            <div class="container-fluid">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Usuarios del Sistema</h3>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Usuarios del Sistema</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
+                                <i class="fas fa-wrench"></i>
                             </button>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fas fa-wrench"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                    <a href="{{ route('users.create') }}" class="dropdown-item">Registrar</a>
-                                    {{--  <a href="#" class="dropdown-item">Another action</a>
+                            <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                <a href="{{ route('users.create') }}" class="dropdown-item">Registrar</a>
+                                {{--  <a href="#" class="dropdown-item">Another action</a>
                         <a href="#" class="dropdown-item">Something else here</a>
                         <a class="dropdown-divider"></a>
                         <a href="#" class="dropdown-item">Separated link</a>  --}}
-                                </div>
                             </div>
-
                         </div>
+
                     </div>
-                    <!-- /.card-header -->
-                    <div class="card-body table-responsive">
-                        <table id="example2" class="table table-hover text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nombre del Area o Dependencia</th>
-                                    <th>Nombres y Apellidos del Responsable</th>
-                                    <th>Correo electrónico Institucional</th>
-                                    <th>Rol</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($users as $user)
-                                    <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td>
-                                            @if (isset( $user->area->nomarea) )
-                                            {{$user->area->nomarea}}
-                                            @else
-                                            No especificado 
-                                            @endif
-                                        </td>
-                                        {{-- <td>{{ $user->areas_id }}</td> --}}
-                                        <td>
-                                            <a href="{{ route('users.show', $user) }}">
-                                                {{ $user->name }}
-                                            </a>
-                                        </td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>
-                                            @foreach ($user->getRoleNames() as $role)
-                                                {{ $role }}
-                                            @endforeach
-                                        </td>
-                                        <td class="project-actions text-right">
-                                            <a class="btn btn-primary btn-sm" href="{{ route('users.show', $user) }}">
-                                                <i class="fas fa-folder">
-                                                </i>
-                                                Ver
-                                            </a>
-                                            <a class="btn btn-info btn-sm" href="{{ route('users.edit', $user) }}">
-                                                <i class="fas fa-pencil-alt">
-                                                </i>
-                                                Editar
-                                            </a>
-                                            <a class="btn btn-danger btn-sm" onclick="enviar_formulario()">
-                                                <i class="fas fa-trash">
-                                                </i>
-                                                Eliminar
-                                            </a>
-
-
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <form method="POST" action="{{ route('users.destroy', $user) }}" name="delete_form">
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
-                    </form>
-                    <!-- /.card-body -->
                 </div>
-                <!-- /.card -->
-            </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content -->
+                <!-- /.card-header -->
+                <div class="card-body table-responsive">
+                    <table id="example2" class="table table-hover text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                {{-- <th>Nombre del Area o Dependencia</th> --}}
+                                <th>Nombre</th>
+                                <th>Correo electrónico</th>
+                                <th>Rol</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td>{{ $user->id }}</td>
+                                    {{-- <td>
+                                        @if (isset($user->area->nomarea))
+                                            {{ $user->area->nomarea }}
+                                        @else
+                                            No especificado
+                                        @endif
+                                    </td> --}}
+                                    {{-- <td>{{ $user->areas_id }}</td> --}}
+                                    <td>
+                                        <a href="{{ route('users.show', $user) }}">
+                                            {{ $user->name }} 
+                                            {{ $user->lastname  }}
+                                        </a>
+                                    </td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>
+                                        @foreach ($user->getRoleNames() as $role)
+                                            {{ $role }}
+                                        @endforeach
+                                    </td>
+                                    <td class="project-actions text-right">
+                                        <a class="btn btn-primary btn-sm" href="{{ route('users.show', $user) }}">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            Ver
+                                        </a>
+                                        <a class="btn btn-info btn-sm" href="{{ route('users.edit', $user) }}">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            Editar
+                                        </a>
+                                        <a class="btn btn-danger btn-sm" onclick="enviar_formulario()">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Eliminar
+                                        </a>
+
+
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+                <form method="POST" action="{{ route('users.destroy', $user) }}" name="delete_form">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                </form>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
     </div>
 @endsection
 @section('script')

@@ -10,11 +10,14 @@ class LocalTemporaryFile extends TemporaryFile
     private $filePath;
 
     /**
-     * @param string $filePath
+     * @param  string  $filePath
      */
     public function __construct(string $filePath)
     {
         touch($filePath);
+        if (($rights = config('excel.temporary_files.local_permissions.file', null)) !== null) {
+            chmod($filePath, $rights);
+        }
 
         $this->filePath = realpath($filePath);
     }

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Editar Serie')
+@section('title','Editar Ciudad')
 @section('style')
 <!-- Select2 -->
 {!! Html::style('adminlte/plugins/select2/css/select2.min.css') !!}
@@ -7,19 +7,19 @@
 @endsection
 @section('content')
 <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper bg-black">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Editar Serie</h1>
+            <h1>Editar Ciudad</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('home')}}">Inicio</a></li>
-              <li class="breadcrumb-item"><a href="{{route('admin.segmentos.index')}}">Lista Series Documentales</a></li>
-              <li class="breadcrumb-item active">Editar Serie</li>
+              <li class="breadcrumb-item"><a href="{{route('admin.segmentos.index')}}">Lista Ciudades</a></li>
+              <li class="breadcrumb-item active">Editar Ciudad</li>
             </ol>
           </div>
         </div>
@@ -37,8 +37,8 @@
 
 
               <div class="form-group">
-                {!! Form::label('detsegmento','NOMBRE SERIE') !!}
-                {!! Form::text('detsegmento',null,['class' => 'form-control', 'placeholder' =>'Ingrese el Nombre de la Serie Documental']) !!}
+                {!! Form::label('detsegmento','NOMBRE CIUDAD') !!}
+                {!! Form::text('detsegmento',null,['class' => 'form-control', 'placeholder' =>'Ingrese el Nombre de la Ciudad']) !!}
                  @error('detsegmento')
                      <span class="text-danger">{{$message}}</span>
                  @enderror
@@ -61,7 +61,7 @@
         {!! Form::close() !!}
     </section>
     <!-- /.content -->
-  </div>
+  {{-- </div> --}}
   <!-- /.content-wrapper -->
   
 @endsection

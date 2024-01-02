@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Editar Subserie Documental')
+@section('title', 'Editar Estandar')
 @section('style')
     <!-- Select2 -->
     {!! Html::style('adminlte/plugins/select2/css/select2.min.css') !!}
@@ -7,20 +7,20 @@
 @endsection
 @section('content')
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper bg-black">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Editar Subserie Documental</h1>
+                        <h1>Editar Estandar</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.familias.index') }}">Subserie Documental</a>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.familias.index') }}">Estandares</a>
                             </li>
-                            <li class="breadcrumb-item active">Editar Subserie Documental</li>
+                            <li class="breadcrumb-item active">Editar Estandar</li>
                         </ol>
                     </div>
                 </div>
@@ -35,24 +35,8 @@
               <h3 class="card-title">General</h3>
             </div>  --}}
                 <div class="card-body">
-
-
-
                     <div class="form-group">
-                        {!! Form::label('detfamilia', 'NOMBRE SUBSERIE DOCUMENTAL') !!}
-                        {!! Form::text('detfamilia', null, [
-                            'class' => 'form-control',
-                            'placeholder' => 'Ingrese el Nombre de la Subserie Documental',
-                        ]) !!}
-                        @error('detfamilia')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-
-
-                    <div class="form-group">
-                        <label for="segmento_id">SERIE DOCUMENTAL</label>
+                        <label for="segmento_id">CIUDAD </label>
                         <select class="select2 @error('segmento_id') is-invalid @enderror" name="segmento_id"
                             id="segmento_id" style="width: 100%;">
 
@@ -69,6 +53,16 @@
                             </span>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        {!! Form::label('detfamilia', 'NOMBRE ESTANDAR') !!}
+                        {!! Form::text('detfamilia', null, [
+                            'class' => 'form-control',
+                            'placeholder' => 'Ingrese el Nombre de la Subserie Documental',
+                        ]) !!}
+                        @error('detfamilia')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
                 </div>
                 <!-- /.card-body -->
@@ -83,7 +77,7 @@
             {!! Form::close() !!}
         </section>
         <!-- /.content -->
-    </div>
+    {{-- </div> --}}
     <!-- /.content-wrapper -->
 
 @endsection

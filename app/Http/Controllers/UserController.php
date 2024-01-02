@@ -32,20 +32,22 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'username' => ['required'],
             'name' => ['required'],
             'email' => ['required'],
             'password' => ['required'],
-            'apellido' => ['required'],
+            'lastname' => ['required'],
             'telefono' => ['required'],
             'documento' => ['required'],
             'areas_id' => ['required']
         ]);
 
         $user = User::create([
+            'username' => $request->username,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'apellido' => $request->apellido,
+            'lastname' => $request->lastname,
             'telefono' => $request->telefono,
             'documento' => $request->documento,
             'areas_id' => $request->areas_id
@@ -77,19 +79,21 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
+            'username' => ['required'],
             'name' => ['required'],
             'email' => ['required'],
-            'password' => ['required'],
-            'apellido' => ['required'],
+            // 'password' => ['required'],
+            'lastname' => ['required'],
             'telefono' => ['required'],
             'documento' => ['required'],
             'areas_id' => ['required']
         ]);
         $user->update([
+            'username' => $request->username,
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'apellido' => $request->apellido,
+            // 'password' => Hash::make($request->password),
+            'lastname' => $request->lastname,
             'telefono' => $request->telefono,
             'documento' => $request->documento,
             'areas_id' => $request->areas_id
@@ -116,8 +120,9 @@ class UserController extends Controller
     {
 
         $user->update([
+            'username' => $request->username,
             'name' => $request->name,
-            'apellido' => $request->apellido,
+            'lastname' => $request->lastname,
             'telefono' => $request->telefono,
             'documento' => $request->documento,
             'areas_id' => $request->areas_id

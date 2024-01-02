@@ -25,10 +25,11 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
+        'username',
         'name',
+        'lastname',
         'email',
         'password',
-        'apellido',
         'telefono',
         'documento',
         'areas_id'
@@ -58,6 +59,45 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(Area::class, 'areas_id');
     }
+
+    public function hasVerifiedEmail()
+    {
+        return $this->email_verified_at !== null;
+    }
+
+    public function markEmailAsVerified()
+    {
+        $this->email_verified_at = $this->freshTimestamp();
+        $this->save();
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        // $this->notify(new \App\Notifications\VerifyEmailNotification);
+    }
+
+    public function getEmailForVerification()
+    {
+        return $this->email;
+    }
+
+    // /**
+    //  * The attributes that should be hidden for arrays.
+    //  *
+    //  * @var array
+    //  */
+    // protected $hidden = [
+    //     'password', 'remember_token'
+    // ];
+
+    // /**
+    //  * The attributes that should be cast to native types.
+    //  *
+    //  * @var array
+    //  */
+    // protected $casts = [
+    //     'email_verified_at' => 'datetime'
+    // ];
 }
 
 
@@ -84,42 +124,42 @@ class User extends Authenticatable implements MustVerifyEmail
 //         return $this->belongsTo(Area::class);
 //     }
 
-//     public function hasVerifiedEmail()
-//     {
-//         return $this->email_verified_at !== null;
-//     }
+    // public function hasVerifiedEmail()
+    // {
+    //     return $this->email_verified_at !== null;
+    // }
 
-//     public function markEmailAsVerified()
-//     {
-//         $this->email_verified_at = $this->freshTimestamp();
-//         $this->save();
-//     }
+    // public function markEmailAsVerified()
+    // {
+    //     $this->email_verified_at = $this->freshTimestamp();
+    //     $this->save();
+    // }
 
-//     public function sendEmailVerificationNotification()
-//     {
-//         // Aquí puedes enviar el correo electrónico de verificación
-//     }
+    // public function sendEmailVerificationNotification()
+    // {
+    //     // Aquí puedes enviar el correo electrónico de verificación
+    // }
 
-//     public function getEmailForVerification()
-//     {
-//         return $this->email;
-//     }
+    // public function getEmailForVerification()
+    // {
+    //     return $this->email;
+    // }
 
-//         /**
-//      * The attributes that should be hidden for arrays.
-//      *
-//      * @var array
-//      */
-//     protected $hidden = [
-//         'password', 'remember_token'
-//     ];
+    //     /**
+    //  * The attributes that should be hidden for arrays.
+    //  *
+    //  * @var array
+    //  */
+    // protected $hidden = [
+    //     'password', 'remember_token'
+    // ];
 
-//     /**
-//      * The attributes that should be cast to native types.
-//      *
-//      * @var array
-//      */
-//     protected $casts = [
-//         'email_verified_at' => 'datetime'
-//     ];
+    // /**
+    //  * The attributes that should be cast to native types.
+    //  *
+    //  * @var array
+    //  */
+    // protected $casts = [
+    //     'email_verified_at' => 'datetime'
+    // ];
 // }

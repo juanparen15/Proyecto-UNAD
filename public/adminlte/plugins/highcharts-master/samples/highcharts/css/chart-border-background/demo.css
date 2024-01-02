@@ -1,0 +1,11 @@
+@import url("https://code.highcharts.com/css/highcharts.css");
+
+#container {
+    height: 400px;
+}
+
+.highcharts-background {
+    fill: #efefef;
+    stroke: #a4edba;
+    stroke-width: 2px;
+}

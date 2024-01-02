@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Lista Segmentos')
+@section('title','Lista Ciudades')
 @section('style')
 <!-- SweetAlert2 -->
 {!! Html::style('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') !!}
@@ -9,7 +9,7 @@
 {!! Html::style('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') !!}    
 @endsection
 @section('content')
-<div class="content-wrapper">
+<div class="content-wrapper bg-black">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -20,7 +20,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('home')}}">Inicio</a></li>
-                        <li class="breadcrumb-item active">Lista Series Documentales</li>
+                        <li class="breadcrumb-item active">Lista Ciudades</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -33,11 +33,11 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Lista Series Documentales</h3>
+                  <h3 class="card-title">Lista Ciudades</h3>
                   <div class="card-tools">
 
                      <a href="{{route('admin.segmentos.create')}}" class="btn btn-primary">
-                        Agregar Serie Documental
+                        Agregar Ciudad
                      </a>
                   </div>
                 </div>
@@ -47,7 +47,7 @@
                     <thead>
                      <tr>
                         <th>ID</th>
-                        <th>NOMBRE DE LA SERIE</th>
+                        <th>NOMBRE DE LA CIUDAD</th>
                         <th>ACCIONES</th>
                      </tr>
                       {{--  <tr>
@@ -83,7 +83,7 @@
             </div>
             <!-- /.card -->
         </div><!-- /.container-fluid -->
-    </div>
+    {{-- </div> --}}
     <!-- /.content -->
 </div>
 @endsection
@@ -101,7 +101,7 @@
         });
         Toast.fire({
             icon: 'success',
-            title: 'La Serie se Actualizo con Exito.'
+            title: 'La Ciudad se Actualizo con Exito.'
         })
       });
 </script>
@@ -117,7 +117,7 @@
         });
         Toast.fire({
             icon: 'success',
-            title: 'La Serie se Creó con Exito.'
+            title: 'La Ciudad se Creó con Exito.'
         })
       });
 </script>
@@ -126,7 +126,7 @@
 <script>
     Swal.fire(
         '¡Eliminado!',
-        'La Serie se Eliminó con Exito.',
+        'La Ciudad se Eliminó con Exito.',
         'success'
       )
 </script>

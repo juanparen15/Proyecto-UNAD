@@ -54,7 +54,13 @@ You can also determine if a user has all of a given list of roles:
 $user->hasAllRoles(Role::all());
 ```
 
-The `assignRole`, `hasRole`, `hasAnyRole`, `hasAllRoles`  and `removeRole` functions can accept a
+You can also determine if a user has exactly all of a given list of roles:
+
+```php
+$user->hasExactRoles(Role::all());
+```
+
+The `assignRole`, `hasRole`, `hasAnyRole`, `hasAllRoles`, `hasExactRoles`  and `removeRole` functions can accept a
  string, a `\Spatie\Permission\Models\Role` object or an `\Illuminate\Support\Collection` object.
 
 
@@ -82,8 +88,25 @@ The `givePermissionTo` and `revokePermissionTo` functions can accept a
 string or a `Spatie\Permission\Models\Permission` object.
 
 
-**Permissions are inherited from roles automatically.**
+**NOTE: Permissions are inherited from roles automatically.**
 
+
+### What Permissions Does A Role Have?
+
+The `permissions` property on any given role returns a collection with all the related permission objects. This collection can respond to usual Eloquent Collection operations, such as count, sort, etc.
+
+```php
+// get collection
+$role->permissions;
+
+// return only the permission names:
+$role->permissions->pluck('name');
+
+// count the number of permissions assigned to a role
+count($role->permissions);
+// or
+$role->permissions->count();
+```
 
 ## Assigning Direct Permissions To A User
 
@@ -139,11 +162,6 @@ $user->getAllPermissions();
 ```
 
 All these responses are collections of `Spatie\Permission\Models\Permission` objects.
-
-
-
-If we follow the previous example, the first response will be a collection with the `delete article` permission and 
-the second will be a collection with the `edit article` permission and the third will contain both.
 
 If we follow the previous example, the first response will be a collection with the `delete article` permission and 
 the second will be a collection with the `edit article` permission and the third will contain both.
