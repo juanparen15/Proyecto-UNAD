@@ -39,7 +39,7 @@ Route::resource('estadovigencias', 'EstadovigenciaController')->except([
     'show',
 ])->names('admin.estadovigencias');
 
-Route::resource('subserie', 'FamiliaController')->except([
+Route::resource('estandar', 'FamiliaController')->except([
     'show',
 ])->names('admin.familias');
 Route::resource('soporte', 'FuenteController')->except([
@@ -51,7 +51,7 @@ Route::resource('meses', 'MeseController')->only([
 Route::resource('objeto', 'ModalidadeController')->except([
     'show',
 ])->names('admin.modalidades');
-Route::resource('inventario', 'PlanadquisicioneController')->names('planadquisiciones');
+Route::resource('mapas', 'PlanadquisicioneController')->names('planadquisiciones');
 route::get('retirar_producto/{planadquisicione}/de/{producto}', 'PlanadquisicioneController@retirar_producto')->name('retirar_producto');
 Route::get('exportar_planadquisiciones_excel/{planadquisicion}', 'PlanadquisicioneController@exportar_planadquisiciones_excel')->name('exportar_planadquisiciones_excel');
 Route::resource('productos', 'ProductoController')->except([
@@ -61,7 +61,7 @@ Route::get('importar_datos', function () {
     return view('admin.importar_datos');
 })->name('importar_datos');
 Route::get('productos/{slug}/destroy', 'ProductoController@destroy')->name('admin.productos.destroy');
-Route::resource('serie', 'SegmentoController')->except([
+Route::resource('ciudad', 'SegmentoController')->except([
     'show',
 ])->names('admin.segmentos');
 Route::resource('requipoais', 'RequipoaiController')->only([
@@ -83,6 +83,8 @@ Route::resource('codigo', 'RequiproyectoController')->except([
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('obtener_familias', 'AjaxController@obtener_familias')->name('obtener_familias');
+Route::get('obtener_tipoEmisoras', 'AjaxController@obtener_tipoEmisoras')->name('obtener_tipoEmisoras');
+Route::get('obtener_emisora', 'AjaxController@obtener_emisora')->name('obtener_emisora');
 Route::get('obtener_codigo', 'AjaxController@obtener_codigo')->name('obtener_codigo');
 // Route::get('obtener_clases', 'AjaxController@obtener_clases')->name('obtener_clases');
 // Route::get('obtener_productos', 'AjaxController@obtener_productos')->name('obtener_productos');
@@ -129,4 +131,3 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::middleware(['auth', 'verified'])->group(function () {
 //     // Tus rutas aquí
 // });
-

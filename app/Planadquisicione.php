@@ -18,7 +18,7 @@ class Planadquisicione extends Model
         'nota',
         'modalidad_id',
         'segmento_id',
-        'familias_id',
+        'familia_id',
         'area_id',
         'requiproyecto_id',
         'requipoais_id',
@@ -70,18 +70,6 @@ class Planadquisicione extends Model
     public function requiproyecto()
     {
         return $this->belongsTo(Requiproyecto::class);
-    }
-
-    //Relacion Uno a Muchos (Inversa)
-    public function requipoais()
-    {
-        return $this->belongsTo(Requipoai::class);
-    }
-
-    //Relacion Uno a Muchos (Inversa)
-    public function tipoprioridade()
-    {
-        return $this->belongsTo(Tipoprioridade::class);
     }
 
     //Relacion Uno a Muchos (Inversa)

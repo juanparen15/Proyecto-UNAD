@@ -258,9 +258,9 @@
                     </li> --}}
                     {{-- @if (auth()->user()->hasRole('Admin')) --}}
                         <li class="nav-item">
-                            <a href="{{ route('planadquisiciones.index') }}"
+                            <a href="{{ route('planadquisiciones.create') }}"
                                 class="nav-link 
-            {!! active_class(route('planadquisiciones.index')) !!}
+            {!! active_class(route('planadquisiciones.create')) !!}
             ">
                                 <i class="nav-icon fas fa-map"></i>
                                 <p>
@@ -283,9 +283,9 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a href="{{ route('planadquisiciones.index') }}"
+                        <a href="{{ route('planadquisiciones.create') }}"
                             class="nav-link 
-            {!! active_class(route('planadquisiciones.index')) !!}
+            {!! active_class(route('planadquisiciones.create')) !!}
             ">
                             <i class="nav-icon fas fa-parking"></i>
                             <p>

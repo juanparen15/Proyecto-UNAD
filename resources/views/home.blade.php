@@ -1078,7 +1078,7 @@
             });
         </script>
 
-        <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
+        {{-- <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
         <script>
             $(function() {
                 var varCompra = document.getElementById('planes').getContext('2d');
@@ -1124,5 +1124,5 @@
                     }
                 });
             });
-        </script>
+        </script> --}}
     @endsection

@@ -116,15 +116,11 @@ class PlanadquisicioneController extends Controller
         $userArea = auth()->user()->area; // Obtener el área asociada al usuario
         $segmentos = Segmento::get();
         $familias = Familia::get();
-        $modalidades = Modalidade::get();
         $areas = collect([$userArea]); // Crear una colección con el área del usuario
         $fuentes = Fuente::get();
-        // $requiproyectos = Requiproyecto::get();
-        $tipoprioridades = Tipoprioridade::get();
-        $requipoais = Requipoai::get();
         // $requiproyectos = Requiproyecto::where('areas_id', auth()->user()->area->id)->pluck('detproyeto', 'id');
 
-        return view('admin.planadquisiciones.create', compact('requipoais', 'modalidades', 'familias', 'segmentos', 'areas', 'fuentes', 'tipoprioridades'));
+        return view('admin.planadquisiciones.create', compact('familias', 'segmentos', 'areas', 'fuentes'));
     }
 
 
@@ -134,20 +130,9 @@ class PlanadquisicioneController extends Controller
 
         $request->validate([
             'caja' => ['required'],
-            'carpeta' => ['required'],
-            'tomo' => ['required'],
-            // 'otro' => ['required'],
-            'folio' => ['required'],
             'nota' => ['required'],
-            'modalidad_id' => ['required'],
             'segmento_id' => ['required'],
             'familias_id' => ['required'],
-            'fuente_id' => ['required'],
-            'tipoprioridade_id' => ['required'],
-            'requiproyecto_id' => ['required'],
-            'fechaInicial' => ['required', 'date_format:d/m/Y'],
-            'fechaFinal' => ['required', 'date_format:d/m/Y', 'after_or_equal:fechaInicial'],
-            'requipoais_id' => ['required'],
             'area_id' => ['required']
         ]);
 
