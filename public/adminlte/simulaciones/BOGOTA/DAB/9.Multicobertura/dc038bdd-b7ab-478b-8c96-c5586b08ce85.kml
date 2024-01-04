@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Cobertura multitransmisor Bogotá DAB</name>
+    <description><![CDATA[]]></description>
+    <open>1</open>
+    <Style id="PointStyle1">
+      <IconStyle>
+        <color>feffffff</color>
+        <Icon>
+          <href>https://www.xirio-online.com/web/images/radio/tx_viewer.png</href>
+        </Icon>
+        <hotSpot x="12" y="37" xunits="pixels" yunits="insetPixels" />
+      </IconStyle>
+      <LabelStyle>
+        <color>00ffffff</color>
+      </LabelStyle>
+    </Style>
+    <Style id="PointStyle2">
+      <IconStyle>
+        <color>feffffff</color>
+        <Icon>
+          <href>https://www.xirio-online.com/web/images/radio/rx_viewer.png</href>
+        </Icon>
+        <hotSpot x="12" y="37" xunits="pixels" yunits="insetPixels" />
+      </IconStyle>
+      <LabelStyle>
+        <color>00ffffff</color>
+      </LabelStyle>
+    </Style>
+    <Style id="PointStyle3">
+      <IconStyle>
+        <color>feffffff</color>
+        <Icon>
+          <href>https://www.xirio-online.com/web/images/radio/mirror_viewer.png</href>
+        </Icon>
+        <hotSpot x="12" y="37" xunits="pixels" yunits="insetPixels" />
+      </IconStyle>
+      <LabelStyle>
+        <color>00ffffff</color>
+      </LabelStyle>
+    </Style>
+    <Folder>
+      <name>Elementos radioeléctricos</name>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 1</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.1672777777778,4.68856944444445,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 10</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0539861111111,4.69894722222222,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 11</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0529638888889,4.63232777777778,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 12</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0577694444444,4.63133055555556,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 13</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0282083333333,4.66573888888889,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 14</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0282527777778,4.66623611111111,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 15</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.1672777777778,4.68856944444445,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 16</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0539861111111,4.63228333333333,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 17</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0539861111111,4.63228055555556,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 18</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0543083333333,4.60753888888889,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 19</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0537777777778,4.63302777777778,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 2</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0539861111111,4.63228333333333,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 20</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0831861111111,4.74170277777778,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 21</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0509194444444,4.63142222222222,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 22</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0596055555555,4.64166388888889,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 23</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0510166666667,4.63185,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 24</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.01925,4.73705555555556,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 25</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0929444444444,4.61947222222222,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 26</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0873055555555,4.56111111111111,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 3</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0524472222222,4.63228333333333,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 4</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0509555555555,4.63146666666667,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 5</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0543472222222,4.63146666666667,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 6</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0543472222222,4.63201111111111,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 7</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0543472222222,4.63201111111111,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 8</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0510083333333,4.631675,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 9</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0539861111111,4.63228333333333,0</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Resultado multicobertura</name>
+      <NetworkLink>
+        <name>Nivel de Señal</name>
+        <description><![CDATA[<table cellpadding="0" cellspacing="0" ><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ffffff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-∞ , -120) dBu (Sin señal)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ff0000;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-120 , -100) dBu (Señal baja)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e1f622;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-100 , -90) dBu (Señal Intermedia)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#009600;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-90 , ∞) dBu (Señal excelente)</div></td></tr></table>]]></description>
+        <visibility>1</visibility>
+        <Style>
+          <ListStyle>
+            <listItemType>checkHideChildren</listItemType>
+          </ListStyle>
+        </Style>
+        <Link>
+          <href>https://www.xirio-online.com/web/KmlServer.aspx?resId=dc038bdd-b7ab-478b-8c96-c5586b08ce85&amp;layer=0&amp;type=index</href>
+          <viewRefreshMode>onRegion</viewRefreshMode>
+        </Link>
+      </NetworkLink>
+      <NetworkLink>
+        <name>Mejor servidor</name>
+        <description><![CDATA[<table cellpadding="0" cellspacing="0"><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#0000ff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 1</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#00ff00;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 10</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ff8000;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 11</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ad5449;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 12</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#d0629d;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 13</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#73bdfd;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 14</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#8bfc57;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 15</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#54146e;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 16</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#3e4aa8;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 17</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#844e25;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 18</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#996f51;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 19</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e8d446;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 2</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#f49918;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 20</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#516730;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 21</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e73804;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 22</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e69356;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 23</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#01294e;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 24</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#d564df;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 25</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#8bd487;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 26</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#517f9b;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 3</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#7aec34;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 4</div></td></tr><tr><td></td><td><div style="margin-left: 10px;" class="info_txt04">[...]</div></td></tr></table>]]></description>
+        <visibility>1</visibility>
+        <Style>
+          <ListStyle>
+            <listItemType>checkHideChildren</listItemType>
+          </ListStyle>
+        </Style>
+        <Link>
+          <href>https://www.xirio-online.com/web/KmlServer.aspx?resId=dc038bdd-b7ab-478b-8c96-c5586b08ce85&amp;layer=1&amp;type=index</href>
+          <viewRefreshMode>onRegion</viewRefreshMode>
+        </Link>
+      </NetworkLink>
+      <NetworkLink>
+        <name>Solapamiento</name>
+        <description><![CDATA[<table cellpadding="0" cellspacing="0" ><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ffffff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-∞ , 1) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#63be7b;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[1 , 20) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#5ab6cc;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[20 , 22) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#6150da;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[22 , 24) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e844e0;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[24 , 26) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#f6363a;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[26 , ∞) </div></td></tr></table>]]></description>
+        <visibility>1</visibility>
+        <Style>
+          <ListStyle>
+            <listItemType>checkHideChildren</listItemType>
+          </ListStyle>
+        </Style>
+        <Link>
+          <href>https://www.xirio-online.com/web/KmlServer.aspx?resId=dc038bdd-b7ab-478b-8c96-c5586b08ce85&amp;layer=2&amp;type=index</href>
+          <viewRefreshMode>onRegion</viewRefreshMode>
+        </Link>
+      </NetworkLink>
+    </Folder>
+  </Document>
+</kml>

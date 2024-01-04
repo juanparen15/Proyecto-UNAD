@@ -6,6 +6,7 @@ use App\Area;
 use App\Clase;
 use App\Familia;
 use App\Fuente;
+use App\Emisora;
 use App\Producto;
 use App\Tipoproceso;
 use App\Planadquisicione;
@@ -36,12 +37,12 @@ class AjaxController extends Controller
             }
         }
     }
-    public function obtener_emisoras(Request $request)
+    public function obtener_emisora(Request $request)
     {
 
         if ($request->ajax()) {
             try {
-                $emisora = Fuente::where('fuente_id', $request->emisora_id)->get();
+                $emisora = Emisora::where('tipoemisora_id', $request->tipoemisora_id)->get();
                 return response()->json($emisora);
             } catch (\Exception $e) {
                 return response()->json(['error' => $e->getMessage()], 500);

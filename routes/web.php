@@ -131,3 +131,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::middleware(['auth', 'verified'])->group(function () {
 //     // Tus rutas aquí
 // });
+// Route::get('/simulaciones/{city}/{standard}/{type}/index', 'SimulacionController@index')->name('simulaciones.index');
+// Route::get('/mapas/crear', 'PlanadquisicioneController@mostrarMapasCrear')->name('mapas.crear');
+

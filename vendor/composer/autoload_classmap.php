@@ -126,6 +126,7 @@ return array(
     'App\\Tipozona' => $baseDir . '/app/Tipozona.php',
     'App\\User' => $baseDir . '/app/User.php',
     'App\\Vigenfutura' => $baseDir . '/app/Vigenfutura.php',
+    'App\\emisora' => $baseDir . '/app/emisora.php',
     'AreaSeeder' => $baseDir . '/database/seeds/AreaSeeder.php',
     'Asm89\\Stack\\Cors' => $vendorDir . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
     'Asm89\\Stack\\CorsService' => $vendorDir . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',

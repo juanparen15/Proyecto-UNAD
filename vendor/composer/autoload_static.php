@@ -345,8 +345,8 @@ class ComposerStaticInitc3e362978020d81ce0228f5e46b98ab5
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -661,6 +661,7 @@ class ComposerStaticInitc3e362978020d81ce0228f5e46b98ab5
         'App\\Tipozona' => __DIR__ . '/../..' . '/app/Tipozona.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\Vigenfutura' => __DIR__ . '/../..' . '/app/Vigenfutura.php',
+        'App\\emisora' => __DIR__ . '/../..' . '/app/emisora.php',
         'AreaSeeder' => __DIR__ . '/../..' . '/database/seeds/AreaSeeder.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',

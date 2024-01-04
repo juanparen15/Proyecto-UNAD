@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Bogotá Emisora 18</name>
+    <description><![CDATA[Estudio de cobertura Bogotá DAB-T]]></description>
+    <open>1</open>
+    <Style id="PointStyle1">
+      <IconStyle>
+        <color>feffffff</color>
+        <Icon>
+          <href>https://www.xirio-online.com/web/images/radio/tx_viewer.png</href>
+        </Icon>
+        <hotSpot x="12" y="37" xunits="pixels" yunits="insetPixels" />
+      </IconStyle>
+      <LabelStyle>
+        <color>00ffffff</color>
+      </LabelStyle>
+    </Style>
+    <Style id="PointStyle2">
+      <IconStyle>
+        <color>feffffff</color>
+        <Icon>
+          <href>https://www.xirio-online.com/web/images/radio/rx_viewer.png</href>
+        </Icon>
+        <hotSpot x="12" y="37" xunits="pixels" yunits="insetPixels" />
+      </IconStyle>
+      <LabelStyle>
+        <color>00ffffff</color>
+      </LabelStyle>
+    </Style>
+    <Style id="PointStyle3">
+      <IconStyle>
+        <color>feffffff</color>
+        <Icon>
+          <href>https://www.xirio-online.com/web/images/radio/mirror_viewer.png</href>
+        </Icon>
+        <hotSpot x="12" y="37" xunits="pixels" yunits="insetPixels" />
+      </IconStyle>
+      <LabelStyle>
+        <color>00ffffff</color>
+      </LabelStyle>
+    </Style>
+    <Folder>
+      <name>Elementos radioeléctricos</name>
+      <Placemark>
+        <name>Maxiva Op de GatesAir Canal 18</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0543083333333,4.60753888888889,0</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Resultado cobertura</name>
+      <NetworkLink>
+        <name>Nivel de Señal</name>
+        <description><![CDATA[<table cellpadding="0" cellspacing="0" ><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ffffff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-∞ , -120) dBW (Sin señal)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ff0000;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-120 , -100) dBW (Señal baja)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e1f622;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-100 , -90) dBW (Señal Intermedia)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#009600;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-90 , ∞) dBW (Señal excelente)</div></td></tr></table>]]></description>
+        <visibility>1</visibility>
+        <Style>
+          <ListStyle>
+            <listItemType>checkHideChildren</listItemType>
+          </ListStyle>
+        </Style>
+        <Link>
+          <href>https://www.xirio-online.com/web/KmlServer.aspx?resId=d5e801ee-fbf8-4b26-b2d4-872855838247&amp;layer=0&amp;type=index</href>
+          <viewRefreshMode>onRegion</viewRefreshMode>
+        </Link>
+      </NetworkLink>
+    </Folder>
+  </Document>
+</kml>
