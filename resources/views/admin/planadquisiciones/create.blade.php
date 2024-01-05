@@ -51,7 +51,7 @@
                 <div class="card-body">
                     <div class="form-row">
 
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label for="segmento_id">CIUDAD:</label>
                                 <select class="form-control select2 @error('segmento_id') is-invalid @enderror"
@@ -93,32 +93,13 @@
                                     <option value="" disabled selected>Seleccione la Emisora:</option>
                                 </select>
                             </div>
-                            {{-- <div class="form-group">
-                                <label for="tipoprioridade_id">EMISORA:</label>
-                                <select class="select2 @error('tipoprioridade_id') is-invalid @enderror"
-                                    name="tipoprioridade_id" id="tipoprioridade_id" style="width: 100%;">
-                                    <option disabled selected>Seleccione la Emisora</option>
-                                    @foreach ($tipoprioridades as $tipoprioridad)
-                                        <option value="{{ $tipoprioridad->id }}"
-                                            {{ old('tipoprioridade_id') == $tipoprioridad->id ? 'selected' : '' }}>
-                                            {{ $tipoprioridad->detprioridad }}</option>
-                                    @endforeach
-                                </select>
-                                @error('tipoprioridade_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div> --}}
-                            <div class="row">
-                                <div class="col-2 mb-2">
-                                    <input type="submit" value="Mostrar" class="btn btn-primary float-left">
+                            <div class="form-group">
+                                <input type="submit" value="Mostrar" class="btn btn-primary style="width: 100%"">
 
-                                    <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancelar</a>
-                                </div>
+                                <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancelar</a>
                             </div>
                         </div>
-                        <div class="form-row float-right col-md-8 px-md-2" style="height: 700px; width: 100%;">
+                        <div class="form-row float-right col-md-10 px-md-2" style="height: 700px; width: 100%;">
                             <iframe style="width: 100%;" id="simulacionIframe" frameborder="0"></iframe>
                         </div>
                     </div>
@@ -154,10 +135,9 @@
     @section('script')
         <!-- Chart.js -->
         <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
-        <!-- Otros scripts Chart.js -->
+
         <!-- Select2 -->
         {!! Html::script('adminlte/plugins/select2/js/select2.full.min.js') !!}
-        <!-- Tu otro script personalizado aquí -->
         <script>
             $(function() {
 
@@ -239,20 +219,18 @@
         </script>
         <script>
             $(document).ready(function() {
-                // Evento al enviar el formulario
+
                 $('form').submit(function(event) {
+
                     // Evitar que se recargue la página
                     event.preventDefault();
 
                     // Obtener los valores seleccionados
                     const selectedCity = $('#segmento_id option:selected').attr('name');
-                    // var selectedCity = $('#segmento_id');
                     const selectedStandard = $('#familias_id option:selected').attr('name');
-                    // var selectedStandard = $('#familias_id');
                     const selectedType = $('#estandar_id option:selected').attr('name');
-                    // var selectedType = $('#estandar_id');
                     const selectedEmisora = $('#tipoemisora_id option:selected').attr('name');
-                    // var selectedEmisora = $('#tipoemisora_id');
+
 
                     // Verifica si las variables son undefined
                     // console.log("City:", selectedCity);
@@ -276,58 +254,5 @@
                     $('#simulacionIframe').attr('src', nuevaURL);
                 });
             });
-
-            // $('#selectedEmisora').change(function() {
-            //     // Obtener el name de ciudad, estandar, tipoEmisora y emisora seleccionados
-            //     const selectedCity = $('#segmento_id option:selected').attr('name');
-            //     // var selectedCity = $('#segmento_id');
-            //     const selectedStandard = $('#familias_id option:selected').attr('name');
-            //     // var selectedStandard = $('#familias_id');
-            //     const selectedType = $('#estandar_id option:selected').attr('name');
-            //     // var selectedType = $('#estandar_id');
-            //     const selectedEmisora = $('#tipoemisora_id option:selected').attr('name');
-
-            //     // Construir la nueva URL del iframe
-            //     nuevaURL =
-            //         `{{ asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/${encodeURIComponent(selectedEmisora)}/index.html`;
-
-            //     // Actualizar la fuente del iframe con la nueva URL
-            //     $('#simulacionIframe').attr('src', nuevaURL);
-            // });
         </script>
-        {{-- <script>
-            $(document).ready(function() {
-                // Evento al enviar el formulario
-                $('form').submit(function(event) {
-                    // Evitar que se recargue la página
-                    event.preventDefault();
-
-                    // Obtener los valores seleccionados
-                    const selectedCity = $('#segmento_id option:selected').attr('name');
-                    // var selectedCity = $('#segmento_id');
-                    const selectedStandard = $('#familias_id option:selected').attr('name');
-                    // var selectedStandard = $('#familias_id');
-                    const selectedType = $('#estandar_id option:selected').attr('name');
-                    // var selectedType = $('#estandar_id');
-                    const selectedEmisora = $('#tipoemisora_id option:selected').attr('name');
-                    // var selectedEmisora = $('#tipoemisora_id');
-
-                    // Verifica si las variables son undefined
-                    console.log("City:", selectedCity);
-                    console.log("Standard:", selectedStandard);
-                    console.log("Type:", selectedType);
-                    console.log("Emisora:", selectedEmisora);
-
-                    // Construir la nueva URL del iframe
-                    let nuevaURL = "";
-
-                    if (selectedEmisora) {
-                        nuevaURL =
-                            `{{ asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/${encodeURIComponent(selectedEmisora)}/index.html`;
-                    }
-                    // Actualizar la fuente del iframe con la nueva URL
-                    $('#simulacionIframe').attr('src', nuevaURL);
-                });
-            });
-        </script> --}}
     @endsection

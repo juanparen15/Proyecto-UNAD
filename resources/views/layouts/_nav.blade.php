@@ -5,7 +5,8 @@
     <a href="{{ route('home') }}" class="brand-link">
         {{-- <img src="{!! asset('adminlte/dist/img/1703963963WhatsApp Image 2023-12-28 at 12.46.15 PM.png') !!}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8"> --}}
-            <img src="{{asset('adminlte/dist/img/'.auth()->user()->avatar)}}" class="brand-image img-circle elevation-3" style="opacity: .8" alt="{{Auth::user()->name}}">
+        <img src="{{ asset('adminlte/dist/img/' . auth()->user()->avatar) }}" class="brand-image img-circle elevation-3"
+            style="opacity: .8" alt="{{ Auth::user()->name }}">
         <span class="text-white brand-text font-weight-light">CRC-UNAD</span>
     </a>
 
@@ -257,17 +258,17 @@
                         </a>
                     </li> --}}
                     {{-- @if (auth()->user()->hasRole('Admin')) --}}
-                        <li class="nav-item">
-                            <a href="{{ route('planadquisiciones.create') }}"
-                                class="nav-link 
+                    <li class="nav-item">
+                        <a href="{{ route('planadquisiciones.create') }}"
+                            class="nav-link 
             {!! active_class(route('planadquisiciones.create')) !!}
             ">
-                                <i class="nav-icon fas fa-map"></i>
-                                <p>
-                                    SIMULACIONES XIRIO
-                                </p>
-                            </a>
-                        </li>
+                            <i class="nav-icon fas fa-map"></i>
+                            <p>
+                                SIMULACIONES XIRIO
+                            </p>
+                        </a>
+                    </li>
                     {{-- @endif --}}
 
                     <li class="nav-item">
@@ -289,7 +290,18 @@
             ">
                             <i class="nav-icon fas fa-parking"></i>
                             <p>
-                                FORMULARIO
+                                SIMULACIONES XIRIO
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('importar_datos') }}"
+                            class="nav-link 
+            {!! active_class(route('importar_datos')) !!}
+            ">
+                            <i class="nav-icon far fa-calendar-check"></i>
+                            <p>
+                                IMPORTAR DATOS
                             </p>
                         </a>
                     </li>
