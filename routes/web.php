@@ -92,16 +92,16 @@ Route::get('obtener_codigo', 'AjaxController@obtener_codigo')->name('obtener_cod
 // route::post('planadquisiciones/{planadquisicion}/agregar_producto_store', 'PlanadquisicioneController@agregar_producto_store')->name('agregar_producto_store');
 Route::resource('users', 'UserController')->names('users');
 // ================== rutas para importar datos 
-Route::post('areas_import', 'ImportExcelController@areas_import')->name('areas.import.excel');
-Route::post('dependencias_import', 'ImportExcelController@dependencias_import')->name('dependencias.import.excel');
-Route::post('estado_vigencia_import', 'ImportExcelController@estado_vigencia_import')->name('estado_vigencia.import.excel');
-Route::post('familias_import', 'ImportExcelController@familias_import')->name('familias.import.excel');
-Route::post('segmento_import', 'ImportExcelController@segmento_import')->name('segmento.import.excel');
-Route::post('clases_import', 'ImportExcelController@clases_import')->name('clases.import.excel');
-Route::post('fuentes_import', 'ImportExcelController@fuentes_import')->name('fuentes.import.excel');
-Route::post('modalidades_import', 'ImportExcelController@modalidades_import')->name('modalidades.import.excel');
-Route::post('productos_import', 'ImportExcelController@productos_import')->name('productos.import.excel');
-Route::post('inventario_import', 'ImportExcelController@planadquisicione_import')->name('planadquisicione.import.excel');
+// Route::post('areas_import', 'ImportExcelController@areas_import')->name('areas.import.excel');
+// Route::post('dependencias_import', 'ImportExcelController@dependencias_import')->name('dependencias.import.excel');
+// Route::post('estado_vigencia_import', 'ImportExcelController@estado_vigencia_import')->name('estado_vigencia.import.excel');
+// Route::post('familias_import', 'ImportExcelController@familias_import')->name('familias.import.excel');
+// Route::post('segmento_import', 'ImportExcelController@segmento_import')->name('segmento.import.excel');
+// Route::post('clases_import', 'ImportExcelController@clases_import')->name('clases.import.excel');
+// Route::post('fuentes_import', 'ImportExcelController@fuentes_import')->name('fuentes.import.excel');
+// Route::post('modalidades_import', 'ImportExcelController@modalidades_import')->name('modalidades.import.excel');
+// Route::post('productos_import', 'ImportExcelController@productos_import')->name('productos.import.excel');
+Route::post('potencia_import', 'ImportExcelController@potencia_import')->name('planadquisicione.import.excel');
 
 
 //new
