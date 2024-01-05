@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Emisora AM Bogotá 1040 KHz</name>
+    <description><![CDATA[Emisora AM Bogotá 1040 KHz]]></description>
+    <open>1</open>
+    <Style id="PointStyle1">
+      <IconStyle>
+        <color>feffffff</color>
+        <Icon>
+          <href>https://www.xirio-online.com/web/images/radio/tx_viewer.png</href>
+        </Icon>
+        <hotSpot x="12" y="37" xunits="pixels" yunits="insetPixels" />
+      </IconStyle>
+      <LabelStyle>
+        <color>00ffffff</color>
+      </LabelStyle>
+    </Style>
+    <Style id="PointStyle2">
+      <IconStyle>
+        <color>feffffff</color>
+        <Icon>
+          <href>https://www.xirio-online.com/web/images/radio/rx_viewer.png</href>
+        </Icon>
+        <hotSpot x="12" y="37" xunits="pixels" yunits="insetPixels" />
+      </IconStyle>
+      <LabelStyle>
+        <color>00ffffff</color>
+      </LabelStyle>
+    </Style>
+    <Style id="PointStyle3">
+      <IconStyle>
+        <color>feffffff</color>
+        <Icon>
+          <href>https://www.xirio-online.com/web/images/radio/mirror_viewer.png</href>
+        </Icon>
+        <hotSpot x="12" y="37" xunits="pixels" yunits="insetPixels" />
+      </IconStyle>
+      <LabelStyle>
+        <color>00ffffff</color>
+      </LabelStyle>
+    </Style>
+    <Folder>
+      <name>Elementos radioeléctricos</name>
+      <Placemark>
+        <name>Emisora AM 1040 KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.13875,4.72246944444444,0</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Resultado cobertura</name>
+      <NetworkLink>
+        <name>Nivel de Señal</name>
+        <description><![CDATA[<table cellpadding="0" cellspacing="0" ><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ffffff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-∞ , -100) dBW</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#0080ff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-100 , -90) dBW</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ffff00;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-90 , -80) dBW</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#009600;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-80 , ∞) dBW</div></td></tr></table>]]></description>
+        <visibility>1</visibility>
+        <Style>
+          <ListStyle>
+            <listItemType>checkHideChildren</listItemType>
+          </ListStyle>
+        </Style>
+        <Link>
+          <href>https://www.xirio-online.com/web/KmlServer.aspx?resId=7a58e728-6d0f-4160-8084-703c33f7a8b9&amp;layer=0&amp;type=index</href>
+          <viewRefreshMode>onRegion</viewRefreshMode>
+        </Link>
+      </NetworkLink>
+    </Folder>
+  </Document>
+</kml>

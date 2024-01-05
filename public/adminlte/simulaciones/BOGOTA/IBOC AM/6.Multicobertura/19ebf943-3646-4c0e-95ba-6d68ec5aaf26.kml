@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>MULTITRANSMISOR IBOC AM BOGOTA</name>
+    <description><![CDATA[]]></description>
+    <open>1</open>
+    <Style id="PointStyle1">
+      <IconStyle>
+        <color>feffffff</color>
+        <Icon>
+          <href>https://www.xirio-online.com/web/images/radio/tx_viewer.png</href>
+        </Icon>
+        <hotSpot x="12" y="37" xunits="pixels" yunits="insetPixels" />
+      </IconStyle>
+      <LabelStyle>
+        <color>00ffffff</color>
+      </LabelStyle>
+    </Style>
+    <Style id="PointStyle2">
+      <IconStyle>
+        <color>feffffff</color>
+        <Icon>
+          <href>https://www.xirio-online.com/web/images/radio/rx_viewer.png</href>
+        </Icon>
+        <hotSpot x="12" y="37" xunits="pixels" yunits="insetPixels" />
+      </IconStyle>
+      <LabelStyle>
+        <color>00ffffff</color>
+      </LabelStyle>
+    </Style>
+    <Style id="PointStyle3">
+      <IconStyle>
+        <color>feffffff</color>
+        <Icon>
+          <href>https://www.xirio-online.com/web/images/radio/mirror_viewer.png</href>
+        </Icon>
+        <hotSpot x="12" y="37" xunits="pixels" yunits="insetPixels" />
+      </IconStyle>
+      <LabelStyle>
+        <color>00ffffff</color>
+      </LabelStyle>
+    </Style>
+    <Folder>
+      <name>Elementos radioeléctricos</name>
+      <Placemark>
+        <name>Emisora 1010KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.1675,4.68888888888889,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 1040KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.13875,4.72246944444444,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 1070KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0682138888889,4.67414444444444,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 1100KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.1133444444444,4.75189444444444,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 1130KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.1761111111111,4.65366666666667,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 1160KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0809138888889,4.72723055555556,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 1190KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.2028888888889,4.562825,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 1220KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0501166666667,4.62837222222222,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 1250KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.2211111111111,4.71361111111111,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 1280KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0543527777778,4.60725555555555,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 1310KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.1969166666667,4.64591666666667,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 1340KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.2130555555556,4.619825,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 1370KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.1362638888889,4.63379722222222,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 1400KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0281583333333,4.65464444444445,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 1430KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.1648666666667,4.55511111111111,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 1460KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.1619444444444,4.6625,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 1490KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.1672777777778,4.68856944444445,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 1520KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.1969166666667,4.64591666666667,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 1550KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0257277777778,4.66173611111111,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 1580KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.1160833333333,4.56307222222222,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 540KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.1758166666667,4.67671111111111,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 570KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.078025,4.7401,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 610KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0183555555556,4.69838055555556,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 650KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0549027777778,4.759775,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 690KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.20825,4.63351388888889,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 730KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0728305555556,4.57327222222222,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 770KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0304972222222,4.64633055555556,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 810KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0762638888889,4.76078888888889,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 850KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.188175,4.64865277777778,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 890KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0805722222222,4.62486944444445,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 930KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.0302583333333,4.69372777777778,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emisora 970KHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-74.1524805555556,4.71357222222222,0</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Resultado multicobertura</name>
+      <NetworkLink>
+        <name>Nivel de Señal</name>
+        <description><![CDATA[<table cellpadding="0" cellspacing="0" ><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ffffff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-∞ , -122) dBu</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#0080ff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-122 , -112) dBu</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ffff00;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-112 , -102) dBu</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#009600;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-102 , ∞) dBu</div></td></tr></table>]]></description>
+        <visibility>1</visibility>
+        <Style>
+          <ListStyle>
+            <listItemType>checkHideChildren</listItemType>
+          </ListStyle>
+        </Style>
+        <Link>
+          <href>https://www.xirio-online.com/web/KmlServer.aspx?resId=19ebf943-3646-4c0e-95ba-6d68ec5aaf26&amp;layer=0&amp;type=index</href>
+          <viewRefreshMode>onRegion</viewRefreshMode>
+        </Link>
+      </NetworkLink>
+      <NetworkLink>
+        <name>Mejor servidor</name>
+        <description><![CDATA[<table cellpadding="0" cellspacing="0"><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#0000ff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1010KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#00ff00;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1040KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ff8000;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1070KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ad5449;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1100KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#d0629d;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1130KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#73bdfd;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1160KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#8bfc57;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1190KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#54146e;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1220KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#3e4aa8;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1250KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#844e25;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1280KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#996f51;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1310KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e8d446;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1340KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#f49918;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1370KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#516730;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1400KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e73804;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1430KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e69356;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1460KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#01294e;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1490KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#d564df;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1520KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#8bd487;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1550KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#517f9b;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 1580KHz</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#7aec34;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Emisora 540KHz</div></td></tr><tr><td></td><td><div style="margin-left: 10px;" class="info_txt04">[...]</div></td></tr></table>]]></description>
+        <visibility>1</visibility>
+        <Style>
+          <ListStyle>
+            <listItemType>checkHideChildren</listItemType>
+          </ListStyle>
+        </Style>
+        <Link>
+          <href>https://www.xirio-online.com/web/KmlServer.aspx?resId=19ebf943-3646-4c0e-95ba-6d68ec5aaf26&amp;layer=1&amp;type=index</href>
+          <viewRefreshMode>onRegion</viewRefreshMode>
+        </Link>
+      </NetworkLink>
+      <NetworkLink>
+        <name>Solapamiento</name>
+        <description><![CDATA[<table cellpadding="0" cellspacing="0" ><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ffffff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-∞ , 1) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#63be7b;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[1 , 14) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#5ab6cc;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[14 , 20) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#6150da;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[20 , 26) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e844e0;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[26 , 32) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#f6363a;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[32 , ∞) </div></td></tr></table>]]></description>
+        <visibility>1</visibility>
+        <Style>
+          <ListStyle>
+            <listItemType>checkHideChildren</listItemType>
+          </ListStyle>
+        </Style>
+        <Link>
+          <href>https://www.xirio-online.com/web/KmlServer.aspx?resId=19ebf943-3646-4c0e-95ba-6d68ec5aaf26&amp;layer=2&amp;type=index</href>
+          <viewRefreshMode>onRegion</viewRefreshMode>
+        </Link>
+      </NetworkLink>
+    </Folder>
+  </Document>
+</kml>
