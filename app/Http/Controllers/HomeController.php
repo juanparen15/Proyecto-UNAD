@@ -7,6 +7,7 @@ use App\Clase;
 use App\Dependencia;
 use App\Familia;
 use App\Planadquisicione;
+use App\Potencia;
 use App\Producto;
 use App\Segmento;
 use App\User;
@@ -35,21 +36,23 @@ class HomeController extends Controller
         $users = User::all()->count();
         // $products = Producto::all()->count();
         // $clases = Clase::all()->count();
-        $segmentos = Segmento::all()->count();
-        $familias = Familia::all()->count();
-        $dependencias = Dependencia::all()->count();
-        $areas = Area::all()->count();
-        $adquisiciones = Planadquisicione::all()->count();
-        $adquisiciones1 = Planadquisicione::all()->count();
-        $adquisiciones3 = Planadquisicione::all()->count();
-        $adquisiciones2 = Planadquisicione::with('area')->get();
-
-
-
+        // $segmentos = Segmento::all()->count();
+        // $familias = Familia::all()->count();
+        // $dependencias = Dependencia::all()->count();
+        // $areas = Area::all()->count();
+        // $adquisiciones = Planadquisicione::all()->count();
+        // $adquisiciones1 = Planadquisicione::all()->count();
+        // $adquisiciones3 = Planadquisicione::all()->count();
+        // $adquisiciones2 = Planadquisicione::with('area')->get();
+        $potencia = Potencia::all();
+        // $potencias = Potencia::pluck('potencia')->toArray();
+        // $potencias = Potencia::pluck('potencia')->map(function ($potencia) {
+        //     return floatval($potencia);
+        // })->toArray();
 
         // return view("home", ["data" => json_encode($carpetas)]);
 
-        $carpetas = [];
+        // $potencias = [];
 
 
         // if (auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Supervisor')) {
@@ -60,14 +63,14 @@ class HomeController extends Controller
         //     )->groupBy('mes')->take(12)->get();
 
 
-        //     $adquisiciones3 = Planadquisicione::select(
-        //         DB::raw("count(*) as count"),
-        //         DB::raw("count(carpeta) as adq"),
-        //         DB::raw("DATE_FORMAT(fechaInicial, '%Y') as anyo")
-        //     )
-        //         ->orderBy('anyo', 'DESC')
-        //         ->groupBy('anyo')->take(12)->get();
-
+        // $potencias = Potencia::select(
+        //     'potencia',
+        //     DB::raw("count(potencia) as pot")
+        // )->groupBy('potencia')->get();
+        $potencias = Potencia::select(
+            'potencia',
+            DB::raw("SUM(potencia) as pot")
+        )->groupBy('potencia')->get();
 
         //     // Accede a los datos de la relación
         //     foreach ($adquisiciones3 as $adq) {
@@ -180,6 +183,7 @@ class HomeController extends Controller
 
 
 
-        return view("home", ["data" => json_encode($carpetas)], compact('users'));
+        return view("home", ["data" => json_encode($potencias)], compact('users', 'potencias'));
+        // return view("home", ["potencias" => json_encode($potencias)]);
     }
 }
