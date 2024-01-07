@@ -52,7 +52,6 @@ class HomeController extends Controller
 
         // return view("home", ["data" => json_encode($carpetas)]);
 
-        // $potencias = [];
 
 
         // if (auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Supervisor')) {
@@ -69,9 +68,41 @@ class HomeController extends Controller
         // )->groupBy('potencia')->get();
         $potencias = Potencia::select(
             'potencia',
-            DB::raw("SUM(potencia) as pot")
+            DB::raw("SUM(potencia) as pot"),
         )->groupBy('potencia')->get();
 
+        $potenciasData = [];
+        foreach ($potencias as $potencia) {
+            $potenciasData[] = ['name' => $potencia->potencia, 'y' => $potencia->pot];
+        }
+
+        $potencias2 = Potencia::select(
+            'segundaPotencia',
+            DB::raw("SUM(segundaPotencia) as pot2"),
+        )->groupBy('segundaPotencia')->get();
+
+        $potenciasData2 = [];
+        foreach ($potencias2 as $segundaPotencia) {
+            $potenciasData2[] = ['name' => $segundaPotencia->segundaPotencia, 'y' => $segundaPotencia->pot2];
+        }
+        $potencias3 = Potencia::select(
+            'terceraPotencia',
+            DB::raw("SUM(terceraPotencia) as pot3"),
+        )->groupBy('terceraPotencia')->get();
+
+        $potenciasData3 = [];
+        foreach ($potencias3 as $terceraPotencia) {
+            $potenciasData3[] = ['name' => $terceraPotencia->terceraPotencia, 'y' => $terceraPotencia->pot3];
+        }
+        $potencias4 = Potencia::select(
+            'cuartaPotencia',
+            DB::raw("SUM(cuartaPotencia) as pot4"),
+        )->groupBy('cuartaPotencia')->get();
+
+        $potenciasData4 = [];
+        foreach ($potencias4 as $cuartaPotencia) {
+            $potenciasData4[] = ['name' => $cuartaPotencia->cuartaPotencia, 'y' => $cuartaPotencia->pot4];
+        }
         //     // Accede a los datos de la relación
         //     foreach ($adquisiciones3 as $adq) {
         //         // $area = $adq->area; // "area" es el nombre del método de relación en el modelo Planadquisicione
@@ -183,7 +214,13 @@ class HomeController extends Controller
 
 
 
-        return view("home", ["data" => json_encode($potencias)], compact('users', 'potencias'));
+        // return view("home", ["data" => $potencias], compact('users', 'potencias'));
+        // return view("home", ["data" => $potencias], compact('users', 'potencias'));
+
+        // return view("home", ["data" => $potencias->toArray()], compact('users', 'potencias'));
+        return view("home", ["data" => $potenciasData, $potenciasData2, $potenciasData3, $potenciasData4], compact('users', 'potencias', 'potencias2','potencias3', 'potencias4'));
+
+
         // return view("home", ["potencias" => json_encode($potencias)]);
     }
 }

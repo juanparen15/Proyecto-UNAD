@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Potencia extends Model
 {
     public $incrementing = false;
-    protected $fillable = ['potencia', 'slug'];
+    protected $fillable = ['potencia', 'segundaPotencia', 'terceraPotencia', 'cuartaPotencia', 'slug'];
 
     public function getRouteKeyName()
     {
