@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Familia;
-use App\Segmento;
+use App\Ciudad;
 use Illuminate\Http\Request;
 use App\Http\Requests\familia\StoreRequest;
 use App\Http\Requests\familia\UpdateRequest;
@@ -31,8 +31,8 @@ class FamiliaController extends Controller
     
     public function create()
     {
-        $segmentos = Segmento::get();
-        return view ('admin.familias.create',compact('segmentos'));
+        $ciudades =  Ciudad::get();
+        return view ('admin.familias.create',compact('ciudades'));
     }
     
     public function store(StoreRequest $request)
@@ -40,7 +40,7 @@ class FamiliaController extends Controller
         Familia::create([
             'detfamilia'=> $request->detfamilia,
             'slug'=> Str::slug($request->detfamilia , '-'),
-            'segmento_id'=> $request->segmento_id
+            'ciudad_id'=> $request->ciudad_id
         ]);
         return redirect()->route('admin.familias.index')->with('flash','registrado');
     }
@@ -53,8 +53,8 @@ class FamiliaController extends Controller
    
     public function edit(Familia $subserie)
     {
-        $segmentos = Segmento::get();
-        return view ('admin.familias.edit',compact('subserie','segmentos'));
+        $ciudades = Ciudad::get();
+        return view ('admin.familias.edit',compact('subserie','ciudades'));
     }
 
     
@@ -63,7 +63,7 @@ class FamiliaController extends Controller
         $subserie->update([
             'detfamilia'=> $request->detfamilia,
             'slug'=> Str::slug($request->detfamilia , '-'),
-            'segmento_id'=> $request->segmento_id
+            'ciudad_id'=> $request->ciudad_id
         ]);
         return redirect()->route('admin.familias.index')->with('flash','actualizado');
     }

@@ -18,7 +18,7 @@ class AjaxController extends Controller
     {
         if ($request->ajax()) {
             try {
-                $familias = Familia::where('segmento_id', $request->segmento_id)->get();
+                $familias = Familia::where('ciudad_id', $request->ciudad_id)->get();
                 return response()->json($familias);
             } catch (\Exception $e) {
                 return response()->json(['error' => $e->getMessage()], 500);
@@ -56,16 +56,4 @@ class AjaxController extends Controller
             return response()->json($area);
         }
     }
-    // public function obtener_clases(Request $request){
-    //     if ($request->ajax()) {
-    //         $clases = Clase::where('familia_id', $request->familia_id)->get();
-    //         return response()->json($clases);
-    //     }
-    // }
-    // public function obtener_productos(Request $request){
-    //     if ($request->ajax()) {
-    //         $productos = Producto::where('clase_id', $request->clase_id)->get();
-    //         return response()->json($productos);
-    //     }
-    // }
 }

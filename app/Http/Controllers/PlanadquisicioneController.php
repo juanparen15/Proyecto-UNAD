@@ -15,7 +15,7 @@ use App\Estadovigencia;
 use App\Exports\PlanadquisicioneAllExport;
 use App\Exports\PlanadquisicioneExport;
 use App\Producto;
-use App\Segmento;
+use App\Ciudad;
 use App\Tipoadquisicione;
 use App\Tipoprioridade;
 use App\Tipozona;
@@ -114,13 +114,13 @@ class PlanadquisicioneController extends Controller
     {
 
         $userArea = auth()->user()->area; // Obtener el área asociada al usuario
-        $segmentos = Segmento::get();
+        $ciudades = Ciudad::get();
         $familias = Familia::get();
         $areas = collect([$userArea]); // Crear una colección con el área del usuario
         $fuentes = Fuente::get();
         // $requiproyectos = Requiproyecto::where('areas_id', auth()->user()->area->id)->pluck('detproyeto', 'id');
 
-        return view('admin.planadquisiciones.create', compact('familias', 'segmentos', 'areas', 'fuentes'));
+        return view('admin.planadquisiciones.create', compact('familias', 'ciudades', 'areas', 'fuentes'));
     }
 
 
@@ -131,7 +131,7 @@ class PlanadquisicioneController extends Controller
         $request->validate([
             'caja' => ['required'],
             'nota' => ['required'],
-            'segmento_id' => ['required'],
+            'ciudad_id' => ['required'],
             'familias_id' => ['required'],
             'area_id' => ['required']
         ]);
@@ -184,7 +184,7 @@ class PlanadquisicioneController extends Controller
 
     public function show(Planadquisicione $inventario)
     {
-        $planadquisicione = Planadquisicione::with('user', 'fuente', 'requiproyecto', 'requipoais', 'tipoprioridade', 'area', 'segmento', 'modalidad', 'familias')
+        $planadquisicione = Planadquisicione::with('user', 'fuente', 'area', 'ciudad', 'familias')
             ->find($inventario);
 
         return view('admin.planadquisiciones.show', compact('inventario'));
@@ -193,19 +193,11 @@ class PlanadquisicioneController extends Controller
     public function edit(Planadquisicione $inventario)
     {
         $userArea = $inventario->user->area; // Obtener el área asociada al usuario
-        $segmentos = Segmento::get();
+        $ciudades = Ciudad::get();
         $familias = Familia::get();
-        $modalidades = Modalidade::get();
-        $fuentes = Fuente::get();
-        $tipoprioridades = Tipoprioridade::get();
-        $requipoais = Requipoai::get();
-        $requiproyectos = Requiproyecto::where('areas_id', auth()->user()->area->id)->pluck('detproyeto', 'id');
+        
 
-        // Formatear las fechas antes de pasarlas a la vista
-        $inventario->fechaInicial = \Carbon\Carbon::createFromFormat('Y-m-d', $inventario->fechaInicial)->format('d/m/Y');
-        $inventario->fechaFinal = \Carbon\Carbon::createFromFormat('Y-m-d', $inventario->fechaFinal)->format('d/m/Y');
-
-        return view('admin.planadquisiciones.edit', compact('requipoais', 'modalidades', 'familias', 'segmentos', 'fuentes', 'requiproyectos', 'tipoprioridades', 'inventario', 'userArea'));
+        return view('admin.planadquisiciones.edit', compact( 'familias', 'ciudades', 'fuentes', 'inventario'));
     }
 
 
@@ -223,7 +215,7 @@ class PlanadquisicioneController extends Controller
             'nota' => ['required'],
             'requipoais_id' => ['required'],
             'modalidad_id' => ['required'],
-            'segmento_id' => ['required'],
+            'ciudad_id' => ['required'],
             'familias_id' => ['required'],
             'fuente_id' => ['required'],
             'tipoprioridade_id' => ['required'],

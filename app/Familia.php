@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Familia extends Model
 {
   public $incrementing = false;
-  protected $fillable = ['id', 'segmento_id', 'detfamilia', 'slug'];
+  protected $fillable = ['id', 'ciudad_id', 'detfamilia', 'slug'];
 
   public function getRouteKeyName()
   {
@@ -15,14 +15,10 @@ class Familia extends Model
   }
 
   //Relacion Uno a Muchos (Inversa)
-  public function segmento()
+  public function ciudad()
   {
-    return $this->belongsTo(Segmento::class);
+    return $this->belongsTo(Ciudad::class);
   }
 
-  //Relacion Uno a Muchos 
-  public function clase()
-  {
-    return $this->hasMany(Clase::class);
-  }
+
 }

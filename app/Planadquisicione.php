@@ -17,7 +17,7 @@ class Planadquisicione extends Model
         'folio',
         'nota',
         'modalidad_id',
-        'segmento_id',
+        'ciudad_id',
         'familia_id',
         'area_id',
         'requiproyecto_id',
@@ -34,7 +34,7 @@ class Planadquisicione extends Model
         'requipoais',
         'tipoprioridade',
         'area',
-        'segmento',
+        'ciudad',
         'modalidad',
         'familias'
     ];
@@ -67,29 +67,16 @@ class Planadquisicione extends Model
     }
 
     //Relacion Uno a Muchos (Inversa)
-    public function requiproyecto()
-    {
-        return $this->belongsTo(Requiproyecto::class);
-    }
-
-    //Relacion Uno a Muchos (Inversa)
     public function area()
     {
         return $this->belongsTo(Area::class, 'area_id', 'id');
     }
 
     //Relacion Uno a Muchos (Inversa)
-    public function segmento()
+    public function ciudad()
     {
-        return $this->belongsTo(Segmento::class);
+        return $this->belongsTo(Ciudad::class);
     }
-
-    //Relacion Uno a Muchos (Inversa)
-    public function modalidad()
-    {
-        return $this->belongsTo(Modalidade::class);
-    }
-
     //Relacion Uno a Muchos (Inversa)
     public function familias()
     {

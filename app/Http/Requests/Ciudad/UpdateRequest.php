@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Segmento;
+namespace App\Http\Requests\Ciudad;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'detsegmento' => 'required'
+            'detciudad' => 'required'
         ];
     }
 }

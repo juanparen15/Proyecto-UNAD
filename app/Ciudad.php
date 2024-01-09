@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Segmento extends Model
+class Ciudad extends Model
 {
     public $incrementing = false;
-    protected $fillable= ['detsegmento','slug'];
+    protected $fillable= ['detciudad','slug'];
 
     public function getRouteKeyName() {
       return "slug";
