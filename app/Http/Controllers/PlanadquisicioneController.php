@@ -3,24 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Planadquisicione;
-use App\Requipoai;
 use App\Area;
-use App\Familia;
-use App\Requiproyecto;
+use App\Estandar;
 use App\Fuente;
-use App\User;
-use App\Mese;
-use App\Modalidade;
-use App\Estadovigencia;
 use App\Exports\PlanadquisicioneAllExport;
 use App\Exports\PlanadquisicioneExport;
-use App\Producto;
 use App\Ciudad;
-use App\Tipoadquisicione;
-use App\Tipoprioridade;
-use App\Tipozona;
-use App\Tipoproceso;
-use App\Vigenfutura;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
@@ -115,12 +103,12 @@ class PlanadquisicioneController extends Controller
 
         $userArea = auth()->user()->area; // Obtener el área asociada al usuario
         $ciudades = Ciudad::get();
-        $familias = Familia::get();
+        $estandares = Estandar::get();
         $areas = collect([$userArea]); // Crear una colección con el área del usuario
         $fuentes = Fuente::get();
         // $requiproyectos = Requiproyecto::where('areas_id', auth()->user()->area->id)->pluck('detproyeto', 'id');
 
-        return view('admin.planadquisiciones.create', compact('familias', 'ciudades', 'areas', 'fuentes'));
+        return view('admin.planadquisiciones.create', compact('estandares', 'ciudades', 'areas', 'fuentes'));
     }
 
 
@@ -132,7 +120,7 @@ class PlanadquisicioneController extends Controller
             'caja' => ['required'],
             'nota' => ['required'],
             'ciudad_id' => ['required'],
-            'familias_id' => ['required'],
+            'estandar_id' => ['required'],
             'area_id' => ['required']
         ]);
 
@@ -184,7 +172,7 @@ class PlanadquisicioneController extends Controller
 
     public function show(Planadquisicione $inventario)
     {
-        $planadquisicione = Planadquisicione::with('user', 'fuente', 'area', 'ciudad', 'familias')
+        $planadquisicione = Planadquisicione::with('user', 'fuente', 'area', 'ciudad', 'estandares')
             ->find($inventario);
 
         return view('admin.planadquisiciones.show', compact('inventario'));
@@ -194,10 +182,10 @@ class PlanadquisicioneController extends Controller
     {
         $userArea = $inventario->user->area; // Obtener el área asociada al usuario
         $ciudades = Ciudad::get();
-        $familias = Familia::get();
-        
+        $estandares = Estandar::get();
 
-        return view('admin.planadquisiciones.edit', compact( 'familias', 'ciudades', 'fuentes', 'inventario'));
+
+        return view('admin.planadquisiciones.edit', compact('estandares', 'ciudades', 'fuentes', 'inventario'));
     }
 
 
@@ -216,7 +204,7 @@ class PlanadquisicioneController extends Controller
             'requipoais_id' => ['required'],
             'modalidad_id' => ['required'],
             'ciudad_id' => ['required'],
-            'familias_id' => ['required'],
+            'estandar_id' => ['required'],
             'fuente_id' => ['required'],
             'tipoprioridade_id' => ['required'],
             'requiproyecto_id' => ['required'],
@@ -263,11 +251,6 @@ class PlanadquisicioneController extends Controller
         $ultimoId = Planadquisicione::max('id');
 
         $slugWithId = $slug . '-' . $ultimoId;
-
-        // Contrato 435 del 2023
-        // // Agregar el ID al slug
-        // $slugWithId = $slug . '-' . $counter;
-
         $inventario->update(array_merge($request->all(), [
             'fechaInicial' => $fechaInicial,
             'fechaFinal' => $fechaFinal,

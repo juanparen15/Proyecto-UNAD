@@ -53,42 +53,42 @@
 
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label for="segmento_id">CIUDAD:</label>
-                                <select class="form-control select2 @error('segmento_id') is-invalid @enderror"
-                                    name="segmento_id" id="segmento_id" style="width: 100%">
+                                <label for="ciudad_id">CIUDAD:</label>
+                                <select class="form-control select2 @error('ciudad_id') is-invalid @enderror"
+                                    name="ciudad_id" id="ciudad_id" style="width: 100%">
                                     <option value="" disabled selected>Seleccione una Ciudad:
                                     </option>
-                                    @foreach ($segmentos as $segmento)
-                                        <option value="{{ $segmento->id }}" name="{{ $segmento->detsegmento }}"
-                                            {{ old('segmento_id') == $segmento->id ? 'selected' : '' }}>
-                                            {{ $segmento->detsegmento }}</option>
+                                    @foreach ($ciudades as $ciudad)
+                                        <option value="{{ $ciudad->id }}" name="{{ $ciudad->detciudad }}"
+                                            {{ old('ciudad_id') == $ciudad->id ? 'selected' : '' }}>
+                                            {{ $ciudad->detciudad }}</option>
                                     @endforeach
                                 </select>
-                                @error('segmento_id')
+                                @error('ciudad_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="familias_id">Estandar</label>
-                                <select id="familias_id" name="familias_id" class="form-control select2" style="width: 100%"
+                                <label for="estandar_id">Estandar</label>
+                                <select id="estandar_id" name="estandar_id" class="form-control select2" style="width: 100%"
                                     required>
                                     <option value="" disabled selected>Seleccione un Estandar:</option>
 
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="estandar_id">Tipo de Emisora</label>
-                                <select id="estandar_id" name="estandar_id" class="form-control select2" style="width: 100%"
+                                <label for="tipoemisora_id">Tipo de Emisora</label>
+                                <select id="tipoemisora_id" name="tipoemisora_id" class="form-control select2" style="width: 100%"
                                     required>
                                     <option value="" disabled selected>Seleccione el Tipo de Emisora:</option>
 
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="tipoemisora_id">Emisora</label>
-                                <select id="tipoemisora_id" name="tipoemisora_id" class="form-control select2"
+                                <label for="emisora_id">Emisora</label>
+                                <select id="emisora_id" name="emisora_id" class="form-control select2"
                                     style="width: 100%" required>
                                     <option value="" disabled selected>Seleccione la Emisora:</option>
                                 </select>
@@ -147,23 +147,23 @@
             });
         </script>
         <script>
-            var segmento_id = $('#segmento_id');
-            var familias_id = $('#familias_id');
-            segmento_id.change(function() {
+            var ciudad_id = $('#ciudad_id');
+            var estandar_id = $('#estandar_id');
+            ciudad_id.change(function() {
                 $.ajax({
-                    url: "{{ route('obtener_familias') }}",
+                    url: "{{ route('obtener_estandares') }}",
                     method: 'GET',
                     data: {
-                        segmento_id: segmento_id.val(),
+                        ciudad_id: ciudad_id.val(),
                     },
                     success: function(data) {
-                        familias_id.empty();
-                        familias_id.append(
+                        estandar_id.empty();
+                        estandar_id.append(
                             '<option disabled selected>Seleccione un Estandar:</option>');
                         $.each(data, function(index, element) {
-                            familias_id.append('<option  name="' + element.detfamilia +
+                            estandar_id.append('<option  name="' + element.detestandar +
                                 '" value="' +
-                                element.id + '">' + element.detfamilia +
+                                element.id + '">' + element.detestandar +
                                 '</option>')
                         });
 
@@ -174,19 +174,20 @@
 
         <script>
             var estandar_id = $('#estandar_id');
-            familias_id.change(function() {
+            var tipoemisora_id = $('#tipoemisora_id');
+            estandar_id.change(function() {
                 $.ajax({
                     url: "{{ route('obtener_tipoEmisoras') }}",
                     method: 'GET',
                     data: {
-                        estandar_id: familias_id.val(),
+                        estandar_id: estandar_id.val(),
                     },
                     success: function(data) {
-                        estandar_id.empty();
-                        estandar_id.append(
+                        tipoemisora_id.empty();
+                        tipoemisora_id.append(
                             '<option disabled selected>Seleccione el Tipo de Emisora:</option>');
                         $.each(data, function(index, element) {
-                            estandar_id.append('<option name="' + element.detfuente + '" value="' +
+                            tipoemisora_id.append('<option name="' + element.detfuente + '" value="' +
                                 element.id + '">' + element
                                 .detfuente + '</option>');
                         });
@@ -197,19 +198,20 @@
 
         <script>
             var tipoemisora_id = $('#tipoemisora_id');
-            estandar_id.change(function() {
+            var emisora_id = $('#emisora_id');
+            tipoemisora_id.change(function() {
                 $.ajax({
                     url: "{{ route('obtener_emisora') }}",
                     method: 'GET',
                     data: {
-                        tipoemisora_id: estandar_id.val(),
+                        tipoemisora_id: tipoemisora_id.val(),
                     },
                     success: function(data) {
-                        tipoemisora_id.empty();
-                        tipoemisora_id.append(
+                        emisora_id.empty();
+                        emisora_id.append(
                             '<option disabled selected>Seleccione la Emisora:</option>');
                         $.each(data, function(index, element) {
-                            tipoemisora_id.append('<option name="' + element.emisora + '" value="' +
+                            emisora_id.append('<option name="' + element.emisora + '" value="' +
                                 element.id + '">' + element
                                 .emisora + '</option>');
                         });
@@ -226,10 +228,10 @@
                     event.preventDefault();
 
                     // Obtener los valores seleccionados
-                    const selectedCity = $('#segmento_id option:selected').attr('name');
-                    const selectedStandard = $('#familias_id option:selected').attr('name');
-                    const selectedType = $('#estandar_id option:selected').attr('name');
-                    const selectedEmisora = $('#tipoemisora_id option:selected').attr('name');
+                    const selectedCity = $('#ciudad_id option:selected').attr('name');
+                    const selectedStandard = $('#estandar_id option:selected').attr('name');
+                    const selectedType = $('#tipoemisora_id option:selected').attr('name');
+                    const selectedEmisora = $('#emisora_id option:selected').attr('name');
 
 
                     // Verifica si las variables son undefined

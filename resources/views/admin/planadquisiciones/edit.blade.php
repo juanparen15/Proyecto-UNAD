@@ -146,16 +146,16 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="familias_id">Tipo de Subserie Documental:</label>
-                                <select class="select2 @error('familias_id') is-invalid @enderror" name="familias_id"
-                                    id="familias_id" style="width: 100%;">
-                                    @foreach ($familias as $familia)
-                                <option value="{{$familia->id}}"
-                                    {{ old('familias_id', $inventario->familias_id) == $familia->id ? 'selected' : ''}}>
-                                    {{$familia->detfamilia}}</option>
+                                <label for="estandar_id">Tipo de Subserie Documental:</label>
+                                <select class="select2 @error('estandar_id') is-invalid @enderror" name="estandar_id"
+                                    id="estandar_id" style="width: 100%;">
+                                    @foreach ($estandares as $estandar)
+                                <option value="{{$estandar->id}}"
+                                    {{ old('estandar_id', $inventario->estandar_id) == $estandar->id ? 'selected' : ''}}>
+                                    {{$estandar->detestandar}}</option>
                                 @endforeach
                                 </select>
-                                @error('familias_id')
+                                @error('estandar_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -389,22 +389,22 @@
 
     <script>
         var segmento_id = $('#segmento_id');
-        var familia_id = $('#familias_id');
+        var estandar_id = $('#estandar_id');
         segmento_id.change(function() {
             $.ajax({
-                url: "{{ route('obtener_familias') }}",
+                url: "{{ route('obtener_estandares') }}",
                 method: 'GET',
                 data: {
                     segmento_id: segmento_id.val(),
                 },
                 success: function(data) {
-                    familia_id.empty();
-                    familia_id.append(
+                    estandar_id.empty();
+                    estandar_id.append(
                         '<option disabled selected>Seleccione un Tipo de Subserie Documental:</option>'
                     );
                     $.each(data, function(index, element) {
-                        familia_id.append('<option value="' + element.id + '">' + element
-                            .detfamilia + '</option>')
+                        estandar_id.append('<option value="' + element.id + '">' + element
+                            .detestandar + '</option>')
                     });
 
                 }

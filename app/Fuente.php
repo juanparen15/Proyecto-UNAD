@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Fuente extends Model
 {
   // public $incrementing = false;
-  protected $fillable = ['id', 'familias_id', 'detfuente', 'slug'];
+  protected $fillable = ['id', 'estandar_id', 'detfuente', 'slug'];
 
   public function getRouteKeyName()
   {
@@ -18,8 +18,8 @@ class Fuente extends Model
   {
     return $this->hasMany(Planadquisicione::class);
   }
-  public function familia()
+  public function estandar()
   {
-    return $this->belongsTo(Familia::class);
+    return $this->belongsTo(Estandar::class);
   }
 }

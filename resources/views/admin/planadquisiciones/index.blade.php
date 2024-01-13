@@ -119,7 +119,7 @@
                                         <td>{{ $planadquisicion->modalidad->detmodalidad }}</td>
                                         <td>{{ $planadquisicion->requiproyecto->detproyeto }}</td>
                                         <td>{{ $planadquisicion->segmento->detsegmento }}</td>
-                                        <td>{{ $planadquisicion->familias->detfamilia }}</td>
+                                        <td>{{ $planadquisicion->estandares->detestandar }}</td>
                                         <td>{{ $planadquisicion->fechaInicial }}</td>
                                         <td>{{ $planadquisicion->fechaFinal }}</td>
                                         <td>{{ $planadquisicion->caja }}</td>

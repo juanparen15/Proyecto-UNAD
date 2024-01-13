@@ -127,9 +127,9 @@
                     </li> --}}
 
                     <li class="nav-item">
-                        <a href="{{ route('admin.segmentos.index') }}"
+                        <a href="{{ route('admin.ciudades.index') }}"
                             class="nav-link 
-            {!! active_class(route('admin.segmentos.index')) !!}
+            {!! active_class(route('admin.ciudades.index')) !!}
             ">
                             <i class="nav-icon fas fa-house-user"></i>
 
@@ -140,9 +140,9 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('admin.familias.index') }}"
+                        <a href="{{ route('admin.estandares.index') }}"
                             class="nav-link 
-            {!! active_class(route('admin.familias.index')) !!}
+            {!! active_class(route('admin.estandares.index')) !!}
             ">
                             <i class="nav-icon fas fa-th-list"></i>
 

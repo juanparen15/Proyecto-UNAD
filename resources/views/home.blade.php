@@ -202,31 +202,7 @@
                                         <div id="containerBox4"></div>
                                     </div>
                                 </div>
-                                {{-- {<div class="col-lg-6 col-16">
-                                    <div class="small-box">
-                                        <div id="container"></div>
-                                    </div>
-                                </div> --}}
-                                {{-- <div class="col-lg-6 col-16">
-                                    <div class="small-box">
-                                        <div id="containerTime"></div>
-                                    </div>
-                                </div> --}}
-                                {{-- <div class="col-lg-6 col-16">
-                                    <div class="small-box">
-                                        <canvas id="planes"></canvas>
-                                    </div>
-                                </div> --}}
                             </div>
-
-                            {{-- <figure class="highcharts-figure">
-                            </figure> --}}
-
-
-                            {{-- <figure class="highcharts-figure">
-                                <div id="containerLabel"></div>
-                            </figure> --}}
-                        </div>
                     </section>
                 </div>
             </div>
@@ -246,8 +222,12 @@
         <link rel="stylesheet" href="https://code.highcharts.com/css/highcharts.css">
         <script src="https://code.highcharts.com/themes/dark-unica.js"></script>
         <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
-
-
+        @php
+            $encabezado1 = $encabezados[2] ?? 'Titulo Desconocido';
+            $encabezado2 = $encabezados[3] ?? 'Titulo Desconocido';
+            $encabezado3 = $encabezados[4] ?? 'Titulo Desconocido';
+            $encabezado4 = $encabezados[5] ?? 'Titulo Desconocido';
+        @endphp
         <script>
             Highcharts.chart('containerLine', {
                 chart: {
@@ -262,27 +242,19 @@
                         textTransform: 'uppercase',
                         fontSize: '20px'
                     },
-                    text: 'BOGOTA',
+                    text: '{!! $encabezado1 !!}',
+                    // 'BOGOTA',
                     // align: 'left',
                 },
 
                 subtitle: {
-                    // text: 'By Job Category. Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>.',
+
                     align: 'left'
                 },
 
                 yAxis: {
                     title: {
-                        text:
-                            // [
-                            //     @foreach ($potencias as $pot)
-                            //         {
-                            //             name: '{{ $pot->potencia }}',
-                            //             y: {{ $pot->pot }}
-                            //         },
-                            //     @endforeach
-                            // ],
-                            'Potencia'
+                        text: '{!! $encabezado1 !!}',
                     }
                 },
                 xAxis: {
@@ -306,9 +278,7 @@
                 },
                 series: [{
                     color: 'yellow',
-                    name:
-                        'Potencia',
-
+                    name: '{!! $encabezado1 !!}',
                     data: [
                         @foreach ($potencias as $pot)
                             {
@@ -334,8 +304,6 @@
                     }]
                 }
             });
-
-
             Highcharts.chart('containerBox', {
 
 
@@ -346,7 +314,9 @@
                     enabled: false
                 },
                 title: {
-                    text: 'BOGOTÁ'
+                    text: '{!! $encabezado1 !!}',
+                    // getColumnNameByIndex(0),
+                    // 'BOGOTÁ'
                 },
 
                 legend: {
@@ -360,7 +330,7 @@
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['Bogotá'],
+                    categories: ['{!! $encabezado1 !!}'],
                     title: {
                         text: 'Potencia No.'
                     }
@@ -411,8 +381,6 @@
                     type: 'scatter',
                     data: [ // x, y positions where 0 is the first category
                         // [0, 644],
-
-
                     ],
                     marker: {
                         fillColor: 'white',
@@ -425,7 +393,8 @@
                 }]
 
             });
-
+        </script>
+        <script>
             Highcharts.chart('containerLine2', {
                 chart: {
                     type: 'spline'
@@ -439,27 +408,18 @@
                         textTransform: 'uppercase',
                         fontSize: '20px'
                     },
-                    text: 'BUCARAMANGA',
+                    text: '{!! $encabezado2 !!}',
+                    // 'BUCARAMANGA',
                     // align: 'left',
                 },
 
                 subtitle: {
-                    // text: 'By Job Category. Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>.',
                     align: 'left'
                 },
 
                 yAxis: {
                     title: {
-                        text:
-                            // [
-                            //     @foreach ($potencias as $pot)
-                            //         {
-                            //             name: '{{ $pot->potencia }}',
-                            //             y: {{ $pot->pot }}
-                            //         },
-                            //     @endforeach
-                            // ],
-                            'Potencia'
+                        text: '{!! $encabezado2 !!}',
                     }
                 },
                 xAxis: {
@@ -483,23 +443,7 @@
                 },
                 series: [{
                     color: 'yellow',
-                    name:
-                        //  [
-                        //     @foreach ($potencias as $pot)
-                        //         {
-                        //             name: '{{ $pot->potencia }}',
-                        //             y: {{ $pot->pot }}
-                        //         },
-                        //     @endforeach
-                        // ], 
-                        'Potencia',
-                    // data: [<?php foreach ($potencias as $pot) { ?> {
-                    //         name: '<?php echo $pot->potencia; ?>',
-                    //         description: 'Potencia: ' + <?php echo $pot->pot; ?>
-                    //     },
-                    //     <?php } ?>
-                    // ],
-
+                    name: '{!! $encabezado2 !!}',
                     data: [
                         @foreach ($potencias2 as $pot2)
                             {
@@ -510,7 +454,6 @@
                     ],
 
                 }],
-
                 responsive: {
                     rules: [{
                         condition: {
@@ -527,10 +470,7 @@
                     }]
                 }
             });
-
             Highcharts.chart('containerBox2', {
-
-
                 chart: {
                     type: 'boxplot'
                 },
@@ -538,7 +478,8 @@
                     enabled: false
                 },
                 title: {
-                    text: 'BUCARAMANGA'
+                    text: '{!! $encabezado2 !!}',
+                    //  'BUCARAMANGA'
                 },
 
                 legend: {
@@ -552,12 +493,11 @@
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['Bucaramanga'],
+                    categories: ['{!! $encabezado2 !!}'],
                     title: {
                         text: 'Potencia No.'
                     }
                 },
-
                 yAxis: {
                     tooltip: {
                         followPointer: true
@@ -578,7 +518,6 @@
                         }
                     }]
                 },
-
                 series: [{
                     type: 'boxplot',
                     medianWidth: 3,
@@ -603,7 +542,6 @@
                     data: [ // x, y positions where 0 is the first category
                         // [0, 644],
 
-
                     ],
                     marker: {
                         fillColor: 'white',
@@ -616,7 +554,8 @@
                 }]
 
             });
-
+        </script>
+        <script>
             Highcharts.chart('containerLine3', {
                 chart: {
                     type: 'spline'
@@ -630,43 +569,30 @@
                         textTransform: 'uppercase',
                         fontSize: '20px'
                     },
-                    text: 'CALI',
+                    text: '{!! $encabezado3 !!}',
+                    // 'CALI',
                     // align: 'left',
                 },
-
                 subtitle: {
-                    // text: 'By Job Category. Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>.',
+                    //  text:
                     align: 'left'
                 },
-
                 yAxis: {
                     title: {
-                        text:
-                            // [
-                            //     @foreach ($potencias as $pot)
-                            //         {
-                            //             name: '{{ $pot->potencia }}',
-                            //             y: {{ $pot->pot }}
-                            //         },
-                            //     @endforeach
-                            // ],
-                            'Potencia'
+                        text: '{!! $encabezado3 !!}',
                     }
                 },
-
                 xAxis: {
                     accessibility: {
 
                         // rangeDescription: 'Range: 2010 to 2020'
                     }
                 },
-
                 legend: {
                     layout: 'vertical',
                     align: 'right',
                     verticalAlign: 'middle'
                 },
-
                 plotOptions: {
                     series: {
                         label: {
@@ -675,10 +601,9 @@
                         pointStart: 1
                     }
                 },
-
                 series: [{
                     color: 'orange',
-                    name: 'Potencia',
+                    name: '{!! $encabezado3 !!}',
                     data: [
                         @foreach ($potencias3 as $pot3)
                             {
@@ -709,8 +634,6 @@
             });
 
             Highcharts.chart('containerBox3', {
-
-
                 chart: {
                     type: 'boxplot'
                 },
@@ -718,7 +641,8 @@
                     enabled: false
                 },
                 title: {
-                    text: 'CALI'
+                    text: '{!! $encabezado3 !!}',
+                    // 'CALI'
                 },
 
                 legend: {
@@ -732,7 +656,7 @@
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['Cali'],
+                    categories: ['{!! $encabezado3 !!}'],
                     title: {
                         text: 'Potencia No.'
                     }
@@ -796,7 +720,8 @@
                 }]
 
             });
-
+        </script>
+        <script>
             Highcharts.chart('containerLine4', {
                 chart: {
                     type: 'spline'
@@ -810,27 +735,19 @@
                         textTransform: 'uppercase',
                         fontSize: '20px'
                     },
-                    text: 'MEDELLIN',
+                    text: '{!! $encabezado4 !!}',
+                    // 'MEDELLIN',
                     // align: 'left',
                 },
 
                 subtitle: {
-                    // text: 'By Job Category. Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>.',
+                    // text: 
                     align: 'left'
                 },
 
                 yAxis: {
                     title: {
-                        text:
-                            // [
-                            //     @foreach ($potencias as $pot)
-                            //         {
-                            //             name: '{{ $pot->potencia }}',
-                            //             y: {{ $pot->pot }}
-                            //         },
-                            //     @endforeach
-                            // ],
-                            'Potencia'
+                        text: '{!! $encabezado4 !!}',
                     }
                 },
 
@@ -858,7 +775,7 @@
 
                 series: [{
                     color: 'pink',
-                    name: 'Potencia',
+                    name: '{!! $encabezado4 !!}',
                     data: [
                         @foreach ($potencias4 as $pot4)
                             {
@@ -889,8 +806,6 @@
             });
 
             Highcharts.chart('containerBox4', {
-
-
                 chart: {
                     type: 'boxplot'
                 },
@@ -898,7 +813,8 @@
                     enabled: false
                 },
                 title: {
-                    text: 'MEDELLIN'
+                    text: '{!! $encabezado4 !!}',
+                    // 'MEDELLIN'
                 },
 
                 legend: {
@@ -912,7 +828,7 @@
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['Medellin'],
+                    categories: ['{!! $encabezado4 !!}'],
                     title: {
                         text: 'Potencia No.'
                     }
@@ -977,53 +893,4 @@
 
             });
         </script>
-
-        {{-- <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
-        <script>
-            $(function() {
-                var varCompra = document.getElementById('planes').getContext('2d');
-
-                var charCompra = new Chart(varCompra, {
-                    type: 'line',
-                    data: {
-                        labels: [<?php foreach ($planes as $reg) {
-                            setlocale(LC_TIME, 'es_ES', 'Spanish_Spain', 'Spanish');
-                            $mes_traducido = strftime('%B', strtotime($reg->mes));
-                        
-                            echo '"' . $mes_traducido . '",';
-                        } ?>
-                        ],
-                        datasets: [{
-                            label: 'Total del mes',
-                            data: [<?php foreach ($planes as $reg) {
-                                echo '' . $reg->totalmes . ',';
-                            } ?>],
-
-                            backgroundColor: '#E91E63',
-                            borderColor: '#E91E63',
-                            borderWidth: 3
-                        }]
-                    },
-
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-
-                                    beginAtZero: true
-                                }
-                            }]
-                        },
-                        legend: {
-                            display: false
-                        },
-                        elements: {
-                            point: {
-                                radius: 5
-                            }
-                        }
-                    }
-                });
-            });
-        </script> --}}
     @endsection

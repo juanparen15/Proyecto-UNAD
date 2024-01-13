@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Lista Ciudades')
+@section('title', 'Lista Estandar')
 @section('style')
     <!-- SweetAlert2 -->
     {!! Html::style('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') !!}
@@ -15,12 +15,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        {{--  <h1 class="m-0">Lista Series Documentales del sistema</h1>  --}}
+                        {{--  <h1 class="m-0">Usuarios del sistema</h1>  --}}
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                            <li class="breadcrumb-item active">Lista Ciudades</li>
+                            <li class="breadcrumb-item active">Lista Estandares</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -33,44 +33,40 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Lista Ciudades</h3>
+                        <h3 class="card-title">Lista Estandares</h3>
                         <div class="card-tools">
 
-                            <a href="{{ route('admin.ciudades.create') }}" class="btn btn-primary">
-                                Agregar Ciudad
+                            <a href="{{ route('admin.estandares.create') }}" class="btn btn-primary">
+                                Agregar Estandar
                             </a>
                         </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
-                        <table id="example2" class="table table-hover text-nowrap">
+                        <table id="example2" class="table table-hover text-nowrap" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>NOMBRE DE LA CIUDAD</th>
+                                    <th>NOMBRE ESTANDAR</th>
+                                    <th>NOMBRE CIUDAD</th>
                                     <th>ACCIONES</th>
                                 </tr>
-                                {{--  <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Correo</th>
-                        <th>Rol</th>
-                        <th>Acciones</th>
-                      </tr>  --}}
                             </thead>
                             <tbody>
-                                @foreach ($ciudades as $ciudad)
+
+                                @foreach ($estandares as $estandar)
                                     <tr>
-                                        <td>{{ $ciudad->id }}</td>
-                                        <td>{{ $ciudad->detciudad }}</td>
-                                        <td>
-                                            <form action="{{ route('admin.ciudades.destroy', $ciudad) }}" method="POST">
+                                        <td>{{ $estandar->id }}</td>
+                                        <td>{{ $estandar->detestandar }}</td>
+                                        <td>{{ $estandar->ciudad->detciudad }}</td>
+
+                                        <td width="10px">
+                                            <form action="{{ route('admin.estandares.destroy', $estandar) }}" method="POST">
                                                 @csrf
                                                 @method('delete')
 
                                                 <a class="btn btn-primary btn-sm"
-                                                    href="{{ route('admin.ciudades.edit', $ciudad) }}">Editar</a>
-
+                                                    href="{{ route('admin.estandares.edit', $estandar) }}">Editar</a>
 
                                                 <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                                             </form>
@@ -78,13 +74,15 @@
                                     </tr>
                                 @endforeach
 
+
                             </tbody>
                         </table>
                     </div>
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
-            </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.container-fluid -->
             {{-- </div> --}}
             <!-- /.content -->
         </div>
@@ -103,7 +101,7 @@
                     });
                     Toast.fire({
                         icon: 'success',
-                        title: 'La Ciudad se Actualizo con Exito.'
+                        title: 'El Estandar se Actualizo con Exito.'
                     })
                 });
             </script>
@@ -119,7 +117,7 @@
                     });
                     Toast.fire({
                         icon: 'success',
-                        title: 'La Ciudad se Creó con Exito.'
+                        title: 'El Estandar se Creo con Exito.'
                     })
                 });
             </script>
@@ -128,7 +126,7 @@
             <script>
                 Swal.fire(
                     '¡Eliminado!',
-                    'La Ciudad se Eliminó con Exito.',
+                    'El Estandar se Elimino con Exito.',
                     'success'
                 )
             </script>

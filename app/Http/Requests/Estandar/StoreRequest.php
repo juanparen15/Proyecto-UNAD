@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Planadquisicione;
+namespace App\Http\Requests\Estandar;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,7 +13,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,15 +24,8 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'caja'=> 'required',
-            'carpeta'=> 'required',
-            'tomo'=> 'required',
-            'otro'=> 'required',
-            'folio'=> 'required',
-            'nota'=> 'required',
-            'fuente_id'=> 'required',
-            'ciudad_id'=> 'required',
-            'familias_id'=> 'required',
+            'detestandar' => 'required',
+            'ciudad_id'=>'required'
         ];
     }
 }

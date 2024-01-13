@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Ciudad;
+namespace App\Http\Requests\Estandar;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,8 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'detciudad' => 'required',
+            'detestandar' => 'required',
+            'ciudad_id'=>'required'
         ];
     }
 }
