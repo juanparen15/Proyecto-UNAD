@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/products', function () {
-        return datatables()->eloquent(Producto::query())
-        ->addColumn('clase', function(Producto $user) {
-                return $user->clase->detclase;
-        })
-        ->addColumn('btn', 'admin.productos._actions')
-        ->rawColumns(['btn']) 
-        ->toJson();
-});
+// Route::get('/products', function () {
+//         return datatables()->eloquent(Producto::query())
+//         ->addColumn('clase', function(Producto $user) {
+//                 return $user->clase->detclase;
+//         })
+//         ->addColumn('btn', 'admin.productos._actions')
+//         ->rawColumns(['btn']) 
+//         ->toJson();
+// });
