@@ -50,7 +50,7 @@
                                     <th>NOMBRE ESTANDAR</th>
                                     <th>NOMBRE CIUDAD</th>
                                     <th>ACCIONES</th>
-                                </tr>
+                                </tr> 
                             </thead>
                             <tbody>
 

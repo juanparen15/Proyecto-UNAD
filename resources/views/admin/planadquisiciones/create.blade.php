@@ -80,16 +80,16 @@
                             </div>
                             <div class="form-group">
                                 <label for="tipoemisora_id">Tipo de Emisora</label>
-                                <select id="tipoemisora_id" name="tipoemisora_id" class="form-control select2" style="width: 100%"
-                                    required>
+                                <select id="tipoemisora_id" name="tipoemisora_id" class="form-control select2"
+                                    style="width: 100%" required>
                                     <option value="" disabled selected>Seleccione el Tipo de Emisora:</option>
 
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="emisora_id">Emisora</label>
-                                <select id="emisora_id" name="emisora_id" class="form-control select2"
-                                    style="width: 100%" required>
+                                <select id="emisora_id" name="emisora_id" class="form-control select2" style="width: 100%"
+                                    required>
                                     <option value="" disabled selected>Seleccione la Emisora:</option>
                                 </select>
                             </div>
@@ -136,8 +136,10 @@
         <!-- Chart.js -->
         <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
 
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <!-- Select2 -->
         {!! Html::script('adminlte/plugins/select2/js/select2.full.min.js') !!}
+
         <script>
             $(function() {
 
@@ -187,7 +189,8 @@
                         tipoemisora_id.append(
                             '<option disabled selected>Seleccione el Tipo de Emisora:</option>');
                         $.each(data, function(index, element) {
-                            tipoemisora_id.append('<option name="' + element.detfuente + '" value="' +
+                            tipoemisora_id.append('<option name="' + element.detfuente +
+                                '" value="' +
                                 element.id + '">' + element
                                 .detfuente + '</option>');
                         });

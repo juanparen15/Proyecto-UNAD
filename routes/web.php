@@ -54,6 +54,13 @@ Route::get('obtener_estandares', 'AjaxController@obtener_estandares')->name('obt
 Route::get('obtener_tipoEmisoras', 'AjaxController@obtener_tipoEmisoras')->name('obtener_tipoEmisoras');
 Route::get('obtener_emisora', 'AjaxController@obtener_emisora')->name('obtener_emisora');
 Route::get('obtener_codigo', 'AjaxController@obtener_codigo')->name('obtener_codigo');
+
+Route::get('/get-estandares/{ciudad_id}', 'AjaxController@obtener_estandares');
+Route::get('/get-tipos-emisora/{estandar_id}', 'AjaxController@obtener_tipoEmisoras');
+Route::get('/get-emisoras/{tipoemisora_id}', 'AjaxController@obtener_emisora');
+
+
+
 Route::resource('users', 'UserController')->names('users');
 // ================== rutas para importar datos 
 Route::post('potencia_import', 'ImportExcelController@potencia_import')->name('planadquisicione.import.excel');
