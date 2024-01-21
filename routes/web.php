@@ -2,8 +2,6 @@
 
 use App\User;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ChartController;
-use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,10 +48,10 @@ Route::resource('ciudades', 'CiudadController')->except([
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('obtener_estandares', 'AjaxController@obtener_estandares')->name('obtener_estandares');
-Route::get('obtener_tipoEmisoras', 'AjaxController@obtener_tipoEmisoras')->name('obtener_tipoEmisoras');
-Route::get('obtener_emisora', 'AjaxController@obtener_emisora')->name('obtener_emisora');
-Route::get('obtener_codigo', 'AjaxController@obtener_codigo')->name('obtener_codigo');
+// Route::get('obtener_estandares', 'AjaxController@obtener_estandares')->name('obtener_estandares');
+// Route::get('obtener_tipoEmisoras', 'AjaxController@obtener_tipoEmisoras')->name('obtener_tipoEmisoras');
+// Route::get('obtener_emisora', 'AjaxController@obtener_emisora')->name('obtener_emisora');
+// Route::get('obtener_codigo', 'AjaxController@obtener_codigo')->name('obtener_codigo');
 
 Route::get('/get-estandares/{ciudad_id}', 'AjaxController@obtener_estandares');
 Route::get('/get-tipos-emisora/{estandar_id}', 'AjaxController@obtener_tipoEmisoras');

@@ -214,13 +214,13 @@
     @section('script')
 
         <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/themes/dark-unica.js?v=1"></script>
         <script src="https://code.highcharts.com/modules/timeline.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
         <script src="https://code.highcharts.com/modules/accessibility.js"></script>
         <script src="https://code.highcharts.com/highcharts-more.js"></script>
         <script src="https://code.highcharts.com/modules/export-data.js"></script>
         <link rel="stylesheet" href="https://code.highcharts.com/css/highcharts.css">
-        <script src="https://code.highcharts.com/themes/dark-unica.js"></script>
         <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
         @php
             $encabezado1 = $encabezados[2] ?? 'Titulo Desconocido';

@@ -148,80 +148,100 @@
 
             });
         </script>
+
         <script>
             var ciudad_id = $('#ciudad_id');
             var estandar_id = $('#estandar_id');
-            ciudad_id.change(function() {
-                $.ajax({
-                    url: "{{ route('obtener_estandares') }}",
-                    method: 'GET',
-                    data: {
-                        ciudad_id: ciudad_id.val(),
-                    },
-                    success: function(data) {
-                        estandar_id.empty();
-                        estandar_id.append(
-                            '<option disabled selected>Seleccione un Estandar:</option>');
-                        $.each(data, function(index, element) {
-                            estandar_id.append('<option  name="' + element.detestandar +
-                                '" value="' +
-                                element.id + '">' + element.detestandar +
-                                '</option>')
-                        });
-
-                    }
-                });
-            });
-        </script>
-
-        <script>
-            var estandar_id = $('#estandar_id');
-            var tipoemisora_id = $('#tipoemisora_id');
-            estandar_id.change(function() {
-                $.ajax({
-                    url: "{{ route('obtener_tipoEmisoras') }}",
-                    method: 'GET',
-                    data: {
-                        estandar_id: estandar_id.val(),
-                    },
-                    success: function(data) {
-                        tipoemisora_id.empty();
-                        tipoemisora_id.append(
-                            '<option disabled selected>Seleccione el Tipo de Emisora:</option>');
-                        $.each(data, function(index, element) {
-                            tipoemisora_id.append('<option name="' + element.detfuente +
-                                '" value="' +
-                                element.id + '">' + element
-                                .detfuente + '</option>');
-                        });
-                    }
-                });
-            });
-        </script>
-
-        <script>
             var tipoemisora_id = $('#tipoemisora_id');
             var emisora_id = $('#emisora_id');
-            tipoemisora_id.change(function() {
-                $.ajax({
-                    url: "{{ route('obtener_emisora') }}",
-                    method: 'GET',
-                    data: {
-                        tipoemisora_id: tipoemisora_id.val(),
-                    },
-                    success: function(data) {
-                        emisora_id.empty();
-                        emisora_id.append(
-                            '<option disabled selected>Seleccione la Emisora:</option>');
-                        $.each(data, function(index, element) {
-                            emisora_id.append('<option name="' + element.emisora + '" value="' +
-                                element.id + '">' + element
-                                .emisora + '</option>');
+
+            $(document).ready(function() {
+                // Evento cuando cambia la opción en la lista de ciudades
+                ciudad_id.change(function() {
+                    var ciudad_id = $(this).val();
+                    if (ciudad_id) {
+                        // Realiza una solicitud AJAX para obtener los estandares
+                        $.get('/get-estandares/' + ciudad_id, function(data) {
+                            // Limpia la lista de estandares y añade los nuevos
+                            $('#estandar_id').empty();
+                            // Agrega la opción predeterminada
+                            $('#estandar_id').append(
+                                '<option disabled selected>Seleccione un Estandar:</option>');
+                            $.each(data, function(key, value) {
+                                $('#estandar_id').append('<option value="' + value.id +
+                                    '" name="' + value.detestandar + '">' + value
+                                    .detestandar + '</option>');
+                            });
+                            // Selecciona automáticamente la primera opción
+                            $('#estandar_id').val($('#estandar_id option:first').val());
                         });
+                    } else {
+                        // Si no se selecciona ninguna ciudad, limpia la lista de estandares
+                        $('#estandar_id').empty();
                     }
                 });
+
+
+
+                // Evento cuando cambia la opción en la lista de estandares
+                estandar_id.change(function() {
+                    var estandar_id = $(this).val();
+                    if (estandar_id) {
+                        // Realiza una solicitud AJAX para obtener los tipos de emisora
+                        $.get('/get-tipos-emisora/' + estandar_id, function(data) {
+                            // Limpia la lista de tipos de emisora y añade los nuevos
+                            $('#tipoemisora_id').empty();
+                            // Agrega la opción predeterminada
+                            $('#tipoemisora_id').append(
+                                '<option disabled selected>Seleccione el Tipo de Emisora:</option>');
+                            $.each(data, function(key, value) {
+                                $('#tipoemisora_id').append('<option value="' + value.id +
+                                    '" name="' + value.detfuente + '">' + value.detfuente +
+                                    '</option>');
+                            });
+                            // Selecciona automáticamente la primera opción
+                            $('#tipoemisora_id').val($('#tipoemisora_id option:first').val());
+                        });
+                    } else {
+                        // Si no se selecciona ningún estandar, limpia la lista de tipos de emisora
+                        $('#tipoemisora_id').empty();
+                    }
+                });
+
+
+                // Evento cuando cambia la opción en la lista de tipos de emisora
+                tipoemisora_id.change(function() {
+                    var tipoemisora_id = $(this).val();
+                    if (tipoemisora_id) {
+                        // Realiza una solicitud AJAX para obtener las emisoras
+                        $.get('/get-emisoras/' + tipoemisora_id, function(data) {
+                            // Limpia la lista de emisoras y añade las nuevas
+                            $('#emisora_id').empty();
+                            // Agrega la opción predeterminada
+                            $('#emisora_id').append(
+                                '<option disabled selected>Seleccione la Emisora:</option>');
+                            $.each(data, function(key, value) {
+                                $('#emisora_id').append('<option value="' + value.id +
+                                    '" name="' + value.emisora + '">' + value.emisora +
+                                    '</option>');
+                            });
+                            // Selecciona automáticamente la primera opción
+                            $('#emisora_id').val($('#emisora_id option:first').val());
+                        });
+                    } else {
+                        // Si no se selecciona ningún tipo de emisora, limpia la lista de emisoras
+                        $('#emisora_id').empty();
+                    }
+                });
+
             });
+
+            // console.log("Selected City:", ciudad_id);
+            // console.log("Selected Standard:", estandar_id);
+            // console.log("Selected Type:", tipoemisora_id);
         </script>
+
+
         <script>
             $(document).ready(function() {
 
@@ -249,11 +269,11 @@
                     if (selectedEmisora) {
                         // Si se ha seleccionado una emisora, mostrar esa emisora
                         nuevaURL =
-                            `{{ asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/${encodeURIComponent(selectedEmisora)}/index.html`;
+                            `{{ asset('homeland/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/${encodeURIComponent(selectedEmisora)}/index.html`;
                     } else if (selectedType) {
                         // Si no se ha seleccionado una emisora pero se ha seleccionado un tipo, mostrar ese tipo
                         nuevaURL =
-                            `{{ asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/index.html`;
+                            `{{ asset('homeland/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/index.html`;
                     }
                     // Actualizar la fuente del iframe con la nueva URL
                     $('#simulacionIframe').attr('src', nuevaURL);
