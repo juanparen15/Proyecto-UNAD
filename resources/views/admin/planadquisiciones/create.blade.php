@@ -35,8 +35,8 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('planadquisiciones.index') }}">Listado Mapa
-                                </a></li>
+                            {{-- <li class="breadcrumb-item"><a href="{{ route('planadquisiciones.index') }}">Listado Mapa
+                                </a></li> --}}
                             <li class="breadcrumb-item active">Mapa</li>
                         </ol>
                     </div>
@@ -267,13 +267,13 @@
                     let nuevaURL = "";
 
                     if (selectedEmisora) {
-                        // Si se ha seleccionado una emisora, mostrar esa emisora
+                        // Si se ha seleccionado una emisora, mostrar emisora
                         nuevaURL =
-                            `{{ secure_asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/${encodeURIComponent(selectedEmisora)}/index.html`;
+                            `{{ asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/${encodeURIComponent(selectedEmisora)}/index.html`;
                     } else if (selectedType) {
-                        // Si no se ha seleccionado una emisora pero se ha seleccionado un tipo, mostrar ese tipo
+                        // Si no se ha seleccionado una emisora pero se ha seleccionado un tipo, mostrar el tipo de emisora
                         nuevaURL =
-                            `{{ secure_asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/index.html`;
+                            `{{ asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/index.html`;
                     }
                     // Actualizar la fuente del iframe con la nueva URL
                     $('#simulacionIframe').attr('src', nuevaURL);

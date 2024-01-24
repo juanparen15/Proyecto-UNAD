@@ -10,8 +10,12 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
     {!! Html::style('adminlte/plugins/fontawesome-free/css/all.min.css') !!}
+    {!! Html::style('adminlte/plugins/select2/css/select2.min.css') !!}
+    {!! Html::style('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') !!}
     @yield('style')
     {!! Html::style('adminlte/dist/css/adminlte.min.css') !!}
+    {!! Html::style('adminlte/plugins/select2/css/select2.min.css') !!}
+    {!! Html::style('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') !!}
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css"
         integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
@@ -25,6 +29,17 @@
             color: #ffffff !important;
         }
     </style>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <script src="https://code.highcharts.com/modules/timeline.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <link rel="stylesheet" href="https://code.highcharts.com/css/highcharts.css">
+    <script src="https://code.highcharts.com/themes/dark-unica.js"></script>
+
 
 </head>
 

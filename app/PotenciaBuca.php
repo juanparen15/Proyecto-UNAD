@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Potencia extends Model
+class PotenciaBuca extends Model
 {
     public $incrementing = false;
     protected $fillable = ['latitudAM', 'longitudAM', 'potenciaAM', 'latitudFM', 'longitudFM', 'potenciaFM', 'latitudDABHibrido', 'longitudDABHibrido', 'potenciaDABHibrido', 'latitudAMHibrido', 'longitudAMHibrido', 'SNRAMHibrido', 'latitudFMHibrido', 'longitudFMHibrido', 'SNRFMHibrido', 'latitudDAB', 'longitudDAB', 'SNRDAB', 'slug'];

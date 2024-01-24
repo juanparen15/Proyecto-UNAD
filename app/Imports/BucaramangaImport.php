@@ -2,15 +2,17 @@
 
 namespace App\Imports;
 
-use App\Potencia;
-use App\Encabezado;
+use App\PotenciaBuca;
+use App\EncabezadoBuca;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Illuminate\Support\Facades\Log;
 
-//BOGOTA
-class PotenciaImport implements ToModel, WithHeadingRow
+
+//BUCARAMANGA
+
+class BucaramangaImport implements ToModel, WithHeadingRow
 {
     private $headerRow;
     private $headerRows = [];
@@ -24,7 +26,6 @@ class PotenciaImport implements ToModel, WithHeadingRow
     {
         // session()->forget('excel_header');
 
-
         try {
             // Si no se ha guardado el encabezado, guárdalo y retorna null
             if (!$this->headerRow) {
@@ -36,7 +37,7 @@ class PotenciaImport implements ToModel, WithHeadingRow
             }
 
             // Crea un nuevo modelo Potencia con las propiedades asignadas dinámicamente
-            $potenciaModel = new Potencia();
+            $potenciaModel = new PotenciaBuca();
 
             // Asigna los valores al modelo según la posición de la columna
             $columnIndex = 0;
@@ -62,26 +63,25 @@ class PotenciaImport implements ToModel, WithHeadingRow
     }
 
     /**
-     * @return int
+     * @return array
      */
     public function headingRow(): int
     {
         return 1;
     }
 
-
     /**
      * Guarda la primera fila (encabezados) en la base de datos
      */
     private function saveHeaderRowToDatabase(array $headerRow)
     {
-        $encabezado = new Encabezado();
+        $encabezado = new EncabezadoBuca();
         // Eliminar todos los encabezados existentes
-        Encabezado::truncate();
+        EncabezadoBuca::truncate();
 
         // Itera sobre cada elemento del nuevo encabezado y guárdalo en la base de datos
         foreach ($headerRow as $header) {
-            Encabezado::create(['encabezado' => $header]);
+            EncabezadoBuca::create(['encabezadoBuca' => $header]);
         }
 
         $encabezado->slug = Str::slug(implode('-', $headerRow));

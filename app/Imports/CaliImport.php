@@ -2,15 +2,17 @@
 
 namespace App\Imports;
 
-use App\Potencia;
-use App\Encabezado;
+use App\PotenciaCali;
+use App\EncabezadoCali;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Illuminate\Support\Facades\Log;
 
-//BOGOTA
-class PotenciaImport implements ToModel, WithHeadingRow
+
+//CALI
+
+class CaliImport implements ToModel, WithHeadingRow
 {
     private $headerRow;
     private $headerRows = [];
@@ -24,7 +26,6 @@ class PotenciaImport implements ToModel, WithHeadingRow
     {
         // session()->forget('excel_header');
 
-
         try {
             // Si no se ha guardado el encabezado, guárdalo y retorna null
             if (!$this->headerRow) {
@@ -36,7 +37,7 @@ class PotenciaImport implements ToModel, WithHeadingRow
             }
 
             // Crea un nuevo modelo Potencia con las propiedades asignadas dinámicamente
-            $potenciaModel = new Potencia();
+            $potenciaModel = new PotenciaCali();
 
             // Asigna los valores al modelo según la posición de la columna
             $columnIndex = 0;
@@ -62,26 +63,25 @@ class PotenciaImport implements ToModel, WithHeadingRow
     }
 
     /**
-     * @return int
+     * @return array
      */
     public function headingRow(): int
     {
         return 1;
     }
 
-
     /**
      * Guarda la primera fila (encabezados) en la base de datos
      */
     private function saveHeaderRowToDatabase(array $headerRow)
     {
-        $encabezado = new Encabezado();
+        $encabezado = new EncabezadoCali();
         // Eliminar todos los encabezados existentes
-        Encabezado::truncate();
+        EncabezadoCali::truncate();
 
         // Itera sobre cada elemento del nuevo encabezado y guárdalo en la base de datos
         foreach ($headerRow as $header) {
-            Encabezado::create(['encabezado' => $header]);
+            EncabezadoCali::create(['encabezadoCali' => $header]);
         }
 
         $encabezado->slug = Str::slug(implode('-', $headerRow));

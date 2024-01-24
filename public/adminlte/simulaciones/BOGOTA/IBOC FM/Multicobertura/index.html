@@ -20,6 +20,38 @@
             margin: 0;
         }
     </style>
+
+    <style>
+        .legend {
+            background-color: #ffffff73;
+            padding: 10px;
+            color: black;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        @media only screen and (max-width: 600px) {
+
+            /* Estilos para dispositivos con un ancho de pantalla de 600px o menos */
+            .legend {
+                /* Personaliza los estilos según tus necesidades */
+                max-height: 60px;
+                overflow-y: auto;
+            }
+        }
+
+        @media only screen and (max-width: 1500px) {
+
+            /* Estilos para dispositivos con un ancho de pantalla de 600px o menos */
+            .legend {
+                /* Personaliza los estilos según tus necesidades */
+                max-height: 175px;
+                overflow-y: auto;
+            }
+        }
+    </style>
     <title></title>
 </head>
 
@@ -188,31 +220,70 @@
         map.addLayer(layer_Radioelectricelements_4);
         var baseMaps = {};
         L.control.layers(baseMaps, { '<img src="legend/Radioelectricelements_4.png" /> Radioelectric elements': layer_Radioelectricelements_4, "Signal level": layer_Signallevel_3, "Overlapping": layer_Overlapping_2, "Best server": layer_Bestserver_1, }).addTo(map);
+        var legends = {
+            signalLevel: [
+                { color: '#ffffff', label: '[-∞ , 10) dB' },
+                { color: '#ff00ff', label: '[10 , 26) dB' },
+                { color: '#00ff00', label: '[26 , ∞) dB' }
+            ],
+            bestServer: [
+                { color: '#0000ff', label: 'Flexiva FLX - Emisora 100,4 MHz' },
+                { color: '#00ff00', label: 'Flexiva FLX - Emisora 100.9 MHz' },
+                { color: '#ff8000', label: 'Flexiva FLX - Emisora 102,9 MHz' },
+                { color: '#ad5449', label: 'Flexiva- Emisora 104.4 MHz' },
+                { color: '#d0629d', label: 'Flexiva FLX - Emisora 104.9 MHz' },
+                { color: '#73bdfd', label: 'Flexiva FLX - Emisora 105,4 MHz' },
+                { color: '#8bfc57', label: 'Flexiva FLX - Emisora 105,9 MHz' },
+                { color: '#54146e', label: 'Flexiva FLX - Emisora 106,4 MHz' },
+                { color: '#3e4aa8', label: 'Flexiva FLX - Emisora 106.9 MHz' },
+                { color: '#844e25', label: 'Flexiva FLX - Emisora 107.9 MHz' },
+                { color: '#996f51', label: 'Flexiva FLX - Emisora 88,4 MHz' },
+                { color: '#e8d446', label: 'Flexiva FLX - Emisora 88,9 MHz' },
+                { color: '#f49918', label: 'Flexiva FLX - Emisora 88.4 MHz 2' },
+                { color: '#516730', label: 'Flexiva FLX - Emisora 89.9 MHz' },
+                { color: '#e73804', label: 'Flexiva FLX - Emisora 90,4 MHz' },
+                { color: '#e69356', label: 'Flexiva FLX - Emisora 91,9 MHz' },
+                { color: '#01294e', label: 'Flexiva FLX - Emisora 92,4 MHz' },
+                { color: '#d564df', label: 'Flexiva FLX- Emisora 92.9 MHz' },
+                { color: '#8bd487', label: 'Flexiva FLX - Emisora 93,4 MHz' },
+                { color: '#517f9b', label: 'Flexiva FLX - Emisora 93,9 MHz' },
+                { color: '#7aec34', label: 'Flexiva FLX - Emisora 94,9 MHz' },
+            ],
 
-        var legendControl = L.control({
-            position: 'bottomright'
-        });
-
-        legendControl.onAdd = function (map) {
-            var div = L.DomUtil.create('div', 'info legend');
-            div.innerHTML = '<table cellpadding="0" cellspacing="0" >\
-                        <tr>\
-                            <td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ffffff;"></div></td>\
-                            <td><div style="margin-left: 10px;" class="info_txt04">[-∞ , 10) dB</div></td>\
-                        </tr>\
-                        <tr>\
-                            <td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ff00ff;"></div></td>\
-                            <td><div style="margin-left: 10px;" class="info_txt04">[10 , 26) dB</div></td>\
-                        </tr>\
-                        <tr>\
-                            <td><div style="border: 1px solid black; width:16px; height:9px;background-color:#00ff00;"></div></td>\
-                            <td><div style="margin-left: 10px;" class="info_txt04">[26 , ∞) dB</div></td>\
-                        </tr>\
-                    </table>';
-            return div;
+            overlapping: [
+                { color: '#ffffff', label: '[-∞ , 1)' },
+                { color: '#63be7b', label: '[1 , 29)' },
+                { color: '#5ab6cc', label: '[29 , 31)' },
+                { color: '#6150da', label: '[31 , 33)' },
+                { color: '#e844e0', label: '[33 , 35)' },
+                { color: '#f6363a', label: '[35 , ∞)' }
+            ]
         };
 
-        legendControl.addTo(map);
+
+        function addLegend(map, legendData, title) {
+            var legendControl = L.control({ position: 'bottomleft' });
+
+            legendControl.onAdd = function (map) {
+                var div = L.DomUtil.create('div', 'legend');
+                div.innerHTML = '<h4>' + title + '</h4>';
+
+                legendData.forEach(function (item) {
+                    div.innerHTML += '<div><div style="border: 1px solid black; width:10px; height:5px;background-color:' +
+                        item.color + '"></div><div style="margin-left: 5px;" class="info_txt04">' + item.label + '</div></div>';
+                });
+
+                return div;
+            };
+
+            legendControl.addTo(map);
+        }
+
+        addLegend(map, legends.signalLevel, 'Signal Level');
+        addLegend(map, legends.bestServer, 'Best Server');
+        addLegend(map, legends.overlapping, 'Overlapping');
+
+
 
         setBounds();
         var i = 0;
