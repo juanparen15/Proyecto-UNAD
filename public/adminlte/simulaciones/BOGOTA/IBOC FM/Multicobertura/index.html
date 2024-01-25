@@ -38,7 +38,7 @@
             .legend {
                 max-height: 250px;
                 max-width: 130px;
-                overflow-y: scroll;
+                overflow-y: auto;
             }
         }
     </style>
@@ -156,7 +156,7 @@
             
             legendControl.onAdd = function (map) {
                 var div = L.DomUtil.create('div', 'legend');
-                div.innerHTML = '<h4>' + title + '</h4>';
+                div.innerHTML = '<h6>' + title + '</h6>';
 
                 legendData.forEach(function (item) {
                     div.innerHTML += '<div><div style="border: 1px solid black; width:10px; height:5px;background-color:' +
