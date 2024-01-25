@@ -3,202 +3,181 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/leaflet.css">
     <link rel="stylesheet" href="css/qgis2web.css">
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <!-- Leaflet (JS/CSS) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <!-- Leaflet-KMZ -->
+    <script src="https://unpkg.com/leaflet-kmz@latest/dist/leaflet-kmz.js"></script>
     <style>
         html,
         body,
         #map {
-            width: 100%;
-            height: 100%;
-            padding: 0;
+            height: 100vh;
             margin: 0;
+            padding: 0;
+            z-index: 0;
         }
-    </style>
 
-    <style>
         .legend {
             background-color: #ffffff73;
             padding: 10px;
             color: black;
             border: 1px solid #ccc;
             border-radius: 5px;
-            max-height: 300px;
+            max-height: 270px;
             overflow-y: auto;
         }
 
-        .legend::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        .legend::-webkit-scrollbar-thumb {
-            background-color: hsl(0, 0%, 100%);
-        }
-
         @media only screen and (max-width: 600px) {
-
-            /* Estilos para dispositivos con un ancho de pantalla de 600px o menos */
             .legend {
-                max-height: 200px;
-                overflow-y: auto;
-            }
-        }
-
-        @media only screen and (max-width: 1500px) {
-
-            /* Estilos para dispositivos con un ancho de pantalla de 1500px o menos */
-            .legend {
-                max-height: 200px;
-                /* Cambia el valor según tus necesidades */
-                overflow-y: auto;
+                max-height: 150px;
+                max-width: auto;
+                overflow-y: scroll;
             }
         }
     </style>
-    <!-- Leaflet (JS/CSS) -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-    <!-- Leaflet-KMZ -->
-    <script src="https://unpkg.com/leaflet-kmz@latest/dist/leaflet-kmz.js"></script>
 </head>
 
 <body>
-    <div id="map"></div>
-</body>
-<script src="js/qgis2web_expressions.js"></script>
-<!-- <script src="js/leaflet.js"></script> -->
-<script src="js/leaflet.rotatedMarker.js"></script>
-<script src="js/leaflet.pattern.js"></script>
-<script src="js/leaflet-hash.js"></script>
-<script src="js/Autolinker.min.js"></script>
-<script src="js/rbush.min.js"></script>
-<script src="js/labelgun.min.js"></script>
-<script src="js/labels.js"></script>
-<!-- <script src="js/qgis2web_expressions.js"></script> -->
-<script src="https://unpkg.com/leaflet-hash/leaflet-hash.js"></script>
-<script>
-    var map = L.map('map', {
-        zoomControl: true, maxZoom: 28, minZoom: 1
-    }).fitBounds([[4.455106667944667, -74.4190945016207], [4.819728353568669, -73.78379483525701]]);
-    var hash = new L.Hash(map);
-    // map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
-    var autolinker = new Autolinker({ truncate: { length: 30, location: 'smart' } });
-    var bounds_group = new L.featureGroup([]);
-    function setBounds() {
-    }
-    map.createPane('pane_GoogleHybrid_0');
-    map.getPane('pane_GoogleHybrid_0').style.zIndex = 0;
-    var layer_GoogleHybrid_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
-        pane: 'pane_GoogleHybrid_0',
-        opacity: 1.0,
-        // attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
-        minZoom: 1,
-        maxZoom: 28,
-        minNativeZoom: 0,
-        maxNativeZoom: 20
-    });
-    map.addLayer(layer_GoogleHybrid_0);
 
-    var control = L.control.layers(null, null, { collapsed: true }).addTo(map);
-
-    // Objeto para rastrear las capas cargadas
-    var loadedLayers = {};
-
-    // Función para cargar KMZ y agregar al control de capas con nombre personalizado
-    function loadKmz(url, layerName) {
-        // Verificar si la capa ya está cargada
-        if (!loadedLayers[layerName]) {
-            // Crear nueva capa Leaflet para el KMZ
-            var kmzLayer = L.kmzLayer().addTo(map);
-
-            // Cargar el KMZ
-            kmzLayer.load(url);
-
-            // Escuchar el evento 'load' de la capa KMZ
-            kmzLayer.on('load', function (e) {
-                // Agregar la capa al control de capas con el nombre personalizado
-                control.addOverlay(e.layer, layerName);
-            });
-
-            // Marcar la capa como cargada
-            loadedLayers[layerName] = kmzLayer;
+    <div id="map" class="my-map"></div>
+    <script src="js/qgis2web_expressions.js"></script>
+    <script src="js/leaflet.rotatedMarker.js"></script>
+    <script src="js/leaflet.pattern.js"></script>
+    <script src="js/leaflet-hash.js"></script>
+    <script src="js/Autolinker.min.js"></script>
+    <script src="js/rbush.min.js"></script>
+    <script src="js/labelgun.min.js"></script>
+    <script src="js/labels.js"></script>
+    <script src="https://unpkg.com/leaflet-hash/leaflet-hash.js"></script>
+    <script>
+        var map = L.map('map', {
+            zoomControl: true, maxZoom: 28, minZoom: 1
+        }).fitBounds([[4.455106667944667, -74.4190945016207], [4.819728353568669, -73.78379483525701]]);
+        var hash = new L.Hash(map);
+        // map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({ truncate: { length: 30, location: 'smart' } });
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
         }
-    }
+        map.createPane('pane_GoogleHybrid_0');
+        map.getPane('pane_GoogleHybrid_0').style.zIndex = 0;
+        var layer_GoogleHybrid_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleHybrid_0',
+            opacity: 1.0,
+            // attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 20
+        });
+        map.addLayer(layer_GoogleHybrid_0);
 
-    // Cargar y asignar nombres a los KMZ
-    loadKmz('kml/Cobertura_multitransmisor_Bogota_bestservervisual.kmz', 'Best Server Visual');
-    loadKmz('kml/Cobertura_multitransmisor_Bogota_coveragevisual.kmz', 'Coverage Visual');
-    loadKmz('kml/Cobertura_multitransmisor_Bogota_overlapvisual.kmz', 'Overlap Visual');
+        var control = L.control.layers(null, null, { collapsed: true }).addTo(map);
 
-    var legends = {
-        signalLevel: [
-            { color: '#ffffff', label: '[-∞ , 10) dB' },
-            { color: '#ff00ff', label: '[10 , 26) dB' },
-            { color: '#00ff00', label: '[26 , ∞) dB' }
-        ],
-        bestServer: [
-            { color: '#0000ff', label: 'Flexiva FLX - Emisora 100,4 MHz' },
-            { color: '#00ff00', label: 'Flexiva FLX - Emisora 100.9 MHz' },
-            { color: '#ff8000', label: 'Flexiva FLX - Emisora 102,9 MHz' },
-            { color: '#ad5449', label: 'Flexiva- Emisora 104.4 MHz' },
-            { color: '#d0629d', label: 'Flexiva FLX - Emisora 104.9 MHz' },
-            { color: '#73bdfd', label: 'Flexiva FLX - Emisora 105,4 MHz' },
-            { color: '#8bfc57', label: 'Flexiva FLX - Emisora 105,9 MHz' },
-            { color: '#54146e', label: 'Flexiva FLX - Emisora 106,4 MHz' },
-            { color: '#3e4aa8', label: 'Flexiva FLX - Emisora 106.9 MHz' },
-            { color: '#844e25', label: 'Flexiva FLX - Emisora 107.9 MHz' },
-            { color: '#996f51', label: 'Flexiva FLX - Emisora 88,4 MHz' },
-            { color: '#e8d446', label: 'Flexiva FLX - Emisora 88,9 MHz' },
-            { color: '#f49918', label: 'Flexiva FLX - Emisora 88.4 MHz 2' },
-            { color: '#516730', label: 'Flexiva FLX - Emisora 89.9 MHz' },
-            { color: '#e73804', label: 'Flexiva FLX - Emisora 90,4 MHz' },
-            { color: '#e69356', label: 'Flexiva FLX - Emisora 91,9 MHz' },
-            { color: '#01294e', label: 'Flexiva FLX - Emisora 92,4 MHz' },
-            { color: '#d564df', label: 'Flexiva FLX- Emisora 92.9 MHz' },
-            { color: '#8bd487', label: 'Flexiva FLX - Emisora 93,4 MHz' },
-            { color: '#517f9b', label: 'Flexiva FLX - Emisora 93,9 MHz' },
-            { color: '#7aec34', label: 'Flexiva FLX - Emisora 94,9 MHz' },
-        ],
-        overlapping: [
-            { color: '#ffffff', label: '[-∞ , 1)' },
-            { color: '#63be7b', label: '[1 , 29)' },
-            { color: '#5ab6cc', label: '[29 , 31)' },
-            { color: '#6150da', label: '[31 , 33)' },
-            { color: '#e844e0', label: '[33 , 35)' },
-            { color: '#f6363a', label: '[35 , ∞)' }
-        ]
-    };
+        // Objeto para rastrear las capas cargadas
+        var loadedLayers = {};
 
-    function addLegend(map, legendData, title, position) {
-        var legendControl = L.control({ position: position });
+        // Función para cargar KMZ y agregar al control de capas con nombre personalizado
+        function loadKmz(url, layerName) {
+            // Verificar si la capa ya está cargada
+            if (!loadedLayers[layerName]) {
+                // Crear nueva capa Leaflet para el KMZ
+                var kmzLayer = L.kmzLayer().addTo(map);
 
-        legendControl.onAdd = function (map) {
-            var div = L.DomUtil.create('div', 'legend');
-            div.innerHTML = '<h4>' + title + '</h4>';
+                // Cargar el KMZ
+                kmzLayer.load(url);
 
-            legendData.forEach(function (item) {
-                div.innerHTML += '<div><div style="border: 1px solid black; width:10px; height:5px;background-color:' +
-                    item.color + '"></div><div style="margin-left: 5px;" class="info_txt04">' + item.label + '</div></div>';
-            });
+                // Escuchar el evento 'load' de la capa KMZ
+                kmzLayer.on('load', function (e) {
+                    // Agregar la capa al control de capas con el nombre personalizado
+                    control.addOverlay(e.layer, layerName);
+                });
 
-            return div;
+                // Marcar la capa como cargada
+                loadedLayers[layerName] = kmzLayer;
+            }
+        }
+
+        // Cargar y asignar nombres a los KMZ
+        loadKmz('kml/Cobertura_multitransmisor_Bogota_bestservervisual.kmz', 'Best Server Visual');
+        loadKmz('kml/Cobertura_multitransmisor_Bogota_coveragevisual.kmz', 'Coverage Visual');
+        loadKmz('kml/Cobertura_multitransmisor_Bogota_overlapvisual.kmz', 'Overlap Visual');
+
+        var legends = {
+            signalLevel: [
+                { color: '#ffffff', label: '[-∞ , 10) dB' },
+                { color: '#ff00ff', label: '[10 , 26) dB' },
+                { color: '#00ff00', label: '[26 , ∞) dB' }
+            ],
+            bestServer: [
+                { color: '#0000ff', label: 'Flexiva FLX - Emisora 100,4 MHz' },
+                { color: '#00ff00', label: 'Flexiva FLX - Emisora 100.9 MHz' },
+                { color: '#ff8000', label: 'Flexiva FLX - Emisora 102,9 MHz' },
+                { color: '#ad5449', label: 'Flexiva- Emisora 104.4 MHz' },
+                { color: '#d0629d', label: 'Flexiva FLX - Emisora 104.9 MHz' },
+                { color: '#73bdfd', label: 'Flexiva FLX - Emisora 105,4 MHz' },
+                { color: '#8bfc57', label: 'Flexiva FLX - Emisora 105,9 MHz' },
+                { color: '#54146e', label: 'Flexiva FLX - Emisora 106,4 MHz' },
+                { color: '#3e4aa8', label: 'Flexiva FLX - Emisora 106.9 MHz' },
+                { color: '#844e25', label: 'Flexiva FLX - Emisora 107.9 MHz' },
+                { color: '#996f51', label: 'Flexiva FLX - Emisora 88,4 MHz' },
+                { color: '#e8d446', label: 'Flexiva FLX - Emisora 88,9 MHz' },
+                { color: '#f49918', label: 'Flexiva FLX - Emisora 88.4 MHz 2' },
+                { color: '#516730', label: 'Flexiva FLX - Emisora 89.9 MHz' },
+                { color: '#e73804', label: 'Flexiva FLX - Emisora 90,4 MHz' },
+                { color: '#e69356', label: 'Flexiva FLX - Emisora 91,9 MHz' },
+                { color: '#01294e', label: 'Flexiva FLX - Emisora 92,4 MHz' },
+                { color: '#d564df', label: 'Flexiva FLX- Emisora 92.9 MHz' },
+                { color: '#8bd487', label: 'Flexiva FLX - Emisora 93,4 MHz' },
+                { color: '#517f9b', label: 'Flexiva FLX - Emisora 93,9 MHz' },
+                { color: '#7aec34', label: 'Flexiva FLX - Emisora 94,9 MHz' },
+            ],
+            overlapping: [
+                { color: '#ffffff', label: '[-∞ , 1)' },
+                { color: '#63be7b', label: '[1 , 29)' },
+                { color: '#5ab6cc', label: '[29 , 31)' },
+                { color: '#6150da', label: '[31 , 33)' },
+                { color: '#e844e0', label: '[33 , 35)' },
+                { color: '#f6363a', label: '[35 , ∞)' }
+            ]
         };
 
-        legendControl.addTo(map);
-    }
 
-    // Izquierda
-    addLegend(map, legends.overlapping, 'Overlapping', 'bottomleft');
-    addLegend(map, legends.signalLevel, 'Signal Level', 'bottomleft');
-    // Derecha
-    addLegend(map, legends.bestServer, 'Best Server', 'bottomright');
+        function addLegend(map, legendData, title, position) {
+            var legendControl = L.control({ position: position });
+            var legendControl = L.control.layers(null, null, { collapsed: true }).addTo(map);
+            
+            legendControl.onAdd = function (map) {
+                var div = L.DomUtil.create('div', 'legend');
+                div.innerHTML = '<h4>' + title + '</h4>';
+
+                legendData.forEach(function (item) {
+                    div.innerHTML += '<div><div style="border: 1px solid black; width:10px; height:5px;background-color:' +
+                        item.color + '"></div><div style="margin-left: 5px;" class="info_txt04">' + item.label + '</div></div>';
+                });
+
+                return div;
+            };
+
+            legendControl.addTo(map);
+        }
+        // var legendControl = L.control({ collapsed: true });
+        // Izquierda
+        addLegend(map, legends.signalLevel, 'Signal Level', 'bottomright');
+        addLegend(map, legends.overlapping, 'Overlapping', 'bottomright');
+        // Derecha
+        addLegend(map, legends.bestServer, 'Best Server', 'bottomleft');
 
 
-    setBounds();
-</script>
+        setBounds();
+    </script>
+</body>
 
 </html>
