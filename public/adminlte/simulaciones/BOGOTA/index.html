@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualización de KMZ en Leaflet</title>
+    <!-- Incluye las bibliotecas de Leaflet y Leaflet-KML -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Leaflet (JS/CSS) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <!-- Leaflet-KMZ -->
+    <script src="https://unpkg.com/leaflet-kmz@latest/dist/leaflet-kmz.js"></script>
+</head>
+
+<body>
+    <!-- Contenedor para el mapa -->
+    <div id="map" style="height: 500px;"></div>
+
+    <script>
+        // Crea un mapa con Leaflet y usa la capa de teselas de OpenStreetMap como base
+        var map = L.map('map').setView([0, 0], 10);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Carga el archivo KMZ (manejado por Leaflet-KML)
+        var kmzLayer = new L.KMZ('Multi.kmz', { async: true });
+        kmzLayer.addTo(map);
+    </script>
+</body>
+
+</html>

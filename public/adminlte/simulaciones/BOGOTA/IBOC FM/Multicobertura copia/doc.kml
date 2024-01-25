@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Cobertura multitransmisor Bucaramanga IBOC FM Híbrido</name>
+    <description><![CDATA[]]></description>
+    <open>1</open>
+    <Style id="PointStyle1">
+      <IconStyle>
+        <color>feffffff</color>
+        <Icon>
+          <href>images/radio/tx_viewer.png</href>
+        </Icon>
+        <hotSpot x="12" y="37" xunits="pixels" yunits="insetPixels" />
+      </IconStyle>
+      <LabelStyle>
+        <color>00ffffff</color>
+      </LabelStyle>
+    </Style>
+    <Style id="PointStyle2">
+      <IconStyle>
+        <color>feffffff</color>
+        <Icon>
+          <href>images/radio/rx_viewer.png</href>
+        </Icon>
+        <hotSpot x="12" y="37" xunits="pixels" yunits="insetPixels" />
+      </IconStyle>
+      <LabelStyle>
+        <color>00ffffff</color>
+      </LabelStyle>
+    </Style>
+    <Style id="PointStyle3">
+      <IconStyle>
+        <color>feffffff</color>
+        <Icon>
+          <href>images/radio/mirror_viewer.png</href>
+        </Icon>
+        <hotSpot x="12" y="37" xunits="pixels" yunits="insetPixels" />
+      </IconStyle>
+      <LabelStyle>
+        <color>00ffffff</color>
+      </LabelStyle>
+    </Style>
+    <Folder>
+      <name>Radioelectric elements</name>
+      <Placemark>
+        <name>Flexiva FLX - Emisora 100,7 MHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-73.0971111111111,7.09115,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Flexiva FLX - Emisora 101,7 MHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-73.0802777777778,7.12472222222222,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Flexiva FLX - Emisora 102,5 MHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-73.0937888888889,7.11201111111111,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Flexiva FLX - Emisora 105,1 MHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-73.1240555555555,7.11838888888889,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Flexiva FLX - Emisora 90,7 MHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-73.0952777777778,7.14041666666667,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Flexiva FLX - Emisora 91,7 MHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-73.1230833333333,7.14897222222222,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Flexiva FLX - Emisora 92.9 MHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-73.1048583333333,7.12828333333333,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Flexiva FLX - Emisora 93.4 MHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-73.1236111111111,7.14802777777778,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Flexiva FLX - Emisora 95,7MHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-73.0952694444444,7.140125,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Flexiva FLX - Emisora 96.2 MHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-73.089275,7.10716666666667,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Flexiva FLX - Emisora 99,7 MHz</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-73.0813138888889,7.12699166666667,0</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Interference results</name>
+      <Folder>
+        <name>Interference level (C/I)</name>
+        <description><![CDATA[<table cellpadding="0" cellspacing="0" ><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ffffff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-∞ , 10) dB</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ff00ff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[10 , 26) dB</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#00ff00;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[26 , ∞) dB</div></td></tr></table>]]></description>
+        <visibility>1</visibility>
+        <Style>
+          <ListStyle>
+            <listItemType>checkHideChildren</listItemType>
+          </ListStyle>
+        </Style>
+        <GroundOverlay>
+          <name>X:7 Y:37 Z:61</name>
+          <Region>
+            <LatLonAltBox>
+              <north>8.4071681636010762</north>
+              <south>5.6159858191553527</south>
+              <east>-73.124999999999986</east>
+              <west>-75.9375</west>
+            </LatLonAltBox>
+            <Lod>
+              <minLodPixels>-1</minLodPixels>
+              <maxLodPixels>-1</maxLodPixels>
+            </Lod>
+          </Region>
+          <color>7fffffff</color>
+          <drawOrder>15</drawOrder>
+          <Icon>
+            <href>layer71_13f06b42-83e2-4761-9113-077a01e4dadb_0_0\img_37_61_7.png</href>
+          </Icon>
+          <LatLonBox>
+            <north>8.4071681636010762</north>
+            <south>5.6159858191553527</south>
+            <east>-73.124999999999986</east>
+            <west>-75.9375</west>
+          </LatLonBox>
+        </GroundOverlay>
+        <GroundOverlay>
+          <name>X:7 Y:38 Z:61</name>
+          <Region>
+            <LatLonAltBox>
+              <north>8.4071681636010762</north>
+              <south>5.6159858191553527</south>
+              <east>-70.3125</east>
+              <west>-73.124999999999986</west>
+            </LatLonAltBox>
+            <Lod>
+              <minLodPixels>-1</minLodPixels>
+              <maxLodPixels>-1</maxLodPixels>
+            </Lod>
+          </Region>
+          <color>7fffffff</color>
+          <drawOrder>15</drawOrder>
+          <Icon>
+            <href>layer71_13f06b42-83e2-4761-9113-077a01e4dadb_0_0\img_38_61_7.png</href>
+          </Icon>
+          <LatLonBox>
+            <north>8.4071681636010762</north>
+            <south>5.6159858191553527</south>
+            <east>-70.3125</east>
+            <west>-73.124999999999986</west>
+          </LatLonBox>
+        </GroundOverlay>
+        <GroundOverlay>
+          <name>X:7 Y:37 Z:62</name>
+          <Region>
+            <LatLonAltBox>
+              <north>5.6159858191553527</north>
+              <south>2.8113711933311278</south>
+              <east>-73.124999999999986</east>
+              <west>-75.9375</west>
+            </LatLonAltBox>
+            <Lod>
+              <minLodPixels>-1</minLodPixels>
+              <maxLodPixels>-1</maxLodPixels>
+            </Lod>
+          </Region>
+          <color>7fffffff</color>
+          <drawOrder>15</drawOrder>
+          <Icon>
+            <href>layer71_13f06b42-83e2-4761-9113-077a01e4dadb_0_0\img_37_62_7.png</href>
+          </Icon>
+          <LatLonBox>
+            <north>5.6159858191553527</north>
+            <south>2.8113711933311278</south>
+            <east>-73.124999999999986</east>
+            <west>-75.9375</west>
+          </LatLonBox>
+        </GroundOverlay>
+        <GroundOverlay>
+          <name>X:7 Y:38 Z:62</name>
+          <Region>
+            <LatLonAltBox>
+              <north>5.6159858191553527</north>
+              <south>2.8113711933311278</south>
+              <east>-70.3125</east>
+              <west>-73.124999999999986</west>
+            </LatLonAltBox>
+            <Lod>
+              <minLodPixels>-1</minLodPixels>
+              <maxLodPixels>-1</maxLodPixels>
+            </Lod>
+          </Region>
+          <color>7fffffff</color>
+          <drawOrder>15</drawOrder>
+          <Icon>
+            <href>layer71_13f06b42-83e2-4761-9113-077a01e4dadb_0_0\img_38_62_7.png</href>
+          </Icon>
+          <LatLonBox>
+            <north>5.6159858191553527</north>
+            <south>2.8113711933311278</south>
+            <east>-70.3125</east>
+            <west>-73.124999999999986</west>
+          </LatLonBox>
+        </GroundOverlay>
+      </Folder>
+    </Folder>
+  </Document>
+</kml>

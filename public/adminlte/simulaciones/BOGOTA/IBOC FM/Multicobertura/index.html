@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -32,289 +32,173 @@
             overflow-y: auto;
         }
 
+        .legend::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .legend::-webkit-scrollbar-thumb {
+            background-color: hsl(0, 0%, 100%);
+        }
+
         @media only screen and (max-width: 600px) {
 
             /* Estilos para dispositivos con un ancho de pantalla de 600px o menos */
             .legend {
-                /* Personaliza los estilos según tus necesidades */
-                max-height: 60px;
+                max-height: 600px;
                 overflow-y: auto;
             }
         }
 
-        @media only screen and (max-width: 1500px) {
+        @media only screen and (max-width: 1400px) {
 
-            /* Estilos para dispositivos con un ancho de pantalla de 600px o menos */
+            /* Estilos para dispositivos con un ancho de pantalla de 1500px o menos */
             .legend {
-                /* Personaliza los estilos según tus necesidades */
-                max-height: 175px;
+                max-height: 200px;
+                /* Cambia el valor según tus necesidades */
                 overflow-y: auto;
             }
         }
     </style>
-    <title></title>
+    <!-- Leaflet (JS/CSS) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <!-- Leaflet-KMZ -->
+    <script src="https://unpkg.com/leaflet-kmz@latest/dist/leaflet-kmz.js"></script>
 </head>
 
 <body>
-    <div id="map">
-    </div>
-    <script src="js/qgis2web_expressions.js"></script>
-    <script src="js/leaflet.js"></script>
-    <script src="js/leaflet.rotatedMarker.js"></script>
-    <script src="js/leaflet.pattern.js"></script>
-    <script src="js/leaflet-hash.js"></script>
-    <script src="js/Autolinker.min.js"></script>
-    <script src="js/rbush.min.js"></script>
-    <script src="js/labelgun.min.js"></script>
-    <script src="js/labels.js"></script>
-    <script src="data/Radioelectricelements_4.js"></script>
-    <script>
-        var highlightLayer;
-        function highlightFeature(e) {
-            highlightLayer = e.target;
+    <div id="map"></div>
+</body>
+<script src="js/qgis2web_expressions.js"></script>
+<!-- <script src="js/leaflet.js"></script> -->
+<script src="js/leaflet.rotatedMarker.js"></script>
+<script src="js/leaflet.pattern.js"></script>
+<script src="js/leaflet-hash.js"></script>
+<script src="js/Autolinker.min.js"></script>
+<script src="js/rbush.min.js"></script>
+<script src="js/labelgun.min.js"></script>
+<script src="js/labels.js"></script>
+<!-- <script src="js/qgis2web_expressions.js"></script> -->
+<script src="https://unpkg.com/leaflet-hash/leaflet-hash.js"></script>
+<script>
+    var map = L.map('map', {
+        zoomControl: true, maxZoom: 28, minZoom: 1
+    }).fitBounds([[4.455106667944667, -74.4190945016207], [4.819728353568669, -73.78379483525701]]);
+    var hash = new L.Hash(map);
+    // map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+    var autolinker = new Autolinker({ truncate: { length: 30, location: 'smart' } });
+    var bounds_group = new L.featureGroup([]);
+    function setBounds() {
+    }
+    map.createPane('pane_GoogleHybrid_0');
+    map.getPane('pane_GoogleHybrid_0').style.zIndex = 0;
+    var layer_GoogleHybrid_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+        pane: 'pane_GoogleHybrid_0',
+        opacity: 1.0,
+        // attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
+        minZoom: 1,
+        maxZoom: 28,
+        minNativeZoom: 0,
+        maxNativeZoom: 20
+    });
+    map.addLayer(layer_GoogleHybrid_0);
 
-            if (e.target.feature.geometry.type === 'LineString') {
-                highlightLayer.setStyle({
-                    color: '#ffff00',
-                });
-            } else {
-                highlightLayer.setStyle({
-                    fillColor: '#ffff00',
-                    fillOpacity: 1
-                });
-            }
-        }
-        var map = L.map('map', {
-            zoomControl: true, maxZoom: 28, minZoom: 1
-        }).fitBounds([[4.455106667944667, -74.4190945016207], [4.819728353568669, -73.78379483525701]]);
-        var hash = new L.Hash(map);
-        // map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
-        var autolinker = new Autolinker({ truncate: { length: 30, location: 'smart' } });
-        var bounds_group = new L.featureGroup([]);
-        function setBounds() {
-        }
-        map.createPane('pane_GoogleHybrid_0');
-        map.getPane('pane_GoogleHybrid_0').style.zIndex = 400;
-        var layer_GoogleHybrid_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
-            pane: 'pane_GoogleHybrid_0',
-            opacity: 1.0,
-            // attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
-            minZoom: 1,
-            maxZoom: 28,
-            minNativeZoom: 0,
-            maxNativeZoom: 20
-        });
-        layer_GoogleHybrid_0;
-        map.addLayer(layer_GoogleHybrid_0);
-        map.createPane('pane_Bestserver_1');
-        map.getPane('pane_Bestserver_1').style.zIndex = 401;
-        var img_Bestserver_1 = 'data/Bestserver_1.png';
-        var img_bounds_Bestserver_1 = [[2.76329017894285, -76.19429128122174], [5.63377816509325, -72.95377945310663]];
-        var layer_Bestserver_1 = new L.imageOverlay(img_Bestserver_1,
-            img_bounds_Bestserver_1,
-            { pane: 'pane_Bestserver_1' });
-        bounds_group.addLayer(layer_Bestserver_1);
-        map.addLayer(layer_Bestserver_1);
-        map.createPane('pane_Overlapping_2');
-        map.getPane('pane_Overlapping_2').style.zIndex = 402;
-        var img_Overlapping_2 = 'data/Overlapping_2.png';
-        var img_bounds_Overlapping_2 = [[2.7493977023282, -76.2088019109583], [5.6663711873202, -72.9201677116623]];
-        var layer_Overlapping_2 = new L.imageOverlay(img_Overlapping_2,
-            img_bounds_Overlapping_2,
-            { pane: 'pane_Overlapping_2' });
-        bounds_group.addLayer(layer_Overlapping_2);
-        map.addLayer(layer_Overlapping_2);
-        map.createPane('pane_Signallevel_3');
-        map.getPane('pane_Signallevel_3').style.zIndex = 403;
-        var img_Signallevel_3 = 'data/Signallevel_3.png';
-        var img_bounds_Signallevel_3 = [[2.7687779304258493, -76.1800896149961], [5.630089671686649, -72.97273055554011]];
-        var layer_Signallevel_3 = new L.imageOverlay(img_Signallevel_3,
-            img_bounds_Signallevel_3,
-            { pane: 'pane_Signallevel_3' });
-        bounds_group.addLayer(layer_Signallevel_3);
-        map.addLayer(layer_Signallevel_3);
+    var control = L.control.layers(null, null, { collapsed: true }).addTo(map);
 
+    // Objeto para rastrear las capas cargadas
+    var loadedLayers = {};
 
-        function pop_Radioelectricelements_4(feature, layer) {
-            layer.on({
-                mouseout: function (e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
+    // Función para cargar KMZ y agregar al control de capas con nombre personalizado
+    function loadKmz(url, layerName) {
+        // Verificar si la capa ya está cargada
+        if (!loadedLayers[layerName]) {
+            // Crear nueva capa Leaflet para el KMZ
+            var kmzLayer = L.kmzLayer().addTo(map);
+
+            // Cargar el KMZ
+            kmzLayer.load(url);
+
+            // Escuchar el evento 'load' de la capa KMZ
+            kmzLayer.on('load', function (e) {
+                // Agregar la capa al control de capas con el nombre personalizado
+                control.addOverlay(e.layer, layerName);
             });
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"><strong>Name</strong><br />' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['timestamp'] !== null ? autolinker.link(feature.properties['timestamp'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['begin'] !== null ? autolinker.link(feature.properties['begin'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['end'] !== null ? autolinker.link(feature.properties['end'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>altitudeMode</strong><br />' + (feature.properties['altitudeMode'] !== null ? autolinker.link(feature.properties['altitudeMode'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>tessellate</strong><br />' + (feature.properties['tessellate'] !== null ? autolinker.link(feature.properties['tessellate'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>extrude</strong><br />' + (feature.properties['extrude'] !== null ? autolinker.link(feature.properties['extrude'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>visibility</strong><br />' + (feature.properties['visibility'] !== null ? autolinker.link(feature.properties['visibility'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['drawOrder'] !== null ? autolinker.link(feature.properties['drawOrder'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['icon'] !== null ? autolinker.link(feature.properties['icon'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, { maxHeight: 400 });
-        }
 
-        function style_Radioelectricelements_4_0() {
-            return {
-                pane: 'pane_Radioelectricelements_4',
-                radius: 8.0,
-                opacity: 1,
-                color: 'rgba(255,255,255,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(0,0,0,1.0)',
-                interactive: true,
-            }
+            // Marcar la capa como cargada
+            loadedLayers[layerName] = kmzLayer;
         }
-        map.createPane('pane_Radioelectricelements_4');
-        map.getPane('pane_Radioelectricelements_4').style.zIndex = 404;
-        map.getPane('pane_Radioelectricelements_4').style['mix-blend-mode'] = 'normal';
-        var layer_Radioelectricelements_4 = new L.geoJson(json_Radioelectricelements_4, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_Radioelectricelements_4',
-            layerName: 'layer_Radioelectricelements_4',
-            pane: 'pane_Radioelectricelements_4',
-            onEachFeature: pop_Radioelectricelements_4,
-            pointToLayer: function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.circleMarker(latlng, style_Radioelectricelements_4_0(feature));
-            },
-        });
-        bounds_group.addLayer(layer_Radioelectricelements_4);
-        map.addLayer(layer_Radioelectricelements_4);
-        var baseMaps = {};
-        L.control.layers(baseMaps, { '<img src="legend/Radioelectricelements_4.png" /> Radioelectric elements': layer_Radioelectricelements_4, "Signal level": layer_Signallevel_3, "Overlapping": layer_Overlapping_2, "Best server": layer_Bestserver_1, }).addTo(map);
-        var legends = {
-            signalLevel: [
-                { color: '#ffffff', label: '[-∞ , 10) dB' },
-                { color: '#ff00ff', label: '[10 , 26) dB' },
-                { color: '#00ff00', label: '[26 , ∞) dB' }
-            ],
-            bestServer: [
-                { color: '#0000ff', label: 'Flexiva FLX - Emisora 100,4 MHz' },
-                { color: '#00ff00', label: 'Flexiva FLX - Emisora 100.9 MHz' },
-                { color: '#ff8000', label: 'Flexiva FLX - Emisora 102,9 MHz' },
-                { color: '#ad5449', label: 'Flexiva- Emisora 104.4 MHz' },
-                { color: '#d0629d', label: 'Flexiva FLX - Emisora 104.9 MHz' },
-                { color: '#73bdfd', label: 'Flexiva FLX - Emisora 105,4 MHz' },
-                { color: '#8bfc57', label: 'Flexiva FLX - Emisora 105,9 MHz' },
-                { color: '#54146e', label: 'Flexiva FLX - Emisora 106,4 MHz' },
-                { color: '#3e4aa8', label: 'Flexiva FLX - Emisora 106.9 MHz' },
-                { color: '#844e25', label: 'Flexiva FLX - Emisora 107.9 MHz' },
-                { color: '#996f51', label: 'Flexiva FLX - Emisora 88,4 MHz' },
-                { color: '#e8d446', label: 'Flexiva FLX - Emisora 88,9 MHz' },
-                { color: '#f49918', label: 'Flexiva FLX - Emisora 88.4 MHz 2' },
-                { color: '#516730', label: 'Flexiva FLX - Emisora 89.9 MHz' },
-                { color: '#e73804', label: 'Flexiva FLX - Emisora 90,4 MHz' },
-                { color: '#e69356', label: 'Flexiva FLX - Emisora 91,9 MHz' },
-                { color: '#01294e', label: 'Flexiva FLX - Emisora 92,4 MHz' },
-                { color: '#d564df', label: 'Flexiva FLX- Emisora 92.9 MHz' },
-                { color: '#8bd487', label: 'Flexiva FLX - Emisora 93,4 MHz' },
-                { color: '#517f9b', label: 'Flexiva FLX - Emisora 93,9 MHz' },
-                { color: '#7aec34', label: 'Flexiva FLX - Emisora 94,9 MHz' },
-            ],
+    }
 
-            overlapping: [
-                { color: '#ffffff', label: '[-∞ , 1)' },
-                { color: '#63be7b', label: '[1 , 29)' },
-                { color: '#5ab6cc', label: '[29 , 31)' },
-                { color: '#6150da', label: '[31 , 33)' },
-                { color: '#e844e0', label: '[33 , 35)' },
-                { color: '#f6363a', label: '[35 , ∞)' }
-            ]
+    // Cargar y asignar nombres a los KMZ
+    loadKmz('kml/Cobertura_multitransmisor_Bogota_bestservervisual.kmz', 'Best Server Visual');
+    loadKmz('kml/Cobertura_multitransmisor_Bogota_coveragevisual.kmz', 'Coverage Visual');
+    loadKmz('kml/Cobertura_multitransmisor_Bogota_overlapvisual.kmz', 'Overlap Visual');
+
+    var legends = {
+        signalLevel: [
+            { color: '#ffffff', label: '[-∞ , 10) dB' },
+            { color: '#ff00ff', label: '[10 , 26) dB' },
+            { color: '#00ff00', label: '[26 , ∞) dB' }
+        ],
+        bestServer: [
+            { color: '#0000ff', label: 'Flexiva FLX - Emisora 100,4 MHz' },
+            { color: '#00ff00', label: 'Flexiva FLX - Emisora 100.9 MHz' },
+            { color: '#ff8000', label: 'Flexiva FLX - Emisora 102,9 MHz' },
+            { color: '#ad5449', label: 'Flexiva- Emisora 104.4 MHz' },
+            { color: '#d0629d', label: 'Flexiva FLX - Emisora 104.9 MHz' },
+            { color: '#73bdfd', label: 'Flexiva FLX - Emisora 105,4 MHz' },
+            { color: '#8bfc57', label: 'Flexiva FLX - Emisora 105,9 MHz' },
+            { color: '#54146e', label: 'Flexiva FLX - Emisora 106,4 MHz' },
+            { color: '#3e4aa8', label: 'Flexiva FLX - Emisora 106.9 MHz' },
+            { color: '#844e25', label: 'Flexiva FLX - Emisora 107.9 MHz' },
+            { color: '#996f51', label: 'Flexiva FLX - Emisora 88,4 MHz' },
+            { color: '#e8d446', label: 'Flexiva FLX - Emisora 88,9 MHz' },
+            { color: '#f49918', label: 'Flexiva FLX - Emisora 88.4 MHz 2' },
+            { color: '#516730', label: 'Flexiva FLX - Emisora 89.9 MHz' },
+            { color: '#e73804', label: 'Flexiva FLX - Emisora 90,4 MHz' },
+            { color: '#e69356', label: 'Flexiva FLX - Emisora 91,9 MHz' },
+            { color: '#01294e', label: 'Flexiva FLX - Emisora 92,4 MHz' },
+            { color: '#d564df', label: 'Flexiva FLX- Emisora 92.9 MHz' },
+            { color: '#8bd487', label: 'Flexiva FLX - Emisora 93,4 MHz' },
+            { color: '#517f9b', label: 'Flexiva FLX - Emisora 93,9 MHz' },
+            { color: '#7aec34', label: 'Flexiva FLX - Emisora 94,9 MHz' },
+        ],
+        overlapping: [
+            { color: '#ffffff', label: '[-∞ , 1)' },
+            { color: '#63be7b', label: '[1 , 29)' },
+            { color: '#5ab6cc', label: '[29 , 31)' },
+            { color: '#6150da', label: '[31 , 33)' },
+            { color: '#e844e0', label: '[33 , 35)' },
+            { color: '#f6363a', label: '[35 , ∞)' }
+        ]
+    };
+
+    function addLegend(map, legendData, title, position) {
+        var legendControl = L.control({ position: position });
+
+        legendControl.onAdd = function (map) {
+            var div = L.DomUtil.create('div', 'legend');
+            div.innerHTML = '<h4>' + title + '</h4>';
+
+            legendData.forEach(function (item) {
+                div.innerHTML += '<div><div style="border: 1px solid black; width:10px; height:5px;background-color:' +
+                    item.color + '"></div><div style="margin-left: 5px;" class="info_txt04">' + item.label + '</div></div>';
+            });
+
+            return div;
         };
 
+        legendControl.addTo(map);
+    }
 
-        function addLegend(map, legendData, title) {
-            var legendControl = L.control({ position: 'bottomleft' });
-
-            legendControl.onAdd = function (map) {
-                var div = L.DomUtil.create('div', 'legend');
-                div.innerHTML = '<h4>' + title + '</h4>';
-
-                legendData.forEach(function (item) {
-                    div.innerHTML += '<div><div style="border: 1px solid black; width:10px; height:5px;background-color:' +
-                        item.color + '"></div><div style="margin-left: 5px;" class="info_txt04">' + item.label + '</div></div>';
-                });
-
-                return div;
-            };
-
-            legendControl.addTo(map);
-        }
-
-        addLegend(map, legends.bestServer, 'Best Server');
-        addLegend(map, legends.overlapping, 'Overlapping');
-        addLegend(map, legends.signalLevel, 'Signal Level');
+    // Izquierda
+    addLegend(map, legends.overlapping, 'Overlapping', 'bottomleft');
+    addLegend(map, legends.signalLevel, 'Signal Level', 'bottomleft');
+    // Derecha
+    addLegend(map, legends.bestServer, 'Best Server', 'bottomright');
 
 
-
-        setBounds();
-        var i = 0;
-        layer_Radioelectricelements_4.eachLayer(function (layer) {
-            var context = {
-                feature: layer.feature,
-                variables: {}
-            };
-            layer.bindTooltip((layer.feature.properties['Name'] !== null ? String('<div style="color: #ffffff; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['Name']) + '</div>' : ''), { permanent: true, offset: [-0, -16], className: 'css_Radioelectricelements_4' });
-            labels.push(layer);
-            totalMarkers += 1;
-            layer.added = true;
-            addLabel(layer, i);
-            i++;
-        });
-        L.ImageOverlay.include({
-            getBounds: function () {
-                return this._bounds;
-            }
-        });
-        resetLabels([layer_Radioelectricelements_4]);
-        map.on("zoomend", function () {
-            resetLabels([layer_Radioelectricelements_4]);
-        });
-        map.on("layeradd", function () {
-            resetLabels([layer_Radioelectricelements_4]);
-        });
-        map.on("layerremove", function () {
-            resetLabels([layer_Radioelectricelements_4]);
-        });
-    </script>
-</body>
+    setBounds();
+</script>
 
 </html>
