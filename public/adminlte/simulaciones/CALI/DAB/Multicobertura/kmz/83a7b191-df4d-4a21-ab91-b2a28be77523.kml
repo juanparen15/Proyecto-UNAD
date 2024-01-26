@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Cali -DAB - Cobertura multitransmisor 26 canales</name>
+    <description><![CDATA[]]></description>
+    <open>1</open>
+    <Style id="PointStyle1">
+      <IconStyle>
+        <color>feffffff</color>
+        <Icon>
+          <href>https://www.xirio-online.com/web/images/radio/tx_viewer.png</href>
+        </Icon>
+        <hotSpot x="12" y="37" xunits="pixels" yunits="insetPixels" />
+      </IconStyle>
+      <LabelStyle>
+        <color>00ffffff</color>
+      </LabelStyle>
+    </Style>
+    <Style id="PointStyle2">
+      <IconStyle>
+        <color>feffffff</color>
+        <Icon>
+          <href>https://www.xirio-online.com/web/images/radio/rx_viewer.png</href>
+        </Icon>
+        <hotSpot x="12" y="37" xunits="pixels" yunits="insetPixels" />
+      </IconStyle>
+      <LabelStyle>
+        <color>00ffffff</color>
+      </LabelStyle>
+    </Style>
+    <Style id="PointStyle3">
+      <IconStyle>
+        <color>feffffff</color>
+        <Icon>
+          <href>https://www.xirio-online.com/web/images/radio/mirror_viewer.png</href>
+        </Icon>
+        <hotSpot x="12" y="37" xunits="pixels" yunits="insetPixels" />
+      </IconStyle>
+      <LabelStyle>
+        <color>00ffffff</color>
+      </LabelStyle>
+    </Style>
+    <Folder>
+      <name>Elementos radioeléctricos</name>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 1 (175.536 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.4718416666667,3.39564444444444,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 10 (189.36 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.565375,3.43235277777778,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 11 (190.896 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.56475,3.43591666666667,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 12 (192.432 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.5569194444444,3.43304444444444,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 13 (193.968 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.5644444444444,3.43583333333333,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 14 (195.504 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.4718416666667,3.39592222222222,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 15 (197.04 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.4718416666667,3.3962,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 16 (198.576 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.4721194444444,3.39564444444444,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 17 (200.112 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.4703333333333,3.31466666666667,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 18 (201.648 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.4723972222222,3.39564444444444,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 19 (203.184 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.4723972222222,3.39592222222222,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 2 (177,072 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.4823888888889,3.36052777777778,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 20 (204.72 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.5458222222222,3.46691111111111,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 21 (206.256 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.5656388888889,3.43330555555556,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 22 (207.792 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.5658222222222,3.43255833333333,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 23 (209.328 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.5664166666667,3.43230555555556,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 24 (210.864 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.5609916666667,3.37961388888889,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 25 (212.4 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.5662722222222,3.43330833333333,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 26 (213.936 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.4828638888889,3.41433611111111,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 3 (178.608 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.4823888888889,3.36080555555556,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 4 (180.144 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.5129444444444,3.35738888888889,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 5 (181.68 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.494825,3.42311111111111,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 6 (183.216 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.4669444444445,3.38388888888889,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 7 (184.752 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.5129444444444,3.35822222222222,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 8 (186.288 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.565375,3.43318333333333,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maxiva Op de GatesAir - Canal 9 (187.824 MHz)</name>
+        <description><![CDATA[<img src = "images\radio\tx_viewer.png">]]></description>
+        <styleUrl>#PointStyle1</styleUrl>
+        <Point>
+          <extrude>1</extrude>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>-76.5662694444444,3.43247222222222,0</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Resultado multicobertura</name>
+      <NetworkLink>
+        <name>Nivel de Señal</name>
+        <description><![CDATA[<table cellpadding="0" cellspacing="0" ><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ffffff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-∞ , -120) dBu (Sin señal)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ff0000;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-120 , -100) dBu (Señal baja)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e1f622;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-100 , -90) dBu (Señal Intermedia)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#009600;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-90 , ∞) dBu (Señal excelente)</div></td></tr></table>]]></description>
+        <visibility>1</visibility>
+        <Style>
+          <ListStyle>
+            <listItemType>checkHideChildren</listItemType>
+          </ListStyle>
+        </Style>
+        <Link>
+          <href>https://www.xirio-online.com/web/KmlServer.aspx?resId=83a7b191-df4d-4a21-ab91-b2a28be77523&amp;layer=0&amp;type=index</href>
+          <viewRefreshMode>onRegion</viewRefreshMode>
+        </Link>
+      </NetworkLink>
+      <NetworkLink>
+        <name>Mejor servidor</name>
+        <description><![CDATA[<table cellpadding="0" cellspacing="0"><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#0000ff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 1 (175.536 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#00ff00;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 10 (189.36 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ff8000;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 11 (190.896 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ad5449;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 12 (192.432 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#d0629d;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 13 (193.968 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#73bdfd;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 14 (195.504 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#8bfc57;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 15 (197.04 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#54146e;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 16 (198.576 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#3e4aa8;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 17 (200.112 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#844e25;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 18 (201.648 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#996f51;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 19 (203.184 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e8d446;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 2 (177,072 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#f49918;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 20 (204.72 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#516730;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 21 (206.256 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e73804;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 22 (207.792 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e69356;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 23 (209.328 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#01294e;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 24 (210.864 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#d564df;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 25 (212.4 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#8bd487;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 26 (213.936 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#517f9b;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 3 (178.608 MHz)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#7aec34;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir - Canal 4 (180.144 MHz)</div></td></tr><tr><td></td><td><div style="margin-left: 10px;" class="info_txt04">[...]</div></td></tr></table>]]></description>
+        <visibility>1</visibility>
+        <Style>
+          <ListStyle>
+            <listItemType>checkHideChildren</listItemType>
+          </ListStyle>
+        </Style>
+        <Link>
+          <href>https://www.xirio-online.com/web/KmlServer.aspx?resId=83a7b191-df4d-4a21-ab91-b2a28be77523&amp;layer=1&amp;type=index</href>
+          <viewRefreshMode>onRegion</viewRefreshMode>
+        </Link>
+      </NetworkLink>
+      <NetworkLink>
+        <name>Solapamiento</name>
+        <description><![CDATA[<table cellpadding="0" cellspacing="0" ><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ffffff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-∞ , 1) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#63be7b;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[1 , 20) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#5ab6cc;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[20 , 22) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#6150da;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[22 , 24) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e844e0;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[24 , 26) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#f6363a;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[26 , ∞) </div></td></tr></table>]]></description>
+        <visibility>1</visibility>
+        <Style>
+          <ListStyle>
+            <listItemType>checkHideChildren</listItemType>
+          </ListStyle>
+        </Style>
+        <Link>
+          <href>https://www.xirio-online.com/web/KmlServer.aspx?resId=83a7b191-df4d-4a21-ab91-b2a28be77523&amp;layer=2&amp;type=index</href>
+          <viewRefreshMode>onRegion</viewRefreshMode>
+        </Link>
+      </NetworkLink>
+    </Folder>
+  </Document>
+</kml>
