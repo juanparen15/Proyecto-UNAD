@@ -72,9 +72,9 @@
                             @endif
 
                             {{-- @can('planadquisiciones.export') --}}
-                            <a href="{{ route('planadquisiciones.export') }}" class="btn btn-success">
+                            {{-- <a href="{{ route('planadquisiciones.export') }}" class="btn btn-success">
                                 <i class="far fa-file-excel"></i> <i class="fas fa-file-export"></i> Exportar Todo
-                            </a>
+                            </a> --}}
                             {{-- @endcan --}}
                         </div>
 

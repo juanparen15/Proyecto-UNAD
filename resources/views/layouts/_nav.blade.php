@@ -151,112 +151,7 @@
                             </p>
                         </a>
                     </li>
-                    {{-- 
-                    <li class="nav-item">
-                        <a href="{{ route('admin.fuentes.index') }}"
-                            class="nav-link 
-            {!! active_class(route('admin.fuentes.index')) !!}
-            ">
-                            <i class="nav-icon fas fa-location-arrow"></i>
-                            <p>
-                                Soporte Documental
-                            </p>
-                        </a>
-                    </li> --}}
 
-                    <!-- <li class="nav-item">
-            {{-- <a href="{{ route('admin.meses.index') }}" class="nav-link 
-            {!! active_class(route('admin.meses.index')) !!} --}}
-            ">
-              <i class="nav-icon far fa-calendar-alt"></i>
-              <p>
-                Meses
-              </p>
-            </a>
-          </li>   -->
-
-
-
-
-                    {{-- 
-          <li class="nav-item">
-            <a href="{{route('admin.tipoadquicsiciones.index')}}" class="nav-link 
-            {!! active_class(route('admin.tipoadquicsiciones.index')) !!}
-            ">
-              <i class="nav-icon fas fa-bars"></i>
-              <p>
-                OTROS
-              </p>
-            </a>
-          </li> --}}
-
-                    {{-- <li class="nav-item">
-            <a href="{{route('admin.tipoadquicsiciones55.index')}}" class="nav-link 
-            {!! active_class(route('admin.tipoadquicsiciones55.index')) !!}
-            ">
-              <i class="nav-icon fas fa-cog"></i>
-              <p>
-                Tipo de Adquisiciones
-              </p>
-            </a>
-          </li>  --}}
-
-                    {{-- <li class="nav-item">
-                        <a href="{{ route('admin.tipoprioridades.index') }}"
-                            class="nav-link 
-            {!! active_class(route('admin.tipoprioridades.index')) !!}
-            ">
-                            <i class="nav-icon fas fa-cogs"></i>
-                            <p>
-                                Frecuencia de Consulta
-                            </p>
-                        </a>
-                    </li> --}}
-
-                    <!-- <li class="nav-item">
-            {{-- <a href="{{ route('admin.tipoprocesos.index') }}" class="nav-link  --}}
-            {{-- {!! active_class(route('admin.tipoprocesos.index')) !!} --}}
-            ">
-              <i class="nav-icon fas fa-list-alt"></i>
-              <p>
-                Subserie Documental
-              </p>
-            </a>
-          </li>  -->
-
-                    <!-- <li class="nav-item">
-            {{-- <a href="{{ route('tipozonas.index') }}" class="nav-link 
-            {!! active_class(route('tipozonas.index')) !!} --}}
-            ">
-              <i class="nav-icon far fa-map"></i>
-              <p>
-                Tipo de Zonas
-              </p>
-            </a>
-          </li>  -->
-
-                    {{--  <li class="nav-item">
-            <a href="{{route('admin.vigenfuturas.index')}}" class="nav-link 
-            {!! active_class(route('admin.vigenfuturas.index')) !!}
-            ">
-              <i class="nav-icon far fa-calendar-check"></i>
-              <p>
-                Vigencia fututa
-              </p>
-            </a>
-          </li>   --}}
-
-                    {{-- <li class="nav-item">
-                        <a href="{{ route('admin.proyectos.index') }}"
-                            class="nav-link 
-            {!! active_class(route('admin.proyectos.index')) !!}
-            ">
-                            <i class="nav-icon fas fa-poll"></i>
-                            <p>
-                                Codigo de Dependencia
-                            </p>
-                        </a>
-                    </li> --}}
                     {{-- @if (auth()->user()->hasRole('Admin')) --}}
                     <li class="nav-item">
                         <a href="{{ route('planadquisiciones.create') }}"
@@ -295,6 +190,17 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ route('estadistica') }}"
+                            class="nav-link 
+            {!! active_class(route('estadistica')) !!}
+            ">
+                            <i class="nav-icon far fa-calendar-check"></i>
+                            <p>
+                                ESTADISTICA
+                            </p>
+                        </a>
+                    </li>
+                    {{-- <li class="nav-item">
                         <a href="{{ route('importar_datos') }}"
                             class="nav-link 
             {!! active_class(route('importar_datos')) !!}
@@ -304,7 +210,7 @@
                                 IMPORTAR DATOS
                             </p>
                         </a>
-                    </li>
+                    </li> --}}
                 @endif
             </ul>
         </nav>

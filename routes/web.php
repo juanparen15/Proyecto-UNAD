@@ -21,9 +21,9 @@ Route::get('/', function () {
 Route::get('/vista', function () {
     return view('vista');
 });
-Route::resource('empresa', 'EmpresaController')->only([
-    'index', 'edit', 'update'
-])->names('empresa');
+// Route::resource('empresa', 'EmpresaController')->only([
+//     'index',
+// ])->names('empresa');
 Route::resource('areas', 'AreaController')->except([
     'show',
 ])->names('admin.areas');
@@ -48,6 +48,7 @@ Route::resource('ciudades', 'CiudadController')->except([
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/estadistica', 'EmpresaController@index')->name('estadistica');
 // Route::get('obtener_estandares', 'AjaxController@obtener_estandares')->name('obtener_estandares');
 // Route::get('obtener_tipoEmisoras', 'AjaxController@obtener_tipoEmisoras')->name('obtener_tipoEmisoras');
 // Route::get('obtener_emisora', 'AjaxController@obtener_emisora')->name('obtener_emisora');
