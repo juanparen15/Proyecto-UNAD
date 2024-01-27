@@ -1,86 +1,51 @@
-@extends('layouts.login')
-@section('title', 'Login CRC-UNAD')
-@section('content')
-    <div class="card card-outline card-primary">
-        <div class="card-header text-center">
-            <a href="{{ route('welcome') }}" class="h2"><b>CRC-UNAD
-                    <script type="text/javascript">
-                        document.write(new Date().getFullYear());
-                    </script>
-                </b></a>
-        </div>
-        <div class="card-body">
-            <p class="login-box-msg">Iniciar sesión</p>
+@extends('layouts.admin')
+@section('title', 'Panel administrador')
+@section('style')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css"
+        integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
-            <form action="{{ route('login') }}" method="post">
-                @csrf
-                <div class="input-group mb-3">
-                    <input type="email" name="email" value="{{ old('email') }}"
-                        class="form-control @error('email') is-invalid @enderror" placeholder="Correo electrónico" required
-                        autocomplete="email" autofocus>
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
-                        </div>
-                    </div>
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-                <div class="input-group mb-3">
-                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
-                        placeholder="Contraseña" required required autocomplete="current-password">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                    @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-                <div class="row">
-                    {{-- <div class="col-6">
-                        <div class="icheck-primary">
-                            <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                            <label for="remember">
-                                Recordarme
-                            </label>
-                        </div> --}}
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-6">
-                        <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
-                    </div>
-                    <!-- /.col -->
-                    <p class="mb-0 text-right">
-                      @if (Route::has('password.request'))
-                          <a href="{{ route('password.request') }}">Olvidé mi contraseña</a>
-                      @endif
-                  </p>
-                  <p class="mb-0 text-right">
-                      <a href="{{ route('register') }}" class="text-center">Crear cuenta nueva</a>
-                  </p>
-                </div>
-                
-            </form>
-
-            {{-- <div class="social-auth-links text-center mt-2 mb-3">
-                <a href="#" class="btn btn-block btn-primary">
-                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                </a>
-                <a href="#" class="btn btn-block btn-danger">
-                    <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-                </a>
-            </div> --}}
-            <!-- /.social-auth-links -->
+    {!! Html::style('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') !!}
+    <!-- DataTables -->
+    {!! Html::style('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') !!}
+    {!! Html::style('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') !!}
+    {!! Html::style('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') !!}
 
 
-        </div>
-        <!-- /.card-body -->
-    </div>
 @endsection
+@section('content')
+    <div class="content-wrapper bg-black ">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Panel Administrador</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item active">Inicio</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <section class="col-lg-12 connectedSortable">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="fas fa-chart-pie mr-1"></i>
+                                    CRC-UNAD
+                                </h3>
+                            </div>
+                        </div>
+                </div>
+                </section>
+                <center><img style="width: 50%; height: 100%;" src="{{ asset('homeland/images/Logo_de_la_UNAD.png') }}">
+                </center>
+            </div>
+        </div>
+    @endsection
