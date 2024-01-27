@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.principal')
 @section('title', 'Panel administrador')
 @section('style')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css"
@@ -20,13 +20,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Panel Administrador</h1>
+                        {{-- <h1 class="m-0">Panel Administrador</h1> --}}
                     </div>
-                    <div class="col-sm-6">
+                    {{-- <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item active">Inicio</li>
                         </ol>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -34,18 +34,18 @@
             <div class="container-fluid">
                 <div class="row">
                     <section class="col-lg-12 connectedSortable">
-                        <div class="card">
-                            <div class="card-header">
+                        {{-- <div class="card"> --}}
+                            {{-- <div class="card-header">
                                 <h3 class="card-title">
                                     <i class="fas fa-chart-pie mr-1"></i>
                                     CRC-UNAD
                                 </h3>
-                            </div>
-                        </div>
+                            </div> --}}
+                        {{-- </div> --}}
                 </div>
                 </section>
-                <center><img style="width: 50%; height: 100%;" src="{{ asset('homeland/images/Logo_de_la_UNAD.png') }}">
-                </center>
             </div>
         </div>
+        <center><img style="width: 62%; height: 100%;" src="{{ asset('homeland/images/Logo_de_la_UNAD.png') }}">
+        </center>
     @endsection

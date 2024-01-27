@@ -38,15 +38,15 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css" integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
+    
 </head>
-
 <body>
 
     <div class="site-loader"></div>
 
     <div class="site-wrap">
 
-        <div class="site-mobile-menu">
+        <div class="site-mobile-menu bg-black">
             <div class="site-mobile-menu-header">
                 <div class="site-mobile-menu-close mt-3">
                     <span class="icon-close2 js-menu-toggle"></span>
@@ -70,12 +70,12 @@
                                         class="icon-menu h3"></span></a></div>
 
                             <ul class="site-menu js-clone-nav d-none d-lg-block">
-                                <li><a class="btn btn-outline-primary" style="padding:5px"
-                                        href="{{ route('welcome') }}">Inicio</a></li>
+                                {{-- <li><a class="btn btn-primary" style="padding:5px"
+                                        href="{{ route('welcome') }}">Inicio</a></li> --}}
 
                                 @if (Route::has('login'))
                                     @auth
-                                        <li><a href="{{ url('/home') }}">Mi Cuenta</a></li>
+                                        <li><a class="btn btn-primary" style="padding:5px" href="{{ url('/home') }}">Mi Cuenta</a></li>
                                     @else
                                         <li><a class="btn btn-primary" style="padding:5px"
                                                 href="{{ route('login') }}">Iniciar Sesión</a></li>
