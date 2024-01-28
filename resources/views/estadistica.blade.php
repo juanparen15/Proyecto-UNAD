@@ -390,6 +390,19 @@
                     renderTo: 'column1',
                     type: 'column',
                 },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
+                },
                 xAxis: {
                     categories: ['{!! $encabezado3 !!}', '{!! $encabezado6 !!}', '{!! $encabezado9 !!}'],
                 },
@@ -469,6 +482,19 @@
                     renderTo: 'column2',
                     type: 'column',
                 },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
+                },
                 xAxis: {
                     categories: ['{!! $encabezado12 !!}', '{!! $encabezado15 !!}',
                         '{!! $encabezado18 !!}'
@@ -546,11 +572,21 @@
                 }]
             });
             Highcharts.chart('containerLine', {
-                // chart: {
-                //     type: 'spline'
-                // },
                 credits: {
                     enabled: false
+                },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
                 },
                 title: {
                     style: {
@@ -652,6 +688,19 @@
                 credits: {
                     enabled: false
                 },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
+                },
                 title: {
                     style: {
                         color: '#E0E0E3',
@@ -746,94 +795,30 @@
                     }]
                 }
             });
-            // Highcharts.chart('containerBox', {
-
-
-            //     chart: {
-            //         type: 'boxplot'
-            //     },
-            //     credits: {
-            //         enabled: false
-            //     },
-            //     title: {
-            //         text: 'MULTICOBERTURA BOGOTÁ',
-            //         // getColumnNameByIndex(0),
-            //         // 'BOGOTÁ'
-            //     },
-
-            //     legend: {
-            //         enabled: false
-            //     },
-            //     // accessibility: {
-            //     //     landmarkVerbosity: 'one'
-            //     // },
-
-            //     xAxis: {
-            //         // crosshair: {
-            //         //     enabled: true
-            //         // },
-            //         categories: ['{!! $encabezado3 !!}', '{!! $encabezado6 !!}',
-            //             '{!! $encabezado9 !!}'
-            //         ],
-            //         title: {
-            //             text: 'Potencias'
-            //         }
-            //     },
-
-            //     yAxis: {
-            //         tooltip: {
-            //             followPointer: true
-            //         },
-            //         title: {
-            //             text: 'Observaciones'
-            //         },
-            //         in: 0, // Establecer el valor mínimo en el eje Y
-            //         // max: 200,
-            //         plotLines: [{
-            //             color: 'red',
-            //             label: {
-            //                 align: 'center',
-            //                 style: {
-            //                     color: 'yellow'
-            //                 }
-            //             }
-            //         }]
-            //     },
-            //     series: [{
-            //             type: 'boxplot',
-
-            //             stickyTracking: true,
-            //             cursor: 'pointer',
-            //             color: 'yellow',
-            //             name: 'Observaciones',
-            //             data: [
-            //                 [
-            //                     @foreach ($potencias as $pot1)
-            //                         {
-            //                             name: '{{ $pot1->potenciaAM }}',
-            //                         },
-            //                         {{ $pot1->pot1 }},
-            //                     @endforeach,
-            //                 ]
-            //             ],
-
-            //             tooltip: {
-            //                 headerFormat: '<em>{point.key}</em><br/>'
-            //             }
-            //         }
-            //     ]
-            // });
             Highcharts.chart('containerBox', {
 
 
                 chart: {
                     type: 'boxplot'
                 },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
+                },
                 credits: {
                     enabled: false
                 },
                 title: {
-                    text: 'MULTICOBERTURA BOGOTÁ',
+                    text: 'VARIABILIDAD DE MULTICOBERTURA BOGOTÁ',
                     // getColumnNameByIndex(0),
                     // 'BOGOTÁ'
                 },
@@ -865,7 +850,7 @@
                         text: 'Observaciones'
                     },
                     in: 0, // Establecer el valor mínimo en el eje Y
-                    // max: 200,
+                    max: 200,
                     plotLines: [{
                         color: 'red',
                         label: {
@@ -916,16 +901,27 @@
                 }]
             });
             Highcharts.chart('containerBox2', {
-
-
                 chart: {
                     type: 'boxplot'
+                },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
                 },
                 credits: {
                     enabled: false
                 },
                 title: {
-                    text: 'INTERFERENCIA BOGOTÁ',
+                    text: 'VARIABILIDAD DE INTERFERENCIA BOGOTÁ',
                     // getColumnNameByIndex(0),
                     // 'BOGOTÁ'
                 },
@@ -973,60 +969,43 @@
                 },
 
                 series: [{
-                        type: 'boxplot',
-                        medianWidth: 3,
-                        stickyTracking: true,
-                        cursor: 'pointer',
-                        colorByPoint: true,
-                        name: 'Observaciones',
-                        data: [
-                            [
-                                @foreach ($potencias as $pot4)
-                                    {
-                                        name: '{{ $pot4->SNRAMHibrido }}',
-                                    },
-                                    {{ $pot4->pot4 }},
-                                @endforeach
-                            ],
-                            [
-                                @foreach ($potencias as $pot5)
-                                    {
-                                        name: '{{ $pot5->SNRFMHibrido }}',
-                                    },
-                                    {{ $pot5->pot5 }},
-                                @endforeach
-                            ],
-                            [
-                                @foreach ($potencias as $pot6)
-                                    {
-                                        name: '{{ $pot6->SNRDAB }}',
-                                    },
-                                    {{ $pot6->pot6 }},
-                                @endforeach
-                            ],
+                    type: 'boxplot',
+                    medianWidth: 3,
+                    stickyTracking: true,
+                    cursor: 'pointer',
+                    colorByPoint: true,
+                    name: 'Observaciones',
+                    data: [
+                        [
+                            @foreach ($potencias as $pot4)
+                                {
+                                    name: '{{ $pot4->SNRAMHibrido }}',
+                                },
+                                {{ $pot4->pot4 }},
+                            @endforeach
                         ],
+                        [
+                            @foreach ($potencias as $pot5)
+                                {
+                                    name: '{{ $pot5->SNRFMHibrido }}',
+                                },
+                                {{ $pot5->pot5 }},
+                            @endforeach
+                        ],
+                        [
+                            @foreach ($potencias as $pot6)
+                                {
+                                    name: '{{ $pot6->SNRDAB }}',
+                                },
+                                {{ $pot6->pot6 }},
+                            @endforeach
+                        ],
+                    ],
 
-                        tooltip: {
-                            headerFormat: '<em>Potencia {point.key}</em><br/>'
-                        }
-                    },
-                    {
-                        name: 'Outliers',
-                        color: Highcharts.getOptions().colors[0],
-                        type: 'scatter',
-                        data: [ // x, y positions where 0 is the first category
-                            // [0, 644],
-                        ],
-                        marker: {
-                            fillColor: 'white',
-                            lineWidth: 1,
-                            lineColor: Highcharts.getOptions().colors[0]
-                        },
-                        tooltip: {
-                            pointFormat: 'Observacion: {point.y}'
-                        }
+                    tooltip: {
+                        headerFormat: '<em>Potencia {point.key}</em><br/>'
                     }
-                ]
+                }, ]
 
             });
         </script>
@@ -1036,6 +1015,19 @@
                 chart: {
                     renderTo: 'columnBuca',
                     type: 'column',
+                },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
                 },
                 xAxis: {
                     categories: ['{!! $encabezadoBuca3 !!}', '{!! $encabezadoBuca6 !!}', '{!! $encabezadoBuca9 !!}'],
@@ -1112,6 +1104,19 @@
                 chart: {
                     renderTo: 'columnBuca2',
                     type: 'column',
+                },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
                 },
                 xAxis: {
                     categories: ['{!! $encabezadoBuca12 !!}', '{!! $encabezadoBuca15 !!}', '{!! $encabezadoBuca18 !!}'],
@@ -1191,6 +1196,19 @@
                 // },
                 credits: {
                     enabled: false
+                },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
                 },
                 title: {
                     style: {
@@ -1292,6 +1310,19 @@
                 credits: {
                     enabled: false
                 },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
+                },
                 title: {
                     style: {
                         color: '#E0E0E3',
@@ -1392,11 +1423,24 @@
                 chart: {
                     type: 'boxplot'
                 },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
+                },
                 credits: {
                     enabled: false
                 },
                 title: {
-                    text: 'MULTICOBERTURA BUCARAMANGA',
+                    text: 'VARIABILIDAD DE MULTICOBERTURA BUCARAMANGA',
                 },
 
                 legend: {
@@ -1481,11 +1525,24 @@
                 chart: {
                     type: 'boxplot'
                 },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
+                },
                 credits: {
                     enabled: false
                 },
                 title: {
-                    text: 'INTERFERENCIA BUCARAMANGA',
+                    text: 'VARIABILIDAD DE INTERFERENCIA BUCARAMANGA',
                     // getColumnNameByIndex(0),
                     // 'BOGOTÁ'
                 },
@@ -1571,22 +1628,6 @@
                         tooltip: {
                             headerFormat: '<em>Potencia {point.key}</em><br/>'
                         }
-                    },
-                    {
-                        name: 'Outliers',
-                        color: Highcharts.getOptions().colors[0],
-                        type: 'scatter',
-                        data: [ // x, y positions where 0 is the first category
-                            // [0, 644],
-                        ],
-                        marker: {
-                            fillColor: 'white',
-                            lineWidth: 1,
-                            lineColor: Highcharts.getOptions().colors[0]
-                        },
-                        tooltip: {
-                            pointFormat: 'Observacion: {point.y}'
-                        }
                     }
                 ]
 
@@ -1598,13 +1639,19 @@
                 chart: {
                     renderTo: 'columnCali',
                     type: 'column',
-                    options3d: {
-                        enabled: true,
-                        alpha: 15,
-                        beta: 15,
-                        depth: 50,
-                        viewDistance: 25
-                    }
+                },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
                 },
                 xAxis: {
                     categories: ['{!! $encabezadoCali3 !!}', '{!! $encabezadoCali6 !!}', '{!! $encabezadoCali9 !!}'],
@@ -1682,13 +1729,19 @@
                 chart: {
                     renderTo: 'columnCali2',
                     type: 'column',
-                    options3d: {
-                        enabled: true,
-                        alpha: 15,
-                        beta: 15,
-                        depth: 50,
-                        viewDistance: 25
-                    }
+                },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
                 },
                 xAxis: {
                     categories: ['{!! $encabezadoCali12 !!}', '{!! $encabezadoCali15 !!}', '{!! $encabezadoCali18 !!}'],
@@ -1768,6 +1821,19 @@
                 // },
                 credits: {
                     enabled: false
+                },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
                 },
                 title: {
                     style: {
@@ -1869,6 +1935,19 @@
                 credits: {
                     enabled: false
                 },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
+                },
                 title: {
                     style: {
                         color: '#E0E0E3',
@@ -1969,11 +2048,24 @@
                 chart: {
                     type: 'boxplot'
                 },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
+                },
                 credits: {
                     enabled: false
                 },
                 title: {
-                    text: 'MULTICOBERTURA CALI',
+                    text: 'VARIABILIDAD DE MULTICOBERTURA CALI',
                     // getColumnNameByIndex(0),
                     // 'BOGOTÁ'
                 },
@@ -2064,11 +2156,24 @@
                 chart: {
                     type: 'boxplot'
                 },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
+                },
                 credits: {
                     enabled: false
                 },
                 title: {
-                    text: 'INTERFERENCIA CALI',
+                    text: 'VARIABILIDAD DE INTERFERENCIA CALI',
                     // getColumnNameByIndex(0),
                     // 'BOGOTÁ'
                 },
@@ -2152,22 +2257,6 @@
                         tooltip: {
                             headerFormat: '<em>Potencia {point.key}</em><br/>'
                         }
-                    },
-                    {
-                        name: 'Outliers',
-                        color: Highcharts.getOptions().colors[0],
-                        type: 'scatter',
-                        data: [ // x, y positions where 0 is the first category
-                            // [0, 644],
-                        ],
-                        marker: {
-                            fillColor: 'white',
-                            lineWidth: 1,
-                            lineColor: Highcharts.getOptions().colors[0]
-                        },
-                        tooltip: {
-                            pointFormat: 'Observacion: {point.y}'
-                        }
                     }
                 ]
 
@@ -2179,13 +2268,19 @@
                 chart: {
                     renderTo: 'columnMede',
                     type: 'column',
-                    options3d: {
-                        enabled: true,
-                        alpha: 15,
-                        beta: 15,
-                        depth: 50,
-                        viewDistance: 25
-                    }
+                },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
                 },
                 xAxis: {
                     categories: ['{!! $encabezadoMede3 !!}', '{!! $encabezadoMede6 !!}', '{!! $encabezadoMede9 !!}'],
@@ -2263,13 +2358,19 @@
                 chart: {
                     renderTo: 'columnMede2',
                     type: 'column',
-                    options3d: {
-                        enabled: true,
-                        alpha: 15,
-                        beta: 15,
-                        depth: 50,
-                        viewDistance: 25
-                    }
+                },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
                 },
                 xAxis: {
                     categories: ['{!! $encabezadoMede12 !!}', '{!! $encabezadoMede15 !!}', '{!! $encabezadoMede18 !!}'],
@@ -2349,6 +2450,19 @@
                 // },
                 credits: {
                     enabled: false
+                },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
                 },
                 title: {
                     style: {
@@ -2450,6 +2564,19 @@
                 credits: {
                     enabled: false
                 },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
+                },
                 title: {
                     style: {
                         color: '#E0E0E3',
@@ -2550,11 +2677,24 @@
                 chart: {
                     type: 'boxplot'
                 },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
+                },
                 credits: {
                     enabled: false
                 },
                 title: {
-                    text: 'MULTICOBERTURA MEDELLIN',
+                    text: 'VARIABILIDAD DE MULTICOBERTURA MEDELLIN',
                     // getColumnNameByIndex(0),
                     // 'BOGOTÁ'
                 },
@@ -2638,22 +2778,6 @@
                         tooltip: {
                             headerFormat: '<em>Potencia {point.key}</em><br/>'
                         }
-                    },
-                    {
-                        name: 'Outliers',
-                        color: Highcharts.getOptions().colors[0],
-                        type: 'scatter',
-                        data: [ // x, y positions where 0 is the first category
-                            // [0, 644],
-                        ],
-                        marker: {
-                            fillColor: 'white',
-                            lineWidth: 1,
-                            lineColor: Highcharts.getOptions().colors[0]
-                        },
-                        tooltip: {
-                            pointFormat: 'Observacion: {point.y}'
-                        }
                     }
                 ]
 
@@ -2664,11 +2788,24 @@
                 chart: {
                     type: 'boxplot'
                 },
+                lang: {
+                    downloadCSV: "Descargar CSV",
+                    downloadXLS: "Descargar XLS",
+                    viewFullscreen: "Ver en pantalla completa",
+                    exitFullscreen: "Salir de pantalla completa",
+                    printChart: "Imprimir Grafica",
+                    downloadJPEG: "Descargar JPG",
+                    downloadPDF: "Descargar PDF",
+                    downloadPNG: "Descargar PNG",
+                    downloadSVG: "Descargar SVG",
+                    hideData: "Ocultar Datos",
+                    viewData: "Mostrar Datos"
+                },
                 credits: {
                     enabled: false
                 },
                 title: {
-                    text: 'INTERFERENCIA MEDELLIN',
+                    text: 'VARIABILIDAD DE INTERFERENCIA MEDELLIN',
                 },
 
                 legend: {
@@ -2749,22 +2886,6 @@
 
                         tooltip: {
                             headerFormat: '<em>Potencia {point.key}</em><br/>'
-                        }
-                    },
-                    {
-                        name: 'Outliers',
-                        color: Highcharts.getOptions().colors[0],
-                        type: 'scatter',
-                        data: [ // x, y positions where 0 is the first category
-                            // [0, 644],
-                        ],
-                        marker: {
-                            fillColor: 'white',
-                            lineWidth: 1,
-                            lineColor: Highcharts.getOptions().colors[0]
-                        },
-                        tooltip: {
-                            pointFormat: 'Observacion: {point.y}'
                         }
                     }
                 ]
