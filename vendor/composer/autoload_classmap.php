@@ -101,6 +101,7 @@ return array(
     'App\\Imports\\MultiplePestanasImport' => $baseDir . '/app/Imports/MultiplePestanasImport.php',
     'App\\Imports\\PotenciaImport' => $baseDir . '/app/Imports/PotenciaImport.php',
     'App\\Imports\\SegmentoImport' => $baseDir . '/app/Imports/SegmentoImport.php',
+    'App\\Mail\\TestMail' => $baseDir . '/app/Mail/TestMail.php',
     'App\\Notifications\\VerifyEmailNotification' => $baseDir . '/app/Notifications/VerifyEmailNotification.php',
     'App\\Planadquisicione' => $baseDir . '/app/Planadquisicione.php',
     'App\\Potencia' => $baseDir . '/app/Potencia.php',

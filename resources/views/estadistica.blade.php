@@ -345,10 +345,41 @@
         </script>
 
         @php
-            $encabezado1 = $encabezados[2] ?? 'Titulo Desconocido';
-            $encabezado2 = $encabezados[3] ?? 'Titulo Desconocido';
-            $encabezado3 = $encabezados[4] ?? 'Titulo Desconocido';
-            $encabezado4 = $encabezados[5] ?? 'Titulo Desconocido';
+
+            $encabezado3 = $encabezados[2] ?? 'Titulo Desconocido';
+            $encabezado6 = $encabezados[5] ?? 'Titulo Desconocido';
+            $encabezado9 = $encabezados[8] ?? 'Titulo Desconocido';
+            $encabezado12 = $encabezados[11] ?? 'Titulo Desconocido';
+            $encabezado15 = $encabezados[14] ?? 'Titulo Desconocido';
+            $encabezado18 = $encabezados[17] ?? 'Titulo Desconocido';
+
+            //Bucaramanga
+
+            $encabezadoBuca3 = $encabezadosBuca[2] ?? 'Titulo Desconocido';
+            $encabezadoBuca6 = $encabezadosBuca[5] ?? 'Titulo Desconocido';
+            $encabezadoBuca9 = $encabezadosBuca[8] ?? 'Titulo Desconocido';
+            $encabezadoBuca12 = $encabezadosBuca[11] ?? 'Titulo Desconocido';
+            $encabezadoBuca15 = $encabezadosBuca[14] ?? 'Titulo Desconocido';
+            $encabezadoBuca18 = $encabezadosBuca[17] ?? 'Titulo Desconocido';
+
+            //Medellin
+
+            $encabezadoMede3 = $encabezadosMede[2] ?? 'Titulo Desconocido';
+            $encabezadoMede6 = $encabezadosMede[5] ?? 'Titulo Desconocido';
+            $encabezadoMede9 = $encabezadosMede[8] ?? 'Titulo Desconocido';
+            $encabezadoMede12 = $encabezadosMede[11] ?? 'Titulo Desconocido';
+            $encabezadoMede15 = $encabezadosMede[14] ?? 'Titulo Desconocido';
+            $encabezadoMede18 = $encabezadosMede[17] ?? 'Titulo Desconocido';
+
+            //Cali
+
+            $encabezadoCali3 = $encabezadosCali[2] ?? 'Titulo Desconocido';
+            $encabezadoCali6 = $encabezadosCali[5] ?? 'Titulo Desconocido';
+            $encabezadoCali9 = $encabezadosCali[8] ?? 'Titulo Desconocido';
+            $encabezadoCali12 = $encabezadosCali[11] ?? 'Titulo Desconocido';
+            $encabezadoCali15 = $encabezadosCali[14] ?? 'Titulo Desconocido';
+            $encabezadoCali18 = $encabezadosCali[17] ?? 'Titulo Desconocido';
+
         @endphp
 
 
@@ -358,21 +389,16 @@
                 chart: {
                     renderTo: 'column1',
                     type: 'column',
-                    options3d: {
-                        enabled: true,
-                        alpha: 15,
-                        beta: 15,
-                        depth: 50,
-                        viewDistance: 25
-                    }
                 },
                 xAxis: {
-                    categories: ['{!! $encabezado1 !!}', '{!! $encabezado2 !!}', '{!! $encabezado3 !!}'],
+                    categories: ['{!! $encabezado3 !!}', '{!! $encabezado6 !!}', '{!! $encabezado9 !!}'],
                 },
                 yAxis: {
                     title: {
-                        enabled: false
-                    }
+                        text: 'Potencias',
+                    },
+                    min: 0, // Establecer el valor mínimo en el eje Y
+                    // max: 200, // Establecer el valor máximo en el eje Y
                 },
                 credits: {
                     enabled: false
@@ -382,8 +408,8 @@
                     // pointFormat: 'Cars sold: {point.y}'
                 },
                 title: {
-                    // text: 'Sold passenger cars in Norway by brand, January 2021',
-                    align: 'left'
+                    text: 'PROMEDIO MULTICOBERTURA BOGOTÁ',
+                    align: 'center'
                 },
                 subtitle: {
                     // text: 'Source: ' +
@@ -392,62 +418,68 @@
                     align: 'left'
                 },
                 legend: {
-                    enabled: true
+                    enabled: false
                 },
                 plotOptions: {
-                    column: {
-                        depth: 25
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.1f}'
+                        }
                     }
                 },
                 series: [{
-                        name: '{!! $encabezado1 !!}',
-                        data: [
+                    colorByPoint: true,
+                    name: 'Promedio',
+                    data: [
+                        [
+
                             @foreach ($promPotencias as $promedioPot1)
+                                {
+                                    name: '{{ $promedioPot1->potenciaAM }}',
+                                },
                                 {{ $promedioPot1->promedioPot1 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                    {
-                        name: '{!! $encabezado2 !!}',
-                        data: [
+                        [
+
                             @foreach ($promPotencias as $promedioPot2)
+                                {
+                                    name: '{!! $promedioPot2->potenciaFM !!}',
+                                },
                                 {{ $promedioPot2->promedioPot2 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                    {
-                        name: '{!! $encabezado3 !!}',
-                        data: [
+                        [
+
                             @foreach ($promPotencias as $promedioPot3)
+                                {
+                                    name: '{{ $promedioPot3->potenciaDABHibrido }}',
+                                },
                                 {{ $promedioPot3->promedioPot3 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                ]
+                    ],
+                }]
             });
 
             const chart2 = new Highcharts.Chart({
                 chart: {
                     renderTo: 'column2',
                     type: 'column',
-                    options3d: {
-                        enabled: true,
-                        alpha: 15,
-                        beta: 15,
-                        depth: 50,
-                        viewDistance: 25
-                    }
                 },
                 xAxis: {
-                    categories: ['{!! $encabezado1 !!}', '{!! $encabezado2 !!}', '{!! $encabezado3 !!}'],
+                    categories: ['{!! $encabezado12 !!}', '{!! $encabezado15 !!}',
+                        '{!! $encabezado18 !!}'
+                    ],
                 },
                 yAxis: {
                     title: {
-                        enabled: false
-                    }
+                        text: 'Potencias',
+                    },
+                    min: 0, // Establecer el valor mínimo en el eje Y
+                    // max: 200, // Establecer el valor máximo en el eje Y
                 },
                 credits: {
                     enabled: false
@@ -457,8 +489,8 @@
                     // pointFormat: 'Cars sold: {point.y}'
                 },
                 title: {
-                    // text: 'Sold passenger cars in Norway by brand, January 2021',
-                    align: 'left'
+                    text: 'PROMEDIO INTERFERENCIA BOGOTÁ',
+                    align: 'center'
                 },
                 subtitle: {
                     // text: 'Source: ' +
@@ -467,41 +499,51 @@
                     align: 'left'
                 },
                 legend: {
-                    enabled: true
+                    enabled: false
                 },
                 plotOptions: {
-                    column: {
-                        depth: 25
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.1f}'
+                        }
                     }
                 },
                 series: [{
-                        name: '{!! $encabezado1 !!}',
-                        data: [
+                    name: 'Promedio',
+                    colorByPoint: true,
+                    data: [
+                        [
+
                             @foreach ($promPotencias as $promedioPot4)
+                                {
+                                    name: '{{ $promedioPot4->SNRAMHibrido }}',
+                                },
                                 {{ $promedioPot4->promedioPot4 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                    {
-                        name: '{!! $encabezado2 !!}',
-                        data: [
+
+                        [
+
                             @foreach ($promPotencias as $promedioPot5)
+                                {
+                                    name: '{{ $promedioPot5->SNRFMHibrido }}',
+                                },
                                 {{ $promedioPot5->promedioPot5 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                    {
-                        name: '{!! $encabezado3 !!}',
-                        data: [
+                        [
+
                             @foreach ($promPotencias as $promedioPot6)
+                                {
+                                    name: '{{ $promedioPot6->SNRDAB }}',
+                                },
                                 {{ $promedioPot6->promedioPot6 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                ]
+                    ],
+                }]
             });
             Highcharts.chart('containerLine', {
                 // chart: {
@@ -516,7 +558,7 @@
                         textTransform: 'uppercase',
                         fontSize: '20px'
                     },
-                    text: '{!! $encabezado1 !!}',
+                    text: 'MULTICOBERTURA BOGOTÁ',
                     // 'BOGOTA',
                     // align: 'left',
                 },
@@ -528,7 +570,7 @@
 
                 yAxis: {
                     title: {
-                        text: '{!! $encabezado1 !!}',
+                        text: 'Potencias',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -554,7 +596,7 @@
                     }
                 },
                 series: [{
-                        name: '{!! $encabezado1 !!}',
+                        name: '{!! $encabezado3 !!}',
                         data: [
                             @foreach ($potencias as $pot1)
                                 {
@@ -565,7 +607,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado2 !!}',
+                        name: '{!! $encabezado6 !!}',
                         data: [
                             @foreach ($potencias as $pot2)
                                 {
@@ -576,7 +618,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado3 !!}',
+                        name: '{!! $encabezado9 !!}',
                         data: [
                             @foreach ($potencias as $pot3)
                                 {
@@ -616,7 +658,7 @@
                         textTransform: 'uppercase',
                         fontSize: '20px'
                     },
-                    text: '{!! $encabezado1 !!}',
+                    text: 'INTERFERENCIA BOGOTÁ',
                     // 'BOGOTA',
                     // align: 'left',
                 },
@@ -629,7 +671,7 @@
                 yAxis: {
                     title: {
                         // enabled: false,
-                        text: '{!! $encabezado1 !!}',
+                        text: 'Potencias',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -655,7 +697,7 @@
                     }
                 },
                 series: [{
-                        name: '{!! $encabezado1 !!}',
+                        name: '{!! $encabezado12 !!}',
                         data: [
                             @foreach ($potencias as $pot4)
                                 {
@@ -666,7 +708,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado2 !!}',
+                        name: '{!! $encabezado15 !!}',
                         data: [
                             @foreach ($potencias as $pot5)
                                 {
@@ -677,7 +719,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado3 !!}',
+                        name: '{!! $encabezado18 !!}',
                         data: [
                             @foreach ($potencias as $pot6)
                                 {
@@ -704,6 +746,83 @@
                     }]
                 }
             });
+            // Highcharts.chart('containerBox', {
+
+
+            //     chart: {
+            //         type: 'boxplot'
+            //     },
+            //     credits: {
+            //         enabled: false
+            //     },
+            //     title: {
+            //         text: 'MULTICOBERTURA BOGOTÁ',
+            //         // getColumnNameByIndex(0),
+            //         // 'BOGOTÁ'
+            //     },
+
+            //     legend: {
+            //         enabled: false
+            //     },
+            //     // accessibility: {
+            //     //     landmarkVerbosity: 'one'
+            //     // },
+
+            //     xAxis: {
+            //         // crosshair: {
+            //         //     enabled: true
+            //         // },
+            //         categories: ['{!! $encabezado3 !!}', '{!! $encabezado6 !!}',
+            //             '{!! $encabezado9 !!}'
+            //         ],
+            //         title: {
+            //             text: 'Potencias'
+            //         }
+            //     },
+
+            //     yAxis: {
+            //         tooltip: {
+            //             followPointer: true
+            //         },
+            //         title: {
+            //             text: 'Observaciones'
+            //         },
+            //         in: 0, // Establecer el valor mínimo en el eje Y
+            //         // max: 200,
+            //         plotLines: [{
+            //             color: 'red',
+            //             label: {
+            //                 align: 'center',
+            //                 style: {
+            //                     color: 'yellow'
+            //                 }
+            //             }
+            //         }]
+            //     },
+            //     series: [{
+            //             type: 'boxplot',
+
+            //             stickyTracking: true,
+            //             cursor: 'pointer',
+            //             color: 'yellow',
+            //             name: 'Observaciones',
+            //             data: [
+            //                 [
+            //                     @foreach ($potencias as $pot1)
+            //                         {
+            //                             name: '{{ $pot1->potenciaAM }}',
+            //                         },
+            //                         {{ $pot1->pot1 }},
+            //                     @endforeach,
+            //                 ]
+            //             ],
+
+            //             tooltip: {
+            //                 headerFormat: '<em>{point.key}</em><br/>'
+            //             }
+            //         }
+            //     ]
+            // });
             Highcharts.chart('containerBox', {
 
 
@@ -714,7 +833,7 @@
                     enabled: false
                 },
                 title: {
-                    text: '{!! $encabezado1 !!}',
+                    text: 'MULTICOBERTURA BOGOTÁ',
                     // getColumnNameByIndex(0),
                     // 'BOGOTÁ'
                 },
@@ -730,11 +849,11 @@
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['{!! $encabezado1 !!}', '{!! $encabezado3 !!}',
-                        '{!! $encabezado4 !!}'
+                    categories: ['{!! $encabezado3 !!}', '{!! $encabezado6 !!}',
+                        '{!! $encabezado9 !!}'
                     ],
                     title: {
-                        text: 'Potencia No.'
+                        text: 'Potencias'
                     }
                 },
 
@@ -748,11 +867,8 @@
                     in: 0, // Establecer el valor mínimo en el eje Y
                     // max: 200,
                     plotLines: [{
-                        value: 932,
                         color: 'red',
-                        width: 1,
                         label: {
-                            // text: 'Theoretical mean: 932',
                             align: 'center',
                             style: {
                                 color: 'yellow'
@@ -760,63 +876,44 @@
                         }
                     }]
                 },
-
                 series: [{
-                        type: 'boxplot',
-                        medianWidth: 3,
-                        stickyTracking: true,
-                        cursor: 'pointer',
-                        color: 'yellow',
-                        name: 'Observaciones',
-                        data: [
-                            [
-                                @foreach ($potencias as $pot1)
-                                    {
-                                        name: '{{ $pot1->potenciaAM }}',
-                                    },
-                                    {{ $pot1->pot1 }},
-                                @endforeach
-                            ],
-                            [
-                                @foreach ($potencias as $pot2)
-                                    {
-                                        name: '{{ $pot2->potenciaFM }}',
-                                    },
-                                    {{ $pot2->pot2 }},
-                                @endforeach
-                            ],
-                            [
-                                @foreach ($potencias as $pot3)
-                                    {
-                                        name: '{{ $pot3->potenciaDABHibrido }}',
-                                    },
-                                    {{ $pot3->pot3 }},
-                                @endforeach
-                            ],
+                    type: 'boxplot',
+                    medianWidth: 3,
+                    stickyTracking: true,
+                    cursor: 'pointer',
+                    colorByPoint: true,
+                    name: 'Observaciones',
+                    data: [
+                        [
+                            @foreach ($potencias as $pot1)
+                                {
+                                    name: '{{ $pot1->potenciaAM }}',
+                                },
+                                {{ $pot1->pot1 }},
+                            @endforeach
                         ],
+                        [
+                            @foreach ($potencias as $pot2)
+                                {
+                                    name: '{{ $pot2->potenciaFM }}',
+                                },
+                                {{ $pot2->pot2 }},
+                            @endforeach
+                        ],
+                        [
+                            @foreach ($potencias as $pot3)
+                                {
+                                    name: '{{ $pot3->potenciaDABHibrido }}',
+                                },
+                                {{ $pot3->pot3 }},
+                            @endforeach
+                        ],
+                    ],
 
-                        tooltip: {
-                            headerFormat: '<em>Potencia {point.key}</em><br/>'
-                        }
-                    },
-                    {
-                        name: 'Outliers',
-                        color: Highcharts.getOptions().colors[0],
-                        type: 'scatter',
-                        data: [ // x, y positions where 0 is the first category
-                            // [0, 644],
-                        ],
-                        marker: {
-                            fillColor: 'white',
-                            lineWidth: 1,
-                            lineColor: Highcharts.getOptions().colors[0]
-                        },
-                        tooltip: {
-                            pointFormat: 'Observacion: {point.y}'
-                        }
+                    tooltip: {
+                        headerFormat: '<em>{point.key}</em><br/>'
                     }
-                ]
-
+                }]
             });
             Highcharts.chart('containerBox2', {
 
@@ -828,7 +925,7 @@
                     enabled: false
                 },
                 title: {
-                    text: '{!! $encabezado1 !!}',
+                    text: 'INTERFERENCIA BOGOTÁ',
                     // getColumnNameByIndex(0),
                     // 'BOGOTÁ'
                 },
@@ -844,11 +941,11 @@
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['{!! $encabezado1 !!}', '{!! $encabezado3 !!}',
-                        '{!! $encabezado4 !!}'
+                    categories: ['{!! $encabezado12 !!}', '{!! $encabezado15 !!}',
+                        '{!! $encabezado18 !!}'
                     ],
                     title: {
-                        text: 'Potencia No.'
+                        text: 'Potencias'
                     }
                 },
 
@@ -880,7 +977,7 @@
                         medianWidth: 3,
                         stickyTracking: true,
                         cursor: 'pointer',
-                        color: 'yellow',
+                        colorByPoint: true,
                         name: 'Observaciones',
                         data: [
                             [
@@ -939,20 +1036,13 @@
                 chart: {
                     renderTo: 'columnBuca',
                     type: 'column',
-                    options3d: {
-                        enabled: true,
-                        alpha: 15,
-                        beta: 15,
-                        depth: 50,
-                        viewDistance: 25
-                    }
                 },
                 xAxis: {
-                    categories: ['{!! $encabezado1 !!}', '{!! $encabezado2 !!}', '{!! $encabezado3 !!}'],
+                    categories: ['{!! $encabezadoBuca3 !!}', '{!! $encabezadoBuca6 !!}', '{!! $encabezadoBuca9 !!}'],
                 },
                 yAxis: {
                     title: {
-                        enabled: false
+                        text: 'Potencias',
                     }
                 },
                 credits: {
@@ -963,8 +1053,8 @@
                     // pointFormat: 'Cars sold: {point.y}'
                 },
                 title: {
-                    // text: 'Sold passenger cars in Norway by brand, January 2021',
-                    align: 'left'
+                    text: 'PROMEDIO MULTICOBERTURA BUCARAMANGA',
+                    align: 'center'
                 },
                 subtitle: {
                     // text: 'Source: ' +
@@ -973,60 +1063,62 @@
                     align: 'left'
                 },
                 legend: {
-                    enabled: true
+                    enabled: false
                 },
                 plotOptions: {
-                    column: {
-                        depth: 25
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.1f}'
+                        }
                     }
                 },
                 series: [{
-                        name: '{!! $encabezado1 !!}',
-                        data: [
+                    colorByPoint: true,
+                    name: 'Promedio',
+                    data: [
+                        [
+
                             @foreach ($promPotenciasBuca as $promedioBucaPot1)
+                                {
+                                    name: '{{ $promedioBucaPot1->potenciaAM }}',
+                                },
                                 {{ $promedioBucaPot1->promedioBucaPot1 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                    {
-                        name: '{!! $encabezado2 !!}',
-                        data: [
+                        [
+
                             @foreach ($promPotenciasBuca as $promedioBucaPot2)
+                                {
+                                    name: '{!! $promedioBucaPot2->potenciaFM !!}',
+                                },
                                 {{ $promedioBucaPot2->promedioBucaPot2 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                    {
-                        name: '{!! $encabezado3 !!}',
-                        data: [
+                        [
+
                             @foreach ($promPotenciasBuca as $promedioBucaPot3)
+                                {
+                                    name: '{{ $promedioBucaPot3->potenciaDABHibrido }}',
+                                },
                                 {{ $promedioBucaPot3->promedioBucaPot3 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                ]
+                    ],
+                }]
             });
             const chart4 = new Highcharts.Chart({
                 chart: {
                     renderTo: 'columnBuca2',
                     type: 'column',
-                    options3d: {
-                        enabled: true,
-                        alpha: 15,
-                        beta: 15,
-                        depth: 50,
-                        viewDistance: 25
-                    }
                 },
                 xAxis: {
-                    categories: ['{!! $encabezado1 !!}', '{!! $encabezado2 !!}', '{!! $encabezado3 !!}'],
+                    categories: ['{!! $encabezadoBuca12 !!}', '{!! $encabezadoBuca15 !!}', '{!! $encabezadoBuca18 !!}'],
                 },
                 yAxis: {
                     title: {
-                        enabled: false
+                        text: 'Potencias',
                     }
                 },
                 credits: {
@@ -1037,8 +1129,8 @@
                     // pointFormat: 'Cars sold: {point.y}'
                 },
                 title: {
-                    // text: 'Sold passenger cars in Norway by brand, January 2021',
-                    align: 'left'
+                    text: 'PROMEDIO INTERFERENCIA BUCARAMANGA',
+                    align: 'center'
                 },
                 subtitle: {
                     // text: 'Source: ' +
@@ -1047,41 +1139,51 @@
                     align: 'left'
                 },
                 legend: {
-                    enabled: true
+                    enabled: false
                 },
                 plotOptions: {
-                    column: {
-                        depth: 25
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.1f}'
+                        }
                     }
                 },
                 series: [{
-                        name: '{!! $encabezado1 !!}',
-                        data: [
+                    name: 'Promedio',
+                    colorByPoint: true,
+                    data: [
+                        [
+
                             @foreach ($promPotenciasBuca as $promedioBucaPot4)
+                                {
+                                    name: '{{ $promedioBucaPot4->SNRAMHibrido }}',
+                                },
                                 {{ $promedioBucaPot4->promedioBucaPot4 }},
-                            @endforeach ,
+                            @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                    {
-                        name: '{!! $encabezado2 !!}',
-                        data: [
+
+                        [
+
                             @foreach ($promPotenciasBuca as $promedioBucaPot5)
+                                {
+                                    name: '{{ $promedioBucaPot5->SNRFMHibrido }}',
+                                },
                                 {{ $promedioBucaPot5->promedioBucaPot5 }},
-                            @endforeach ,
+                            @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                    {
-                        name: '{!! $encabezado3 !!}',
-                        data: [
+                        [
+
                             @foreach ($promPotenciasBuca as $promedioBucaPot6)
+                                {
+                                    name: '{{ $promedioBucaPot6->SNRDAB }}',
+                                },
                                 {{ $promedioBucaPot6->promedioBucaPot6 }},
-                            @endforeach ,
+                            @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                ]
+                    ],
+                }]
             });
             Highcharts.chart('containerLineBuca', {
                 // chart: {
@@ -1096,7 +1198,7 @@
                         textTransform: 'uppercase',
                         fontSize: '20px'
                     },
-                    text: '{!! $encabezado1 !!}',
+                    text: 'MULTICOBERTURA BUCARAMANGA',
                     // 'BOGOTA',
                     // align: 'left',
                 },
@@ -1108,7 +1210,7 @@
 
                 yAxis: {
                     title: {
-                        text: '{!! $encabezado1 !!}',
+                        text: 'Potencias',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -1134,7 +1236,7 @@
                     }
                 },
                 series: [{
-                        name: '{!! $encabezado1 !!}',
+                        name: '{!! $encabezadoBuca3 !!}',
                         data: [
                             @foreach ($potenciasBuca as $pot1)
                                 {
@@ -1145,7 +1247,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado2 !!}',
+                        name: '{!! $encabezadoBuca6 !!}',
                         data: [
                             @foreach ($potenciasBuca as $pot2)
                                 {
@@ -1156,7 +1258,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado3 !!}',
+                        name: '{!! $encabezadoBuca9 !!}',
                         data: [
                             @foreach ($potenciasBuca as $pot3)
                                 {
@@ -1196,7 +1298,7 @@
                         textTransform: 'uppercase',
                         fontSize: '20px'
                     },
-                    text: '{!! $encabezado1 !!}',
+                    text: 'INTERFERENCIA BUCARAMANGA',
                     // 'BOGOTA',
                     // align: 'left',
                 },
@@ -1209,7 +1311,7 @@
                 yAxis: {
                     title: {
                         // enabled: false,
-                        text: '{!! $encabezado1 !!}',
+                        text: 'Potencias',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -1235,7 +1337,7 @@
                     }
                 },
                 series: [{
-                        name: '{!! $encabezado1 !!}',
+                        name: '{!! $encabezadoBuca12 !!}',
                         data: [
                             @foreach ($potenciasBuca as $pot4)
                                 {
@@ -1246,7 +1348,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado2 !!}',
+                        name: '{!! $encabezadoBuca15 !!}',
                         data: [
                             @foreach ($potenciasBuca as $pot5)
                                 {
@@ -1257,7 +1359,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado3 !!}',
+                        name: '{!! $encabezadoBuca18 !!}',
                         data: [
                             @foreach ($potenciasBuca as $pot6)
                                 {
@@ -1294,7 +1396,7 @@
                     enabled: false
                 },
                 title: {
-                    text: '{!! $encabezado1 !!}',
+                    text: 'MULTICOBERTURA BUCARAMANGA',
                 },
 
                 legend: {
@@ -1308,9 +1410,9 @@
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['{!! $encabezado1 !!}', '{!! $encabezado2 !!}', '{!! $encabezado3 !!}'],
+                    categories: ['{!! $encabezadoBuca3 !!}', '{!! $encabezadoBuca3 !!}', '{!! $encabezadoBuca3 !!}'],
                     title: {
-                        text: 'Potencia No.'
+                        text: 'Potencias'
                     }
                 },
 
@@ -1339,6 +1441,7 @@
                     medianWidth: 3,
                     stickyTracking: true,
                     cursor: 'pointer',
+                    colorByPoint: true,
                     name: 'Observaciones',
                     data: [
                         [
@@ -1382,7 +1485,7 @@
                     enabled: false
                 },
                 title: {
-                    text: '{!! $encabezado1 !!}',
+                    text: 'INTERFERENCIA BUCARAMANGA',
                     // getColumnNameByIndex(0),
                     // 'BOGOTÁ'
                 },
@@ -1398,11 +1501,11 @@
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['{!! $encabezado1 !!}', '{!! $encabezado3 !!}',
-                        '{!! $encabezado4 !!}'
+                    categories: ['{!! $encabezadoBuca12 !!}', '{!! $encabezadoBuca15 !!}',
+                        '{!! $encabezadoBuca18 !!}'
                     ],
                     title: {
-                        text: 'Potencia No.'
+                        text: 'Potencias'
                     }
                 },
 
@@ -1432,6 +1535,7 @@
                         medianWidth: 3,
                         stickyTracking: true,
                         cursor: 'pointer',
+                        colorByPoint: true,
                         name: 'Observaciones',
                         data: [
                             [
@@ -1503,11 +1607,11 @@
                     }
                 },
                 xAxis: {
-                    categories: ['{!! $encabezado1 !!}', '{!! $encabezado2 !!}', '{!! $encabezado3 !!}'],
+                    categories: ['{!! $encabezadoCali3 !!}', '{!! $encabezadoCali6 !!}', '{!! $encabezadoCali9 !!}'],
                 },
                 yAxis: {
                     title: {
-                        enabled: false
+                        text: 'Potencias',
                     }
                 },
                 credits: {
@@ -1518,8 +1622,8 @@
                     // pointFormat: 'Cars sold: {point.y}'
                 },
                 title: {
-                    // text: 'Sold passenger cars in Norway by brand, January 2021',
-                    align: 'left'
+                    text: 'PROMEDIO MULTICOBERTURA CALI',
+                    align: 'center'
                 },
                 subtitle: {
                     // text: 'Source: ' +
@@ -1528,41 +1632,50 @@
                     align: 'left'
                 },
                 legend: {
-                    enabled: true
+                    enabled: false
                 },
                 plotOptions: {
-                    column: {
-                        depth: 25
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.1f}'
+                        }
                     }
                 },
                 series: [{
-                        name: '{!! $encabezado1 !!}',
-                        data: [
+                    colorByPoint: true,
+                    name: 'Promedio',
+                    data: [
+                        [
+
                             @foreach ($promPotenciasCali as $promedioCaliPot1)
+                                {
+                                    name: '{{ $promedioCaliPot1->potenciaAM }}',
+                                },
                                 {{ $promedioCaliPot1->promedioCaliPot1 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                    {
-                        name: '{!! $encabezado2 !!}',
-                        data: [
+                        [
+
                             @foreach ($promPotenciasCali as $promedioCaliPot2)
+                                {
+                                    name: '{!! $promedioCaliPot2->potenciaFM !!}',
+                                },
                                 {{ $promedioCaliPot2->promedioCaliPot2 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                    {
-                        name: '{!! $encabezado3 !!}',
-                        data: [
+                        [
+
                             @foreach ($promPotenciasCali as $promedioCaliPot3)
+                                {
+                                    name: '{{ $promedioCaliPot3->potenciaDABHibrido }}',
+                                },
                                 {{ $promedioCaliPot3->promedioCaliPot3 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                ]
+                    ],
+                }]
             });
 
             const chart6 = new Highcharts.Chart({
@@ -1578,11 +1691,11 @@
                     }
                 },
                 xAxis: {
-                    categories: ['{!! $encabezado1 !!}', '{!! $encabezado2 !!}', '{!! $encabezado3 !!}'],
+                    categories: ['{!! $encabezadoCali12 !!}', '{!! $encabezadoCali15 !!}', '{!! $encabezadoCali18 !!}'],
                 },
                 yAxis: {
                     title: {
-                        enabled: false
+                        text: 'Potencias',
                     }
                 },
                 credits: {
@@ -1593,8 +1706,8 @@
                     // pointFormat: 'Cars sold: {point.y}'
                 },
                 title: {
-                    // text: 'Sold passenger cars in Norway by brand, January 2021',
-                    align: 'left'
+                    text: 'PROMEDIO INTERFERENCIA CALI',
+                    align: 'center'
                 },
                 subtitle: {
                     // text: 'Source: ' +
@@ -1603,41 +1716,51 @@
                     align: 'left'
                 },
                 legend: {
-                    enabled: true
+                    enabled: false
                 },
                 plotOptions: {
-                    column: {
-                        depth: 25
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.1f}'
+                        }
                     }
                 },
                 series: [{
-                        name: '{!! $encabezado1 !!}',
-                        data: [
+                    name: 'Promedio',
+                    colorByPoint: true,
+                    data: [
+                        [
+
                             @foreach ($promPotenciasCali as $promedioCaliPot4)
+                                {
+                                    name: '{{ $promedioCaliPot4->SNRAMHibrido }}',
+                                },
                                 {{ $promedioCaliPot4->promedioCaliPot4 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                    {
-                        name: '{!! $encabezado2 !!}',
-                        data: [
+
+                        [
+
                             @foreach ($promPotenciasCali as $promedioCaliPot5)
+                                {
+                                    name: '{{ $promedioCaliPot5->SNRFMHibrido }}',
+                                },
                                 {{ $promedioCaliPot5->promedioCaliPot5 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                    {
-                        name: '{!! $encabezado3 !!}',
-                        data: [
+                        [
+
                             @foreach ($promPotenciasCali as $promedioCaliPot6)
+                                {
+                                    name: '{{ $promedioCaliPot6->SNRDAB }}',
+                                },
                                 {{ $promedioCaliPot6->promedioCaliPot6 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                ]
+                    ],
+                }]
             });
             Highcharts.chart('containerLineCali', {
                 // chart: {
@@ -1652,7 +1775,7 @@
                         textTransform: 'uppercase',
                         fontSize: '20px'
                     },
-                    text: '{!! $encabezado1 !!}',
+                    text: 'MULTICOBERTURA CALI',
                     // 'BOGOTA',
                     // align: 'left',
                 },
@@ -1664,7 +1787,7 @@
 
                 yAxis: {
                     title: {
-                        text: '{!! $encabezado1 !!}',
+                        text: 'Potencias',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -1690,7 +1813,7 @@
                     }
                 },
                 series: [{
-                        name: '{!! $encabezado1 !!}',
+                        name: '{!! $encabezadoCali3 !!}',
                         data: [
                             @foreach ($potenciasCali as $pot1)
                                 {
@@ -1701,7 +1824,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado2 !!}',
+                        name: '{!! $encabezadoCali6 !!}',
                         data: [
                             @foreach ($potenciasCali as $pot2)
                                 {
@@ -1712,7 +1835,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado3 !!}',
+                        name: '{!! $encabezadoCali9 !!}',
                         data: [
                             @foreach ($potenciasCali as $pot3)
                                 {
@@ -1752,7 +1875,7 @@
                         textTransform: 'uppercase',
                         fontSize: '20px'
                     },
-                    text: '{!! $encabezado1 !!}',
+                    text: 'INTERFERENCIA CALI',
                     // 'BOGOTA',
                     // align: 'left',
                 },
@@ -1765,7 +1888,7 @@
                 yAxis: {
                     title: {
                         // enabled: false,
-                        text: '{!! $encabezado1 !!}',
+                        text: 'Potencias',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -1791,7 +1914,7 @@
                     }
                 },
                 series: [{
-                        name: '{!! $encabezado1 !!}',
+                        name: '{!! $encabezadoCali12 !!}',
                         data: [
                             @foreach ($potenciasCali as $pot4)
                                 {
@@ -1802,7 +1925,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado2 !!}',
+                        name: '{!! $encabezadoCali15 !!}',
                         data: [
                             @foreach ($potenciasCali as $pot5)
                                 {
@@ -1813,7 +1936,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado3 !!}',
+                        name: '{!! $encabezadoCali18 !!}',
                         data: [
                             @foreach ($potenciasCali as $pot6)
                                 {
@@ -1850,7 +1973,7 @@
                     enabled: false
                 },
                 title: {
-                    text: '{!! $encabezado1 !!}',
+                    text: 'MULTICOBERTURA CALI',
                     // getColumnNameByIndex(0),
                     // 'BOGOTÁ'
                 },
@@ -1866,11 +1989,11 @@
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['{!! $encabezado1 !!}', '{!! $encabezado3 !!}',
-                        '{!! $encabezado4 !!}'
+                    categories: ['{!! $encabezadoCali3 !!}', '{!! $encabezadoCali6 !!}',
+                        '{!! $encabezadoCali9 !!}'
                     ],
                     title: {
-                        text: 'Potencia No.'
+                        text: 'Potencias'
                     }
                 },
 
@@ -1888,70 +2011,51 @@
                         color: 'red',
                         width: 1,
                         label: {
-                            // text: 'Theoretical mean: 932',
-                            align: 'center',
                             style: {
-                                color: 'yellow'
+                                color: 'gray'
                             }
                         }
                     }]
                 },
 
                 series: [{
-                        type: 'boxplot',
-                        medianWidth: 3,
-                        stickyTracking: true,
-                        cursor: 'pointer',
-                        color: 'yellow',
-                        name: 'Observaciones',
-                        data: [
-                            [
-                                @foreach ($potenciasCali as $pot1)
-                                    {
-                                        name: '{{ $pot1->potenciaAM }}',
-                                    },
-                                    {{ $pot1->pot1 }},
-                                @endforeach
-                            ],
-                            [
-                                @foreach ($potenciasCali as $pot2)
-                                    {
-                                        name: '{{ $pot2->potenciaFM }}',
-                                    },
-                                    {{ $pot2->pot2 }},
-                                @endforeach
-                            ],
-                            [
-                                @foreach ($potenciasCali as $pot3)
-                                    {
-                                        name: '{{ $pot3->potenciaDABHibrido }}',
-                                    },
-                                    {{ $pot3->pot3 }},
-                                @endforeach
-                            ],
+                    type: 'boxplot',
+                    medianWidth: 3,
+                    stickyTracking: true,
+                    cursor: 'pointer',
+                    colorByPoint: true,
+                    name: 'Observaciones',
+                    data: [
+                        [
+                            @foreach ($potenciasCali as $pot1)
+                                {
+                                    name: '{{ $pot1->potenciaAM }}',
+                                },
+                                {{ $pot1->pot1 }},
+                            @endforeach
                         ],
+                        [
+                            @foreach ($potenciasCali as $pot2)
+                                {
+                                    name: '{{ $pot2->potenciaFM }}',
+                                },
+                                {{ $pot2->pot2 }},
+                            @endforeach
+                        ],
+                        [
+                            @foreach ($potenciasCali as $pot3)
+                                {
+                                    name: '{{ $pot3->potenciaDABHibrido }}',
+                                },
+                                {{ $pot3->pot3 }},
+                            @endforeach
+                        ],
+                    ],
 
-                        tooltip: {
-                            headerFormat: '<em>Potencia {point.key}</em><br/>'
-                        }
-                    },
-                    {
-                        name: 'Outliers',
-                        color: Highcharts.getOptions().colors[0],
-                        type: 'scatter',
-                        data: [ // x, y positions where 0 is the first category
-                            // [0, 644],
-                        ],
-                        marker: {
-                            fillColor: 'white',
-                            lineWidth: 1,
-                            lineColor: Highcharts.getOptions().colors[0]
-                        },
-                        tooltip: {
-                            pointFormat: 'Observacion: {point.y}'
-                        }
+                    tooltip: {
+                        headerFormat: '<em>Potencia {point.key}</em><br/>'
                     }
-                ]
+                }, ]
 
             });
             Highcharts.chart('containerBoxCali2', {
@@ -1964,7 +2068,7 @@
                     enabled: false
                 },
                 title: {
-                    text: '{!! $encabezado1 !!}',
+                    text: 'INTERFERENCIA CALI',
                     // getColumnNameByIndex(0),
                     // 'BOGOTÁ'
                 },
@@ -1980,11 +2084,11 @@
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['{!! $encabezado1 !!}', '{!! $encabezado3 !!}',
-                        '{!! $encabezado4 !!}'
+                    categories: ['{!! $encabezadoCali12 !!}', '{!! $encabezadoCali15 !!}',
+                        '{!! $encabezadoCali18 !!}'
                     ],
                     title: {
-                        text: 'Potencia No.'
+                        text: 'Potencias'
                     }
                 },
 
@@ -2016,7 +2120,7 @@
                         medianWidth: 3,
                         stickyTracking: true,
                         cursor: 'pointer',
-                        color: 'yellow',
+                        colorByPoint: true,
                         name: 'Observaciones',
                         data: [
                             [
@@ -2084,11 +2188,11 @@
                     }
                 },
                 xAxis: {
-                    categories: ['{!! $encabezado1 !!}', '{!! $encabezado2 !!}', '{!! $encabezado3 !!}'],
+                    categories: ['{!! $encabezadoMede3 !!}', '{!! $encabezadoMede6 !!}', '{!! $encabezadoMede9 !!}'],
                 },
                 yAxis: {
                     title: {
-                        enabled: false
+                        text: 'Potencias'
                     }
                 },
                 credits: {
@@ -2099,8 +2203,8 @@
                     // pointFormat: 'Cars sold: {point.y}'
                 },
                 title: {
-                    // text: 'Sold passenger cars in Norway by brand, January 2021',
-                    align: 'left'
+                    text: 'PROMEDIO MULTICOBERTURA MEDELLIN',
+                    align: 'center'
                 },
                 subtitle: {
                     // text: 'Source: ' +
@@ -2109,41 +2213,50 @@
                     align: 'left'
                 },
                 legend: {
-                    enabled: true
+                    enabled: false
                 },
                 plotOptions: {
-                    column: {
-                        depth: 25
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.1f}'
+                        }
                     }
                 },
                 series: [{
-                        name: '{!! $encabezado1 !!}',
-                        data: [
+                    colorByPoint: true,
+                    name: 'Promedio',
+                    data: [
+                        [
+
                             @foreach ($promPotenciasMede as $promedioMedePot1)
+                                {
+                                    name: '{{ $promedioMedePot1->potenciaAM }}',
+                                },
                                 {{ $promedioMedePot1->promedioMedePot1 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                    {
-                        name: '{!! $encabezado2 !!}',
-                        data: [
+                        [
+
                             @foreach ($promPotenciasMede as $promedioMedePot2)
+                                {
+                                    name: '{!! $promedioMedePot2->potenciaFM !!}',
+                                },
                                 {{ $promedioMedePot2->promedioMedePot2 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                    {
-                        name: '{!! $encabezado3 !!}',
-                        data: [
+                        [
+
                             @foreach ($promPotenciasMede as $promedioMedePot3)
+                                {
+                                    name: '{{ $promedioMedePot3->potenciaDABHibrido }}',
+                                },
                                 {{ $promedioMedePot3->promedioMedePot3 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                ]
+                    ],
+                }]
             });
 
             const chart8 = new Highcharts.Chart({
@@ -2159,11 +2272,11 @@
                     }
                 },
                 xAxis: {
-                    categories: ['{!! $encabezado1 !!}', '{!! $encabezado2 !!}', '{!! $encabezado3 !!}'],
+                    categories: ['{!! $encabezadoMede12 !!}', '{!! $encabezadoMede15 !!}', '{!! $encabezadoMede18 !!}'],
                 },
                 yAxis: {
                     title: {
-                        enabled: false
+                        text: 'Potencias'
                     }
                 },
                 credits: {
@@ -2174,8 +2287,8 @@
                     // pointFormat: 'Cars sold: {point.y}'
                 },
                 title: {
-                    // text: 'Sold passenger cars in Norway by brand, January 2021',
-                    align: 'left'
+                    text: 'PROMEDIO INTERFERENCIA MEDELLIN',
+                    align: 'center'
                 },
                 subtitle: {
                     // text: 'Source: ' +
@@ -2184,41 +2297,51 @@
                     align: 'left'
                 },
                 legend: {
-                    enabled: true
+                    enabled: false
                 },
                 plotOptions: {
-                    column: {
-                        depth: 25
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.1f}'
+                        }
                     }
                 },
                 series: [{
-                        name: '{!! $encabezado1 !!}',
-                        data: [
+                    colorByPoint: true,
+                    name: 'Promedio',
+                    data: [
+                        [
+
                             @foreach ($promPotenciasMede as $promedioMedePot4)
+                                {
+                                    name: '{{ $promedioMedePot4->potenciaAM }}',
+                                },
                                 {{ $promedioMedePot4->promedioMedePot4 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                    {
-                        name: '{!! $encabezado2 !!}',
-                        data: [
+                        [
+
                             @foreach ($promPotenciasMede as $promedioMedePot5)
+                                {
+                                    name: '{!! $promedioMedePot5->potenciaFM !!}',
+                                },
                                 {{ $promedioMedePot5->promedioMedePot5 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                    {
-                        name: '{!! $encabezado3 !!}',
-                        data: [
+                        [
+
                             @foreach ($promPotenciasMede as $promedioMedePot6)
+                                {
+                                    name: '{{ $promedioMedePot6->potenciaDABHibrido }}',
+                                },
                                 {{ $promedioMedePot6->promedioMedePot6 }},
                             @endforeach
                         ],
-                        colorByPoint: true
-                    },
-                ]
+                    ],
+                }]
+
             });
             Highcharts.chart('containerLineMede', {
                 // chart: {
@@ -2233,7 +2356,7 @@
                         textTransform: 'uppercase',
                         fontSize: '20px'
                     },
-                    text: '{!! $encabezado1 !!}',
+                    text: 'MULTICOBERTURA MEDELLIN',
                     // 'BOGOTA',
                     // align: 'left',
                 },
@@ -2245,7 +2368,7 @@
 
                 yAxis: {
                     title: {
-                        text: '{!! $encabezado1 !!}',
+                        text: 'Potencias',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -2271,7 +2394,7 @@
                     }
                 },
                 series: [{
-                        name: '{!! $encabezado1 !!}',
+                        name: '{!! $encabezadoMede3 !!}',
                         data: [
                             @foreach ($potenciasMede as $pot1)
                                 {
@@ -2282,7 +2405,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado2 !!}',
+                        name: '{!! $encabezadoMede6 !!}',
                         data: [
                             @foreach ($potenciasMede as $pot2)
                                 {
@@ -2293,7 +2416,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado3 !!}',
+                        name: '{!! $encabezadoMede9 !!}',
                         data: [
                             @foreach ($potenciasMede as $pot3)
                                 {
@@ -2333,7 +2456,7 @@
                         textTransform: 'uppercase',
                         fontSize: '20px'
                     },
-                    text: '{!! $encabezado1 !!}',
+                    text: 'INTERFERENCIA MEDELLIN',
                     // 'BOGOTA',
                     // align: 'left',
                 },
@@ -2346,7 +2469,7 @@
                 yAxis: {
                     title: {
                         // enabled: false,
-                        text: '{!! $encabezado1 !!}',
+                        text: 'Potencias',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -2372,7 +2495,7 @@
                     }
                 },
                 series: [{
-                        name: '{!! $encabezado1 !!}',
+                        name: '{!! $encabezadoMede12 !!}',
                         data: [
                             @foreach ($potenciasMede as $pot4)
                                 {
@@ -2383,7 +2506,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado2 !!}',
+                        name: '{!! $encabezadoMede15 !!}',
                         data: [
                             @foreach ($potenciasMede as $pot5)
                                 {
@@ -2394,7 +2517,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado3 !!}',
+                        name: '{!! $encabezadoMede18 !!}',
                         data: [
                             @foreach ($potenciasMede as $pot6)
                                 {
@@ -2431,7 +2554,7 @@
                     enabled: false
                 },
                 title: {
-                    text: '{!! $encabezado1 !!}',
+                    text: 'MULTICOBERTURA MEDELLIN',
                     // getColumnNameByIndex(0),
                     // 'BOGOTÁ'
                 },
@@ -2447,11 +2570,11 @@
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['{!! $encabezado1 !!}', '{!! $encabezado3 !!}',
-                        '{!! $encabezado4 !!}'
+                    categories: ['{!! $encabezadoMede3 !!}', '{!! $encabezadoMede6 !!}',
+                        '{!! $encabezadoMede9 !!}'
                     ],
                     title: {
-                        text: 'Potencia No.'
+                        text: 'Potencias'
                     }
                 },
 
@@ -2483,7 +2606,7 @@
                         medianWidth: 3,
                         stickyTracking: true,
                         cursor: 'pointer',
-                        color: 'yellow',
+                        colorByPoint: true,
                         name: 'Observaciones',
                         data: [
                             [
@@ -2545,27 +2668,25 @@
                     enabled: false
                 },
                 title: {
-                    text: '{!! $encabezado1 !!}',
-                    // getColumnNameByIndex(0),
-                    // 'BOGOTÁ'
+                    text: 'INTERFERENCIA MEDELLIN',
                 },
 
                 legend: {
                     enabled: false
                 },
-                // accessibility: {
-                //     landmarkVerbosity: 'one'
-                // },
+                accessibility: {
+                    landmarkVerbosity: 'one'
+                },
 
                 xAxis: {
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['{!! $encabezado1 !!}', '{!! $encabezado3 !!}',
-                        '{!! $encabezado4 !!}'
+                    categories: ['{!! $encabezadoMede12 !!}', '{!! $encabezadoMede15 !!}',
+                        '{!! $encabezadoMede18 !!}'
                     ],
                     title: {
-                        text: 'Potencia No.'
+                        text: 'Potencias'
                     }
                 },
 
@@ -2597,7 +2718,7 @@
                         medianWidth: 3,
                         stickyTracking: true,
                         cursor: 'pointer',
-                        color: 'yellow',
+                        colorByPoint: true,
                         name: 'Observaciones',
                         data: [
                             [

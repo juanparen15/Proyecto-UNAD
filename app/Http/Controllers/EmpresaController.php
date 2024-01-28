@@ -66,6 +66,9 @@ class EmpresaController extends Controller
             ->groupBy('potenciaAM', 'potenciaFM', 'potenciaDABHibrido', 'SNRAMHibrido', 'SNRFMHibrido', 'SNRDAB')
             ->get();
 
+
+
+
         $promPotencias = Potencia::select(
             'potenciaAM',
             'potenciaFM',
@@ -73,12 +76,12 @@ class EmpresaController extends Controller
             'SNRAMHibrido',
             'SNRFMHibrido',
             'SNRDAB',
-            DB::raw("AVG(potenciaAM) as promedioPot1"),
-            DB::raw("AVG(potenciaFM) as promedioPot2"),
-            DB::raw("AVG(potenciaDABHibrido) as promedioPot3"),
-            DB::raw("AVG(SNRAMHibrido) as promedioPot4"),
-            DB::raw("AVG(SNRFMHibrido) as promedioPot5"),
-            DB::raw("AVG(SNRDAB) as promedioPot6")
+            DB::raw("SUM(potenciaAM) as promedioPot1"),
+            DB::raw("SUM(potenciaFM) as promedioPot2"),
+            DB::raw("SUM(potenciaDABHibrido) as promedioPot3"),
+            DB::raw("SUM(SNRAMHibrido) as promedioPot4"),
+            DB::raw("SUM(SNRFMHibrido) as promedioPot5"),
+            DB::raw("SUM(SNRDAB) as promedioPot6")
         )
             ->groupBy('potenciaAM', 'potenciaFM', 'potenciaDABHibrido', 'SNRAMHibrido', 'SNRFMHibrido', 'SNRDAB')
             ->havingRaw('AVG(potenciaAM) <= 200')
@@ -109,115 +112,115 @@ class EmpresaController extends Controller
             ->get();
 
 
-            $promPotenciasBuca = PotenciaBuca::select(
-                'potenciaAM',
-                'potenciaFM',
-                'potenciaDABHibrido',
-                'SNRAMHibrido',
-                'SNRFMHibrido',
-                'SNRDAB',
-                DB::raw("AVG(potenciaAM) as promedioBucaPot1"),
-                DB::raw("AVG(potenciaFM) as promedioBucaPot2"),
-                DB::raw("AVG(potenciaDABHibrido) as promedioBucaPot3"),
-                DB::raw("AVG(SNRAMHibrido) as promedioBucaPot4"),
-                DB::raw("AVG(SNRFMHibrido) as promedioBucaPot5"),
-                DB::raw("AVG(SNRDAB) as promedioBucaPot6")
-            )
-                ->groupBy('potenciaAM', 'potenciaFM', 'potenciaDABHibrido', 'SNRAMHibrido', 'SNRFMHibrido', 'SNRDAB')
-                ->havingRaw('AVG(potenciaAM) <= 200')
-                ->havingRaw('AVG(potenciaFM) <= 200')
-                ->havingRaw('AVG(potenciaDABHibrido) <= 200')
-                ->havingRaw('AVG(SNRAMHibrido) <= 200')
-                ->havingRaw('AVG(SNRFMHibrido) <= 200')
-                ->havingRaw('AVG(SNRDAB) <= 200')
-                ->get();
+        $promPotenciasBuca = PotenciaBuca::select(
+            'potenciaAM',
+            'potenciaFM',
+            'potenciaDABHibrido',
+            'SNRAMHibrido',
+            'SNRFMHibrido',
+            'SNRDAB',
+            DB::raw("AVG(potenciaAM) as promedioBucaPot1"),
+            DB::raw("AVG(potenciaFM) as promedioBucaPot2"),
+            DB::raw("AVG(potenciaDABHibrido) as promedioBucaPot3"),
+            DB::raw("AVG(SNRAMHibrido) as promedioBucaPot4"),
+            DB::raw("AVG(SNRFMHibrido) as promedioBucaPot5"),
+            DB::raw("AVG(SNRDAB) as promedioBucaPot6")
+        )
+            ->groupBy('potenciaAM', 'potenciaFM', 'potenciaDABHibrido', 'SNRAMHibrido', 'SNRFMHibrido', 'SNRDAB')
+            ->havingRaw('AVG(potenciaAM) <= 200')
+            ->havingRaw('AVG(potenciaFM) <= 200')
+            ->havingRaw('AVG(potenciaDABHibrido) <= 200')
+            ->havingRaw('AVG(SNRAMHibrido) <= 200')
+            ->havingRaw('AVG(SNRFMHibrido) <= 200')
+            ->havingRaw('AVG(SNRDAB) <= 200')
+            ->get();
         // }
         //POTENCIAS DE CALI {
 
 
 
-            $potenciasCali = PotenciaCali::select(
-                'potenciaAM',
-                'potenciaFM',
-                'potenciaDABHibrido',
-                'SNRAMHibrido',
-                'SNRFMHibrido',
-                'SNRDAB',
-                DB::raw("SUM(potenciaAM) as pot1"),
-                DB::raw("SUM(potenciaFM) as pot2"),
-                DB::raw("SUM(potenciaDABHibrido) as pot3"),
-                DB::raw("SUM(SNRAMHibrido) as pot4"),
-                DB::raw("SUM(SNRFMHibrido) as pot5"),
-                DB::raw("SUM(SNRDAB) as pot6")
-            )
-                ->groupBy('potenciaAM', 'potenciaFM', 'potenciaDABHibrido', 'SNRAMHibrido', 'SNRFMHibrido', 'SNRDAB')
-                ->get();
-    
-    
-                $promPotenciasCali = PotenciaCali::select(
-                    'potenciaAM',
-                    'potenciaFM',
-                    'potenciaDABHibrido',
-                    'SNRAMHibrido',
-                    'SNRFMHibrido',
-                    'SNRDAB',
-                    DB::raw("AVG(potenciaAM) as promedioCaliPot1"),
-                    DB::raw("AVG(potenciaFM) as promedioCaliPot2"),
-                    DB::raw("AVG(potenciaDABHibrido) as promedioCaliPot3"),
-                    DB::raw("AVG(SNRAMHibrido) as promedioCaliPot4"),
-                    DB::raw("AVG(SNRFMHibrido) as promedioCaliPot5"),
-                    DB::raw("AVG(SNRDAB) as promedioCaliPot6")
-                )
-                    ->groupBy('potenciaAM', 'potenciaFM', 'potenciaDABHibrido', 'SNRAMHibrido', 'SNRFMHibrido', 'SNRDAB')
-                    ->havingRaw('AVG(potenciaAM) <= 200')
-                    ->havingRaw('AVG(potenciaFM) <= 200')
-                    ->havingRaw('AVG(potenciaDABHibrido) <= 200')
-                    ->havingRaw('AVG(SNRAMHibrido) <= 200')
-                    ->havingRaw('AVG(SNRFMHibrido) <= 200')
-                    ->havingRaw('AVG(SNRDAB) <= 200')
-                    ->get();
+        $potenciasCali = PotenciaCali::select(
+            'potenciaAM',
+            'potenciaFM',
+            'potenciaDABHibrido',
+            'SNRAMHibrido',
+            'SNRFMHibrido',
+            'SNRDAB',
+            DB::raw("AVG(potenciaAM) as pot1"),
+            DB::raw("AVG(potenciaFM) as pot2"),
+            DB::raw("SUM(potenciaDABHibrido) as pot3"),
+            DB::raw("SUM(SNRAMHibrido) as pot4"),
+            DB::raw("SUM(SNRFMHibrido) as pot5"),
+            DB::raw("SUM(SNRDAB) as pot6")
+        )
+            ->groupBy('potenciaAM', 'potenciaFM', 'potenciaDABHibrido', 'SNRAMHibrido', 'SNRFMHibrido', 'SNRDAB')
+            ->get();
+
+
+        $promPotenciasCali = PotenciaCali::select(
+            'potenciaAM',
+            'potenciaFM',
+            'potenciaDABHibrido',
+            'SNRAMHibrido',
+            'SNRFMHibrido',
+            'SNRDAB',
+            DB::raw("AVG(potenciaAM) as promedioCaliPot1"),
+            DB::raw("AVG(potenciaFM) as promedioCaliPot2"),
+            DB::raw("AVG(potenciaDABHibrido) as promedioCaliPot3"),
+            DB::raw("AVG(SNRAMHibrido) as promedioCaliPot4"),
+            DB::raw("AVG(SNRFMHibrido) as promedioCaliPot5"),
+            DB::raw("AVG(SNRDAB) as promedioCaliPot6")
+        )
+            ->groupBy('potenciaAM', 'potenciaFM', 'potenciaDABHibrido', 'SNRAMHibrido', 'SNRFMHibrido', 'SNRDAB')
+            ->havingRaw('AVG(potenciaAM) <= 200')
+            ->havingRaw('AVG(potenciaFM) <= 200')
+            ->havingRaw('AVG(potenciaDABHibrido) <= 200')
+            ->havingRaw('AVG(SNRAMHibrido) <= 200')
+            ->havingRaw('AVG(SNRFMHibrido) <= 200')
+            ->havingRaw('AVG(SNRDAB) <= 200')
+            ->get();
         // }
         //POTENCIAS DE MEDELLIN {
-            $potenciasMede = PotenciaMede::select(
-                'potenciaAM',
-                'potenciaFM',
-                'potenciaDABHibrido',
-                'SNRAMHibrido',
-                'SNRFMHibrido',
-                'SNRDAB',
-                DB::raw("SUM(potenciaAM) as pot1"),
-                DB::raw("SUM(potenciaFM) as pot2"),
-                DB::raw("SUM(potenciaDABHibrido) as pot3"),
-                DB::raw("SUM(SNRAMHibrido) as pot4"),
-                DB::raw("SUM(SNRFMHibrido) as pot5"),
-                DB::raw("SUM(SNRDAB) as pot6")
-            )
-                ->groupBy('potenciaAM', 'potenciaFM', 'potenciaDABHibrido', 'SNRAMHibrido', 'SNRFMHibrido', 'SNRDAB')
-                ->get();
-    
-    
-                $promPotenciasMede = PotenciaMede::select(
-                    'potenciaAM',
-                    'potenciaFM',
-                    'potenciaDABHibrido',
-                    'SNRAMHibrido',
-                    'SNRFMHibrido',
-                    'SNRDAB',
-                    DB::raw("AVG(potenciaAM) as promedioMedePot1"),
-                    DB::raw("AVG(potenciaFM) as promedioMedePot2"),
-                    DB::raw("AVG(potenciaDABHibrido) as promedioMedePot3"),
-                    DB::raw("AVG(SNRAMHibrido) as promedioMedePot4"),
-                    DB::raw("AVG(SNRFMHibrido) as promedioMedePot5"),
-                    DB::raw("AVG(SNRDAB) as promedioMedePot6")
-                )
-                    ->groupBy('potenciaAM', 'potenciaFM', 'potenciaDABHibrido', 'SNRAMHibrido', 'SNRFMHibrido', 'SNRDAB')
-                    ->havingRaw('AVG(potenciaAM) <= 200')
-                    ->havingRaw('AVG(potenciaFM) <= 200')
-                    ->havingRaw('AVG(potenciaDABHibrido) <= 200')
-                    ->havingRaw('AVG(SNRAMHibrido) <= 200')
-                    ->havingRaw('AVG(SNRFMHibrido) <= 200')
-                    ->havingRaw('AVG(SNRDAB) <= 200')
-                    ->get();
+        $potenciasMede = PotenciaMede::select(
+            'potenciaAM',
+            'potenciaFM',
+            'potenciaDABHibrido',
+            'SNRAMHibrido',
+            'SNRFMHibrido',
+            'SNRDAB',
+            DB::raw("SUM(potenciaAM) as pot1"),
+            DB::raw("SUM(potenciaFM) as pot2"),
+            DB::raw("SUM(potenciaDABHibrido) as pot3"),
+            DB::raw("SUM(SNRAMHibrido) as pot4"),
+            DB::raw("SUM(SNRFMHibrido) as pot5"),
+            DB::raw("SUM(SNRDAB) as pot6")
+        )
+            ->groupBy('potenciaAM', 'potenciaFM', 'potenciaDABHibrido', 'SNRAMHibrido', 'SNRFMHibrido', 'SNRDAB')
+            ->get();
+
+
+        $promPotenciasMede = PotenciaMede::select(
+            'potenciaAM',
+            'potenciaFM',
+            'potenciaDABHibrido',
+            'SNRAMHibrido',
+            'SNRFMHibrido',
+            'SNRDAB',
+            DB::raw("AVG(potenciaAM) as promedioMedePot1"),
+            DB::raw("AVG(potenciaFM) as promedioMedePot2"),
+            DB::raw("AVG(potenciaDABHibrido) as promedioMedePot3"),
+            DB::raw("AVG(SNRAMHibrido) as promedioMedePot4"),
+            DB::raw("AVG(SNRFMHibrido) as promedioMedePot5"),
+            DB::raw("AVG(SNRDAB) as promedioMedePot6")
+        )
+            ->groupBy('potenciaAM', 'potenciaFM', 'potenciaDABHibrido', 'SNRAMHibrido', 'SNRFMHibrido', 'SNRDAB')
+            ->havingRaw('AVG(potenciaAM) <= 200')
+            ->havingRaw('AVG(potenciaFM) <= 200')
+            ->havingRaw('AVG(potenciaDABHibrido) <= 200')
+            ->havingRaw('AVG(SNRAMHibrido) <= 200')
+            ->havingRaw('AVG(SNRFMHibrido) <= 200')
+            ->havingRaw('AVG(SNRDAB) <= 200')
+            ->get();
         // }
 
 
@@ -262,7 +265,16 @@ class EmpresaController extends Controller
         while (count($encabezados) < 19) {
             $encabezados[] = 'Título Desconocido';
         }
+        // while (count($encabezadosBuca) < 19) {
+        //     $encabezadosBuca[] = 'Título Desconocido';
+        // }
+        // while (count($encabezadosMede) < 19) {
+        //     $encabezadosMede[] = 'Título Desconocido';
+        // }
+        // while (count($encabezadosCali) < 19) {
+        //     $encabezadosCali[] = 'Título Desconocido';
+        // }
 
-        return view("estadistica", compact('users', 'potencias', 'potenciasBuca', 'potenciasCali', 'potenciasMede', 'promPotenciasBuca', 'promPotenciasCali', 'promPotenciasMede', 'promPotencias', 'encabezados', 'ciudades'));
+        return view("estadistica", compact('users', 'potencias', 'potenciasBuca', 'potenciasCali', 'potenciasMede', 'promPotenciasBuca', 'promPotenciasCali', 'promPotenciasMede', 'promPotencias', 'encabezados', 'encabezadosMede', 'encabezadosCali', 'encabezadosBuca',  'ciudades'));
     }
 }

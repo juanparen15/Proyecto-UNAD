@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\TestMail;
 use App\User;
 use Illuminate\Support\Facades\Route;
 
@@ -17,10 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $user = User::first();
     return view('welcome', compact('user'));
+    // $name = 'Esto es una prueba';
+    // Mail::to('jprendon9@gmail.com')->send(new TestMail($name));
 })->name('welcome');
-Route::get('/vista', function () {
-    return view('vista');
-});
+// Route::get('/vista', function () {
+//     return view('vista');
+// });
 // Route::resource('empresa', 'EmpresaController')->only([
 //     'index',
 // ])->names('empresa');
@@ -47,7 +50,12 @@ Route::resource('ciudades', 'CiudadController')->except([
 ])->names('admin.ciudades');
 
 Auth::routes();
+// Auth::routes(['verify' => true]);
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Mail::to($request->user())->send(new MailableClass);
+// Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth', 'verified']);
 Route::get('/estadistica', 'EmpresaController@index')->name('estadistica');
 // Route::get('obtener_estandares', 'AjaxController@obtener_estandares')->name('obtener_estandares');
 // Route::get('obtener_tipoEmisoras', 'AjaxController@obtener_tipoEmisoras')->name('obtener_tipoEmisoras');

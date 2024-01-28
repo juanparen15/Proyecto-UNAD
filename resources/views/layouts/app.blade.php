@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <link rel="shortcut icon" href="adminlte/dist/img/AdminLTELogo.ico" />
+    <link rel="shortcut icon" href="adminlte/dist/img/logo-crc_0.svg" />
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

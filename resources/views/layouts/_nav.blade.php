@@ -177,6 +177,17 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('estadistica') }}"
+                            class="nav-link 
+            {!! active_class(route('estadistica')) !!}
+            ">
+                            <i class="nav-icon far fa-calendar-check"></i>
+                            <p>
+                                ESTADISTICA
+                            </p>
+                        </a>
+                    </li>
                 @else
                     <li class="nav-item">
                         <a href="{{ route('planadquisiciones.create') }}"

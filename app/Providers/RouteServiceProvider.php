@@ -81,6 +81,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function configureRateLimiting()
     {
         $this->middleware('web');
+        // $this->middleware(['web', 'verified']);
         $this->middleware('throttle:api')->only('api/products');
     }
 }

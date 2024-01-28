@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-{{-- <link rel="shortcut icon" href="adminlte/dist/img/AdminLTELogo.ico" /> --}}
+<link rel="shortcut icon" href="adminlte/dist/img/logo-crc_0.svg" />
 
 <head>
     <title>

@@ -636,6 +636,7 @@ class ComposerStaticInit732db54225baef57f6f981b06da8fc9e
         'App\\Imports\\MultiplePestanasImport' => __DIR__ . '/../..' . '/app/Imports/MultiplePestanasImport.php',
         'App\\Imports\\PotenciaImport' => __DIR__ . '/../..' . '/app/Imports/PotenciaImport.php',
         'App\\Imports\\SegmentoImport' => __DIR__ . '/../..' . '/app/Imports/SegmentoImport.php',
+        'App\\Mail\\TestMail' => __DIR__ . '/../..' . '/app/Mail/TestMail.php',
         'App\\Notifications\\VerifyEmailNotification' => __DIR__ . '/../..' . '/app/Notifications/VerifyEmailNotification.php',
         'App\\Planadquisicione' => __DIR__ . '/../..' . '/app/Planadquisicione.php',
         'App\\Potencia' => __DIR__ . '/../..' . '/app/Potencia.php',
