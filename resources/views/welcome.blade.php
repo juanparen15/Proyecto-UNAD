@@ -1,5 +1,5 @@
 @extends('layouts.principal')
-@section('title', 'Panel administrador')
+@section('title', 'CRC-UNAD')
 @section('style')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css"
         integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
