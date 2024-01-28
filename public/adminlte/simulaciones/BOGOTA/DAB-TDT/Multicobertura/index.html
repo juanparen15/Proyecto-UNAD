@@ -4,8 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/leaflet.css">
     <link rel="stylesheet" href="css/qgis2web.css">
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
@@ -111,6 +109,40 @@
         loadKmz('kmz/Signal level.kmz', 'Signal level');
         loadKmz('kmz/Best server.kmz', 'Best server');
         loadKmz('kmz/Overlapping.kmz', 'Overlapping');
+
+
+        var legends = {
+            signalLevel:
+                '<table cellpadding="0" cellspacing="0" ><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ffffff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-∞ , -120) dBu (Sin señal)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ff0000;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-120 , -100) dBu (Señal baja)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e1f622;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-100 , -90) dBu (Señal Intermedia)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#009600;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-90 , ∞) dBu (Señal excelente)</div></td></tr></table>',
+
+            bestServer:
+                '<table cellpadding="0" cellspacing="0"><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#0000ff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 1</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#00ff00;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 10</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ff8000;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 11</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ad5449;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 12</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#d0629d;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 13</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#73bdfd;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 14</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#8bfc57;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 15</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#54146e;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 16</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#3e4aa8;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 17</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#844e25;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 18</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#996f51;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 19</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e8d446;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 2</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#f49918;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 20</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#516730;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 21</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e73804;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 22</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e69356;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 23</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#01294e;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 24</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#d564df;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 25</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#8bd487;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 26</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#517f9b;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 3</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#7aec34;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">Maxiva Op de GatesAir Canal 4</div></td></tr><tr><td></td><td><div style="margin-left: 10px;" class="info_txt04">[...]</div></td></tr></table>',
+
+            overlapping:
+                '<table cellpadding="0" cellspacing="0" ><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ffffff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-∞ , 1) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#63be7b;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[1 , 20) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#5ab6cc;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[20 , 22) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#6150da;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[22 , 24) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e844e0;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[24 , 26) </div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#f6363a;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[26 , ∞) </div></td></tr></table>',
+        };
+
+        // Objeto para rastrear los controles de leyenda creados
+        var legendControls = {};
+
+        function addLegend(map, legendHTML, title, position) {
+            var legendControl = L.control({ position: position });
+            legendControl = L.control.layers(null, null, { collapsed: true }).addTo(map);
+
+            legendControl.onAdd = function (map) {
+                var div = L.DomUtil.create('div', 'legend');
+                div.innerHTML = '<h4>' + title + '</h4>' + legendHTML;
+                return div;
+            };
+
+            legendControl.addTo(map);
+            return legendControl;
+        }
+
+        // Ejemplo de llamadas a addLegend
+        addLegend(map, legends.signalLevel, 'Signal Level', 'bottomright');
+        addLegend(map, legends.overlapping, 'Overlapping', 'bottomright');
+        addLegend(map, legends.bestServer, 'Best Server', 'bottomright');
         setBounds();
     </script>
 </body>
