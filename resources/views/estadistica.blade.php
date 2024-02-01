@@ -1,8 +1,7 @@
 @extends('layouts.admin')
 @section('title', 'Panel administrador')
 @section('style')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css"
-        integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lumen/bootstrap.min.css">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
     {!! Html::style('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') !!}
@@ -14,7 +13,7 @@
 
 @endsection
 @section('content')
-    <div class="content-wrapper bg-black ">
+    <div class="content-wrapper ">
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
@@ -32,123 +31,13 @@
         </div>
         <div class="content">
             <div class="container-fluid">
-                {{-- @if (auth()->user()->hasRole('Supervisor'))
-                    <div class="row">
-                        <div class="col-lg-3 col-6">
-                            <div class="small-box bg-danger">
-                                <div class="inner">
-                                    <h3>{{ $adquisiciones1 }}</h3>
-                                    <p>Inventario</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-6">
-                            <div class="small-box bg-blue">
-                                <div class="inner">
-                                    <h3>{{ $users }}</h3>
-                                    <p>Usuarios</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fas fa-user-tie"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-maroon">
-                                <div class="inner">
-                                    <h3>{{ $dependencias }}</h3>
-                                    <p>Dependencias</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fab fa-xbox"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-pink">
-                                <div class="inner">
-                                    <h3>{{ $areas }}</h3>
-                                    <p>Areas</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fab fa-playstation"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endif --}}
-
-                {{-- @if (auth()->user()->hasRole('Admin'))
-                    <div class="row">
-                        <div class="col-lg-3 col-6">
-                            <div class="small-box bg-danger">
-                                <div class="inner">
-                                    <h3>{{ $adquisiciones1 }}</h3>
-                                    <p>Inventario</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </div>
-                                <a href="{{ route('planadquisiciones.index') }}" class="small-box-footer">Ver Todo
-                                    <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-6">
-                            <div class="small-box bg-blue">
-                                <div class="inner">
-                                    <h3>{{ $users }}</h3>
-                                    <p>Usuarios</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fas fa-user-tie"></i>
-                                </div>
-                                <a href="{{ route('users.index') }}" class="small-box-footer">Ver todo <i
-                                        class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-maroon">
-                                <div class="inner">
-                                    <h3>{{ $dependencias }}</h3>
-                                    <p>Dependencias</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fab fa-xbox"></i>
-                                </div>
-                                <a href="{{ route('admin.dependencias.index') }}" class="small-box-footer">Ver Todo
-                                    <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-pink">
-                                <div class="inner">
-                                    <h3>{{ $areas }}</h3>
-                                    <p>Areas</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fab fa-playstation"></i>
-                                </div>
-                                <a href="{{ route('admin.areas.index') }}" class="small-box-footer">Ver Todo <i
-                                        class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                @endif --}}
-
                 <div class="row">
                     <section class="col-lg-12 connectedSortable">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">
                                     <i class="fas fa-chart-pie mr-1"></i>
-                                    CRC-UNAD
+                                    RADSODI
                                 </h3>
                                 {{-- @can('planadquisiciones.export')
                                     <div class="card-tools">

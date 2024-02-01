@@ -24,7 +24,7 @@
 @endsection
 @section('content')
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper bg-black">
+    <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
@@ -71,10 +71,10 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="estandar_id">Estandar</label>
+                                <label for="estandar_id">Estándar</label>
                                 <select id="estandar_id" name="estandar_id" class="form-control select2" style="width: 100%"
                                     required>
-                                    <option value="" disabled selected>Seleccione un Estandar:</option>
+                                    <option value="" disabled selected>Seleccione un Estándar:</option>
 
                                 </select>
                             </div>
@@ -112,25 +112,6 @@
         <!-- /.content -->
         {{-- </div> --}}
         <!-- /.content-wrapper -->
-        {{-- <div class="modal fade" id="notaModal" tabindex="-1" role="dialog" aria-labelledby="notaModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="notaModalLabel">Mensaje de Validación</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Por favor, ingrese solo letras, números o guión (-) en el campo de notas.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary float-right" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div> --}}
     @endsection
     @section('script')
         <!-- Chart.js -->
@@ -166,7 +147,7 @@
                             $('#estandar_id').empty();
                             // Agrega la opción predeterminada
                             $('#estandar_id').append(
-                                '<option disabled selected>Seleccione un Estandar:</option>');
+                                '<option disabled selected>Seleccione un Estándar:</option>');
                             $.each(data, function(key, value) {
                                 $('#estandar_id').append('<option value="' + value.id +
                                     '" name="' + value.detestandar + '">' + value

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Crear Estandar')
+@section('title', 'Crear Estándar')
 @section('style')
     <!-- Select2 -->
     {!! Html::style('adminlte/plugins/select2/css/select2.min.css') !!}
@@ -13,14 +13,14 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Crear Nuevo Estandar</h1>
+                        <h1>Crear Nuevo Estándar</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.estandares.index') }}">Estandares</a>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.estandares.index') }}">Estándares</a>
                             </li>
-                            <li class="breadcrumb-item active">Crear Nuevo Estandar </li>
+                            <li class="breadcrumb-item active">Crear Nuevo Estándar </li>
                         </ol>
                     </div>
                 </div>
@@ -54,10 +54,10 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                      {!! Form::label('detestandar', 'NOMBRE ESTANDAR ') !!}
+                      {!! Form::label('detestandar', 'NOMBRE ESTÁNDAR ') !!}
                       {!! Form::text('detestandar', null, [
                           'class' => 'form-control',
-                          'placeholder' => 'Ingrese el Nombre del Estandar',
+                          'placeholder' => 'Ingrese el Nombre del Estándar',
                       ]) !!}
                       @error('detestandar')
                           <span class="text-danger">{{ $message }}</span>

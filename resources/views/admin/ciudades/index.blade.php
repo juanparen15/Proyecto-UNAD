@@ -9,7 +9,7 @@
     {!! Html::style('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') !!}
 @endsection
 @section('content')
-    <div class="content-wrapper bg-black">
+    <div class="content-wrapper ">
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">

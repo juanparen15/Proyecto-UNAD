@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
-    {{-- <link rel="shortcut icon" href="adminlte/dist/img/AdminLTELogo.ico" /> --}}
+{{-- <link rel="shortcut icon" href="adminlte/dist/img/AdminLTELogo.ico" /> --}}
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+{{-- <-- SWEET ALERT 2 --> --}}
+    <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
+    <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+
     <title>
         @yield('title')
     </title>
-
-
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -20,16 +23,21 @@
     {!! Html::style('adminlte/dist/css/adminlte.min.css') !!}
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css" integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lumen/bootstrap.min.css">
 </head>
 
-<body class="hold-transition login-page bg-black">
+<body class="hold-transition login-page">
+
     <div class="login-box">
+
         <!-- /.login-logo -->
         @yield('content')
+
         <!-- /.card -->
     </div>
+
     <!-- /.login-box -->
+
 
     <!-- jQuery -->
     {!! Html::script('adminlte/plugins/jquery/jquery.min.js') !!}

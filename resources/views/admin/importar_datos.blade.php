@@ -4,7 +4,7 @@
 
 @endsection
 @section('content')
-<div class="content-wrapper bg-black">
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -36,7 +36,7 @@
                 <form action="{{route('planadquisicione.import.excel')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="file" name="file" required>
-                    <button class="btn btn-primary float-right">Importar Mapa</button>
+                    <button class="btn btn-primary float-right">Importar Graficas</button>
                 </form>
             </div>
 {{-- 

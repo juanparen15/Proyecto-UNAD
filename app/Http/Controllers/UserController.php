@@ -17,7 +17,6 @@ class UserController extends Controller
         $this->middleware('role:admin', ['only' => ['index']]);
     }
 
-
     public function index()
     {
         $users = User::orderBy('id', 'DESC')->get();

@@ -17,8 +17,10 @@
     {!! Html::style('adminlte/plugins/select2/css/select2.min.css') !!}
     {!! Html::style('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') !!}
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css"
-        integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lumen/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
+        <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+    
 
     <style>
         .sidebar-dark-blue {
@@ -44,8 +46,9 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+
     <div class="wrapper">
-        <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
+        <nav class="main-header navbar navbar-expand navbar-info navbar-light" style="background: #ffc107">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
@@ -74,18 +77,18 @@
             <div class="float-right d-none d-sm-inline">
                 <a href="#"><b>Contáctanos</a>
             </div>
-            <strong style="color: #ffff">Copyright &copy;
+            <strong style="color: #000">Copyright &copy;
                 <script type="text/javascript">
                     document.write(new Date().getFullYear());
                 </script>
                 <b>
                     <a href="#"target="_blank">CRC-UNAD</a>.
             </strong>
-            <strong style="color: #ffff">
+            <strong style="color: #000">
                 Todos los Derechos Reservados por CRC-UNAD.
             </strong>
             <b><br>
-                <a style="color: #ffff">Analisis, Diseño y Desarrollo de Software</a></b>
+                <a style="color: #000">Análisis, Diseño y Desarrollo de Software</a></b>
         </footer>
     </div>
     {!! Html::script('adminlte/plugins/jquery/jquery.min.js') !!}
