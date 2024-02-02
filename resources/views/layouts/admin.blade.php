@@ -39,7 +39,7 @@
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/themes/dark-unica.js"></script>
+    {{-- <script src="https://code.highcharts.com/themes/dark-unica.js"></script> --}}
     {{-- <link rel="stylesheet" href="https://code.highcharts.com/css/highcharts.css"> --}}
 
 

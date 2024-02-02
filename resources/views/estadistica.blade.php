@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('title', 'Panel administrador')
 @section('style')
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lumen/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lumen/bootstrap.min.css">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
     {!! Html::style('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') !!}
@@ -293,11 +293,11 @@
                     viewData: "Mostrar Datos"
                 },
                 xAxis: {
-                    categories: ['{!! $encabezado3 !!}', '{!! $encabezado6 !!}', '{!! $encabezado9 !!}'],
+                    categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                 },
                 yAxis: {
                     title: {
-                        text: 'Potencias',
+                        text: 'Potencias (dBu)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     // max: 200, // Establecer el valor máximo en el eje Y
@@ -385,13 +385,11 @@
                     viewData: "Mostrar Datos"
                 },
                 xAxis: {
-                    categories: ['{!! $encabezado12 !!}', '{!! $encabezado15 !!}',
-                        '{!! $encabezado18 !!}'
-                    ],
+                    categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                 },
                 yAxis: {
                     title: {
-                        text: 'Potencias',
+                        text: 'Potencias (dBu)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     // max: 200, // Establecer el valor máximo en el eje Y
@@ -479,9 +477,9 @@
                 },
                 title: {
                     style: {
-                        color: '#E0E0E3',
-                        textTransform: 'uppercase',
-                        fontSize: '20px'
+                        // color: '#E0E0E3',
+                        // textTransform: 'uppercase',
+                        // fontSize: '20px'
                     },
                     text: 'MULTICOBERTURA BOGOTÁ',
                     // 'BOGOTA',
@@ -495,7 +493,7 @@
 
                 yAxis: {
                     title: {
-                        text: 'Potencias',
+                        text: 'Potencias (dBu)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -521,7 +519,7 @@
                     }
                 },
                 series: [{
-                        name: '{!! $encabezado3 !!}',
+                        name: 'IBOC AM Híbrido',
                         data: [
                             @foreach ($potencias as $pot1)
                                 {
@@ -532,7 +530,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado6 !!}',
+                        name: 'IBOC FM Híbrido',
                         data: [
                             @foreach ($potencias as $pot2)
                                 {
@@ -543,7 +541,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado9 !!}',
+                        name: 'DAB',
                         data: [
                             @foreach ($potencias as $pot3)
                                 {
@@ -592,9 +590,9 @@
                 },
                 title: {
                     style: {
-                        color: '#E0E0E3',
-                        textTransform: 'uppercase',
-                        fontSize: '20px'
+                        // color: '#E0E0E3',
+                        // textTransform: 'uppercase',
+                        // fontSize: '20px'
                     },
                     text: 'INTERFERENCIA BOGOTÁ',
                     // 'BOGOTA',
@@ -609,7 +607,7 @@
                 yAxis: {
                     title: {
                         // enabled: false,
-                        text: 'Potencias',
+                        text: 'Potencias (dBu)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -635,7 +633,7 @@
                     }
                 },
                 series: [{
-                        name: '{!! $encabezado12 !!}',
+                        name: 'IBOC AM Híbrido',
                         data: [
                             @foreach ($potencias as $pot4)
                                 {
@@ -646,7 +644,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado15 !!}',
+                        name: 'IBOC FM Híbrido',
                         data: [
                             @foreach ($potencias as $pot5)
                                 {
@@ -657,7 +655,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezado18 !!}',
+                        name: 'DBA',
                         data: [
                             @foreach ($potencias as $pot6)
                                 {
@@ -723,11 +721,9 @@
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['{!! $encabezado3 !!}', '{!! $encabezado6 !!}',
-                        '{!! $encabezado9 !!}'
-                    ],
+                    categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                     title: {
-                        text: 'Potencias'
+                        text: 'Potencias (dBu)'
                     }
                 },
 
@@ -826,11 +822,9 @@
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['{!! $encabezado12 !!}', '{!! $encabezado15 !!}',
-                        '{!! $encabezado18 !!}'
-                    ],
+                    categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                     title: {
-                        text: 'Potencias'
+                        text: 'Potencias (dBu)'
                     }
                 },
 
@@ -892,7 +886,7 @@
                     ],
 
                     tooltip: {
-                        headerFormat: '<em>Potencia {point.key}</em><br/>'
+                        headerFormat: '<em>{point.key}</em><br/>'
                     }
                 }, ]
 
@@ -919,11 +913,11 @@
                     viewData: "Mostrar Datos"
                 },
                 xAxis: {
-                    categories: ['{!! $encabezadoBuca3 !!}', '{!! $encabezadoBuca6 !!}', '{!! $encabezadoBuca9 !!}'],
+                    categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                 },
                 yAxis: {
                     title: {
-                        text: 'Potencias',
+                        text: 'Potencias (dBu)',
                     }
                 },
                 credits: {
@@ -1008,11 +1002,11 @@
                     viewData: "Mostrar Datos"
                 },
                 xAxis: {
-                    categories: ['{!! $encabezadoBuca12 !!}', '{!! $encabezadoBuca15 !!}', '{!! $encabezadoBuca18 !!}'],
+                    categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                 },
                 yAxis: {
                     title: {
-                        text: 'Potencias',
+                        text: 'Potencias (dBu)',
                     }
                 },
                 credits: {
@@ -1101,9 +1095,9 @@
                 },
                 title: {
                     style: {
-                        color: '#E0E0E3',
-                        textTransform: 'uppercase',
-                        fontSize: '20px'
+                        // color: '#E0E0E3',
+                        // textTransform: 'uppercase',
+                        // fontSize: '20px'
                     },
                     text: 'MULTICOBERTURA BUCARAMANGA',
                     // 'BOGOTA',
@@ -1117,7 +1111,7 @@
 
                 yAxis: {
                     title: {
-                        text: 'Potencias',
+                        text: 'Potencias (dBu)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -1143,7 +1137,7 @@
                     }
                 },
                 series: [{
-                        name: '{!! $encabezadoBuca3 !!}',
+                    name: 'IBOC AM Híbrido',
                         data: [
                             @foreach ($potenciasBuca as $pot1)
                                 {
@@ -1154,7 +1148,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezadoBuca6 !!}',
+                        name: 'IBOC FM Híbrido',
                         data: [
                             @foreach ($potenciasBuca as $pot2)
                                 {
@@ -1165,7 +1159,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezadoBuca9 !!}',
+                        name: 'DBA',
                         data: [
                             @foreach ($potenciasBuca as $pot3)
                                 {
@@ -1214,9 +1208,9 @@
                 },
                 title: {
                     style: {
-                        color: '#E0E0E3',
-                        textTransform: 'uppercase',
-                        fontSize: '20px'
+                        // color: '#E0E0E3',
+                        // textTransform: 'uppercase',
+                        // fontSize: '20px'
                     },
                     text: 'INTERFERENCIA BUCARAMANGA',
                     // 'BOGOTA',
@@ -1231,7 +1225,7 @@
                 yAxis: {
                     title: {
                         // enabled: false,
-                        text: 'Potencias',
+                        text: 'Potencias (dBu)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -1257,7 +1251,7 @@
                     }
                 },
                 series: [{
-                        name: '{!! $encabezadoBuca12 !!}',
+                    name: 'IBOC AM Híbrido',
                         data: [
                             @foreach ($potenciasBuca as $pot4)
                                 {
@@ -1268,7 +1262,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezadoBuca15 !!}',
+                        name: 'IBOC FM Híbrido',
                         data: [
                             @foreach ($potenciasBuca as $pot5)
                                 {
@@ -1279,7 +1273,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezadoBuca18 !!}',
+                        name: 'DBA',
                         data: [
                             @foreach ($potenciasBuca as $pot6)
                                 {
@@ -1343,9 +1337,9 @@
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['{!! $encabezadoBuca3 !!}', '{!! $encabezadoBuca3 !!}', '{!! $encabezadoBuca3 !!}'],
+                    categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                     title: {
-                        text: 'Potencias'
+                        text: 'Potencias (dBu)'
                     }
                 },
 
@@ -1447,11 +1441,9 @@
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['{!! $encabezadoBuca12 !!}', '{!! $encabezadoBuca15 !!}',
-                        '{!! $encabezadoBuca18 !!}'
-                    ],
+                    categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                     title: {
-                        text: 'Potencias'
+                        text: 'Potencias (dBu)'
                     }
                 },
 
@@ -1477,48 +1469,47 @@
                 },
 
                 series: [{
-                        type: 'boxplot',
-                        medianWidth: 3,
-                        stickyTracking: true,
-                        cursor: 'pointer',
-                        colorByPoint: true,
-                        name: 'Observaciones',
-                        data: [
-                            [
-                                @foreach ($potenciasBuca as $pot4)
-                                    {
-                                        name: '{{ $pot4->SNRAMHibrido }}',
-                                        // '{{ $pot4->pot4 }}',
-                                    },
-                                    {{ $pot4->pot4 }},
-                                @endforeach
-                            ],
-                            [
-                                @foreach ($potenciasBuca as $pot5)
-                                    {
-                                        name: '{{ $pot5->SNRFMHibrido }}',
-                                        // '{{ $pot5->pot5 }}',
-                                    },
-                                    {{ $pot5->pot5 }},
-                                @endforeach
-                            ],
-                            [
-                                @foreach ($potenciasBuca as $pot6)
-                                    {
-                                        name: '{{ $pot6->SNRDAB }}',
-                                        // '{{ $pot6->pot6 }}',
-
-                                    },
-                                    {{ $pot6->pot6 }},
-                                @endforeach
-                            ],
+                    type: 'boxplot',
+                    medianWidth: 3,
+                    stickyTracking: true,
+                    cursor: 'pointer',
+                    colorByPoint: true,
+                    name: 'Observaciones',
+                    data: [
+                        [
+                            @foreach ($potenciasBuca as $pot4)
+                                {
+                                    name: '{{ $pot4->SNRAMHibrido }}',
+                                    // '{{ $pot4->pot4 }}',
+                                },
+                                {{ $pot4->pot4 }},
+                            @endforeach
                         ],
+                        [
+                            @foreach ($potenciasBuca as $pot5)
+                                {
+                                    name: '{{ $pot5->SNRFMHibrido }}',
+                                    // '{{ $pot5->pot5 }}',
+                                },
+                                {{ $pot5->pot5 }},
+                            @endforeach
+                        ],
+                        [
+                            @foreach ($potenciasBuca as $pot6)
+                                {
+                                    name: '{{ $pot6->SNRDAB }}',
+                                    // '{{ $pot6->pot6 }}',
 
-                        tooltip: {
-                            headerFormat: '<em>Potencia {point.key}</em><br/>'
-                        }
+                                },
+                                {{ $pot6->pot6 }},
+                            @endforeach
+                        ],
+                    ],
+
+                    tooltip: {
+                        headerFormat: '<em>Potencia {point.key}</em><br/>'
                     }
-                ]
+                }]
 
             });
         </script>
@@ -1543,11 +1534,11 @@
                     viewData: "Mostrar Datos"
                 },
                 xAxis: {
-                    categories: ['{!! $encabezadoCali3 !!}', '{!! $encabezadoCali6 !!}', '{!! $encabezadoCali9 !!}'],
+                    categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                 },
                 yAxis: {
                     title: {
-                        text: 'Potencias',
+                        text: 'Potencias (dBu)',
                     }
                 },
                 credits: {
@@ -1633,11 +1624,11 @@
                     viewData: "Mostrar Datos"
                 },
                 xAxis: {
-                    categories: ['{!! $encabezadoCali12 !!}', '{!! $encabezadoCali15 !!}', '{!! $encabezadoCali18 !!}'],
+                    categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                 },
                 yAxis: {
                     title: {
-                        text: 'Potencias',
+                        text: 'Potencias (dBu)',
                     }
                 },
                 credits: {
@@ -1726,9 +1717,9 @@
                 },
                 title: {
                     style: {
-                        color: '#E0E0E3',
-                        textTransform: 'uppercase',
-                        fontSize: '20px'
+                        // color: '#E0E0E3',
+                        // textTransform: 'uppercase',
+                        // fontSize: '20px'
                     },
                     text: 'MULTICOBERTURA CALI',
                     // 'BOGOTA',
@@ -1742,7 +1733,7 @@
 
                 yAxis: {
                     title: {
-                        text: 'Potencias',
+                        text: 'Potencias (dBu)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -1768,7 +1759,7 @@
                     }
                 },
                 series: [{
-                        name: '{!! $encabezadoCali3 !!}',
+                    name: 'IBOC AM Híbrido',
                         data: [
                             @foreach ($potenciasCali as $pot1)
                                 {
@@ -1779,7 +1770,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezadoCali6 !!}',
+                        name: 'IBOC FM Híbrido',
                         data: [
                             @foreach ($potenciasCali as $pot2)
                                 {
@@ -1790,7 +1781,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezadoCali9 !!}',
+                        name: 'DBA',
                         data: [
                             @foreach ($potenciasCali as $pot3)
                                 {
@@ -1839,9 +1830,9 @@
                 },
                 title: {
                     style: {
-                        color: '#E0E0E3',
-                        textTransform: 'uppercase',
-                        fontSize: '20px'
+                        // color: '#E0E0E3',
+                        // textTransform: 'uppercase',
+                        // fontSize: '20px'
                     },
                     text: 'INTERFERENCIA CALI',
                     // 'BOGOTA',
@@ -1856,7 +1847,7 @@
                 yAxis: {
                     title: {
                         // enabled: false,
-                        text: 'Potencias',
+                        text: 'Potencias (dBu)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -1882,7 +1873,7 @@
                     }
                 },
                 series: [{
-                        name: '{!! $encabezadoCali12 !!}',
+                    name: 'IBOC AM Híbrido',
                         data: [
                             @foreach ($potenciasCali as $pot4)
                                 {
@@ -1893,7 +1884,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezadoCali15 !!}',
+                        name: 'IBOC FM Híbrido',
                         data: [
                             @foreach ($potenciasCali as $pot5)
                                 {
@@ -1904,7 +1895,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezadoCali18 !!}',
+                        name: 'DBA',
                         data: [
                             @foreach ($potenciasCali as $pot6)
                                 {
@@ -1970,11 +1961,9 @@
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['{!! $encabezadoCali3 !!}', '{!! $encabezadoCali6 !!}',
-                        '{!! $encabezadoCali9 !!}'
-                    ],
+                    categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                     title: {
-                        text: 'Potencias'
+                        text: 'Potencias (dBu)'
                     }
                 },
 
@@ -2078,11 +2067,9 @@
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['{!! $encabezadoCali12 !!}', '{!! $encabezadoCali15 !!}',
-                        '{!! $encabezadoCali18 !!}'
-                    ],
+                    categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                     title: {
-                        text: 'Potencias'
+                        text: 'Potencias (dBu)'
                     }
                 },
 
@@ -2110,44 +2097,43 @@
                 },
 
                 series: [{
-                        type: 'boxplot',
-                        medianWidth: 3,
-                        stickyTracking: true,
-                        cursor: 'pointer',
-                        colorByPoint: true,
-                        name: 'Observaciones',
-                        data: [
-                            [
-                                @foreach ($potenciasCali as $pot4)
-                                    {
-                                        name: '{{ $pot4->SNRAMHibrido }}',
-                                    },
-                                    {{ $pot4->pot4 }},
-                                @endforeach
-                            ],
-                            [
-                                @foreach ($potenciasCali as $pot5)
-                                    {
-                                        name: '{{ $pot5->SNRFMHibrido }}',
-                                    },
-                                    {{ $pot5->pot5 }},
-                                @endforeach
-                            ],
-                            [
-                                @foreach ($potenciasCali as $pot6)
-                                    {
-                                        name: '{{ $pot6->SNRDAB }}',
-                                    },
-                                    {{ $pot6->pot6 }},
-                                @endforeach
-                            ],
+                    type: 'boxplot',
+                    medianWidth: 3,
+                    stickyTracking: true,
+                    cursor: 'pointer',
+                    colorByPoint: true,
+                    name: 'Observaciones',
+                    data: [
+                        [
+                            @foreach ($potenciasCali as $pot4)
+                                {
+                                    name: '{{ $pot4->SNRAMHibrido }}',
+                                },
+                                {{ $pot4->pot4 }},
+                            @endforeach
                         ],
+                        [
+                            @foreach ($potenciasCali as $pot5)
+                                {
+                                    name: '{{ $pot5->SNRFMHibrido }}',
+                                },
+                                {{ $pot5->pot5 }},
+                            @endforeach
+                        ],
+                        [
+                            @foreach ($potenciasCali as $pot6)
+                                {
+                                    name: '{{ $pot6->SNRDAB }}',
+                                },
+                                {{ $pot6->pot6 }},
+                            @endforeach
+                        ],
+                    ],
 
-                        tooltip: {
-                            headerFormat: '<em>Potencia {point.key}</em><br/>'
-                        }
+                    tooltip: {
+                        headerFormat: '<em>Potencia {point.key}</em><br/>'
                     }
-                ]
+                }]
 
             });
         </script>
@@ -2172,11 +2158,11 @@
                     viewData: "Mostrar Datos"
                 },
                 xAxis: {
-                    categories: ['{!! $encabezadoMede3 !!}', '{!! $encabezadoMede6 !!}', '{!! $encabezadoMede9 !!}'],
+                    categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                 },
                 yAxis: {
                     title: {
-                        text: 'Potencias'
+                        text: 'Potencias (dBu)'
                     }
                 },
                 credits: {
@@ -2262,11 +2248,11 @@
                     viewData: "Mostrar Datos"
                 },
                 xAxis: {
-                    categories: ['{!! $encabezadoMede12 !!}', '{!! $encabezadoMede15 !!}', '{!! $encabezadoMede18 !!}'],
+                    categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                 },
                 yAxis: {
                     title: {
-                        text: 'Potencias'
+                        text: 'Potencias (dBu)'
                     }
                 },
                 credits: {
@@ -2355,9 +2341,9 @@
                 },
                 title: {
                     style: {
-                        color: '#E0E0E3',
-                        textTransform: 'uppercase',
-                        fontSize: '20px'
+                        // color: '#E0E0E3',
+                        // textTransform: 'uppercase',
+                        // fontSize: '20px'
                     },
                     text: 'MULTICOBERTURA MEDELLIN',
                     // 'BOGOTA',
@@ -2371,7 +2357,7 @@
 
                 yAxis: {
                     title: {
-                        text: 'Potencias',
+                        text: 'Potencias (dBu)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -2397,7 +2383,7 @@
                     }
                 },
                 series: [{
-                        name: '{!! $encabezadoMede3 !!}',
+                    name: 'IBOC AM Híbrido',
                         data: [
                             @foreach ($potenciasMede as $pot1)
                                 {
@@ -2408,7 +2394,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezadoMede6 !!}',
+                        name: 'IBOC FM Híbrido',
                         data: [
                             @foreach ($potenciasMede as $pot2)
                                 {
@@ -2419,7 +2405,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezadoMede9 !!}',
+                        name: 'DBA',
                         data: [
                             @foreach ($potenciasMede as $pot3)
                                 {
@@ -2468,9 +2454,9 @@
                 },
                 title: {
                     style: {
-                        color: '#E0E0E3',
-                        textTransform: 'uppercase',
-                        fontSize: '20px'
+                        // color: '#E0E0E3',
+                        // textTransform: 'uppercase',
+                        // fontSize: '20px'
                     },
                     text: 'INTERFERENCIA MEDELLIN',
                     // 'BOGOTA',
@@ -2485,7 +2471,7 @@
                 yAxis: {
                     title: {
                         // enabled: false,
-                        text: 'Potencias',
+                        text: 'Potencias (dBu)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -2511,7 +2497,7 @@
                     }
                 },
                 series: [{
-                        name: '{!! $encabezadoMede12 !!}',
+                    name: 'IBOC AM Híbrido',
                         data: [
                             @foreach ($potenciasMede as $pot4)
                                 {
@@ -2522,7 +2508,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezadoMede15 !!}',
+                        name: 'IBOC FM Híbrido',
                         data: [
                             @foreach ($potenciasMede as $pot5)
                                 {
@@ -2533,7 +2519,7 @@
                         ]
                     },
                     {
-                        name: '{!! $encabezadoMede18 !!}',
+                        name: 'DBA',
                         data: [
                             @foreach ($potenciasMede as $pot6)
                                 {
@@ -2599,11 +2585,9 @@
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['{!! $encabezadoMede3 !!}', '{!! $encabezadoMede6 !!}',
-                        '{!! $encabezadoMede9 !!}'
-                    ],
+                    categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                     title: {
-                        text: 'Potencias'
+                        text: 'Potencias (dBu)'
                     }
                 },
 
@@ -2631,44 +2615,43 @@
                 },
 
                 series: [{
-                        type: 'boxplot',
-                        medianWidth: 3,
-                        stickyTracking: true,
-                        cursor: 'pointer',
-                        colorByPoint: true,
-                        name: 'Observaciones',
-                        data: [
-                            [
-                                @foreach ($potenciasMede as $pot1)
-                                    {
-                                        name: '{{ $pot1->potenciaAM }}',
-                                    },
-                                    {{ $pot1->pot1 }},
-                                @endforeach
-                            ],
-                            [
-                                @foreach ($potenciasMede as $pot2)
-                                    {
-                                        name: '{{ $pot2->potenciaFM }}',
-                                    },
-                                    {{ $pot2->pot2 }},
-                                @endforeach
-                            ],
-                            [
-                                @foreach ($potenciasMede as $pot3)
-                                    {
-                                        name: '{{ $pot3->potenciaDABHibrido }}',
-                                    },
-                                    {{ $pot3->pot3 }},
-                                @endforeach
-                            ],
+                    type: 'boxplot',
+                    medianWidth: 3,
+                    stickyTracking: true,
+                    cursor: 'pointer',
+                    colorByPoint: true,
+                    name: 'Observaciones',
+                    data: [
+                        [
+                            @foreach ($potenciasMede as $pot1)
+                                {
+                                    name: '{{ $pot1->potenciaAM }}',
+                                },
+                                {{ $pot1->pot1 }},
+                            @endforeach
                         ],
+                        [
+                            @foreach ($potenciasMede as $pot2)
+                                {
+                                    name: '{{ $pot2->potenciaFM }}',
+                                },
+                                {{ $pot2->pot2 }},
+                            @endforeach
+                        ],
+                        [
+                            @foreach ($potenciasMede as $pot3)
+                                {
+                                    name: '{{ $pot3->potenciaDABHibrido }}',
+                                },
+                                {{ $pot3->pot3 }},
+                            @endforeach
+                        ],
+                    ],
 
-                        tooltip: {
-                            headerFormat: '<em>Potencia {point.key}</em><br/>'
-                        }
+                    tooltip: {
+                        headerFormat: '<em>Potencia {point.key}</em><br/>'
                     }
-                ]
+                }]
 
             });
             Highcharts.chart('containerBoxMede2', {
@@ -2708,11 +2691,9 @@
                     // crosshair: {
                     //     enabled: true
                     // },
-                    categories: ['{!! $encabezadoMede12 !!}', '{!! $encabezadoMede15 !!}',
-                        '{!! $encabezadoMede18 !!}'
-                    ],
+                    categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                     title: {
-                        text: 'Potencias'
+                        text: 'Potencias (dBu)'
                     }
                 },
 
@@ -2740,44 +2721,43 @@
                 },
 
                 series: [{
-                        type: 'boxplot',
-                        medianWidth: 3,
-                        stickyTracking: true,
-                        cursor: 'pointer',
-                        colorByPoint: true,
-                        name: 'Observaciones',
-                        data: [
-                            [
-                                @foreach ($potenciasMede as $pot4)
-                                    {
-                                        name: '{{ $pot4->SNRAMHibrido }}',
-                                    },
-                                    {{ $pot4->pot4 }},
-                                @endforeach
-                            ],
-                            [
-                                @foreach ($potenciasMede as $pot5)
-                                    {
-                                        name: '{{ $pot5->SNRFMHibrido }}',
-                                    },
-                                    {{ $pot5->pot5 }},
-                                @endforeach
-                            ],
-                            [
-                                @foreach ($potenciasMede as $pot6)
-                                    {
-                                        name: '{{ $pot6->SNRDAB }}',
-                                    },
-                                    {{ $pot6->pot6 }},
-                                @endforeach
-                            ],
+                    type: 'boxplot',
+                    medianWidth: 3,
+                    stickyTracking: true,
+                    cursor: 'pointer',
+                    colorByPoint: true,
+                    name: 'Observaciones',
+                    data: [
+                        [
+                            @foreach ($potenciasMede as $pot4)
+                                {
+                                    name: '{{ $pot4->SNRAMHibrido }}',
+                                },
+                                {{ $pot4->pot4 }},
+                            @endforeach
                         ],
+                        [
+                            @foreach ($potenciasMede as $pot5)
+                                {
+                                    name: '{{ $pot5->SNRFMHibrido }}',
+                                },
+                                {{ $pot5->pot5 }},
+                            @endforeach
+                        ],
+                        [
+                            @foreach ($potenciasMede as $pot6)
+                                {
+                                    name: '{{ $pot6->SNRDAB }}',
+                                },
+                                {{ $pot6->pot6 }},
+                            @endforeach
+                        ],
+                    ],
 
-                        tooltip: {
-                            headerFormat: '<em>Potencia {point.key}</em><br/>'
-                        }
+                    tooltip: {
+                        headerFormat: '<em>Potencia {point.key}</em><br/>'
                     }
-                ]
+                }]
 
             });
         </script>
