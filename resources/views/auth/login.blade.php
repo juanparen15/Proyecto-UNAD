@@ -76,9 +76,9 @@ Toast.fire({
             </div>
             <!-- /.col -->
             <p class="mb-0 text-right">
-                @if (Route::has('password.request'))
+                {{-- @if (Route::has('password.request'))
                     <a href="{{ route('password.request') }}">Olvidé mi contraseña</a>
-                @endif
+                @endif --}}
             </p>
             <p class="mb-0 text-right">
                 {{-- <a href="{{ route('register') }}" class="text-center">Crear cuenta nueva</a> --}}
