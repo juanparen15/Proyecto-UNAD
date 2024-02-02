@@ -79,10 +79,10 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="tipoemisora_id">Tipo de Emisora</label>
+                                <label for="tipoemisora_id">Tipo de Simulación</label>
                                 <select id="tipoemisora_id" name="tipoemisora_id" class="form-control select2"
                                     style="width: 100%" required>
-                                    <option value="" disabled selected>Seleccione el Tipo de Emisora:</option>
+                                    <option value="" disabled selected>Seleccione el Tipo de Simulación:</option>
 
                                 </select>
                             </div>
@@ -174,7 +174,7 @@
                             $('#tipoemisora_id').empty();
                             // Agrega la opción predeterminada
                             $('#tipoemisora_id').append(
-                                '<option disabled selected>Seleccione el Tipo de Emisora:</option>');
+                                '<option disabled selected>Seleccione el Tipo de Simulación:</option>');
                             $.each(data, function(key, value) {
                                 $('#tipoemisora_id').append('<option value="' + value.id +
                                     '" name="' + value.detfuente + '">' + value.detfuente +
