@@ -1,0 +1,12 @@
+{
+    "sourceDirectory": "src",
+    "sharePointSiteUrl": "https:/",
+    "workspaceRoot": "c:\\laragon\\www\\Ingeniero",
+    "publishWorkspaceOptions": {
+        "destinationFolder": "/",
+        "globPattern": "c:\\laragon\\www\\Ingeniero\\src\\**\\*.*",
+        "localRoot": "c:\\laragon\\www\\Ingeniero\\src"
+    },
+    "publishingScope": "None",
+    "authenticationType": "Digest"
+}

@@ -6,16 +6,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> --}}
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
     {!! Html::style('adminlte/plugins/fontawesome-free/css/all.min.css') !!}
-    {!! Html::style('adminlte/plugins/select2/css/select2.min.css') !!}
-    {!! Html::style('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') !!}
     @yield('style')
     {!! Html::style('adminlte/dist/css/adminlte.min.css') !!}
-    {!! Html::style('adminlte/plugins/select2/css/select2.min.css') !!}
-    {!! Html::style('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') !!}
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lumen/bootstrap.min.css">
         <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
@@ -31,6 +28,7 @@
             color: #ffffff !important;
         }
     </style>
+    
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/drilldown.js"></script>
@@ -39,6 +37,7 @@
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    
     {{-- <script src="https://code.highcharts.com/themes/dark-unica.js"></script> --}}
     {{-- <link rel="stylesheet" href="https://code.highcharts.com/css/highcharts.css"> --}}
 

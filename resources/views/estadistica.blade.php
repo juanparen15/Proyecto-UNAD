@@ -1,9 +1,10 @@
 @extends('layouts.admin')
 @section('title', 'Panel administrador')
 @section('style')
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lumen/bootstrap.min.css">
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    {!! Html::style('adminlte/plugins/select2/css/select2.min.css') !!}
+    {!! Html::style('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') !!}
     {!! Html::style('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') !!}
     <!-- DataTables -->
     {!! Html::style('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') !!}
@@ -50,7 +51,7 @@
                                     </div>
                                 @endcan --}}
 
-                                <div class="card-tools">
+                                <div class="card-tools" style="width: 15%">
                                     <select class="form-control select2 @error('ciudad_id') is-invalid @enderror"
                                         name="ciudad_id" id="ciudad_id" style="width: 100%">
                                         <option value="" disabled selected>Seleccione una Ciudad:
@@ -216,6 +217,18 @@
     @endsection
 
     @section('script')
+    
+        <!-- Select2 -->
+        {!! Html::script('adminlte/plugins/select2/js/select2.full.min.js') !!}
+
+    <script>
+        $(function() {
+
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+        });
+    </script>
         <script>
             $(document).ready(function() {
                 // Agrega el evento change al select

@@ -68,6 +68,7 @@ Route::get('/get-emisoras/{tipoemisora_id}', 'AjaxController@obtener_emisora');
 
 
 
+
 Route::resource('users', 'UserController')->names('users');
 // ================== rutas para importar datos 
 Route::post('potencia_import', 'ImportExcelController@potencia_import')->name('planadquisicione.import.excel');

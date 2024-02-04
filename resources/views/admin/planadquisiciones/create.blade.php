@@ -72,27 +72,32 @@
                             </div>
                             <div class="form-group">
                                 <label for="estandar_id">Estándar</label>
-                                <select id="estandar_id" name="estandar_id" class="form-control select2" style="width: 100%"
-                                    required>
+                                <select id="estandar_id" name="estandar_id"
+                                    class="form-control select2 @error('estandar_id') is-invalid @enderror"
+                                    style="width: 100%" required>
                                     <option value="" disabled selected>Seleccione un Estándar:</option>
 
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="tipoemisora_id">Tipo de Simulación</label>
-                                <select id="tipoemisora_id" name="tipoemisora_id" class="form-control select2"
+                                <select id="tipoemisora_id" name="tipoemisora_id"
+                                    class="form-control select2 @error('tipoemisora_id') is-invalid @enderror"
                                     style="width: 100%" required>
                                     <option value="" disabled selected>Seleccione el Tipo de Simulación:</option>
 
                                 </select>
                             </div>
-                            <div class="form-group">
+
+                            <div class="form-group emisora_id">
                                 <label for="emisora_id">Emisora</label>
-                                <select id="emisora_id" name="emisora_id" class="form-control select2" style="width: 100%"
-                                    required>
+                                <select id="emisora_id" name="emisora_id"
+                                    class="form-control select2 @error('emisora_id') is-invalid @enderror"
+                                    style="width: 100%">
                                     <option value="" disabled selected>Seleccione la Emisora:</option>
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <input type="submit" value="Mostrar" class="btn btn-primary style="width: 100%"">
 
@@ -114,29 +119,23 @@
         <!-- /.content-wrapper -->
     @endsection
     @section('script')
-        <!-- Chart.js -->
-        <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
-
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <!-- Select2 -->
         {!! Html::script('adminlte/plugins/select2/js/select2.full.min.js') !!}
-
         <script>
             $(function() {
 
                 //Initialize Select2 Elements
                 $('.select2').select2()
-
+                // $('.emisora_id').hide();
             });
         </script>
-
         <script>
-            var ciudad_id = $('#ciudad_id');
-            var estandar_id = $('#estandar_id');
-            var tipoemisora_id = $('#tipoemisora_id');
-            var emisora_id = $('#emisora_id');
-
             $(document).ready(function() {
+                var ciudad_id = $('#ciudad_id');
+                var estandar_id = $('#estandar_id');
+                var tipoemisora_id = $('#tipoemisora_id');
+                var emisora_id = $('#emisora_id');
+
                 // Evento cuando cambia la opción en la lista de ciudades
                 ciudad_id.change(function() {
                     var ciudad_id = $(this).val();
@@ -162,19 +161,19 @@
                     }
                 });
 
-
-
                 // Evento cuando cambia la opción en la lista de estandares
                 estandar_id.change(function() {
                     var estandar_id = $(this).val();
                     if (estandar_id) {
                         // Realiza una solicitud AJAX para obtener los tipos de emisora
                         $.get('/get-tipos-emisora/' + estandar_id, function(data) {
+
                             // Limpia la lista de tipos de emisora y añade los nuevos
                             $('#tipoemisora_id').empty();
                             // Agrega la opción predeterminada
                             $('#tipoemisora_id').append(
-                                '<option disabled selected>Seleccione el Tipo de Simulación:</option>');
+                                '<option disabled selected>Seleccione el Tipo de Simulación:</option>'
+                            );
                             $.each(data, function(key, value) {
                                 $('#tipoemisora_id').append('<option value="' + value.id +
                                     '" name="' + value.detfuente + '">' + value.detfuente +
@@ -189,40 +188,38 @@
                     }
                 });
 
-
-                // Evento cuando cambia la opción en la lista de tipos de emisora
                 tipoemisora_id.change(function() {
                     var tipoemisora_id = $(this).val();
                     if (tipoemisora_id) {
-                        // Realiza una solicitud AJAX para obtener las emisoras
-                        $.get('/get-emisoras/' + tipoemisora_id, function(data) {
-                            // Limpia la lista de emisoras y añade las nuevas
-                            $('#emisora_id').empty();
-                            // Agrega la opción predeterminada
-                            $('#emisora_id').append(
-                                '<option disabled selected>Seleccione la Emisora:</option>');
-                            $.each(data, function(key, value) {
-                                $('#emisora_id').append('<option value="' + value.id +
-                                    '" name="' + value.emisora + '">' + value.emisora +
-                                    '</option>');
+                        console.log('Tipo de Emisora:', tipoemisora_id);
+                        if ($('#tipoemisora_id option:selected').attr('name') === 'Multicobertura') {
+                            $('.emisora_id').hide();
+                        } else {
+                            $('.emisora_id').show();
+                            // Realiza una solicitud AJAX para obtener los tipos de emisora
+                            $.get('/get-emisoras/' + tipoemisora_id, function(data) {
+
+                                // Limpia la lista de tipos de emisora y añade los nuevos
+                                $('#emisora_id').empty();
+                                // Agrega la opción predeterminada
+                                $('#emisora_id').append(
+                                    '<option disabled selected>Seleccione la Emisora:</option>'
+                                );
+                                $.each(data, function(key, value) {
+                                    $('#emisora_id').append('<option value="' + value.id +
+                                        '" name="' + value.emisora + '">' + value.emisora +
+                                        '</option>');
+                                });
+                                // Selecciona automáticamente la primera opción
+                                $('#emisora_id').val($('#emisora_id option:first').val());
                             });
-                            // Selecciona automáticamente la primera opción
-                            $('#emisora_id').val($('#emisora_id option:first').val());
-                        });
+                        }
                     } else {
-                        // Si no se selecciona ningún tipo de emisora, limpia la lista de emisoras
                         $('#emisora_id').empty();
                     }
                 });
-
             });
-
-            // console.log("Selected City:", ciudad_id);
-            // console.log("Selected Standard:", estandar_id);
-            // console.log("Selected Type:", tipoemisora_id);
         </script>
-
-
         <script>
             $(document).ready(function() {
 

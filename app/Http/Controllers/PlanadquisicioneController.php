@@ -102,6 +102,9 @@ class PlanadquisicioneController extends Controller
     {
 
         $userArea = auth()->user()->area; // Obtener el área asociada al usuario
+
+        // $tipoemisora_id = TuModelo::where('area_id', $userArea->id)->value('tipoemisora_id');
+
         $ciudades = Ciudad::get();
         $estandares = Estandar::get();
         $areas = collect([$userArea]); // Crear una colección con el área del usuario
