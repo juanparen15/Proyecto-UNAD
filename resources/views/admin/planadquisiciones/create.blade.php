@@ -191,7 +191,7 @@
                 tipoemisora_id.change(function() {
                     var tipoemisora_id = $(this).val();
                     if (tipoemisora_id) {
-                        console.log('Tipo de Emisora:', tipoemisora_id);
+                        // console.log('Tipo de Emisora:', tipoemisora_id);
                         if ($('#tipoemisora_id option:selected').attr('name') === 'Multicobertura' || $(
                                 '#tipoemisora_id option:selected').attr('name') === 'Interferencia') {
                             $('.emisora_id').hide();
