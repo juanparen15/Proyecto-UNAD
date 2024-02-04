@@ -15,7 +15,7 @@ const Toast = Swal.mixin({
 });
 Toast.fire({
   icon: "info",
-  title: "Debe registrarse para acceder al Sistema"
+  title: "Debe registrarse para acceder al sistema"
 });
 </script>    
 
