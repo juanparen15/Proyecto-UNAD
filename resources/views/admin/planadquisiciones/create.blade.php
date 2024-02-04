@@ -93,7 +93,7 @@
                                 <label for="emisora_id">Emisora</label>
                                 <select id="emisora_id" name="emisora_id"
                                     class="form-control select2 @error('emisora_id') is-invalid @enderror"
-                                    style="width: 100%">
+                                    style="width: 100%" required>
                                     <option value="" disabled selected>Seleccione la Emisora:</option>
                                 </select>
                             </div>
@@ -192,7 +192,8 @@
                     var tipoemisora_id = $(this).val();
                     if (tipoemisora_id) {
                         console.log('Tipo de Emisora:', tipoemisora_id);
-                        if ($('#tipoemisora_id option:selected').attr('name') === 'Multicobertura') {
+                        if ($('#tipoemisora_id option:selected').attr('name') === 'Multicobertura' || $(
+                                '#tipoemisora_id option:selected').attr('name') === 'Interferencias') {
                             $('.emisora_id').hide();
                         } else {
                             $('.emisora_id').show();
