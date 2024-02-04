@@ -193,7 +193,7 @@
                     if (tipoemisora_id) {
                         console.log('Tipo de Emisora:', tipoemisora_id);
                         if ($('#tipoemisora_id option:selected').attr('name') === 'Multicobertura' || $(
-                                '#tipoemisora_id option:selected').attr('name') === 'Interferencias') {
+                                '#tipoemisora_id option:selected').attr('name') === 'Interferencia') {
                             $('.emisora_id').hide();
                         } else {
                             $('.emisora_id').show();
