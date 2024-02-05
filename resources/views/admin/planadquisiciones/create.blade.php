@@ -153,8 +153,8 @@
                             $('#emisora_id').empty();
 
                             $('#emisora_id').append(
-                                    '<option disabled selected>Seleccione la Emisora:</option>'
-                                );
+                                '<option disabled selected>Seleccione la Emisora:</option>'
+                            );
                             // Agrega la opción predeterminada
                             $('#estandar_id').append(
                                 '<option disabled selected>Seleccione un Estándar:</option>');
@@ -184,6 +184,12 @@
                             // Agrega la opción predeterminada
                             $('#tipoemisora_id').append(
                                 '<option disabled selected>Seleccione el Tipo de Simulación:</option>'
+                            );
+
+                            $('#emisora_id').empty();
+
+                            $('#emisora_id').append(
+                                '<option disabled selected>Seleccione la Emisora:</option>'
                             );
                             $.each(data, function(key, value) {
                                 $('#tipoemisora_id').append('<option value="' + value.id +
