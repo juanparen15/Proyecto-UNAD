@@ -10,10 +10,89 @@
     {!! Html::style('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') !!}
     {!! Html::style('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') !!}
     {!! Html::style('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') !!}
-
-
 @endsection
 @section('content')
+    <script>
+        Swal.bindClickHandler();
+        /* Bind a mixin to a click handler */
+        Swal.mixin({
+            icon: "info",
+            toast: true,
+            position: "top-start",
+            title: 'En la gráfica se observa el promedio aritmético de potencia (dBu) de los 100 puntos de interés medidos en la ciudad seleccionada. La potencia representa en cada punto el nivel de señal proporcionado por el transmisor elegido como "mejor servidor" para dicho punto. La potencia debe superar un umbral para que un receptor pueda captar apropiadamente la señal.',
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        }).bindClickHandler("promedio-multicobertura");
+
+        Swal.mixin({
+            icon: "info",
+            toast: true,
+            position: "top-start",
+            title: 'En la gráfica se observa el promedio aritmético de interferencia (dB) de los 100 puntos de interés medidos en la ciudad seleccionada. La interferencia se analiza por medio de la relación señal/ruido (SNR) que se define como la proporción entre la potencia de la señal que se transmite y la potencia del ruido que la corrompe. Valores altos de la relación señal/ruido indican efectos más pequeños de ruido y un rendimiento superior.',
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        }).bindClickHandler("promedio-interferencia");
+
+        Swal.mixin({
+            icon: "info",
+            toast: true,
+            position: "top-start",
+            title: 'En la gráfica se observan los valores de potencia (dBu) en los 100 puntos de interés medidos en la ciudad seleccionada. La potencia representa en cada punto el nivel de señal proporcionado por el transmisor elegido como "mejor servidor" para dicho punto. La potencia debe superar un umbral para que un receptor pueda captar apropiadamente la señal.',
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        }).bindClickHandler("multicobertura");
+
+        Swal.mixin({
+            icon: "info",
+            toast: true,
+            position: "top-start",
+            title: 'En la gráfica se observan los valores de SNR (dB) en los 100 puntos de interés medidos en la ciudad seleccionada. La interferencia se analiza por medio de la relación señal/ruido (SNR) que se define como la proporción entre la potencia de la señal que se transmite y la potencia del ruido que la corrompe. Valores altos de la relación señal/ruido indican efectos más pequeños de ruido y un rendimiento superior.',
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        }).bindClickHandler("interferencia");
+
+        Swal.mixin({
+            icon: "info",
+            toast: true,
+            position: "top-start",
+            title: 'En la gráfica se observan los valores de potencia (dBu) máximo, minimo y la mediana, asociados a los 100 puntos de interés medidos en la ciudad seleccionada. La potencia representa en cada punto el nivel de señal proporcionado por el transmisor elegido como "mejor servidor" para dicho punto. La potencia debe superar un umbral para que un receptor pueda captar apropiadamente la señal.',
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        }).bindClickHandler("variabilidad-multicobertura");
+
+        Swal.mixin({
+            icon: "info",
+            toast: true,
+            position: "top-start",
+            title: 'En la gráfica se observan los valores de SNR (dB) máximo, minimo y la mediana, asociados a los 100 puntos de interés medidos en la ciudad seleccionada. La interferencia se analiza por medio de la relación señal/ruido (SNR) que se define como la proporción entre la potencia de la señal que se transmite y la potencia del ruido que la corrompe. Valores altos de la relación señal/ruido indican efectos más pequeños de ruido y un rendimiento superior.',
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        }).bindClickHandler("variabilidad-interferencia");
+    </script>
     <div class="content-wrapper ">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -75,13 +154,19 @@
                             <div class="row">
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="1">
+                                        <i class="btn btn-primary fas fa-question"
+                                            promedio-multicobertura="#my-template"></i>
                                         <figure class="highcharts-figure">
-                                            <div id="column1"></div>
+                                            <div id="column1">
+                                            </div>
+
                                         </figure>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="1">
+                                        <i class="btn btn-primary fas fa-question"
+                                            promedio-interferencia="#my-template"></i>
                                         <figure class="highcharts-figure">
                                             <div id="column2"></div>
                                         </figure>
@@ -89,27 +174,35 @@
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="1">
+                                        <i class="btn btn-primary fas fa-question" multicobertura="#my-template"></i>
                                         <div id="containerLine"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="1">
+                                        <i class="btn btn-primary fas fa-question" interferencia="#my-template"></i>
                                         <div id="containerLine2"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="1">
+                                        <i class="btn btn-primary fas fa-question"
+                                            variabilidad-multicobertura="#my-template"></i>
                                         <div id="containerBox"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box"data-ciudad="1">
+                                        <i class="btn btn-primary fas fa-question"
+                                            variabilidad-interferencia="#my-template"></i>
                                         <div id="containerBox2"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="2">
                                         <figure class="highcharts-figure">
+                                            <i class="btn btn-primary fas fa-question"
+                                                promedio-multicobertura="#my-template"></i>
                                             <div id="columnBuca"></div>
                                         </figure>
                                     </div>
@@ -117,33 +210,43 @@
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="2">
                                         <figure class="highcharts-figure">
+                                            <i class="btn btn-primary fas fa-question"
+                                                promedio-multicobertura="#my-template"></i>
                                             <div id="columnBuca2"></div>
                                         </figure>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="2">
+                                        <i class="btn btn-primary fas fa-question" multicobertura="#my-template"></i>
                                         <div id="containerLineBuca"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="2">
+                                        <i class="btn btn-primary fas fa-question" interferencia="#my-template"></i>
                                         <div id="containerLineBuca2"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="2">
+                                        <i class="btn btn-primary fas fa-question"
+                                            variabilidad-multicobertura="#my-template"></i>
                                         <div id="containerBoxBuca"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box"data-ciudad="2">
+                                        <i class="btn btn-primary fas fa-question"
+                                            variabilidad-interferencia="#my-template"></i>
                                         <div id="containerBoxBuca2"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="3">
                                         <figure class="highcharts-figure">
+                                            <i class="btn btn-primary fas fa-question"
+                                                promedio-multicobertura="#my-template"></i>
                                             <div id="columnCali"></div>
                                         </figure>
                                     </div>
@@ -151,33 +254,43 @@
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="3">
                                         <figure class="highcharts-figure">
+                                            <i class="btn btn-primary fas fa-question"
+                                                promedio-multicobertura="#my-template"></i>
                                             <div id="columnCali2"></div>
                                         </figure>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="3">
+                                        <i class="btn btn-primary fas fa-question" multicobertura="#my-template"></i>
                                         <div id="containerLineCali"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="3">
+                                        <i class="btn btn-primary fas fa-question" interferencia="#my-template"></i>
                                         <div id="containerLineCali2"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="3">
+                                        <i class="btn btn-primary fas fa-question"
+                                            variabilidad-multicobertura="#my-template"></i>
                                         <div id="containerBoxCali"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box"data-ciudad="3">
+                                        <i class="btn btn-primary fas fa-question"
+                                            variabilidad-interferencia="#my-template"></i>
                                         <div id="containerBoxCali2"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="4">
                                         <figure class="highcharts-figure">
+                                            <i class="btn btn-primary fas fa-question"
+                                                promedio-multicobertura="#my-template"></i>
                                             <div id="columnMede"></div>
                                         </figure>
                                     </div>
@@ -185,27 +298,35 @@
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="4">
                                         <figure class="highcharts-figure">
+                                            <i class="btn btn-primary fas fa-question"
+                                                promedio-multicobertura="#my-template"></i>
                                             <div id="columnMede2"></div>
                                         </figure>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="4">
+                                        <i class="btn btn-primary fas fa-question" multicobertura="#my-template"></i>
                                         <div id="containerLineMede"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="4">
+                                        <i class="btn btn-primary fas fa-question" interferencia="#my-template"></i>
                                         <div id="containerLineMede2"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box" data-ciudad="4">
+                                        <i class="btn btn-primary fas fa-question"
+                                            variabilidad-multicobertura="#my-template"></i>
                                         <div id="containerBoxMede"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-16">
                                     <div class="small-box"data-ciudad="4">
+                                        <i class="btn btn-primary fas fa-question"
+                                            variabilidad-interferencia="#my-template"></i>
                                         <div id="containerBoxMede2"></div>
                                     </div>
                                 </div>
@@ -217,18 +338,18 @@
     @endsection
 
     @section('script')
-    
+
         <!-- Select2 -->
         {!! Html::script('adminlte/plugins/select2/js/select2.full.min.js') !!}
 
-    <script>
-        $(function() {
+        <script>
+            $(function() {
 
-            //Initialize Select2 Elements
-            $('.select2').select2()
+                //Initialize Select2 Elements
+                $('.select2').select2()
 
-        });
-    </script>
+            });
+        </script>
         <script>
             $(document).ready(function() {
                 // Agrega el evento change al select
@@ -1150,7 +1271,7 @@
                     }
                 },
                 series: [{
-                    name: 'IBOC AM Híbrido',
+                        name: 'IBOC AM Híbrido',
                         data: [
                             @foreach ($potenciasBuca as $pot1)
                                 {
@@ -1264,7 +1385,7 @@
                     }
                 },
                 series: [{
-                    name: 'IBOC AM Híbrido',
+                        name: 'IBOC AM Híbrido',
                         data: [
                             @foreach ($potenciasBuca as $pot4)
                                 {
@@ -1772,7 +1893,7 @@
                     }
                 },
                 series: [{
-                    name: 'IBOC AM Híbrido',
+                        name: 'IBOC AM Híbrido',
                         data: [
                             @foreach ($potenciasCali as $pot1)
                                 {
@@ -1886,7 +2007,7 @@
                     }
                 },
                 series: [{
-                    name: 'IBOC AM Híbrido',
+                        name: 'IBOC AM Híbrido',
                         data: [
                             @foreach ($potenciasCali as $pot4)
                                 {
@@ -2396,7 +2517,7 @@
                     }
                 },
                 series: [{
-                    name: 'IBOC AM Híbrido',
+                        name: 'IBOC AM Híbrido',
                         data: [
                             @foreach ($potenciasMede as $pot1)
                                 {
@@ -2510,7 +2631,7 @@
                     }
                 },
                 series: [{
-                    name: 'IBOC AM Híbrido',
+                        name: 'IBOC AM Híbrido',
                         data: [
                             @foreach ($potenciasMede as $pot4)
                                 {
