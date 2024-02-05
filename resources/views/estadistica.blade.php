@@ -51,9 +51,9 @@
                                     </div>
                                 @endcan --}}
 
-                                <div class="card-tools" style="width: 15%">
+                                <div class="card-tools">
                                     <select class="form-control select2 @error('ciudad_id') is-invalid @enderror"
-                                        name="ciudad_id" id="ciudad_id" style="width: 100%">
+                                        name="ciudad_id" id="ciudad_id">
                                         <option value="" disabled selected>Seleccione una Ciudad:
                                         </option>
                                         @foreach ($ciudades as $ciudad)
