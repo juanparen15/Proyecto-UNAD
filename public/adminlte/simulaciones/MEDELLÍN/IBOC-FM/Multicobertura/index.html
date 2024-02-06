@@ -108,10 +108,10 @@
         }
 
         // Cargar y asignar nombres a los KMZ
-        loadKmz('kmz/Radioelectric elements.kmz', 'Radio Elements');
-        loadKmz('kmz/Signal level.kmz', 'Signal level');
-        loadKmz('kmz/Best server.kmz', 'Best server');
-        loadKmz('kmz/Overlapping.kmz', 'Overlapping');
+        loadKmz('kmz/Radioelectric elements.kmz', 'Elementos de Radio');
+        loadKmz('kmz/Signal level.kmz', 'Nivel de Señal');
+        loadKmz('kmz/Best server.kmz', 'Mejor Servidor');
+        loadKmz('kmz/Overlapping.kmz', 'Solapamiento');
       
         var legends = {
             signalLevel:
@@ -142,9 +142,9 @@
         }
 
         // Ejemplo de llamadas a addLegend
-        addLegend(map, legends.signalLevel, 'Signal Level', 'bottomright');
-        addLegend(map, legends.overlapping, 'Overlapping', 'bottomright');
-        addLegend(map, legends.bestServer, 'Best Server', 'bottomright');
+        addLegend(map, legends.signalLevel, 'Nivel de Señal', 'bottomright');
+        addLegend(map, legends.overlapping, 'Solapamiento', 'bottomright');
+        addLegend(map, legends.bestServer, 'Mejor Servidor', 'bottomright');
 
         setBounds();
     </script>
