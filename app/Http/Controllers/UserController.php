@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Area;
+// use App\Area;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,8 +25,8 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-        $areas = Area::get();
-        return view('admin.users.create', compact('areas', 'roles'));
+        // $areas = Area::get();
+        return view('admin.users.create', compact('roles'));
     }
     public function store(Request $request)
     {
@@ -38,7 +38,7 @@ class UserController extends Controller
             'lastname' => ['required'],
             'telefono' => ['required'],
             'documento' => ['required'],
-            'areas_id' => ['required']
+            // 'areas_id' => ['required']
         ]);
 
         $user = User::create([
@@ -49,7 +49,7 @@ class UserController extends Controller
             'lastname' => $request->lastname,
             'telefono' => $request->telefono,
             'documento' => $request->documento,
-            'areas_id' => $request->areas_id
+            // 'areas_id' => $request->areas_id
         ]);
 
         //avatar
@@ -72,8 +72,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::all();
-        $areas = Area::get();
-        return view('admin.users.edit', compact('areas', 'roles', 'user'));
+        // $areas = Area::get();
+        return view('admin.users.edit', compact('roles', 'user'));
     }
     public function update(Request $request, User $user)
     {
@@ -85,7 +85,7 @@ class UserController extends Controller
             'lastname' => ['required'],
             'telefono' => ['required'],
             'documento' => ['required'],
-            'areas_id' => ['required']
+            // 'areas_id' => ['required']
         ]);
         $user->update([
             'username' => $request->username,
@@ -95,7 +95,7 @@ class UserController extends Controller
             'lastname' => $request->lastname,
             'telefono' => $request->telefono,
             'documento' => $request->documento,
-            'areas_id' => $request->areas_id
+            // 'areas_id' => $request->areas_id
         ]);
 
         if ($request->hasFile('avatar')) {
@@ -109,10 +109,11 @@ class UserController extends Controller
         $user->syncRoles($request->role);
         return redirect()->route('users.index')->with('flash', 'actualizado');
     }
-    public function destroy(User $user)
+    public function destroy($id)
     {
+        $user = User::findOrFail($id);
         $user->delete();
-        return back()->with('flash', 'eliminado');
+        return redirect()->route('users.index')->with('flash', 'eliminado');
     }
 
     public function updateProfile(User $user, Request $request)
@@ -124,7 +125,7 @@ class UserController extends Controller
             'lastname' => $request->lastname,
             'telefono' => $request->telefono,
             'documento' => $request->documento,
-            'areas_id' => $request->areas_id
+            // 'areas_id' => $request->areas_id
         ]);
 
         if ($request->hasFile('avatar')) {
