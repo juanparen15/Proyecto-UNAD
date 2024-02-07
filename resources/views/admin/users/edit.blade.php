@@ -146,47 +146,49 @@
                                     @enderror
                                 </div>
                             </div> --}}
-
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="role">Rol</label>
-                                    <select id="role" name="role"
-                                        class="select2 @error('role') is-invalid @enderror" multiple="multiple"
-                                        data-placeholder="Selecciona un rol" style="width: 100%;">
-                                        {{-- <option selected disabled>Selecciona area</option> --}}
-                                        @foreach ($roles as $role)
-                                            <option value="{{ $role->name }}"
-                                                {{ collect(old('role', $user->getRoleNames()))->contains($role->name) ? 'selected' : '' }}>
-                                                {{ $role->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('role')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                            @if (auth()->user()->hasRole('Admin'))
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="role">Rol</label>
+                                        <select id="role" name="role"
+                                            class="select2 @error('role') is-invalid @enderror" multiple="multiple"
+                                            data-placeholder="Selecciona un rol" style="width: 100%;">
+                                            {{-- <option selected disabled>Selecciona area</option> --}}
+                                            @foreach ($roles as $role)
+                                                <option value="{{ $role->name }}"
+                                                    {{ collect(old('role', $user->getRoleNames()))->contains($role->name) ? 'selected' : '' }}>
+                                                    {{ $role->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('role')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
-                            {{-- <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="password">Contraseña</label>
-                                <input type="password" id="password" name="password"
-                                    class="form-control @error('password') is-invalid @enderror" required
-                                    autocomplete="new-password">
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="password-confirm">Confirmar Contraseña</label>
-                                <input type="password" id="password-confirm" name="password_confirmation"
-                                    class="form-control" required autocomplete="new-password">
-                            </div>
-                        </div> --}}
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="password">Contraseña</label>
+                                        <input type="password" id="password" name="password"
+                                            class="form-control @error('password') is-invalid @enderror" required
+                                            autocomplete="new-password">
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="password-confirm">Confirmar Contraseña</label>
+                                        <input type="password" id="password-confirm" name="password_confirmation"
+                                            class="form-control" required autocomplete="new-password">
+                                    </div>
+                                </div>
+                            @endif
 
                             <div class="col-md-12">
                                 <div class="form-group">

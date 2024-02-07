@@ -2,17 +2,17 @@
 <li class="nav-item dropdown user-menu">
     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
 
-      <img src="{{asset('adminlte/dist/img/'.auth()->user()->avatar)}}" class="user-image img-circle elevation-2" alt="{{Auth::user()->name}}">
+      <img src="{{asset('adminlte/dist/img/'.auth()->user()->avatar)}}" class="user-image img-circle elevation-2" alt="{{Auth::user()->username}}">
 
-      <span class="d-none d-md-inline">{{Auth::user()->name}}</span>
+      <span class="d-none d-md-inline">{{Auth::user()->username}}</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
       <!-- User image -->
       <li class="user-header">
-        <img src="{{asset('adminlte/dist/img/'.auth()->user()->avatar)}}" class="img-circle elevation-2" alt="{{Auth::user()->name}}">
+        <img src="{{asset('adminlte/dist/img/'.auth()->user()->avatar)}}" class="img-circle elevation-2" alt="{{Auth::user()->username}}">
 
         <p>
-          {{Auth::user()->name}}
+          {{Auth::user()->username}}
           <small>{{Auth::user()->created_at->diffForHumans()}}</small>
         </p>
       </li>

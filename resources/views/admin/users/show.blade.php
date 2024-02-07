@@ -27,7 +27,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('users.index') }}">Usuarios</a></li>
-                            <li class="breadcrumb-item active">{{ $user->name }}</li>
+                            <li class="breadcrumb-item active">{{ $user->username }}</li>
                         </ol>
                     </div>
                 </div>
@@ -54,15 +54,23 @@
                                         <div class="col-md-8">
 
                                             <div class="form-group">
-                                                <label><i class="fas fa-map-marker-alt mr-1"></i> Correo electrónico
-                                                    </label>
+                                                <label><i class="fas fa-user mr-1"></i> Nombre de Usuario
+                                                </label>
+                                                <p class="text-muted">
+                                                    {{ $user->username }}
+                                                </p>
+                                                <hr>
+                                            </div>
+                                            <div class="form-group">
+                                                <label><i class="fas fa-envelope mr-1"></i> Correo electrónico
+                                                </label>
                                                 <p class="text-muted">
                                                     {{ $user->email }}
                                                 </p>
                                                 <hr>
                                             </div>
                                             <div class="form-group">
-                                                <label for="name"><i class="fas fa-book mr-1"></i> Nombre</label>
+                                                <label for="name"><i class="fas fa-signature mr-1"></i> Nombre</label>
                                                 <p class="text-muted">
                                                     {{-- {{ $user->area->nomarea }} --}}
                                                     {{ $user->name }}
@@ -76,7 +84,7 @@
                                                 @enderror
                                             </div>
                                             <div class="form-group">
-                                                <label for="lastname"><i class="far fa-file-alt mr-1"></i>Apellidos</label>
+                                                <label for="lastname"><i class="fas fa-signature mr-1"></i>Apellidos</label>
                                                 <p class="text-muted">
                                                     {{ $user->lastname }}
                                                 </p>
@@ -90,7 +98,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="telefono"><i
-                                                        class="fas fa-map-marker-alt mr-1"></i>Teléfono</label>
+                                                        class="fas fa-phone mr-1"></i>Teléfono</label>
                                                 <p class="text-muted">
                                                     {{ $user->telefono }}
                                                 </p>
@@ -103,7 +111,7 @@
                                                 @enderror
                                             </div>
                                             <div class="form-group">
-                                                <label for="documento"><i class="fas fa-map-marker-alt mr-1"></i> Número de
+                                                <label for="documento"><i class="fas fa-id-card mr-1"></i> Número de
                                                     documento</label>
                                                 <p class="text-muted">
                                                     {{ $user->documento }}
@@ -126,13 +134,15 @@
                                                     alt="">
                                             </div>
 
-                                            {{-- 
-                                            <div class="col-md-12">
+
+                                            {{-- <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Cambiar Foto de Perfil</label>
                                                     <div class="custom-file">
-                                                        <input type="file" name="avatar" class="custom-file-input" id="avatar" lang="es">
-                                                        <label class="custom-file-label" for="avatar">Seleccionar Archivo</label>
+                                                        <input type="file" name="avatar" class="custom-file-input"
+                                                            id="avatar" lang="es">
+                                                        <label class="custom-file-label" for="avatar">Seleccionar
+                                                            Archivo</label>
                                                     </div>
                                                 </div>
                                             </div> --}}
@@ -146,7 +156,11 @@
                             <div class="card-footer">
 
                                 <a href="{{ URL::previous() }}" class="btn btn-secondary">Regresar</a>
-
+                                {{-- @foreach ($users as $user) --}}
+                                    <a class="btn btn-primary" href="{{ route('users.edit', $user) }}">
+                                        <i class="fas fa-pencil-alt"></i> Editar
+                                    </a>
+                                {{-- @endforeach --}}
                                 {{-- <button type="submit" class="btn btn-primary float-right">Actualizar</button> --}}
 
                             </div>
