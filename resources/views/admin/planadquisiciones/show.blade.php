@@ -97,7 +97,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="submit" value="Mostrar" class="btn btn-primary style="width: 100%"">
+                                <input type="submit" value="Mostrar Mapa" class="btn btn-primary style="width: 100%"">
                                 @if (auth()->user()->hasRole('Admin') ||
                                         auth()->user()->hasRole('User'))
                                     <a href="{{ route('planadquisiciones.index') }}" class="btn btn-success">

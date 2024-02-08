@@ -33,7 +33,7 @@
                         {{-- <input type="file" name="file" class="custom-file-input" required> --}}
                         <div class="input-group mb-3">
                             <div class="custom-file">
-                                <input type="file" name="file" class="custom-file-input" id="inputGroupFile01">
+                                <input type="file" accept=".xls,.xlsx,.xlsm" name="file" class="custom-file-input" id="inputGroupFile01">
                                 <label class="custom-file-label" for="inputGroupFile01">Seleccionar Archivo de Excel</label>
                             </div>
                         </div>
