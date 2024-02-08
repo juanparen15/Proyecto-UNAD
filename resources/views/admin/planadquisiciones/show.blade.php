@@ -98,8 +98,7 @@
 
                             <div class="form-group">
                                 <input type="submit" value="Mostrar Mapa" class="btn btn-primary style="width: 100%"">
-                                @if (auth()->user()->hasRole('Admin') ||
-                                        auth()->user()->hasRole('User'))
+                                @if (auth()->user()->hasRole('Admin'))
                                     <a href="{{ route('planadquisiciones.index') }}" class="btn btn-success">
                                         <i class="nav-icon fas fa-map"></i> Editar Mapas
                                     </a>
