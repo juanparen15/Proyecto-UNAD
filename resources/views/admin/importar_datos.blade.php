@@ -30,17 +30,23 @@
                     <form action="{{ route('planadquisicione.import.excel') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
-                        <input type="file" name="file" required>
-                        <button id="importButton" class="btn btn-primary float-right">Importar Graficas</button>
+                        {{-- <input type="file" name="file" class="custom-file-input" required> --}}
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" name="file" class="custom-file-input" id="inputGroupFile01">
+                                <label class="custom-file-label" for="inputGroupFile01">Seleccionar Archivo de Excel</label>
+                            </div>
+                        </div>
+                        <button id="importButton" class="btn btn-primary float-right">Importar Gráficas</button>
                     </form>
-                </div>
-                <div class="form-group">
                     <form action="{{ route('planadquisicione.delete.excel') }}" method="POST" enctype="multipart/form-data"
                         id="deleteForm">
                         @csrf
-                        <button id="deleteButton" class="btn btn-danger float-right">Eliminar Graficas</button>
+                        <button id="deleteButton" class="btn btn-danger float-right">Eliminar Gráficas</button>
                     </form>
                 </div>
+                {{-- <div class="form-group"> --}}
+                {{-- </div> --}}
             </div>
         </div>
         <!-- /.content -->
@@ -96,7 +102,7 @@
                         toast.onmouseleave = Swal.resumeTimer;
                     }
                 });
-                
+
                 Toast.fire({
                     icon: "success",
                     title: "Importación Satisfactoria",

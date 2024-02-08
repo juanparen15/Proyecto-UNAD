@@ -9,11 +9,13 @@ use App\Fuente;
 use App\Exports\PlanadquisicioneAllExport;
 use App\Exports\PlanadquisicioneExport;
 use App\Ciudad;
+use App\Emisora;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class PlanadquisicioneController extends Controller
 {
@@ -60,8 +62,8 @@ class PlanadquisicioneController extends Controller
 
         // $minutes = 60; //  duración de la caché en minutos
         if (auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Supervisor')) {
-            // $planadquisiciones = Planadquisicione::get();
-            $planadquisiciones = Planadquisicione::paginate(13);
+            $planadquisiciones = Planadquisicione::get();
+            // $planadquisiciones = Planadquisicione::paginate(13);
             // $planadquisiciones = Cache::remember('planadquisiciones', $minutes, function () {
             //     return Planadquisicione::get();
             // });
@@ -81,8 +83,8 @@ class PlanadquisicioneController extends Controller
         } else {
             // $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->limit(13)->get();
             // $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->get();
-            $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->paginate(13);
-            // $planadquisiciones = Planadquisicione::get();
+            // $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->paginate(13);
+            $planadquisiciones = Planadquisicione::get();
         }
         return view('admin.planadquisiciones.index', compact('planadquisiciones'));
     }
@@ -98,20 +100,20 @@ class PlanadquisicioneController extends Controller
 
 
 
-    public function create()
+    public function create(Planadquisicione $inventario)
     {
 
-        $userArea = auth()->user()->area; // Obtener el área asociada al usuario
-
-        // $tipoemisora_id = TuModelo::where('area_id', $userArea->id)->value('tipoemisora_id');
+        // $userArea = auth()->user()->area; // Obtener el área asociada al usuario
+        // $user = auth()->user()->id;
 
         $ciudades = Ciudad::get();
         $estandares = Estandar::get();
-        $areas = collect([$userArea]); // Crear una colección con el área del usuario
+        // $areas = collect([$userArea]); // Crear una colección con el área del usuario
         $fuentes = Fuente::get();
+        $emisoras = Emisora::get();
         // $requiproyectos = Requiproyecto::where('areas_id', auth()->user()->area->id)->pluck('detproyeto', 'id');
 
-        return view('admin.planadquisiciones.create', compact('estandares', 'ciudades', 'areas', 'fuentes'));
+        return view('admin.planadquisiciones.create', compact('estandares', 'ciudades', 'fuentes', 'emisoras', 'inventario'));
     }
 
 
@@ -120,21 +122,19 @@ class PlanadquisicioneController extends Controller
     {
 
         $request->validate([
-            'caja' => ['required'],
-            'nota' => ['required'],
-            'ciudad_id' => ['required'],
-            'estandar_id' => ['required'],
-            'area_id' => ['required']
+            'tipoemisora_id' => ['required'],
+            'emisora_id' => ['required'],
+            // 'area_id' => ['required']
         ]);
 
 
 
-        $slug = Str::slug($request->nota);
+        $slug = Str::slug($request->kmz);
 
         // Verificar si ya existe un Inventario con el mismo slug
         $counter = 1;
         while (Planadquisicione::where('slug', $slug)->exists()) {
-            $slug = Str::slug($request->nota . '-' . $counter, '-');
+            $slug = Str::slug($request->kmz . '-' . $counter, '-');
             $counter++;
         }
 
@@ -151,19 +151,12 @@ class PlanadquisicioneController extends Controller
         // $uniqueSuffix = uniqid();
 
         // $slugWithId = $slug . '-' . $uniqueSuffix;
-
         $planadquisicione = Planadquisicione::create(array_merge($request->all(), [
-            'fechaInicial' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->fechaInicial)->format('Y-m-d'),
-            'fechaFinal' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->fechaFinal)->format('Y-m-d'),
+            // 'fechaInicial' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->fechaInicial)->format('Y-m-d'),
+            // 'fechaFinal' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->fechaFinal)->format('Y-m-d'),
             'user_id' => auth()->user()->id,
-            'slug' => $slugWithId  // Utiliza el slug con el ID agregado
+            'slug' => $slugWithId,  // Utiliza el slug con el ID agregado
         ]));
-
-        // Realmente no necesitas volver a verificar si el slug es único aquí,
-        // ya que ya lo has asegurado antes de crear el registro.
-
-        // ... (código para manejar la relación muchos a muchos si es necesario)
-
         return redirect()->route('planadquisiciones.index')->with('flash', 'registrado');
     }
 
@@ -175,77 +168,65 @@ class PlanadquisicioneController extends Controller
 
     public function show(Planadquisicione $inventario)
     {
-        $planadquisicione = Planadquisicione::with('user', 'fuente', 'area', 'ciudad', 'estandares')
-            ->find($inventario);
+        $ciudades = Ciudad::get();
+        $estandares = Estandar::get();
+        $fuentes = Fuente::get();
+        $emisoras = Emisora::get();
+        // $planadquisicione = Planadquisicione::with('user', 'fuentes', 'ciudades', 'estandares', 'emisoras')
+        //     ->find($inventario);
 
-        return view('admin.planadquisiciones.show', compact('inventario'));
+        return view('admin.planadquisiciones.show', compact('estandares', 'ciudades', 'fuentes', 'emisoras', 'inventario'));
     }
 
     public function edit(Planadquisicione $inventario)
     {
-        $userArea = $inventario->user->area; // Obtener el área asociada al usuario
+        // $userArea = $inventario->user->area; // Obtener el área asociada al usuario
         $ciudades = Ciudad::get();
         $estandares = Estandar::get();
-
-
-        return view('admin.planadquisiciones.edit', compact('estandares', 'ciudades', 'fuentes', 'inventario'));
+        $fuentes = Fuente::get();
+        $emisoras = Emisora::get();
+        return view('admin.planadquisiciones.edit', compact('estandares', 'ciudades', 'fuentes', 'emisoras', 'inventario'));
     }
 
+    // public function update(Request $request, Planadquisicione $inventario)
+    public function update(Request $request, Planadquisicione $planadquisicione)
 
-
-
-    public function update(Request $request, Planadquisicione $inventario)
     {
 
         $request->validate([
-            'caja' => ['required'],
-            'carpeta' => ['required'],
-            'tomo' => ['required'],
-            // 'otro' => ['required'],
-            'folio' => ['required'],
-            'nota' => ['required'],
-            'requipoais_id' => ['required'],
-            'modalidad_id' => ['required'],
-            'ciudad_id' => ['required'],
-            'estandar_id' => ['required'],
-            'fuente_id' => ['required'],
-            'tipoprioridade_id' => ['required'],
-            'requiproyecto_id' => ['required'],
-            'fechaInicial' => ['required', 'date_format:d/m/Y'],
-            'fechaFinal' => ['required', 'date_format:d/m/Y', 'after_or_equal:fechaInicial'],
-            'area_id' => ['required']
+            'kmz' => ['requerid'],
+            'tipoemisora_id' => ['required'],
+            'emisora_id' => ['required'],
         ]);
 
-        // $slug = Str::slug($request->nota);
+        // Obtener los nombres de ciudad, estándar, tipo de emisora y emisora
+        $ciudad = $planadquisicione->ciudad->detciudad;
+        $estandar = $planadquisicione->fuente->estandar->detestandar;
+        $tipoEmisora = $planadquisicione->fuente->detfuente;
+        $emisora = $planadquisicione->emisora->emisora ?? 'No Aplica';
 
-        // // Verificar si el nuevo slug ya existe para otro registro
-        // $counter = 1;
-        // while (Planadquisicione::where('slug', $slug)->where('id', '<>', $inventario->id)->exists()) {
-        //     $slug = $slug . '-' . $counter;
-        //     $counter++;
-        // }
-
-        // // Mantén el ID original seguido del nuevo Slug
-        // $slugWithId = $inventario->id . '-' . $slug;
-
-        // $inventario->update(array_merge($request->all(), [
-        //     'user_id' => auth()->user()->id,
-        //     'slug' => $slugWithId  // Actualiza el Slug con el ID original seguido del nuevo Slug
-        // ]));
+        // Construir la ruta donde se guardará el archivo KMZ
+        if ($emisora == "No Aplica") {
+            $filePath = "adminlte/simulaciones/{$ciudad}/{$estandar}/{$tipoEmisora}/kmz/";
+        } else {
+            $filePath = "adminlte/simulaciones/{$ciudad}/{$estandar}/{$tipoEmisora}/{$emisora}/kmz/";
+        }
 
 
-        // $fechaInicial = \Carbon\Carbon::createFromFormat('d/m/Y', $request->fechaInicial)->format('Y-m-d');
-        // $fechaFinal = \Carbon\Carbon::createFromFormat('d/m/Y', $request->fechaFinal)->format('Y-m-d');
+        $input = $request->all();
+        if ($request->hasFile('kmz')) {
+            $file = $request->file('kmz');
+            $extension = $file->getClientOriginalExtension();
+            $nombreKmz = time() . $file->getClientOriginalName() . $extension;
+            $file->move(public_path() . $filePath, $nombreKmz);
+            $input['kmz'] = $nombreKmz;
+        }
 
-        // Formatear las fechas antes de guardarlas en la base de datos
-        $fechaInicial = \Carbon\Carbon::createFromFormat('d/m/Y', $request->fechaInicial)->format('Y-m-d');
-        $fechaFinal = \Carbon\Carbon::createFromFormat('d/m/Y', $request->fechaFinal)->format('Y-m-d');
-
-        $slug = Str::slug($request->nota);
+        $slug = Str::slug($request->kmz);
 
         // Verificar si el nuevo slug ya existe para otro registro
         $counter = 1;
-        while (Planadquisicione::where('slug', $slug)->where('id', '<>', $inventario->id)->exists()) {
+        while (Planadquisicione::where('slug', $slug)->where('id', '<>', $planadquisicione->id)->exists()) {
             $slug = $slug . '-' . $counter;
             $counter++;
         }
@@ -254,9 +235,7 @@ class PlanadquisicioneController extends Controller
         $ultimoId = Planadquisicione::max('id');
 
         $slugWithId = $slug . '-' . $ultimoId;
-        $inventario->update(array_merge($request->all(), [
-            'fechaInicial' => $fechaInicial,
-            'fechaFinal' => $fechaFinal,
+        $planadquisicione->update(array_merge($request->all(), [
             'user_id' => auth()->user()->id,
             'slug' => $slugWithId  // Utiliza el slug con el ID agregado
         ]));
@@ -282,7 +261,7 @@ class PlanadquisicioneController extends Controller
     public function exportar_planadquisiciones_excel(Planadquisicione $planadquisicion)
     {
 
-        return Excel::download(new PlanadquisicioneExport($planadquisicion->id), 'Inventario Documental - ' . $planadquisicion->id . '.xlsx');
+        return Excel::download(new PlanadquisicioneExport($planadquisicion->id), 'Puntos de Ciudad - ' . $planadquisicion->id . '.xlsx');
         // 
         // plan_de_adquisicion 
     }
@@ -301,7 +280,7 @@ class PlanadquisicioneController extends Controller
 
 
 
-        return Excel::download(new PlanadquisicioneAllExport, 'Inventario Documental en General.xlsx');
+        return Excel::download(new PlanadquisicioneAllExport, 'Puntos de Ciudad en General.xlsx');
     }
 
     // public function chart()

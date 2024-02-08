@@ -9,6 +9,9 @@ class Emisora extends Model
     // public $incrementing = false;
     protected $fillable = ['id', 'tipoemisora_id', 'emisora', 'slug'];
   
+    protected $with =[
+      'fuente',
+  ];
     public function getRouteKeyName()
     {
       return "slug";
@@ -20,6 +23,6 @@ class Emisora extends Model
     }
     public function fuente()
     {
-      return $this->belongsTo(Fuente::class);
+      return $this->belongsTo(Fuente::class, 'tipoemisora_id');
     }
   }

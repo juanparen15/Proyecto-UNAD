@@ -57,9 +57,9 @@
 
                     {{-- @if (auth()->user()->hasRole('Admin')) --}}
                     <li class="nav-item">
-                        <a href="{{ route('planadquisiciones.create') }}"
+                        <a href="{{ route('planadquisiciones.show') }}"
                             class="nav-link 
-            {!! active_class(route('planadquisiciones.create')) !!}
+            {!! active_class(route('planadquisiciones.show')) !!}
             ">
                             <i class="nav-icon fas fa-map"></i>
                             <p>
@@ -93,9 +93,9 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a href="{{ route('planadquisiciones.create') }}"
+                        <a href="{{ route('planadquisiciones.show') }}"
                             class="nav-link 
-            {!! active_class(route('planadquisiciones.create')) !!}
+            {!! active_class(route('planadquisiciones.show')) !!}
             ">
                             <i class="nav-icon fas fa-map"></i>
                             <p>

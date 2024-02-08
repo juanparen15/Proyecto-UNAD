@@ -9,7 +9,23 @@
     {!! Html::style('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') !!}
 @endsection
 @section('content')
-    <div class="content-wrapper bg-black">
+    <script>
+        const Toast =
+            Swal.fire({
+                title: "¡Área en Desarrollo!",
+                text: "Por favor, no hagas ninguna función. Mostrar mapas funciona para regresar.",
+                icon: "warning",
+                position: "center",
+                showConfirmButton: true,
+                // timer: 10000,
+                // timerProgressBar: true,
+                // didOpen: (toast) => {
+                //     toast.onmouseenter = Swal.stopTimer;
+                //     toast.onmouseleave = Swal.resumeTimer;
+                // }
+            });
+    </script>
+    <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
@@ -67,7 +83,10 @@
                             @if (auth()->user()->hasRole('Admin') ||
                                     auth()->user()->hasRole('User'))
                                 <a href="{{ route('planadquisiciones.create') }}" class="btn btn-primary">
-                                    <i class="fas fa-parking"></i> Agregar Nuevo Mapa
+                                    <i class="nav-icon fas fa-map"></i> Crear Mapas
+                                </a>
+                                <a href="{{ route('planadquisiciones.show') }}" class="btn btn-success">
+                                    <i class="nav-icon fas fa-map"></i> Mostrar Mapas
                                 </a>
                             @endif
 
@@ -86,51 +105,24 @@
                         <table id="example2" class="table table-hover text-nowrap" style="width: 100%">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>CIUDAD</th>
                                     <th>ESTANDAR</th>
                                     <th>TIPO EMISORA</th>
                                     <th>EMISORA</th>
-                                    {{-- <th>CODIGO</th>
-                                    <th>NOMBRE DE LA SERIE</th>
-                                    <th>NOMBRE DE LA SUBSERIE O ASUNTOS</th>
-                                    <th>FECHA INICIAL</th>
-                                    <th>FECHA FINAL</th>
-                                    <th>CAJA</th>
-                                    <th>CARPETA</th>
-                                    <th>TOMO</th>
-                                    <th>OPCION OTRO</th>
-                                    <th>OTRO</th>
-                                    <th>NÚMERO DE FOLIOS</th>
-                                    <th>SOPORTE</th>
-                                    <th>FRECUENCIA DE CONSULTA</th>
-                                    <th>NOTAS</th> --}}
+                                    <th>KMZ</th>
                                     <th>ACCIONES</th>
                                 </tr>
                             </thead>
                             <tbody>
-
-
-
                                 @foreach ($planadquisiciones as $planadquisicion)
                                     <tr>
                                         <td>{{ $planadquisicion->id }}</td>
-                                        <td>{{ $planadquisicion->area->dependencia->nomdependencia }}</td>
-                                        <td>{{ $planadquisicion->area->nomarea }}</td>
-                                        <td>{{ $planadquisicion->modalidad->detmodalidad }}</td>
-                                        <td>{{ $planadquisicion->requiproyecto->detproyeto }}</td>
-                                        <td>{{ $planadquisicion->segmento->detsegmento }}</td>
-                                        <td>{{ $planadquisicion->estandares->detestandar }}</td>
-                                        <td>{{ $planadquisicion->fechaInicial }}</td>
-                                        <td>{{ $planadquisicion->fechaFinal }}</td>
-                                        <td>{{ $planadquisicion->caja }}</td>
-                                        <td>{{ $planadquisicion->carpeta }}</td>
-                                        <td>{{ $planadquisicion->tomo }}</td>
-                                        <td>{{ $planadquisicion->requipoais->detpoai }}</td>
-                                        <td>{{ $planadquisicion->otro }}</td>
-                                        <td>{{ $planadquisicion->folio }}</td>
+                                        <td>{{ $planadquisicion->fuente->estandar->ciudad->detciudad }}</td>
+                                        <td>{{ $planadquisicion->fuente->estandar->detestandar }}</td>
                                         <td>{{ $planadquisicion->fuente->detfuente }}</td>
-                                        <td>{{ $planadquisicion->tipoprioridade->detprioridad }}</td>
-                                        <td>{{ $planadquisicion->nota }}</td>
+                                        <td>{{ $planadquisicion->emisora->emisora ?? 'No Aplica' }}</td>
+                                        <td>{{ $planadquisicion->kmz }}</td>
                                         <td>
                                             <form action="{{ route('planadquisiciones.destroy', $planadquisicion) }}"
                                                 method="POST">
@@ -138,29 +130,30 @@
                                                 @method('delete')
 
                                                 {{-- @can('exportar_planadquisiciones_excel') --}}
-                                                <a class="btn btn-success btn-sm"
+                                                {{-- <a class="btn btn-success btn-sm"
                                                     href="{{ route('exportar_planadquisiciones_excel', $planadquisicion) }}">
                                                     <i class="far fa-file-excel"></i> Exportar
-                                                </a>
+                                                </a> --}}
                                                 {{-- @endcan --}}
 
                                                 {{-- @can('planadquisiciones.show') --}}
-                                                <a class="btn btn-info btn-sm"
-                                                    href="{{ route('planadquisiciones.show', $planadquisicion) }}">Detalles</a>
+                                                {{-- <a class="btn btn-info btn-sm"
+                                                    href="{{ route('planadquisiciones.show', $planadquisicion) }}">Detalles</a> --}}
                                                 {{-- @endcan --}}
 
 
                                                 {{-- @can('planadquisiciones.edit') --}}
-                                                @if (auth()->user()->hasRole('Admin') ||
-                                                        auth()->user()->hasRole('User'))
+                                                @if (auth()->user()->hasRole('Admin'))
                                                     <a class="btn btn-primary btn-sm"
                                                         href="{{ route('planadquisiciones.edit', $planadquisicion) }}">Editar</a>
-                                                @endif
-                                                {{-- @endcan --}}
 
-                                                @can('planadquisiciones.destroy')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="enviar_formulario()">Eliminar</button>
-                                                @endcan 
+                                                    {{-- @endcan --}}
+
+                                                    {{-- @can('planadquisiciones.destroy') --}}
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="enviar_formulario()">Eliminar</button>
+                                                    {{-- @endcan  --}}
+                                                @endif
                                             </form>
                                         </td>
                                     </tr>
@@ -168,7 +161,7 @@
 
                             </tbody>
                         </table>
-                        {{ $planadquisiciones->links() }}
+                        {{-- {{ $planadquisiciones->links() }} --}}
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -176,83 +169,80 @@
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content -->
-    </div>
-@endsection
-@section('script')
-    <!-- SweetAlert2 -->
-    {!! Html::script('adminlte/plugins/sweetalert2/sweetalert2.min.js') !!}
+        {{-- </div> --}}
+    @endsection
+    @section('script')
+        <!-- SweetAlert2 -->
+        {!! Html::script('adminlte/plugins/sweetalert2/sweetalert2.min.js') !!}
 
-    @if (session('flash') == 'registrado')
-        <script>
-            $(function() {
-                var Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000
+        @if (session('flash') == 'registrado')
+            <script>
+                $(function() {
+                    var Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'El Mapa se creó con éxito.'
+                    })
                 });
-                Toast.fire({
-                    icon: 'success',
-                    title: 'El Mapa se creó con exito.'
-                })
-            });
-        </script>
-    @endif
-    @if (session('flash') == 'actualizado')
-        <script>
-            $(function() {
-                var Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000
+            </script>
+        @endif
+        @if (session('flash') == 'actualizado')
+            <script>
+                $(function() {
+                    var Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'El Mapa se actualizó con éxito.'
+                    })
                 });
-                Toast.fire({
-                    icon: 'success',
-                    title: 'El Mapa se actualizó con exito.'
-                })
-            });
-        </script>
-    @endif
-    @if (session('flash') == 'eliminado')
+            </script>
+        @endif
         <script>
-            Swal.fire(
-                '¡Eliminado!',
-                'El Mapa se eliminó con exito.',
-                'success'
-            )
+            function enviar_formulario() {
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "¡No podrás revertir esto!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, estoy seguro!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                                '¡Eliminado!',
+                                'El Mapa se eliminó con éxito.',
+                                'success'
+                            ),
+                            document.delete_form.submit();
+
+                    }
+                });
+            }
         </script>
-    @endif
-    <script>
-        function enviar_formulario() {
-            Swal.fire({
-                title: '¿Estas seguro?',
-                text: "¡No podrás revertir esto!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, estoy seguro!',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.delete_form.submit();
-                }
-            })
-        }
-    </script>
-    <!-- DataTables  & Plugins -->
-    {!! Html::script('adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
-    {!! Html::script('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') !!}
-    {!! Html::script('adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js') !!}
-    {!! Html::script('adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') !!}
-    {!! Html::script('adminlte/plugins/datatables-buttons/js/dataTables.buttons.min.js') !!}
-    {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') !!}
-    {!! Html::script('adminlte/plugins/jszip/jszip.min.js') !!}
-    {!! Html::script('adminlte/plugins/pdfmake/pdfmake.min.js') !!}
-    {!! Html::script('adminlte/plugins/pdfmake/vfs_fonts.js') !!}
-    {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.html5.min.js') !!}
-    {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.print.min.js') !!}
-    {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js') !!}
-    @include('includes._datatable_language')
-@endsection
+        <!-- DataTables  & Plugins -->
+        {!! Html::script('adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-buttons/js/dataTables.buttons.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') !!}
+        {!! Html::script('adminlte/plugins/jszip/jszip.min.js') !!}
+        {!! Html::script('adminlte/plugins/pdfmake/pdfmake.min.js') !!}
+        {!! Html::script('adminlte/plugins/pdfmake/vfs_fonts.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.html5.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.print.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js') !!}
+        @include('includes._datatable_language')
+    @endsection

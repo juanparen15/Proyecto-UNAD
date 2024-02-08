@@ -79,6 +79,11 @@ Route::post('potencia_delete', 'ImportExcelController@potencia_delete')->name('p
 //new
 Route::get('inventario-export', 'PlanadquisicioneController@export')->name('planadquisiciones.export');
 Route::put('update-profile/{user}', 'UserController@updateProfile')->name('update.profile');
+Route::put('mapas/', 'PlanadquisicioneController@update')->name('planadquisiciones.update');
+Route::put('mapas/mostrar', 'PlanadquisicioneController@show')->name('planadquisiciones.show');
+// Route::put('planadquisiciones/{planadquisicione}', 'PlanadquisicioneController@update')->name('planadquisiciones.update');
+
+
 // Route::get('inventario/areas/{areaId}', 'PlanadquisicioneController@indexByArea')->name('planadquisiciones.indexByArea');
 // Route::get('inventario/onlyadmin', 'PlanadquisicioneController@showOnlyAdmin')->name('planadquisiciones.showOnlyAdmin');
 // Route::get('inventario', 'PlanadquisicioneController@index')->name('planadquisiciones.index');

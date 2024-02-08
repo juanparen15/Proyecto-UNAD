@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Estandar extends Model
 {
   public $incrementing = false;
-  protected $fillable = ['ciudad_id', 'detestandar', 'slug'];
+  protected $fillable = ['id', 'ciudad_id', 'detestandar', 'slug'];
 
   public function getRouteKeyName()
   {

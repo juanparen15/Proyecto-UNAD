@@ -8,35 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Planadquisicione extends Model
 {
     protected $fillable = [
-        'fechaInicial',
-        'fechaFinal',
-        'caja',
-        'carpeta',
-        'tomo',
-        'otro',
-        'folio',
-        'nota',
-        'modalidad_id',
-        'ciudad_id',
-        'familia_id',
+        'kmz',
         'area_id',
-        'requiproyecto_id',
-        'requipoais_id',
-        'fuente_id',
-        'tipoprioridade_id',
+        'tipoemisora_id',
+        'emisora_id',
         'user_id',
         'slug'
     ];
     protected $with =[
         'user',
         'fuente',
-        'requiproyecto',
-        'requipoais',
-        'tipoprioridade',
         'area',
-        'ciudad',
-        'modalidad',
-        'familias'
+        'emisora',
     ];
 
     // public function show($id, $slug)
@@ -61,9 +44,21 @@ class Planadquisicione extends Model
     }
 
     //Relacion Uno a Muchos (Inversa)
+    public function estandar()
+    {
+        return $this->belongsTo(Estandar::class, 'estandar_id');
+    }
+    
+    //Relacion Uno a Muchos (Inversa)
     public function fuente()
     {
-        return $this->belongsTo(Fuente::class);
+        return $this->belongsTo(Fuente::class, 'tipoemisora_id');
+    }
+
+    //Relacion Uno a Muchos (Inversa)
+    public function emisora()
+    {
+        return $this->belongsTo(Emisora::class, 'emisora_id');
     }
 
     //Relacion Uno a Muchos (Inversa)
@@ -75,14 +70,8 @@ class Planadquisicione extends Model
     //Relacion Uno a Muchos (Inversa)
     public function ciudad()
     {
-        return $this->belongsTo(Ciudad::class);
+        return $this->belongsTo(Ciudad::class, 'ciudad_id'); // Asegúrate de que el nombre de la clave foránea sea correcto
     }
-    //Relacion Uno a Muchos (Inversa)
-    public function familias()
-    {
-        return $this->belongsTo(Familia::class);
-    }
-
     //Relacion Muchos a Muchos
 
     // public function detalleplanadquisiciones(){
