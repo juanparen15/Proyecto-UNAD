@@ -1,47 +1,75 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" href="css/leaflet.css">
-        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <style>
-        html, body, #map {
-            width: 100%;
-            height: 100%;
-            padding: 0;
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/qgis2web.css">
+    <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <!-- Leaflet (JS/CSS) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <!-- Leaflet-KMZ -->
+    <script src="https://unpkg.com/leaflet-kmz@latest/dist/leaflet-kmz.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <style>
+        html,
+        body,
+        #map {
+            height: 100vh;
             margin: 0;
+            padding: 0;
+            z-index: 0;
         }
-        </style>
-        <title></title>
-    </head>
-    <body>
-        <div id="map">
-        </div>
-        <script src="js/qgis2web_expressions.js"></script>
-        <script src="js/leaflet.js"></script>
-        <script src="js/leaflet.rotatedMarker.js"></script>
-        <script src="js/leaflet.pattern.js"></script>
-        <script src="js/leaflet-hash.js"></script>
-        <script src="js/Autolinker.min.js"></script>
-        <script src="js/rbush.min.js"></script>
-        <script src="js/labelgun.min.js"></script>
-        <script src="js/labels.js"></script>
-        <script>
+
+        .legend {
+            background-color: #ffffff73;
+            padding: 10px;
+            color: black;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-height: 270px;
+            overflow-y: auto;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .legend {
+                max-height: 250px;
+                max-width: 130px;
+                overflow-y: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map">
+    </div>
+    <script src="js/qgis2web_expressions.js"></script>
+    <script src="js/leaflet.rotatedMarker.js"></script>
+    <script src="js/leaflet.pattern.js"></script>
+    <script src="js/leaflet-hash.js"></script>
+    <script src="js/Autolinker.min.js"></script>
+    <script src="js/rbush.min.js"></script>
+    <script src="js/labelgun.min.js"></script>
+    <script src="js/labels.js"></script>
+    <script src="https://unpkg.com/leaflet-hash/leaflet-hash.js"></script>
+    <script>
         var map = L.map('map', {
-            zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[7.055459342864098,-73.20350387011707],[7.153235353164805,-73.03182547856225]]);
+            zoomControl: true, maxZoom: 28, minZoom: 1
+        }).fitBounds([[7.055459342864098, -73.20350387011707], [7.153235353164805, -73.03182547856225]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
-        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var autolinker = new Autolinker({ truncate: { length: 30, location: 'smart' } });
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
         map.createPane('pane_GoogleHybrid_0');
-        map.getPane('pane_GoogleHybrid_0').style.zIndex = 400;
+        map.getPane('pane_GoogleHybrid_0').style.zIndex = 0;
         var layer_GoogleHybrid_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
             pane: 'pane_GoogleHybrid_0',
             opacity: 1.0,
@@ -53,7 +81,68 @@
         });
         layer_GoogleHybrid_0;
         map.addLayer(layer_GoogleHybrid_0);
+
+        var control = L.control.layers(null, null, { collapsed: true }).addTo(map);
+
+        // Objeto para rastrear las capas cargadas
+        var loadedLayers = {};
+
+        // Función para cargar KMZ y agregar al control de capas con nombre personalizado
+        function loadKmz(url, layerName) {
+            // Verificar si la capa ya está cargada
+            if (!loadedLayers[layerName]) {
+                // Crear nueva capa Leaflet para el KMZ
+                var kmzLayer = L.kmzLayer().addTo(map);
+
+                // Cargar el KMZ
+                kmzLayer.load(url);
+
+                // Escuchar el evento 'load' de la capa KMZ
+                kmzLayer.on('load', function (e) {
+                    // Agregar la capa al control de capas con el nombre personalizado
+                    control.addOverlay(e.layer, layerName);
+                });
+
+                // Marcar la capa como cargada
+                loadedLayers[layerName] = kmzLayer;
+            }
+        }
+        // Cargar y asignar nombres a los KMZ
+        loadKmz('kmz/Radioelectric elements.kmz', 'Elementos de Radio');
+        loadKmz('kmz/Interference level (CI).kmz', 'Nivel de Interferencia');
+        // loadKmz('kmz/Signal level.kmz', 'Nivel de Señal');
+        // loadKmz('kmz/Best server.kmz', 'Mejor Servidor');
+        // loadKmz('kmz/Overlapping.kmz', 'Solapamiento');
+
+        var legends = {
+            signalLevel:
+                '<table cellpadding="0" cellspacing="0" ><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ffffff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-∞ , 10) dB</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ff00ff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[10 , 26) dB</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#00ff00;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[26 , ∞) dB</div></td></tr></table>',
+        };
+
+        // Objeto para rastrear los controles de leyenda creados
+        var legendControls = {};
+
+        function addLegend(map, legendHTML, title, position) {
+            var legendControl = L.control({ position: position });
+            legendControl = L.control.layers(null, null, { collapsed: true }).addTo(map);
+
+            legendControl.onAdd = function (map) {
+                var div = L.DomUtil.create('div', 'legend');
+                div.innerHTML = '<h4>' + title + '</h4>' + legendHTML;
+                return div;
+            };
+
+            legendControl.addTo(map);
+            return legendControl;
+        }
+
+        // Ejemplo de llamadas a addLegend
+        addLegend(map, legends.signalLevel, 'Nivel de Interferencia', 'bottomright');
+
+
+
         setBounds();
-        </script>
-    </body>
+    </script>
+</body>
+
 </html>
