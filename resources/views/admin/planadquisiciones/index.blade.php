@@ -84,6 +84,9 @@
                                 <a href="{{ route('planadquisiciones.create') }}" class="btn btn-primary">
                                     <i class="nav-icon fas fa-map"></i> Crear Mapas
                                 </a>
+                                <a href="{{ route('planadquisiciones.show') }}" class="btn btn-success">
+                                    <i class="nav-icon fas fa-map"></i> Mostrar Mapas
+                                </a>
                             @elseif (auth()->user()->hasRole('User'))
                                 <a href="{{ route('planadquisiciones.show') }}" class="btn btn-success">
                                     <i class="nav-icon fas fa-map"></i> Mostrar Mapas
@@ -209,6 +212,7 @@
         @endif
         <script>
             function enviar_formulario() {
+                event.preventDefault();
                 Swal.fire({
                     title: '¿Estás seguro?',
                     text: "¡No podrás revertir esto!",
@@ -221,12 +225,11 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         Swal.fire(
-                                '¡Eliminado!',
-                                'El Mapa se eliminó con éxito.',
-                                'success'
-                            ),
-                            document.delete_form.submit();
-
+                            '¡Eliminado!',
+                            'El Mapa se eliminó con éxito.',
+                            'success'
+                        );
+                        document.delete_form.submit();
                     }
                 });
             }

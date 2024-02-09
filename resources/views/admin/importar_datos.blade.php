@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Panel administrador</h1>
+                        <h1 class="m-0">Panel Administrador</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -33,7 +33,8 @@
                         {{-- <input type="file" name="file" class="custom-file-input" required> --}}
                         <div class="input-group mb-3">
                             <div class="custom-file">
-                                <input type="file" accept=".xls,.xlsx,.xlsm" name="file" class="custom-file-input" id="inputGroupFile01">
+                                <input type="file" accept=".xls,.xlsx,.xlsm" name="file" class="custom-file-input"
+                                    id="inputGroupFile01">
                                 <label class="custom-file-label" for="inputGroupFile01">Seleccionar Archivo de Excel</label>
                             </div>
                         </div>
@@ -113,5 +114,39 @@
             }
         });
     </script>
+
+
+    {{-- @if (session('flash') == 'registrado')
+        <script>
+            $(function() {
+                var Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-start',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Gráficas importadas correctamente.'
+                })
+            });
+        </script>
+    @endif
+    @if (session('flash') == 'eliminado')
+        <script>
+            $(function() {
+                var Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-start',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Gráficas eliminadas correctamente.'
+                })
+            });
+        </script>
+    @endif --}}
 
 @endsection

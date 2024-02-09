@@ -63,7 +63,7 @@
                                 <tr>
                                     <th>ID</th>
                                     {{-- <th>Nombre del Area o Dependencia</th> --}}
-                                    <th>Nombre</th>
+                                    <th>Nombre Completo</th>
                                     <th>Correo Electrónico</th>
                                     <th>Rol</th>
                                     <th>Acciones</th>
@@ -177,6 +177,11 @@
                     confirmButtonText: "¡Sí, eliminarlo!"
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Eliminado!",
+                            text: "El usuario han sido eliminado.",
+                            icon: "success"
+                        });
                         // Envía el formulario de eliminación
                         deleteForm.submit();
                     }

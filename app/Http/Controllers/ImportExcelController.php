@@ -21,7 +21,7 @@ class ImportExcelController extends Controller
     {
         $file = $request->file('file');
         Excel::import(new MultiplePestanasImport, $file);
-        return back()->with('message', 'Importación de datos completada.');
+        return back()->with('flash', 'registrado');
     }
     public function potencia_delete(Request $request)
     {
@@ -35,6 +35,6 @@ class ImportExcelController extends Controller
         PotenciaCali::truncate();
         PotenciaMede::truncate();
 
-        return back()->with('message', 'Eliminación de datos completada.');
+        return back()->with('flash', 'eliminado');
     }
 }
