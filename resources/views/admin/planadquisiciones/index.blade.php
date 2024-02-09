@@ -80,11 +80,11 @@
                             @endif --}}
 
 
-                            @if (auth()->user()->hasRole('Admin') ||
-                                    auth()->user()->hasRole('User'))
+                            @if (auth()->user()->hasRole('Admin'))
                                 <a href="{{ route('planadquisiciones.create') }}" class="btn btn-primary">
                                     <i class="nav-icon fas fa-map"></i> Crear Mapas
                                 </a>
+                            @elseif (auth()->user()->hasRole('User'))
                                 <a href="{{ route('planadquisiciones.show') }}" class="btn btn-success">
                                     <i class="nav-icon fas fa-map"></i> Mostrar Mapas
                                 </a>
