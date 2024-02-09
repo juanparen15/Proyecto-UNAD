@@ -116,8 +116,11 @@ class UserController extends Controller
             $user->save();
         }
 
-        // Actualizar roles
-        $user->syncRoles($request->role);
+        // Actualizar roles solo si el usuario autenticado tiene el rol de "admin"
+        if (auth()->user()->hasRole('Admin')) {
+            $user->syncRoles($request->role);
+        }
+
 
         return redirect()->route('users.index')->with('flash', 'actualizado');
     }

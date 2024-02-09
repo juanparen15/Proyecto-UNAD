@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('title', 'Panel administrador')
 @section('style')
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lumen/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lumen/bootstrap.min.css">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
     {!! Html::style('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') !!}
@@ -20,7 +20,11 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Panel Administrador</h1>
+                        @if (auth()->user()->hasRole('Admin'))
+                            <h1 class="m-0">Panel Administrador</h1>
+                        @elseif(auth()->user()->hasRole('User'))
+                            <h1 class="m-0">Panel Usuario</h1>
+                        @endif
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
