@@ -167,45 +167,46 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="cambiar_pass">Cambiar contraseña</label>
-                                        <select id="cambiar_pass" name="cambiar_pass"
-                                            class="form-control custom-select select2">
-                                            <option selected disabled>Selecciona opción</option>
-                                            <option value="SI">SI</option>
-                                            <option value="NO">NO</option>
-                                        </select>
-                                        @error('cambiar_pass')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-3">
-                                    <div class="form-group password">
-                                        <label for="password">Contraseña</label>
-                                        <input type="password" id="password" name="password"
-                                            class="form-control @error('password') is-invalid @enderror"
-                                            autocomplete="new-password">
-                                        @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group password-confirm">
-                                        <label for="password-confirm">Confirmar Contraseña</label>
-                                        <input type="password" id="password-confirm" name="password_confirmation"
-                                            class="form-control" autocomplete="new-password">
-                                    </div>
-                                </div>
                             @endif
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="cambiar_pass">Cambiar contraseña</label>
+                                    <select id="cambiar_pass" name="cambiar_pass"
+                                        class="form-control custom-select select2">
+                                        <option selected disabled>Selecciona opción</option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                    @error('cambiar_pass')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-3">
+                                <div class="form-group password">
+                                    <label for="password">Contraseña</label>
+                                    <input type="password" id="password" name="password"
+                                        class="form-control @error('password') is-invalid @enderror"
+                                        autocomplete="new-password">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group password-confirm">
+                                    <label for="password-confirm">Confirmar Contraseña</label>
+                                    <input type="password" id="password-confirm" name="password_confirmation"
+                                        class="form-control" autocomplete="new-password">
+                                </div>
+                            </div>
+
 
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -276,6 +277,35 @@
                 });
             </script>
         @endif
+        <script>
+            $(document).ready(function() {
+                $('#password-confirm').on('keyup', function() {
+                    var password = $('#password').val();
+                    var confirmPassword = $(this).val();
+                    if (password != confirmPassword) {
+                        $('#password-confirm').addClass('is-invalid');
+                        $('#password-confirm').append(
+                            '<span id="password-confirm-error" class="invalid-feedback" role="alert">Las contraseñas no coinciden</span>'
+                            );
+                    } else {
+                        $('#password-confirm').removeClass('is-invalid');
+                        $('#password-confirm-error').remove();
+                    }
+                });
+
+                $('form').on('submit', function(event) {
+                    var password = $('#password').val();
+                    var confirmPassword = $('#password-confirm').val();
+                    if (password != confirmPassword) {
+                        $('#password-confirm').addClass('is-invalid');
+                        $('#password-confirm').append(
+                            '<span id="password-confirm-error" class="invalid-feedback" role="alert">Las contraseñas no coinciden</span>'
+                            );
+                        event.preventDefault(); // Evitar que se envíe el formulario
+                    }
+                });
+            });
+        </script>
         <script>
             var password = $('#password');
             var passwordConfirm = $('#password-confirm');

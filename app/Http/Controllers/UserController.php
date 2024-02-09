@@ -81,23 +81,33 @@ class UserController extends Controller
             'username' => ['required'],
             'name' => ['required'],
             'email' => ['required'],
-            // 'password' => ['required'],
             'lastname' => ['required'],
             'telefono' => ['required'],
             'documento' => ['required'],
-            // 'areas_id' => ['required']
         ]);
+
+        // Actualizar solo si se proporciona una nueva contraseña y se activa la opción "Cambiar contraseña"
+        if ($request->cambiar_pass == "SI" && $request->password) {
+            $request->validate([
+                'password' => ['required', 'confirmed'],
+            ]);
+
+            $user->update([
+                'password' => Hash::make($request->password),
+            ]);
+        }
+
+        // Actualizar los otros campos sin considerar la contraseña
         $user->update([
             'username' => $request->username,
             'name' => $request->name,
             'email' => $request->email,
-            // 'password' => Hash::make($request->password),
             'lastname' => $request->lastname,
             'telefono' => $request->telefono,
             'documento' => $request->documento,
-            // 'areas_id' => $request->areas_id
         ]);
 
+        // Actualizar avatar si se proporciona
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
             $name = time() . $file->getClientOriginalName();
@@ -106,9 +116,12 @@ class UserController extends Controller
             $user->save();
         }
 
+        // Actualizar roles
         $user->syncRoles($request->role);
+
         return redirect()->route('users.index')->with('flash', 'actualizado');
     }
+
     public function destroy($id)
     {
         $user = User::findOrFail($id);
