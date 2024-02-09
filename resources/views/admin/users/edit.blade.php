@@ -147,7 +147,7 @@
                                 </div>
                             </div> --}}
                             @if (auth()->user()->hasRole('Admin'))
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="role">Rol</label>
                                         <select id="role" name="role"
@@ -167,12 +167,29 @@
                                         @enderror
                                     </div>
                                 </div>
-
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="cambiar_pass">Cambiar contraseña</label>
+                                        <select id="cambiar_pass" name="cambiar_pass"
+                                            class="form-control custom-select select2">
+                                            <option selected disabled>Selecciona opción</option>
+                                            <option value="SI">SI</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                        @error('cambiar_pass')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-3">
+                                    <div class="form-group password">
                                         <label for="password">Contraseña</label>
                                         <input type="password" id="password" name="password"
-                                            class="form-control @error('password') is-invalid @enderror" required
+                                            class="form-control @error('password') is-invalid @enderror"
                                             autocomplete="new-password">
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
@@ -181,11 +198,11 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
+                                <div class="col-md-3">
+                                    <div class="form-group password-confirm">
                                         <label for="password-confirm">Confirmar Contraseña</label>
                                         <input type="password" id="password-confirm" name="password_confirmation"
-                                            class="form-control" required autocomplete="new-password">
+                                            class="form-control" autocomplete="new-password">
                                     </div>
                                 </div>
                             @endif
@@ -201,10 +218,7 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-
-
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -262,4 +276,24 @@
                 });
             </script>
         @endif
+        <script>
+            var password = $('#password');
+            var passwordConfirm = $('#password-confirm');
+            var cambiar_pass = $('#cambiar_pass');
+
+            $(function() {
+                $(".password").prop("hidden", true);
+                $(".password-confirm").prop("hidden", true);
+
+                $("#cambiar_pass").change(function() {
+                    if ($(this).val() == "NO") {
+                        $(".password").prop("hidden", true);
+                        $(".password-confirm").prop("hidden", true);
+                    } else {
+                        $(".password").prop("hidden", false);
+                        $(".password-confirm").prop("hidden", false);
+                    }
+                });
+            });
+        </script>
     @endsection
