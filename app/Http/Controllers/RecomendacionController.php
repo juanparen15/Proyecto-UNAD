@@ -61,12 +61,7 @@ class RecomendacionController extends Controller
             DB::raw("SUM(SNRFMHibrido) as promedioPot5"),
             DB::raw("SUM(SNRDAB) as promedioPot6")
         )
-            ->groupBy('potenciaAM')
-            ->groupBy('potenciaFM')
-            ->groupBy('potenciaDABHibrido')
-            ->groupBy('SNRAMHibrido')
-            ->groupBy('SNRFMHibrido')
-            ->groupBy('SNRDAB')
+            ->groupBy('potenciaAM', 'potenciaFM', 'potenciaDABHibrido', 'SNRAMHibrido', 'SNRFMHibrido', 'SNRDAB')
             ->havingRaw('AVG(potenciaAM) <= 200')
             ->havingRaw('AVG(potenciaFM) <= 200')
             ->havingRaw('AVG(potenciaDABHibrido) <= 200')
