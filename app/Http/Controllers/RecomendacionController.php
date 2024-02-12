@@ -54,12 +54,12 @@ class RecomendacionController extends Controller
             'SNRAMHibrido',
             'SNRFMHibrido',
             'SNRDAB',
-            DB::raw("SUM(potenciaAM) / COUNT(*) as promedioPot1"),
-            DB::raw("SUM(potenciaFM) / COUNT(*) as promedioPot2"),
-            DB::raw("SUM(potenciaDABHibrido)  / COUNT(*) as promedioPot3"),
-            DB::raw("SUM(SNRAMHibrido)  / COUNT(*) as promedioPot4"),
-            DB::raw("SUM(SNRFMHibrido) / COUNT(*) as promedioPot5"),
-            DB::raw("SUM(SNRDAB) / COUNT(*) as promedioPot6")
+            DB::raw("SUM(potenciaAM) as promedioPot1"),
+            DB::raw("SUM(potenciaFM) as promedioPot2"),
+            DB::raw("SUM(potenciaDABHibrido) as promedioPot3"),
+            DB::raw("SUM(SNRAMHibrido) as promedioPot4"),
+            DB::raw("SUM(SNRFMHibrido) as promedioPot5"),
+            DB::raw("SUM(SNRDAB) as promedioPot6")
         )
             ->groupBy('potenciaAM')
             ->groupBy('potenciaFM')
@@ -83,12 +83,12 @@ class RecomendacionController extends Controller
             'SNRAMHibrido',
             'SNRFMHibrido',
             'SNRDAB',
-            DB::raw("AVG(potenciaAM) as promedioBucaPot1"),
-            DB::raw("AVG(potenciaFM) as promedioBucaPot2"),
-            DB::raw("AVG(potenciaDABHibrido) as promedioBucaPot3"),
-            DB::raw("AVG(SNRAMHibrido) as promedioBucaPot4"),
-            DB::raw("AVG(SNRFMHibrido) as promedioBucaPot5"),
-            DB::raw("AVG(SNRDAB) as promedioBucaPot6")
+            DB::raw("AVG(potenciaAM) as promedioPot1"),
+            DB::raw("AVG(potenciaFM) as promedioPot2"),
+            DB::raw("AVG(potenciaDABHibrido) as promedioPot3"),
+            DB::raw("AVG(SNRAMHibrido) as promedioPot4"),
+            DB::raw("AVG(SNRFMHibrido) as promedioPot5"),
+            DB::raw("AVG(SNRDAB) as promedioPot6")
         )
             ->groupBy('potenciaAM', 'potenciaFM', 'potenciaDABHibrido', 'SNRAMHibrido', 'SNRFMHibrido', 'SNRDAB')
             ->havingRaw('AVG(potenciaAM) <= 200')
