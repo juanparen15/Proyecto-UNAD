@@ -91,6 +91,17 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('recomendaciones.index') }}"
+                            class="nav-link 
+            {!! active_class(route('recomendaciones.index')) !!}
+            ">
+                            <i class="nav-icon fas fa-lightbulb"></i>
+                            <p>
+                                RECOMENDACIÓN
+                            </p>
+                        </a>
+                    </li>
                 @else
                     <li class="nav-item">
                         <a href="{{ route('planadquisiciones.show') }}"
@@ -111,6 +122,17 @@
                             <i class="nav-icon fas fa-chart-pie"></i>
                             <p>
                                 ESTADÍSTICA
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('recomendaciones.index') }}"
+                            class="nav-link 
+            {!! active_class(route('recomendaciones.index')) !!}
+            ">
+                            <i class="nav-icon fas fa-lightbulb"></i>
+                            <p>
+                                RECOMENDACIÓN
                             </p>
                         </a>
                     </li>

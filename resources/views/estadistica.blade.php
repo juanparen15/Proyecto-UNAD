@@ -861,7 +861,7 @@
                     // },
                     categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                     title: {
-                        text: 'Potencias (dBu)'
+                        text: 'Potencias (Dby)'
                     }
                 },
 
@@ -870,7 +870,7 @@
                         followPointer: true
                     },
                     title: {
-                        text: 'Observaciones'
+                        text: 'Interferencias'
                     },
                     in: 0, // Establecer el valor mínimo en el eje Y
                     max: 200,
@@ -890,7 +890,7 @@
                     stickyTracking: true,
                     cursor: 'pointer',
                     colorByPoint: true,
-                    name: 'Observaciones',
+                    name: 'Interferencias',
                     data: [
                         [
                             @foreach ($potencias as $pot1)
@@ -962,7 +962,7 @@
                     // },
                     categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                     title: {
-                        text: 'Potencias (dBu)'
+                        text: 'Potencias (Dby)'
                     }
                 },
 
@@ -971,7 +971,7 @@
                         followPointer: true
                     },
                     title: {
-                        text: 'Observaciones'
+                        text: 'Interferencias'
                     },
                     in: 0, // Establecer el valor mínimo en el eje Y
                     // max: 200,
@@ -995,7 +995,7 @@
                     stickyTracking: true,
                     cursor: 'pointer',
                     colorByPoint: true,
-                    name: 'Observaciones',
+                    name: 'Interferencias',
                     data: [
                         [
                             @foreach ($potencias as $pot4)
@@ -1477,7 +1477,7 @@
                     // },
                     categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                     title: {
-                        text: 'Potencias (dBu)'
+                        text: 'Potencias (Dby)'
                     }
                 },
 
@@ -1486,7 +1486,7 @@
                         followPointer: true
                     },
                     title: {
-                        text: 'Observaciones'
+                        text: 'Interferencias'
                     },
                     plotLines: [{
                         value: 932,
@@ -1507,7 +1507,7 @@
                     stickyTracking: true,
                     cursor: 'pointer',
                     colorByPoint: true,
-                    name: 'Observaciones',
+                    name: 'Interferencias',
                     data: [
                         [
                             @foreach ($potenciasBuca as $pot1)
@@ -1581,7 +1581,7 @@
                     // },
                     categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                     title: {
-                        text: 'Potencias (dBu)'
+                        text: 'Potencias (Dby)'
                     }
                 },
 
@@ -1590,7 +1590,7 @@
                         followPointer: true
                     },
                     title: {
-                        text: 'Observaciones'
+                        text: 'Interferencias'
                     },
                     plotLines: [{
                         value: 932,
@@ -1612,7 +1612,7 @@
                     stickyTracking: true,
                     cursor: 'pointer',
                     colorByPoint: true,
-                    name: 'Observaciones',
+                    name: 'Interferencias',
                     data: [
                         [
                             @foreach ($potenciasBuca as $pot4)
@@ -2101,7 +2101,7 @@
                     // },
                     categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                     title: {
-                        text: 'Potencias (dBu)'
+                        text: 'Potencias (Dby)'
                     }
                 },
 
@@ -2110,7 +2110,7 @@
                         followPointer: true
                     },
                     title: {
-                        text: 'Observaciones'
+                        text: 'Interferencias'
                     },
                     in: 0, // Establecer el valor mínimo en el eje Y
                     // max: 200,
@@ -2132,7 +2132,7 @@
                     stickyTracking: true,
                     cursor: 'pointer',
                     colorByPoint: true,
-                    name: 'Observaciones',
+                    name: 'Interferencias',
                     data: [
                         [
                             @foreach ($potenciasCali as $pot1)
@@ -2207,7 +2207,7 @@
                     // },
                     categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                     title: {
-                        text: 'Potencias (dBu)'
+                        text: 'Potencias (Dby)'
                     }
                 },
 
@@ -2216,7 +2216,7 @@
                         followPointer: true
                     },
                     title: {
-                        text: 'Observaciones'
+                        text: 'Interferencias'
                     },
                     in: 0, // Establecer el valor mínimo en el eje Y
                     // max: 200,
@@ -2240,7 +2240,7 @@
                     stickyTracking: true,
                     cursor: 'pointer',
                     colorByPoint: true,
-                    name: 'Observaciones',
+                    name: 'Interferencias',
                     data: [
                         [
                             @foreach ($potenciasCali as $pot4)
@@ -2725,7 +2725,7 @@
                     // },
                     categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                     title: {
-                        text: 'Potencias (dBu)'
+                        text: 'Potencias (Dby)'
                     }
                 },
 
@@ -2734,7 +2734,7 @@
                         followPointer: true
                     },
                     title: {
-                        text: 'Observaciones'
+                        text: 'Interferencias'
                     },
                     in: 0, // Establecer el valor mínimo en el eje Y
                     // max: 200,
@@ -2758,7 +2758,7 @@
                     stickyTracking: true,
                     cursor: 'pointer',
                     colorByPoint: true,
-                    name: 'Observaciones',
+                    name: 'Interferencias',
                     data: [
                         [
                             @foreach ($potenciasMede as $pot1)
@@ -2831,7 +2831,7 @@
                     // },
                     categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
                     title: {
-                        text: 'Potencias (dBu)'
+                        text: 'Potencias (Dby)'
                     }
                 },
 
@@ -2840,7 +2840,7 @@
                         followPointer: true
                     },
                     title: {
-                        text: 'Observaciones'
+                        text: 'Interferencias'
                     },
                     in: 0, // Establecer el valor mínimo en el eje Y
                     // max: 200,
@@ -2864,7 +2864,7 @@
                     stickyTracking: true,
                     cursor: 'pointer',
                     colorByPoint: true,
-                    name: 'Observaciones',
+                    name: 'Interferencias',
                     data: [
                         [
                             @foreach ($potenciasMede as $pot4)

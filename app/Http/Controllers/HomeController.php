@@ -13,6 +13,7 @@ use App\EncabezadoMede;
 use App\PotenciaBuca;
 use App\PotenciaCali;
 use App\PotenciaMede;
+use App\Recomendacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -38,6 +39,7 @@ class HomeController extends Controller
     {
         $users = User::all()->count();
         $potencia = Potencia::all();
+        $reoomendacion = Recomendacion::all();
         $potenciaBuca = PotenciaBuca::all();
         $potenciaMede = PotenciaMede::all();
         $potenciaCali = PotenciaCali::all();

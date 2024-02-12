@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RecomendacionController;
 use App\Mail\TestMail;
 use App\User;
 use Illuminate\Support\Facades\Route;
@@ -81,6 +82,9 @@ Route::get('inventario-export', 'PlanadquisicioneController@export')->name('plan
 Route::put('update-profile/{user}', 'UserController@updateProfile')->name('update.profile');
 Route::put('mapas/', 'PlanadquisicioneController@update')->name('planadquisiciones.update');
 Route::put('mapas/mostrar', 'PlanadquisicioneController@show')->name('planadquisiciones.show');
+Route::resource('recomendaciones', 'RecomendacionController');
+
+
 // Route::put('planadquisiciones/{planadquisicione}', 'PlanadquisicioneController@update')->name('planadquisiciones.update');
 
 

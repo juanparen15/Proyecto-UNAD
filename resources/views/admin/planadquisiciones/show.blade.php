@@ -97,13 +97,13 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="submit" value="Mostrar Mapa" class="btn btn-primary style="width: 100%"">
+                                <input type="submit" value="Mostrar Mapa" class="btn btn-primary" style="width: 100%">
                                 @if (auth()->user()->hasRole('Admin'))
-                                    <a href="{{ route('planadquisiciones.index') }}" class="btn btn-success">
+                                    <a href="{{ route('planadquisiciones.index') }}" class="btn btn-success" style="width: 100%">
                                         <i class="nav-icon fas fa-map"></i> Editar Mapas
                                     </a>
                                 @endif
-                                <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancelar</a>
+                                <a href="{{ URL::previous() }}" class="btn btn-secondary" style="width: 100%">Cancelar</a>
                             </div>
                         </div>
                         <div class="form-row float-right col-md-10 px-md-2" style="height: 700px; width: 100%;">

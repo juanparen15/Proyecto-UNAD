@@ -15,9 +15,11 @@
     {!! Html::style('adminlte/dist/css/adminlte.min.css') !!}
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lumen/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
-        <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
+    <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
     
+
+
 
     <style>
         .sidebar-dark-blue {
@@ -28,18 +30,21 @@
             color: #ffffff !important;
         }
     </style>
-    
+
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="https://code.highcharts.com/modules/drilldown.js"></script>
     <script src="https://code.highcharts.com/modules/timeline.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/modules/item-series.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    
+
     {{-- <script src="https://code.highcharts.com/themes/dark-unica.js"></script> --}}
     {{-- <link rel="stylesheet" href="https://code.highcharts.com/css/highcharts.css"> --}}
+
+
 
 
 </head>
