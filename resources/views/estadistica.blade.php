@@ -476,28 +476,34 @@
                         [
 
                             @foreach ($promPotencias as $promedioPot1)
-                                {
-                                    name: '{{ $promedioPot1->potenciaAM }}',
-                                },
-                                {{ $promedioPot1->promedioPot1 }},
+                                @if ($loop->first)
+                                    {
+                                        name: '{{ $promedioPot1->potenciaAM }}',
+                                    },
+                                    {{ $promedioPot1->promedioPot1 }},
+                                @endif
                             @endforeach
                         ],
                         [
 
                             @foreach ($promPotencias as $promedioPot2)
-                                {
-                                    name: '{!! $promedioPot2->potenciaFM !!}',
-                                },
-                                {{ $promedioPot2->promedioPot2 }},
+                                @if ($loop->first)
+                                    {
+                                        name: '{!! $promedioPot2->potenciaFM !!}',
+                                    },
+                                    {{ $promedioPot2->promedioPot2 }},
+                                @endif
                             @endforeach
                         ],
                         [
 
                             @foreach ($promPotencias as $promedioPot3)
-                                {
-                                    name: '{{ $promedioPot3->potenciaDABHibrido }}',
-                                },
-                                {{ $promedioPot3->promedioPot3 }},
+                                @if ($loop->first)
+                                    {
+                                        name: '{{ $promedioPot3->potenciaDABHibrido }}',
+                                    },
+                                    {{ $promedioPot3->promedioPot3 }},
+                                @endif
                             @endforeach
                         ],
                     ],

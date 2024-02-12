@@ -270,10 +270,12 @@
                     if (selectedEmisora) {
                         // Si se ha seleccionado una emisora, mostrar emisora
                         nuevaURL =
+                            // `{{ asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/${encodeURIComponent(selectedEmisora)}/index.html`;
                             `{{ secure_asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/${encodeURIComponent(selectedEmisora)}/index.html`;
                     } else if (selectedType) {
                         // Si no se ha seleccionado una emisora pero se ha seleccionado un tipo, mostrar el tipo de emisora
                         nuevaURL =
+                            // `{{ asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/index.html`;
                             `{{ secure_asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/index.html`;
                     }
                     // Actualizar la fuente del iframe con la nueva URL
