@@ -2311,7 +2311,7 @@
                     // pointFormat: 'Cars sold: {point.y}'
                 },
                 title: {
-                    text: 'PROMEDIO MULTICOBERTURA MEDELLIN',
+                    text: 'PROMEDIO MULTICOBERTURA MEDELLÍN',
                     align: 'center'
                 },
                 subtitle: {
@@ -2401,7 +2401,7 @@
                     // pointFormat: 'Cars sold: {point.y}'
                 },
                 title: {
-                    text: 'PROMEDIO INTERFERENCIA MEDELLIN',
+                    text: 'PROMEDIO INTERFERENCIA MEDELLÍN',
                     align: 'center'
                 },
                 subtitle: {
@@ -2483,7 +2483,7 @@
                         // textTransform: 'uppercase',
                         // fontSize: '20px'
                     },
-                    text: 'MULTICOBERTURA MEDELLIN',
+                    text: 'MULTICOBERTURA MEDELLÍN',
                     // 'BOGOTA',
                     // align: 'left',
                 },
@@ -2596,7 +2596,7 @@
                         // textTransform: 'uppercase',
                         // fontSize: '20px'
                     },
-                    text: 'INTERFERENCIA MEDELLIN',
+                    text: 'INTERFERENCIA MEDELLÍN',
                     // 'BOGOTA',
                     // align: 'left',
                 },
@@ -2707,7 +2707,7 @@
                     enabled: false
                 },
                 title: {
-                    text: 'VARIABILIDAD DE MULTICOBERTURA MEDELLIN',
+                    text: 'VARIABILIDAD DE MULTICOBERTURA MEDELLÍN',
                     // getColumnNameByIndex(0),
                     // 'BOGOTÁ'
                 },
@@ -2815,7 +2815,7 @@
                     enabled: false
                 },
                 title: {
-                    text: 'VARIABILIDAD DE INTERFERENCIA MEDELLIN',
+                    text: 'VARIABILIDAD DE INTERFERENCIA MEDELLÍN',
                 },
 
                 legend: {

@@ -307,6 +307,224 @@
                                         </figure>
                                     </div>
                                 </div>
+                                <div class="col-lg-12 col-16">
+                                    <div class="small-box" data-ciudad="3">
+                                        <figure class="highcharts-figure">
+                                            <div id="column3" style="margin-bottom: 1em;" class="chart-display"></div>
+                                        </figure>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-16">
+                                    <div class="small-box" data-ciudad="3">
+                                        <figure class="highcharts-figure">
+                                            <table id="example3" class="display" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Potencia en dBu (promedio)</th>
+                                                        <th>Escala lineal</th>
+                                                        <th>Estándar</th>
+                                                        <th>Potencia Normalizada</th>
+                                                        <th>Score Final</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    @foreach ($promPotenciasCali as $promedioPot)
+                                                        @if ($loop->first)
+                                                            <tr>
+                                                                <td>{{ $promedioPot->promedioPot1 }}</td>
+                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot1 / 20) * 0.775, 2) }}
+                                                                </td>
+                                                                <td>IBOC AM Híbrido</td>
+                                                                <td>{{ $promedioPot->promedioPot1 / $promedioPot->promedioPot2 }}
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endif
+                                                        @if ($loop->first)
+                                                            <tr>
+                                                                <td>{{ $promedioPot->promedioPot2 }}</td>
+                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot2 / 20) * 0.775, 2) }}
+                                                                </td>
+                                                                <td>IBOC FM Híbrido</td>
+                                                                <td>{{ $promedioPot->promedioPot2 / $promedioPot->promedioPot2 }}
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endif
+                                                        @if ($loop->first)
+                                                            <tr>
+                                                                <td>{{ $promedioPot->promedioPot3 }}</td>
+                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot3 / 20) * 0.775, 2) }}
+                                                                </td>
+                                                                <td>DAB</td>
+                                                                <td>{{ $promedioPot->promedioPot3 / $promedioPot->promedioPot2 }}
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endif
+                                                    @endforeach
+                                                </tbody>
+                                                <thead>
+                                                    <tr>
+                                                        <th>SNR en dB (promedio)</th>
+                                                        <th>Escala lineal</th>
+                                                        <th>Estándar</th>
+                                                        <th>Potencia Normalizada</th>
+                                                        <th>Score Final</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    @foreach ($promPotenciasCali as $promedioPot)
+                                                        @if ($loop->first)
+                                                            <tr>
+                                                                <td>{{ $promedioPot->promedioPot4 }}</td>
+                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot4 / 20) * 0.775, 2) }}
+                                                                </td>
+                                                                <td>IBOC AM Híbrido</td>
+                                                                <td>{{ $promedioPot->promedioPot4 / $promedioPot->promedioPot6 }}
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endif
+                                                        @if ($loop->first)
+                                                            <tr>
+                                                                <td>{{ $promedioPot->promedioPot5 }}</td>
+                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot5 / 20) * 0.775, 2) }}
+                                                                </td>
+                                                                <td>IBOC FM Híbrido</td>
+                                                                <td>{{ $promedioPot->promedioPot5 / $promedioPot->promedioPot6 }}
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endif
+                                                        @if ($loop->first)
+                                                            <tr>
+                                                                <td>{{ $promedioPot->promedioPot6 }}</td>
+                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot6 / 20) * 0.775, 2) }}
+                                                                </td>
+                                                                <td>DAB</td>
+                                                                <td>{{ $promedioPot->promedioPot6 / $promedioPot->promedioPot6 }}
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endif
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </figure>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-16">
+                                    <div class="small-box" data-ciudad="4">
+                                        <figure class="highcharts-figure">
+                                            <div id="column4" style="margin-bottom: 1em;" class="chart-display"></div>
+                                        </figure>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-16">
+                                    <div class="small-box" data-ciudad="4">
+                                        <figure class="highcharts-figure">
+                                            <table id="example4" class="display" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Potencia en dBu (promedio)</th>
+                                                        <th>Escala lineal</th>
+                                                        <th>Estándar</th>
+                                                        <th>Potencia Normalizada</th>
+                                                        <th>Score Final</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    @foreach ($promPotenciasMede as $promedioPot)
+                                                        @if ($loop->first)
+                                                            <tr>
+                                                                <td>{{ $promedioPot->promedioPot1 }}</td>
+                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot1 / 20) * 0.775, 2) }}
+                                                                </td>
+                                                                <td>IBOC AM Híbrido</td>
+                                                                <td>{{ $promedioPot->promedioPot1 / $promedioPot->promedioPot2 }}
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endif
+                                                        @if ($loop->first)
+                                                            <tr>
+                                                                <td>{{ $promedioPot->promedioPot2 }}</td>
+                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot2 / 20) * 0.775, 2) }}
+                                                                </td>
+                                                                <td>IBOC FM Híbrido</td>
+                                                                <td>{{ $promedioPot->promedioPot2 / $promedioPot->promedioPot2 }}
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endif
+                                                        @if ($loop->first)
+                                                            <tr>
+                                                                <td>{{ $promedioPot->promedioPot3 }}</td>
+                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot3 / 20) * 0.775, 2) }}
+                                                                </td>
+                                                                <td>DAB</td>
+                                                                <td>{{ $promedioPot->promedioPot3 / $promedioPot->promedioPot2 }}
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endif
+                                                    @endforeach
+                                                </tbody>
+                                                <thead>
+                                                    <tr>
+                                                        <th>SNR en dB (promedio)</th>
+                                                        <th>Escala lineal</th>
+                                                        <th>Estándar</th>
+                                                        <th>Potencia Normalizada</th>
+                                                        <th>Score Final</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    @foreach ($promPotenciasMede as $promedioPot)
+                                                        @if ($loop->first)
+                                                            <tr>
+                                                                <td>{{ $promedioPot->promedioPot4 }}</td>
+                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot4 / 20) * 0.775, 2) }}
+                                                                </td>
+                                                                <td>IBOC AM Híbrido</td>
+                                                                <td>{{ $promedioPot->promedioPot4 / $promedioPot->promedioPot6 }}
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endif
+                                                        @if ($loop->first)
+                                                            <tr>
+                                                                <td>{{ $promedioPot->promedioPot5 }}</td>
+                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot5 / 20) * 0.775, 2) }}
+                                                                </td>
+                                                                <td>IBOC FM Híbrido</td>
+                                                                <td>{{ $promedioPot->promedioPot5 / $promedioPot->promedioPot6 }}
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endif
+                                                        @if ($loop->first)
+                                                            <tr>
+                                                                <td>{{ $promedioPot->promedioPot6 }}</td>
+                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot6 / 20) * 0.775, 2) }}
+                                                                </td>
+                                                                <td>DAB</td>
+                                                                <td>{{ $promedioPot->promedioPot6 / $promedioPot->promedioPot6 }}
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endif
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </figure>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -406,34 +624,42 @@
 
                     // Itera sobre los puntos de la serie
                     @foreach ($promPotencias as $promedioPot)
-                        @if ($loop->first)
-                            newData.push({
-                                name: 'IBOC AM Híbrido',
-                                y: {{ $promedioPot->promedioPot1 / $promedioPot->promedioPot2 }} * parseFloat(
-                                        $('#recoPotencia').val()) +
-                                    {{ $promedioPot->promedioPot4 / $promedioPot->promedioPot6 }} * parseFloat(
-                                        $('#recoInterferencia').val())
-                            });
-                        @endif
-                        @if ($loop->first)
-                            newData.push({
-                                name: 'IBOC FM Híbrido',
-                                y: {{ $promedioPot->promedioPot2 / $promedioPot->promedioPot2 }} * parseFloat(
-                                        $('#recoPotencia').val()) +
-                                    {{ $promedioPot->promedioPot5 / $promedioPot->promedioPot6 }} * parseFloat(
-                                        $('#recoInterferencia')
-                                        .val())
-                            });
-                        @endif
-                        @if ($loop->first)
-                            newData.push({
-                                name: 'DAB',
-                                y: {{ $promedioPot->promedioPot3 / $promedioPot->promedioPot2 }} * parseFloat(
-                                        $('#recoPotencia').val()) +
-                                    {{ $promedioPot->promedioPot6 / $promedioPot->promedioPot6 }} * parseFloat(
-                                        $('#recoInterferencia')
-                                        .val())
-                            });
+                        @if ($promedioPot->promedioPot1 != 0 || $promedioPot->promedioPot2 != 0 || $promedioPot->promedioPot3 != 0)
+                            @if ($loop->first)
+                                newData.push({
+                                    name: 'IBOC AM Híbrido',
+                                    y: {{ $promedioPot->promedioPot1 / $promedioPot->promedioPot2 }} *
+                                        parseFloat(
+                                            $('#recoPotencia').val()) +
+                                        {{ $promedioPot->promedioPot4 / $promedioPot->promedioPot6 }} *
+                                        parseFloat(
+                                            $('#recoInterferencia').val())
+                                });
+                            @endif
+                            @if ($loop->first)
+                                newData.push({
+                                    name: 'IBOC FM Híbrido',
+                                    y: {{ $promedioPot->promedioPot2 / $promedioPot->promedioPot2 }} *
+                                        parseFloat(
+                                            $('#recoPotencia').val()) +
+                                        {{ $promedioPot->promedioPot5 / $promedioPot->promedioPot6 }} *
+                                        parseFloat(
+                                            $('#recoInterferencia')
+                                            .val())
+                                });
+                            @endif
+                            @if ($loop->first)
+                                newData.push({
+                                    name: 'DAB',
+                                    y: {{ $promedioPot->promedioPot3 / $promedioPot->promedioPot2 }} *
+                                        parseFloat(
+                                            $('#recoPotencia').val()) +
+                                        {{ $promedioPot->promedioPot6 / $promedioPot->promedioPot6 }} *
+                                        parseFloat(
+                                            $('#recoInterferencia')
+                                            .val())
+                                });
+                            @endif
                         @endif
                     @endforeach
 
@@ -470,13 +696,16 @@
                 var chart = Highcharts.chart('column1', {
                     chart: {
                         type: 'column',
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
                         styledMode: false
                     },
                     lang: {
                         downloadCSV: "Descargar CSV",
                         downloadXLS: "Descargar XLS",
-                        viewFullscreen: "Ver en pantalla completa",
-                        exitFullscreen: "Salir de pantalla completa",
+                        viewFullscreen: "Ver en Pantalla Completa",
+                        exitFullscreen: "Salir de Pantalla Completa",
                         printChart: "Imprimir Grafica",
                         downloadJPEG: "Descargar JPG",
                         downloadPDF: "Descargar PDF",
@@ -495,6 +724,10 @@
                         min: 0, // Establecer el valor mínimo en el eje Y
                         // max: 200, // Establecer el valor máximo en el eje Y
                     },
+                    colorAxis: [{
+                        maxColor: '#00d460',
+                        minColor: '#004ffa',
+                    }],
                     credits: {
                         enabled: false
                     },
@@ -510,6 +743,10 @@
                         enabled: false
                     },
                     plotOptions: {
+                        column: {
+                            colorByPoint: true,
+                            // colors: ['green', 'blue', 'red']
+                        },
                         series: {
                             borderWidth: 0,
                             dataLabels: {
@@ -519,7 +756,7 @@
                         }
                     },
                     series: [{
-                        colorByPoint: true,
+                        // colorByPoint: true,
                         name: 'Promedio',
                         data: chartData,
                     }]
@@ -543,7 +780,7 @@
 
                     // Itera sobre los puntos de la serie
                     @foreach ($promPotenciasBuca as $promedioPot)
-                        @if ($promedioPot->promedioPot2 != 0)
+                        @if ($promedioPot->promedioPot1 != 0 || $promedioPot->promedioPot2 != 0 || $promedioPot->promedioPot3 != 0)
                             @if ($loop->first)
                                 newData.push({
                                     name: 'IBOC AM Híbrido',
@@ -621,8 +858,8 @@
                     lang: {
                         downloadCSV: "Descargar CSV",
                         downloadXLS: "Descargar XLS",
-                        viewFullscreen: "Ver en pantalla completa",
-                        exitFullscreen: "Salir de pantalla completa",
+                        viewFullscreen: "Ver en Pantalla Completa",
+                        exitFullscreen: "Salir de Pantalla Completa",
                         printChart: "Imprimir Grafica",
                         downloadJPEG: "Descargar JPG",
                         downloadPDF: "Descargar PDF",
@@ -641,6 +878,10 @@
                         min: 0, // Establecer el valor mínimo en el eje Y
                         // max: 200, // Establecer el valor máximo en el eje Y
                     },
+                    colorAxis: [{
+                        maxColor: '#00d460',
+                        minColor: '#004ffa',
+                    }],
                     credits: {
                         enabled: false
                     },
@@ -650,6 +891,306 @@
                     },
                     title: {
                         text: 'SCORE PROMEDIO BUCARAMANGA',
+                        align: 'center'
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y:.2f}'
+                            }
+                        }
+                    },
+                    series: [{
+                        colorByPoint: true,
+                        name: 'Promedio',
+                        data: chartData,
+                    }]
+                });
+
+                // Agrega un evento de cambio al campo de recoPotencia
+                $('#recoPotencia').change(function() {
+                    var recoPotencia = parseFloat($(this).val());
+
+                    // Actualiza la gráfica con el nuevo valor de recoPotencia
+                    updateChart(recoPotencia);
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                // Define una función para actualizar la gráfica
+                function updateChart() {
+                    // Calcula el score final para cada punto de la serie
+                    var newData = [];
+
+                    // Itera sobre los puntos de la serie
+                    @foreach ($promPotenciasCali as $promedioPot)
+                        @if ($promedioPot->promedioPot1 != 0 || $promedioPot->promedioPot2 != 0 || $promedioPot->promedioPot3 != 0)
+                            @if ($loop->first)
+                                newData.push({
+                                    name: 'IBOC AM Híbrido',
+                                    y: {{ $promedioPot->promedioPot1 / $promedioPot->promedioPot2 }} *
+                                        parseFloat(
+                                            $('#recoPotencia').val()) +
+                                        {{ $promedioPot->promedioPot4 / $promedioPot->promedioPot6 }} *
+                                        parseFloat(
+                                            $('#recoInterferencia').val())
+                                });
+                            @endif
+                            @if ($loop->first)
+                                newData.push({
+                                    name: 'IBOC FM Híbrido',
+                                    y: {{ $promedioPot->promedioPot2 / $promedioPot->promedioPot2 }} *
+                                        parseFloat(
+                                            $('#recoPotencia').val()) +
+                                        {{ $promedioPot->promedioPot5 / $promedioPot->promedioPot6 }} *
+                                        parseFloat(
+                                            $('#recoInterferencia')
+                                            .val())
+                                });
+                            @endif
+                            @if ($loop->first)
+                                newData.push({
+                                    name: 'DAB',
+                                    y: {{ $promedioPot->promedioPot3 / $promedioPot->promedioPot2 }} *
+                                        parseFloat(
+                                            $('#recoPotencia').val()) +
+                                        {{ $promedioPot->promedioPot6 / $promedioPot->promedioPot6 }} *
+                                        parseFloat(
+                                            $('#recoInterferencia')
+                                            .val())
+                                });
+                            @endif
+                        @endif
+                    @endforeach
+
+                    // Actualiza los datos de la serie en la gráfica
+                    chart.series[0].setData(newData);
+                }
+
+                // Calculate Potencia Normalizada
+                var table = $('#example3').DataTable();
+
+                var chartData = [];
+
+                // Iterar sobre los datos y construir chartData
+                @foreach ($promPotenciasCali as $promedioPot)
+                    @if ($loop->first)
+                        chartData.push({
+                            name: 'IBOC AM Híbrido',
+                            y: parseFloat("{{ $promedioPot->promedioPot1 }}")
+                        });
+                    @endif
+                    @if ($loop->first)
+                        chartData.push({
+                            name: 'IBOC FM Híbrido',
+                            y: parseFloat("{{ $promedioPot->promedioPot2 }}")
+                        });
+                    @endif
+                    @if ($loop->first)
+                        chartData.push({
+                            name: 'DAB',
+                            y: parseFloat("{{ $promedioPot->promedioPot3 }}")
+                        });
+                    @endif
+                @endforeach
+                // Update the chart
+                var chart = Highcharts.chart('column3', {
+                    chart: {
+                        type: 'column',
+                        styledMode: false
+                    },
+                    lang: {
+                        downloadCSV: "Descargar CSV",
+                        downloadXLS: "Descargar XLS",
+                        viewFullscreen: "Ver en Pantalla Completa",
+                        exitFullscreen: "Salir de Pantalla Completa",
+                        printChart: "Imprimir Grafica",
+                        downloadJPEG: "Descargar JPG",
+                        downloadPDF: "Descargar PDF",
+                        downloadPNG: "Descargar PNG",
+                        downloadSVG: "Descargar SVG",
+                        hideData: "Ocultar Datos",
+                        viewData: "Mostrar Datos"
+                    },
+                    xAxis: {
+                        categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Potencias (dBu)',
+                        },
+                        min: 0, // Establecer el valor mínimo en el eje Y
+                        // max: 200, // Establecer el valor máximo en el eje Y
+                    },
+                    colorAxis: [{
+                        maxColor: '#00d460',
+                        minColor: '#004ffa',
+                    }],
+                    credits: {
+                        enabled: false
+                    },
+                    tooltip: {
+                        headerFormat: '<b>{point.key}</b><br>',
+                        // pointFormat: 'Cars sold: {point.y}'
+                    },
+                    title: {
+                        text: 'SCORE PROMEDIO CALI',
+                        align: 'center'
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y:.2f}'
+                            }
+                        }
+                    },
+                    series: [{
+                        colorByPoint: true,
+                        name: 'Promedio',
+                        data: chartData,
+                    }]
+                });
+
+                // Agrega un evento de cambio al campo de recoPotencia
+                $('#recoPotencia').change(function() {
+                    var recoPotencia = parseFloat($(this).val());
+
+                    // Actualiza la gráfica con el nuevo valor de recoPotencia
+                    updateChart(recoPotencia);
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                // Define una función para actualizar la gráfica
+                function updateChart() {
+                    // Calcula el score final para cada punto de la serie
+                    var newData = [];
+
+                    // Itera sobre los puntos de la serie
+                    @foreach ($promPotenciasMede as $promedioPot)
+                        @if ($promedioPot->promedioPot1 != 0 || $promedioPot->promedioPot2 != 0 || $promedioPot->promedioPot3 != 0)
+                            @if ($loop->first)
+                                newData.push({
+                                    name: 'IBOC AM Híbrido',
+                                    y: {{ $promedioPot->promedioPot1 / $promedioPot->promedioPot2 }} *
+                                        parseFloat(
+                                            $('#recoPotencia').val()) +
+                                        {{ $promedioPot->promedioPot4 / $promedioPot->promedioPot6 }} *
+                                        parseFloat(
+                                            $('#recoInterferencia').val())
+                                });
+                            @endif
+                            @if ($loop->first)
+                                newData.push({
+                                    name: 'IBOC FM Híbrido',
+                                    y: {{ $promedioPot->promedioPot2 / $promedioPot->promedioPot2 }} *
+                                        parseFloat(
+                                            $('#recoPotencia').val()) +
+                                        {{ $promedioPot->promedioPot5 / $promedioPot->promedioPot6 }} *
+                                        parseFloat(
+                                            $('#recoInterferencia')
+                                            .val())
+                                });
+                            @endif
+                            @if ($loop->first)
+                                newData.push({
+                                    name: 'DAB',
+                                    y: {{ $promedioPot->promedioPot3 / $promedioPot->promedioPot2 }} *
+                                        parseFloat(
+                                            $('#recoPotencia').val()) +
+                                        {{ $promedioPot->promedioPot6 / $promedioPot->promedioPot6 }} *
+                                        parseFloat(
+                                            $('#recoInterferencia')
+                                            .val())
+                                });
+                            @endif
+                        @endif
+                    @endforeach
+
+                    // Actualiza los datos de la serie en la gráfica
+                    chart.series[0].setData(newData);
+                }
+
+                // Calculate Potencia Normalizada
+                var table = $('#example4').DataTable();
+
+                var chartData = [];
+
+                // Iterar sobre los datos y construir chartData
+                @foreach ($promPotenciasMede as $promedioPot)
+                    @if ($loop->first)
+                        chartData.push({
+                            name: 'IBOC AM Híbrido',
+                            y: parseFloat("{{ $promedioPot->promedioPot1 }}")
+                        });
+                    @endif
+                    @if ($loop->first)
+                        chartData.push({
+                            name: 'IBOC FM Híbrido',
+                            y: parseFloat("{{ $promedioPot->promedioPot2 }}")
+                        });
+                    @endif
+                    @if ($loop->first)
+                        chartData.push({
+                            name: 'DAB',
+                            y: parseFloat("{{ $promedioPot->promedioPot3 }}")
+                        });
+                    @endif
+                @endforeach
+                // Update the chart
+                var chart = Highcharts.chart('column4', {
+                    chart: {
+                        type: 'column',
+                        styledMode: false
+                    },
+                    lang: {
+                        downloadCSV: "Descargar CSV",
+                        downloadXLS: "Descargar XLS",
+                        viewFullscreen: "Ver en Pantalla Completa",
+                        exitFullscreen: "Salir de Pantalla Completa",
+                        printChart: "Imprimir Grafica",
+                        downloadJPEG: "Descargar JPG",
+                        downloadPDF: "Descargar PDF",
+                        downloadPNG: "Descargar PNG",
+                        downloadSVG: "Descargar SVG",
+                        hideData: "Ocultar Datos",
+                        viewData: "Mostrar Datos"
+                    },
+                    xAxis: {
+                        categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Potencias (dBu)',
+                        },
+                        min: 0, // Establecer el valor mínimo en el eje Y
+                        // max: 200, // Establecer el valor máximo en el eje Y
+                    },
+                    colorAxis: [{
+                        maxColor: '#00d460',
+                        minColor: '#004ffa',
+                    }],
+                    credits: {
+                        enabled: false
+                    },
+                    tooltip: {
+                        headerFormat: '<b>{point.key}</b><br>',
+                        // pointFormat: 'Cars sold: {point.y}'
+                    },
+                    title: {
+                        text: 'SCORE PROMEDIO MEDELLÍN',
                         align: 'center'
                     },
                     legend: {

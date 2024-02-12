@@ -102,12 +102,12 @@ class RecomendacionController extends Controller
             'SNRAMHibrido',
             'SNRFMHibrido',
             'SNRDAB',
-            DB::raw("AVG(potenciaAM) as promedioCaliPot1"),
-            DB::raw("AVG(potenciaFM) as promedioCaliPot2"),
-            DB::raw("AVG(potenciaDABHibrido) as promedioCaliPot3"),
-            DB::raw("AVG(SNRAMHibrido) as promedioCaliPot4"),
-            DB::raw("AVG(SNRFMHibrido) as promedioCaliPot5"),
-            DB::raw("AVG(SNRDAB) as promedioCaliPot6")
+            DB::raw("AVG(potenciaAM) as promedioPot1"),
+            DB::raw("AVG(potenciaFM) as promedioPot2"),
+            DB::raw("AVG(potenciaDABHibrido) as promedioPot3"),
+            DB::raw("AVG(SNRAMHibrido) as promedioPot4"),
+            DB::raw("AVG(SNRFMHibrido) as promedioPot5"),
+            DB::raw("AVG(SNRDAB) as promedioPot6")
         )
             ->groupBy('potenciaAM', 'potenciaFM', 'potenciaDABHibrido', 'SNRAMHibrido', 'SNRFMHibrido', 'SNRDAB')
             ->havingRaw('AVG(potenciaAM) <= 200')
@@ -125,12 +125,12 @@ class RecomendacionController extends Controller
             'SNRAMHibrido',
             'SNRFMHibrido',
             'SNRDAB',
-            DB::raw("AVG(potenciaAM) as promedioMedePot1"),
-            DB::raw("AVG(potenciaFM) as promedioMedePot2"),
-            DB::raw("AVG(potenciaDABHibrido) as promedioMedePot3"),
-            DB::raw("AVG(SNRAMHibrido) as promedioMedePot4"),
-            DB::raw("AVG(SNRFMHibrido) as promedioMedePot5"),
-            DB::raw("AVG(SNRDAB) as promedioMedePot6")
+            DB::raw("AVG(potenciaAM) as promedioPot1"),
+            DB::raw("AVG(potenciaFM) as promedioPot2"),
+            DB::raw("AVG(potenciaDABHibrido) as promedioPot3"),
+            DB::raw("AVG(SNRAMHibrido) as promedioPot4"),
+            DB::raw("AVG(SNRFMHibrido) as promedioPot5"),
+            DB::raw("AVG(SNRDAB) as promedioPot6")
         )
             ->groupBy('potenciaAM', 'potenciaFM', 'potenciaDABHibrido', 'SNRAMHibrido', 'SNRFMHibrido', 'SNRDAB')
             ->havingRaw('AVG(potenciaAM) <= 200')
