@@ -736,7 +736,7 @@
                         // pointFormat: 'Cars sold: {point.y}'
                     },
                     title: {
-                        text: 'SCORE PROMEDIO BOGOTÁ',
+                        text: 'SCORE FINAL BOGOTÁ',
                         align: 'center'
                     },
                     legend: {
@@ -890,7 +890,7 @@
                         // pointFormat: 'Cars sold: {point.y}'
                     },
                     title: {
-                        text: 'SCORE PROMEDIO BUCARAMANGA',
+                        text: 'SCORE FINAL BUCARAMANGA',
                         align: 'center'
                     },
                     legend: {
@@ -1040,7 +1040,7 @@
                         // pointFormat: 'Cars sold: {point.y}'
                     },
                     title: {
-                        text: 'SCORE PROMEDIO CALI',
+                        text: 'SCORE FINAL CALI',
                         align: 'center'
                     },
                     legend: {
@@ -1190,7 +1190,7 @@
                         // pointFormat: 'Cars sold: {point.y}'
                     },
                     title: {
-                        text: 'SCORE PROMEDIO MEDELLÍN',
+                        text: 'SCORE FINAL MEDELLÍN',
                         align: 'center'
                     },
                     legend: {
