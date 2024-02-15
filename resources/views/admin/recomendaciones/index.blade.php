@@ -101,9 +101,9 @@
                                             <table id="example" class="display" style="width:100%">
                                                 <thead>
                                                     <tr>
+                                                        <th>Estándar</th>
                                                         <th>Potencia en dBu (promedio)</th>
                                                         <th>Escala lineal</th>
-                                                        <th>Estándar</th>
                                                         <th>Potencia Normalizada</th>
                                                         <th>Score Final</th>
                                                     </tr>
@@ -111,84 +111,78 @@
                                                 <tbody>
 
                                                     @foreach ($promPotencias as $promedioPot)
+                                                        @php
+                                                            $linearScaleValues = [pow(10, $promedioPot->promedioPot1 / 20) * 0.775, pow(10, $promedioPot->promedioPot2 / 20) * 0.775, pow(10, $promedioPot->promedioPot3 / 20) * 0.775];
+                                                            $maxLinearScaleValue = max($linearScaleValues);
+                                                        @endphp
                                                         @if ($loop->first)
                                                             <tr>
+                                                                <td></td>
                                                                 <td>{{ $promedioPot->promedioPot1 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot1 / 20) * 0.775, 2) }}
-                                                                </td>
-                                                                <td>IBOC AM Híbrido</td>
-                                                                <td>{{ $promedioPot->promedioPot1 / $promedioPot->promedioPot2 }}
-                                                                </td>
+                                                                <td>{{ $linearScaleValues[0] }}</td>
+                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}</td>
                                                                 <td></td>
                                                             </tr>
-                                                        @endif
-                                                        @if ($loop->first)
+
                                                             <tr>
+                                                                <td></td>
                                                                 <td>{{ $promedioPot->promedioPot2 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot2 / 20) * 0.775, 2) }}
-                                                                </td>
-                                                                <td>IBOC FM Híbrido</td>
-                                                                <td>{{ $promedioPot->promedioPot2 / $promedioPot->promedioPot2 }}
-                                                                </td>
+                                                                <td>{{ $linearScaleValues[1] }}</td>
+                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}</td>
                                                                 <td></td>
                                                             </tr>
-                                                        @endif
-                                                        @if ($loop->first)
+
                                                             <tr>
+                                                                <td></td>
                                                                 <td>{{ $promedioPot->promedioPot3 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot3 / 20) * 0.775, 2) }}
-                                                                </td>
-                                                                <td>DAB</td>
-                                                                <td>{{ $promedioPot->promedioPot3 / $promedioPot->promedioPot2 }}
-                                                                </td>
+                                                                <td>{{ $linearScaleValues[2] }}</td>
+                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}</td>
                                                                 <td></td>
                                                             </tr>
                                                         @endif
                                                     @endforeach
+
                                                 </tbody>
                                                 <thead>
                                                     <tr>
+                                                        <th>Estándar</th>
                                                         <th>SNR en dB (promedio)</th>
                                                         <th>Escala lineal</th>
-                                                        <th>Estándar</th>
                                                         <th>Potencia Normalizada</th>
-                                                        <th>Score Final</th>
+                                                        {{-- <th>Score Final</th> --}}
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
 
                                                     @foreach ($promPotencias as $promedioPot)
+                                                        @php
+                                                            $linearScaleValues = [pow(10, $promedioPot->promedioPot4 / 20) * 0.775, pow(10, $promedioPot->promedioPot5 / 20) * 0.775, pow(10, $promedioPot->promedioPot6 / 20) * 0.775];
+                                                            $maxLinearScaleValue = max($linearScaleValues);
+                                                        @endphp
                                                         @if ($loop->first)
                                                             <tr>
-                                                                <td>{{ $promedioPot->promedioPot4 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot4 / 20) * 0.775, 2) }}
-                                                                </td>
                                                                 <td>IBOC AM Híbrido</td>
-                                                                <td>{{ $promedioPot->promedioPot4 / $promedioPot->promedioPot6 }}
-                                                                </td>
-                                                                <td></td>
+                                                                <td>{{ $promedioPot->promedioPot4 }}</td>
+                                                                <td>{{ $linearScaleValues[0] }}</td>
+                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}</td>
+                                                                {{-- <td></td> --}}
                                                             </tr>
-                                                        @endif
-                                                        @if ($loop->first)
+
                                                             <tr>
-                                                                <td>{{ $promedioPot->promedioPot5 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot5 / 20) * 0.775, 2) }}
-                                                                </td>
                                                                 <td>IBOC FM Híbrido</td>
-                                                                <td>{{ $promedioPot->promedioPot5 / $promedioPot->promedioPot6 }}
-                                                                </td>
-                                                                <td></td>
+                                                                <td>{{ $promedioPot->promedioPot5 }}</td>
+                                                                <td>{{ $linearScaleValues[1] }}</td>
+                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}</td>
+                                                                {{-- <td></td> --}}
                                                             </tr>
-                                                        @endif
-                                                        @if ($loop->first)
+
                                                             <tr>
-                                                                <td>{{ $promedioPot->promedioPot6 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot6 / 20) * 0.775, 2) }}
-                                                                </td>
                                                                 <td>DAB</td>
-                                                                <td>{{ $promedioPot->promedioPot6 / $promedioPot->promedioPot6 }}
-                                                                </td>
-                                                                <td></td>
+                                                                <td>{{ $promedioPot->promedioPot6 }}</td>
+                                                                <td>{{ $linearScaleValues[2] }}</td>
+                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}</td>
+                                                                {{-- <td></td> --}}
                                                             </tr>
                                                         @endif
                                                     @endforeach
@@ -197,7 +191,6 @@
                                         </figure>
                                     </div>
                                 </div>
-
                                 <div class="col-lg-12 col-16">
                                     <div class="small-box" data-ciudad="2">
                                         <figure class="highcharts-figure">
@@ -211,9 +204,9 @@
                                             <table id="example2" class="display" style="width:100%">
                                                 <thead>
                                                     <tr>
+                                                        <th>Estándar</th>
                                                         <th>Potencia en dBu (promedio)</th>
                                                         <th>Escala lineal</th>
-                                                        <th>Estándar</th>
                                                         <th>Potencia Normalizada</th>
                                                         <th>Score Final</th>
                                                     </tr>
@@ -221,84 +214,78 @@
                                                 <tbody>
 
                                                     @foreach ($promPotenciasBuca as $promedioPot)
+                                                        @php
+                                                            $linearScaleValues = [pow(10, $promedioPot->promedioPot1 / 20) * 0.775, pow(10, $promedioPot->promedioPot2 / 20) * 0.775, pow(10, $promedioPot->promedioPot3 / 20) * 0.775];
+                                                            $maxLinearScaleValue = max($linearScaleValues);
+                                                        @endphp
                                                         @if ($loop->first)
                                                             <tr>
+                                                                <td></td>
                                                                 <td>{{ $promedioPot->promedioPot1 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot1 / 20) * 0.775, 2) }}
-                                                                </td>
-                                                                <td>IBOC AM Híbrido</td>
-                                                                <td>{{ $promedioPot->promedioPot1 / $promedioPot->promedioPot2 }}
-                                                                </td>
+                                                                <td>{{ $linearScaleValues[0] }}</td>
+                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}</td>
                                                                 <td></td>
                                                             </tr>
-                                                        @endif
-                                                        @if ($loop->first)
+
                                                             <tr>
+                                                                <td></td>
                                                                 <td>{{ $promedioPot->promedioPot2 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot2 / 20) * 0.775, 2) }}
-                                                                </td>
-                                                                <td>IBOC FM Híbrido</td>
-                                                                <td>{{ $promedioPot->promedioPot2 / $promedioPot->promedioPot2 }}
-                                                                </td>
+                                                                <td>{{ $linearScaleValues[1] }}</td>
+                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}</td>
                                                                 <td></td>
                                                             </tr>
-                                                        @endif
-                                                        @if ($loop->first)
+
                                                             <tr>
+                                                                <td></td>
                                                                 <td>{{ $promedioPot->promedioPot3 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot3 / 20) * 0.775, 2) }}
-                                                                </td>
-                                                                <td>DAB</td>
-                                                                <td>{{ $promedioPot->promedioPot3 / $promedioPot->promedioPot2 }}
-                                                                </td>
+                                                                <td>{{ $linearScaleValues[2] }}</td>
+                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}</td>
                                                                 <td></td>
                                                             </tr>
                                                         @endif
                                                     @endforeach
+
                                                 </tbody>
                                                 <thead>
                                                     <tr>
+                                                        <th>Estándar</th>
                                                         <th>SNR en dB (promedio)</th>
                                                         <th>Escala lineal</th>
-                                                        <th>Estándar</th>
                                                         <th>Potencia Normalizada</th>
-                                                        <th>Score Final</th>
+                                                        {{-- <th>Score Final</th> --}}
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
 
                                                     @foreach ($promPotenciasBuca as $promedioPot)
+                                                        @php
+                                                            $linearScaleValues = [pow(10, $promedioPot->promedioPot4 / 20) * 0.775, pow(10, $promedioPot->promedioPot5 / 20) * 0.775, pow(10, $promedioPot->promedioPot6 / 20) * 0.775];
+                                                            $maxLinearScaleValue = max($linearScaleValues);
+                                                        @endphp
                                                         @if ($loop->first)
                                                             <tr>
-                                                                <td>{{ $promedioPot->promedioPot4 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot4 / 20) * 0.775, 2) }}
-                                                                </td>
                                                                 <td>IBOC AM Híbrido</td>
-                                                                <td>{{ $promedioPot->promedioPot4 / $promedioPot->promedioPot6 }}
-                                                                </td>
-                                                                <td></td>
+                                                                <td>{{ $promedioPot->promedioPot4 }}</td>
+                                                                <td>{{ $linearScaleValues[0] }}</td>
+                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}</td>
+                                                                {{-- <td></td> --}}
                                                             </tr>
-                                                        @endif
-                                                        @if ($loop->first)
+
                                                             <tr>
-                                                                <td>{{ $promedioPot->promedioPot5 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot5 / 20) * 0.775, 2) }}
-                                                                </td>
                                                                 <td>IBOC FM Híbrido</td>
-                                                                <td>{{ $promedioPot->promedioPot5 / $promedioPot->promedioPot6 }}
-                                                                </td>
-                                                                <td></td>
+                                                                <td>{{ $promedioPot->promedioPot5 }}</td>
+                                                                <td>{{ $linearScaleValues[1] }}</td>
+                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}</td>
+                                                                {{-- <td></td> --}}
                                                             </tr>
-                                                        @endif
-                                                        @if ($loop->first)
+
                                                             <tr>
-                                                                <td>{{ $promedioPot->promedioPot6 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot6 / 20) * 0.775, 2) }}
-                                                                </td>
                                                                 <td>DAB</td>
-                                                                <td>{{ $promedioPot->promedioPot6 / $promedioPot->promedioPot6 }}
-                                                                </td>
-                                                                <td></td>
+                                                                <td>{{ $promedioPot->promedioPot6 }}</td>
+                                                                <td>{{ $linearScaleValues[2] }}</td>
+                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}</td>
+                                                                {{-- <td></td> --}}
                                                             </tr>
                                                         @endif
                                                     @endforeach
@@ -320,9 +307,9 @@
                                             <table id="example3" class="display" style="width:100%">
                                                 <thead>
                                                     <tr>
+                                                        <th>Estándar</th>
                                                         <th>Potencia en dBu (promedio)</th>
                                                         <th>Escala lineal</th>
-                                                        <th>Estándar</th>
                                                         <th>Potencia Normalizada</th>
                                                         <th>Score Final</th>
                                                     </tr>
@@ -330,84 +317,78 @@
                                                 <tbody>
 
                                                     @foreach ($promPotenciasCali as $promedioPot)
+                                                        @php
+                                                            $linearScaleValues = [pow(10, $promedioPot->promedioPot1 / 20) * 0.775, pow(10, $promedioPot->promedioPot2 / 20) * 0.775, pow(10, $promedioPot->promedioPot3 / 20) * 0.775];
+                                                            $maxLinearScaleValue = max($linearScaleValues);
+                                                        @endphp
                                                         @if ($loop->first)
                                                             <tr>
+                                                                <td></td>
                                                                 <td>{{ $promedioPot->promedioPot1 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot1 / 20) * 0.775, 2) }}
-                                                                </td>
-                                                                <td>IBOC AM Híbrido</td>
-                                                                <td>{{ $promedioPot->promedioPot1 / $promedioPot->promedioPot2 }}
-                                                                </td>
+                                                                <td>{{ $linearScaleValues[0] }}</td>
+                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}</td>
                                                                 <td></td>
                                                             </tr>
-                                                        @endif
-                                                        @if ($loop->first)
+
                                                             <tr>
+                                                                <td></td>
                                                                 <td>{{ $promedioPot->promedioPot2 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot2 / 20) * 0.775, 2) }}
-                                                                </td>
-                                                                <td>IBOC FM Híbrido</td>
-                                                                <td>{{ $promedioPot->promedioPot2 / $promedioPot->promedioPot2 }}
-                                                                </td>
+                                                                <td>{{ $linearScaleValues[1] }}</td>
+                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}</td>
                                                                 <td></td>
                                                             </tr>
-                                                        @endif
-                                                        @if ($loop->first)
+
                                                             <tr>
+                                                                <td></td>
                                                                 <td>{{ $promedioPot->promedioPot3 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot3 / 20) * 0.775, 2) }}
-                                                                </td>
-                                                                <td>DAB</td>
-                                                                <td>{{ $promedioPot->promedioPot3 / $promedioPot->promedioPot2 }}
-                                                                </td>
+                                                                <td>{{ $linearScaleValues[2] }}</td>
+                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}</td>
                                                                 <td></td>
                                                             </tr>
                                                         @endif
                                                     @endforeach
+
                                                 </tbody>
                                                 <thead>
                                                     <tr>
+                                                        <th>Estándar</th>
                                                         <th>SNR en dB (promedio)</th>
                                                         <th>Escala lineal</th>
-                                                        <th>Estándar</th>
                                                         <th>Potencia Normalizada</th>
-                                                        <th>Score Final</th>
+                                                        {{-- <th>Score Final</th> --}}
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
 
                                                     @foreach ($promPotenciasCali as $promedioPot)
+                                                        @php
+                                                            $linearScaleValues = [pow(10, $promedioPot->promedioPot4 / 20) * 0.775, pow(10, $promedioPot->promedioPot5 / 20) * 0.775, pow(10, $promedioPot->promedioPot6 / 20) * 0.775];
+                                                            $maxLinearScaleValue = max($linearScaleValues);
+                                                        @endphp
                                                         @if ($loop->first)
                                                             <tr>
-                                                                <td>{{ $promedioPot->promedioPot4 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot4 / 20) * 0.775, 2) }}
-                                                                </td>
                                                                 <td>IBOC AM Híbrido</td>
-                                                                <td>{{ $promedioPot->promedioPot4 / $promedioPot->promedioPot6 }}
-                                                                </td>
-                                                                <td></td>
+                                                                <td>{{ $promedioPot->promedioPot4 }}</td>
+                                                                <td>{{ $linearScaleValues[0] }}</td>
+                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}</td>
+                                                                {{-- <td></td> --}}
                                                             </tr>
-                                                        @endif
-                                                        @if ($loop->first)
+
                                                             <tr>
-                                                                <td>{{ $promedioPot->promedioPot5 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot5 / 20) * 0.775, 2) }}
-                                                                </td>
                                                                 <td>IBOC FM Híbrido</td>
-                                                                <td>{{ $promedioPot->promedioPot5 / $promedioPot->promedioPot6 }}
-                                                                </td>
-                                                                <td></td>
+                                                                <td>{{ $promedioPot->promedioPot5 }}</td>
+                                                                <td>{{ $linearScaleValues[1] }}</td>
+                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}</td>
+                                                                {{-- <td></td> --}}
                                                             </tr>
-                                                        @endif
-                                                        @if ($loop->first)
+
                                                             <tr>
-                                                                <td>{{ $promedioPot->promedioPot6 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot6 / 20) * 0.775, 2) }}
-                                                                </td>
                                                                 <td>DAB</td>
-                                                                <td>{{ $promedioPot->promedioPot6 / $promedioPot->promedioPot6 }}
-                                                                </td>
-                                                                <td></td>
+                                                                <td>{{ $promedioPot->promedioPot6 }}</td>
+                                                                <td>{{ $linearScaleValues[2] }}</td>
+                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}</td>
+                                                                {{-- <td></td> --}}
                                                             </tr>
                                                         @endif
                                                     @endforeach
@@ -429,9 +410,9 @@
                                             <table id="example4" class="display" style="width:100%">
                                                 <thead>
                                                     <tr>
+                                                        <th>Estándar</th>
                                                         <th>Potencia en dBu (promedio)</th>
                                                         <th>Escala lineal</th>
-                                                        <th>Estándar</th>
                                                         <th>Potencia Normalizada</th>
                                                         <th>Score Final</th>
                                                     </tr>
@@ -439,84 +420,78 @@
                                                 <tbody>
 
                                                     @foreach ($promPotenciasMede as $promedioPot)
+                                                        @php
+                                                            $linearScaleValues = [pow(10, $promedioPot->promedioPot1 / 20) * 0.775, pow(10, $promedioPot->promedioPot2 / 20) * 0.775, pow(10, $promedioPot->promedioPot3 / 20) * 0.775];
+                                                            $maxLinearScaleValue = max($linearScaleValues);
+                                                        @endphp
                                                         @if ($loop->first)
                                                             <tr>
+                                                                <td></td>
                                                                 <td>{{ $promedioPot->promedioPot1 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot1 / 20) * 0.775, 2) }}
-                                                                </td>
-                                                                <td>IBOC AM Híbrido</td>
-                                                                <td>{{ $promedioPot->promedioPot1 / $promedioPot->promedioPot2 }}
-                                                                </td>
+                                                                <td>{{ $linearScaleValues[0] }}</td>
+                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}</td>
                                                                 <td></td>
                                                             </tr>
-                                                        @endif
-                                                        @if ($loop->first)
+
                                                             <tr>
+                                                                <td></td>
                                                                 <td>{{ $promedioPot->promedioPot2 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot2 / 20) * 0.775, 2) }}
-                                                                </td>
-                                                                <td>IBOC FM Híbrido</td>
-                                                                <td>{{ $promedioPot->promedioPot2 / $promedioPot->promedioPot2 }}
-                                                                </td>
+                                                                <td>{{ $linearScaleValues[1] }}</td>
+                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}</td>
                                                                 <td></td>
                                                             </tr>
-                                                        @endif
-                                                        @if ($loop->first)
+
                                                             <tr>
+                                                                <td></td>
                                                                 <td>{{ $promedioPot->promedioPot3 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot3 / 20) * 0.775, 2) }}
-                                                                </td>
-                                                                <td>DAB</td>
-                                                                <td>{{ $promedioPot->promedioPot3 / $promedioPot->promedioPot2 }}
-                                                                </td>
+                                                                <td>{{ $linearScaleValues[2] }}</td>
+                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}</td>
                                                                 <td></td>
                                                             </tr>
                                                         @endif
                                                     @endforeach
+
                                                 </tbody>
                                                 <thead>
                                                     <tr>
+                                                        <th>Estándar</th>
                                                         <th>SNR en dB (promedio)</th>
                                                         <th>Escala lineal</th>
-                                                        <th>Estándar</th>
                                                         <th>Potencia Normalizada</th>
-                                                        <th>Score Final</th>
+                                                        {{-- <th>Score Final</th> --}}
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
 
                                                     @foreach ($promPotenciasMede as $promedioPot)
+                                                        @php
+                                                            $linearScaleValues = [pow(10, $promedioPot->promedioPot4 / 20) * 0.775, pow(10, $promedioPot->promedioPot5 / 20) * 0.775, pow(10, $promedioPot->promedioPot6 / 20) * 0.775];
+                                                            $maxLinearScaleValue = max($linearScaleValues);
+                                                        @endphp
                                                         @if ($loop->first)
                                                             <tr>
-                                                                <td>{{ $promedioPot->promedioPot4 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot4 / 20) * 0.775, 2) }}
-                                                                </td>
                                                                 <td>IBOC AM Híbrido</td>
-                                                                <td>{{ $promedioPot->promedioPot4 / $promedioPot->promedioPot6 }}
-                                                                </td>
-                                                                <td></td>
+                                                                <td>{{ $promedioPot->promedioPot4 }}</td>
+                                                                <td>{{ $linearScaleValues[0] }}</td>
+                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}</td>
+                                                                {{-- <td></td> --}}
                                                             </tr>
-                                                        @endif
-                                                        @if ($loop->first)
+
                                                             <tr>
-                                                                <td>{{ $promedioPot->promedioPot5 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot5 / 20) * 0.775, 2) }}
-                                                                </td>
                                                                 <td>IBOC FM Híbrido</td>
-                                                                <td>{{ $promedioPot->promedioPot5 / $promedioPot->promedioPot6 }}
-                                                                </td>
-                                                                <td></td>
+                                                                <td>{{ $promedioPot->promedioPot5 }}</td>
+                                                                <td>{{ $linearScaleValues[1] }}</td>
+                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}</td>
+                                                                {{-- <td></td> --}}
                                                             </tr>
-                                                        @endif
-                                                        @if ($loop->first)
+
                                                             <tr>
-                                                                <td>{{ $promedioPot->promedioPot6 }}</td>
-                                                                <td>{{ number_format(pow(10, $promedioPot->promedioPot6 / 20) * 0.775, 2) }}
-                                                                </td>
                                                                 <td>DAB</td>
-                                                                <td>{{ $promedioPot->promedioPot6 / $promedioPot->promedioPot6 }}
-                                                                </td>
-                                                                <td></td>
+                                                                <td>{{ $promedioPot->promedioPot6 }}</td>
+                                                                <td>{{ $linearScaleValues[2] }}</td>
+                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}</td>
+                                                                {{-- <td></td> --}}
                                                             </tr>
                                                         @endif
                                                     @endforeach
@@ -582,7 +557,7 @@
                 });
             });
         </script>
-        <script>
+        {{-- <script>
             $(document).ready(function() {
                 $('#recoPotencia').change(function() {
                     var recoPotencia = parseFloat($(this).val());
@@ -607,13 +582,13 @@
                     // Calcula el score final utilizando la suma de la potencia normalizada
                     $('tbody tr').each(function() {
                         var potenciaNormalizada = parseFloat($(this).find('td:eq(3)').text());
-                        var scoreFinal = (potenciaNormalizada * recoPotencia) + (
-                            potenciaNormalizada2Sum * recoInterferencia);
-                        $(this).find('td:eq(4)').text(scoreFinal.toFixed(2));
+                        var scoreFinal = potenciaNormalizada * recoPotencia +
+                            potenciaNormalizada2Sum * recoInterferencia;
+                        // $(this).find('td:eq(4)').text(scoreFinal.toFixed(2));
                     });
                 });
             });
-        </script>
+        </script> --}}
 
         <script>
             $(document).ready(function() {
@@ -624,47 +599,56 @@
 
                     // Itera sobre los puntos de la serie
                     @foreach ($promPotencias as $promedioPot)
-                        @if ($promedioPot->promedioPot1 != 0 || $promedioPot->promedioPot2 != 0 || $promedioPot->promedioPot3 != 0)
-                            @if ($loop->first)
-                                newData.push({
-                                    name: 'IBOC AM Híbrido',
-                                    y: {{ $promedioPot->promedioPot1 / $promedioPot->promedioPot2 }} *
-                                        parseFloat(
-                                            $('#recoPotencia').val()) +
-                                        {{ $promedioPot->promedioPot4 / $promedioPot->promedioPot6 }} *
-                                        parseFloat(
-                                            $('#recoInterferencia').val())
-                                });
-                            @endif
-                            @if ($loop->first)
-                                newData.push({
-                                    name: 'IBOC FM Híbrido',
-                                    y: {{ $promedioPot->promedioPot2 / $promedioPot->promedioPot2 }} *
-                                        parseFloat(
-                                            $('#recoPotencia').val()) +
-                                        {{ $promedioPot->promedioPot5 / $promedioPot->promedioPot6 }} *
-                                        parseFloat(
-                                            $('#recoInterferencia')
-                                            .val())
-                                });
-                            @endif
-                            @if ($loop->first)
-                                newData.push({
-                                    name: 'DAB',
-                                    y: {{ $promedioPot->promedioPot3 / $promedioPot->promedioPot2 }} *
-                                        parseFloat(
-                                            $('#recoPotencia').val()) +
-                                        {{ $promedioPot->promedioPot6 / $promedioPot->promedioPot6 }} *
-                                        parseFloat(
-                                            $('#recoInterferencia')
-                                            .val())
-                                });
-                            @endif
+
+                        @if ($loop->first)
+                            @php
+                                $linearScaleValues1 = [pow(10, $promedioPot->promedioPot1 / 20) * 0.775, pow(10, $promedioPot->promedioPot2 / 20) * 0.775, pow(10, $promedioPot->promedioPot3 / 20) * 0.775];
+                                $linearScaleValues2 = [pow(10, $promedioPot->promedioPot4 / 20) * 0.775, pow(10, $promedioPot->promedioPot5 / 20) * 0.775, pow(10, $promedioPot->promedioPot6 / 20) * 0.775];
+                                $maxLinearScaleValue1 = max($linearScaleValues1);
+                                $maxLinearScaleValue2 = max($linearScaleValues2);
+                            @endphp
+                            newData.push({
+                                name: 'IBOC AM Híbrido',
+                                y: {{ $linearScaleValues1[0] / $maxLinearScaleValue1 }} *
+                                    parseFloat($('#recoPotencia').val()) +
+                                    {{ $linearScaleValues2[0] / $maxLinearScaleValue2 }} *
+                                    parseFloat($('#recoInterferencia').val())
+                            });
+                        @endif
+                        @if ($loop->first)
+                            newData.push({
+                                name: 'IBOC FM Híbrido',
+                                y: {{ $linearScaleValues1[1] / $maxLinearScaleValue1 }} *
+                                    parseFloat($('#recoPotencia').val()) +
+                                    {{ $linearScaleValues2[1] / $maxLinearScaleValue2 }} * parseFloat($(
+                                        '#recoInterferencia').val())
+                            });
+                        @endif
+                        @if ($loop->first)
+                            newData.push({
+                                name: 'DAB',
+                                y: {{ $linearScaleValues1[2] / $maxLinearScaleValue1 }} *
+                                    parseFloat($('#recoPotencia').val()) +
+                                    {{ $linearScaleValues2[2] / $maxLinearScaleValue2 }} * parseFloat($(
+                                        '#recoInterferencia').val())
+                            });
                         @endif
                     @endforeach
 
                     // Actualiza los datos de la serie en la gráfica
                     chart.series[0].setData(newData);
+                    updateTable(newData, '#example');
+                }
+
+                function updateTable(newData, table) {
+                    $(table + ' tbody tr').each(function(index) {
+                        if (newData[index]) {
+                            var category = newData[index].name;
+                            var scoreFinal = newData[index].y.toFixed(2);
+                            $(this).find('td:eq(4)').text(scoreFinal);
+                            $(this).find('td:eq(0)').text(category);
+                        }
+                    });
                 }
                 // Calculate Potencia Normalizada
                 var table = $('#example').DataTable();
@@ -719,7 +703,8 @@
                     },
                     yAxis: {
                         title: {
-                            text: 'Potencias (dBu)',
+                            // text: 'Potencias (dBu)',
+                            enabled: false,
                         },
                         min: 0, // Establecer el valor mínimo en el eje Y
                         // max: 200, // Establecer el valor máximo en el eje Y
@@ -767,7 +752,7 @@
                     var recoPotencia = parseFloat($(this).val());
 
                     // Actualiza la gráfica con el nuevo valor de recoPotencia
-                    updateChart(recoPotencia);
+                    updateChart();
                 });
             });
         </script>
@@ -780,47 +765,56 @@
 
                     // Itera sobre los puntos de la serie
                     @foreach ($promPotenciasBuca as $promedioPot)
-                        @if ($promedioPot->promedioPot1 != 0 || $promedioPot->promedioPot2 != 0 || $promedioPot->promedioPot3 != 0)
-                            @if ($loop->first)
-                                newData.push({
-                                    name: 'IBOC AM Híbrido',
-                                    y: {{ $promedioPot->promedioPot1 / $promedioPot->promedioPot2 }} *
-                                        parseFloat(
-                                            $('#recoPotencia').val()) +
-                                        {{ $promedioPot->promedioPot4 / $promedioPot->promedioPot6 }} *
-                                        parseFloat(
-                                            $('#recoInterferencia').val())
-                                });
-                            @endif
-                            @if ($loop->first)
-                                newData.push({
-                                    name: 'IBOC FM Híbrido',
-                                    y: {{ $promedioPot->promedioPot2 / $promedioPot->promedioPot2 }} *
-                                        parseFloat(
-                                            $('#recoPotencia').val()) +
-                                        {{ $promedioPot->promedioPot5 / $promedioPot->promedioPot6 }} *
-                                        parseFloat(
-                                            $('#recoInterferencia')
-                                            .val())
-                                });
-                            @endif
-                            @if ($loop->first)
-                                newData.push({
-                                    name: 'DAB',
-                                    y: {{ $promedioPot->promedioPot3 / $promedioPot->promedioPot2 }} *
-                                        parseFloat(
-                                            $('#recoPotencia').val()) +
-                                        {{ $promedioPot->promedioPot6 / $promedioPot->promedioPot6 }} *
-                                        parseFloat(
-                                            $('#recoInterferencia')
-                                            .val())
-                                });
-                            @endif
+
+                        @if ($loop->first)
+                            @php
+                                $linearScaleValues1 = [pow(10, $promedioPot->promedioPot1 / 20) * 0.775, pow(10, $promedioPot->promedioPot2 / 20) * 0.775, pow(10, $promedioPot->promedioPot3 / 20) * 0.775];
+                                $linearScaleValues2 = [pow(10, $promedioPot->promedioPot4 / 20) * 0.775, pow(10, $promedioPot->promedioPot5 / 20) * 0.775, pow(10, $promedioPot->promedioPot6 / 20) * 0.775];
+                                $maxLinearScaleValue1 = max($linearScaleValues1);
+                                $maxLinearScaleValue2 = max($linearScaleValues2);
+                            @endphp
+                            newData.push({
+                                name: 'IBOC AM Híbrido',
+                                y: {{ $linearScaleValues1[0] / $maxLinearScaleValue1 }} *
+                                    parseFloat($('#recoPotencia').val()) +
+                                    {{ $linearScaleValues2[0] / $maxLinearScaleValue2 }} *
+                                    parseFloat($('#recoInterferencia').val())
+                            });
+                        @endif
+                        @if ($loop->first)
+                            newData.push({
+                                name: 'IBOC FM Híbrido',
+                                y: {{ $linearScaleValues1[1] / $maxLinearScaleValue1 }} *
+                                    parseFloat($('#recoPotencia').val()) +
+                                    {{ $linearScaleValues2[1] / $maxLinearScaleValue2 }} * parseFloat($(
+                                        '#recoInterferencia').val())
+                            });
+                        @endif
+                        @if ($loop->first)
+                            newData.push({
+                                name: 'DAB',
+                                y: {{ $linearScaleValues1[2] / $maxLinearScaleValue1 }} *
+                                    parseFloat($('#recoPotencia').val()) +
+                                    {{ $linearScaleValues2[2] / $maxLinearScaleValue2 }} * parseFloat($(
+                                        '#recoInterferencia').val())
+                            });
                         @endif
                     @endforeach
 
                     // Actualiza los datos de la serie en la gráfica
                     chart.series[0].setData(newData);
+                    updateTable(newData, '#example2');
+                }
+
+                function updateTable(newData, table) {
+                    $(table + ' tbody tr').each(function(index) {
+                        if (newData[index]) {
+                            var category = newData[index].name;
+                            var scoreFinal = newData[index].y.toFixed(2);
+                            $(this).find('td:eq(4)').text(scoreFinal);
+                            $(this).find('td:eq(0)').text(category);
+                        }
+                    });
                 }
 
                 // Calculate Potencia Normalizada
@@ -873,7 +867,8 @@
                     },
                     yAxis: {
                         title: {
-                            text: 'Potencias (dBu)',
+                            // text: 'Potencias (dBu)',
+                            enabled: false,
                         },
                         min: 0, // Establecer el valor mínimo en el eje Y
                         // max: 200, // Establecer el valor máximo en el eje Y
@@ -917,7 +912,7 @@
                     var recoPotencia = parseFloat($(this).val());
 
                     // Actualiza la gráfica con el nuevo valor de recoPotencia
-                    updateChart(recoPotencia);
+                    updateChart();
                 });
             });
         </script>
@@ -930,47 +925,56 @@
 
                     // Itera sobre los puntos de la serie
                     @foreach ($promPotenciasCali as $promedioPot)
-                        @if ($promedioPot->promedioPot1 != 0 || $promedioPot->promedioPot2 != 0 || $promedioPot->promedioPot3 != 0)
-                            @if ($loop->first)
-                                newData.push({
-                                    name: 'IBOC AM Híbrido',
-                                    y: {{ $promedioPot->promedioPot1 / $promedioPot->promedioPot2 }} *
-                                        parseFloat(
-                                            $('#recoPotencia').val()) +
-                                        {{ $promedioPot->promedioPot4 / $promedioPot->promedioPot6 }} *
-                                        parseFloat(
-                                            $('#recoInterferencia').val())
-                                });
-                            @endif
-                            @if ($loop->first)
-                                newData.push({
-                                    name: 'IBOC FM Híbrido',
-                                    y: {{ $promedioPot->promedioPot2 / $promedioPot->promedioPot2 }} *
-                                        parseFloat(
-                                            $('#recoPotencia').val()) +
-                                        {{ $promedioPot->promedioPot5 / $promedioPot->promedioPot6 }} *
-                                        parseFloat(
-                                            $('#recoInterferencia')
-                                            .val())
-                                });
-                            @endif
-                            @if ($loop->first)
-                                newData.push({
-                                    name: 'DAB',
-                                    y: {{ $promedioPot->promedioPot3 / $promedioPot->promedioPot2 }} *
-                                        parseFloat(
-                                            $('#recoPotencia').val()) +
-                                        {{ $promedioPot->promedioPot6 / $promedioPot->promedioPot6 }} *
-                                        parseFloat(
-                                            $('#recoInterferencia')
-                                            .val())
-                                });
-                            @endif
+
+                        @if ($loop->first)
+                            @php
+                                $linearScaleValues1 = [pow(10, $promedioPot->promedioPot1 / 20) * 0.775, pow(10, $promedioPot->promedioPot2 / 20) * 0.775, pow(10, $promedioPot->promedioPot3 / 20) * 0.775];
+                                $linearScaleValues2 = [pow(10, $promedioPot->promedioPot4 / 20) * 0.775, pow(10, $promedioPot->promedioPot5 / 20) * 0.775, pow(10, $promedioPot->promedioPot6 / 20) * 0.775];
+                                $maxLinearScaleValue1 = max($linearScaleValues1);
+                                $maxLinearScaleValue2 = max($linearScaleValues2);
+                            @endphp
+                            newData.push({
+                                name: 'IBOC AM Híbrido',
+                                y: {{ $linearScaleValues1[0] / $maxLinearScaleValue1 }} *
+                                    parseFloat($('#recoPotencia').val()) +
+                                    {{ $linearScaleValues2[0] / $maxLinearScaleValue2 }} *
+                                    parseFloat($('#recoInterferencia').val())
+                            });
+                        @endif
+                        @if ($loop->first)
+                            newData.push({
+                                name: 'IBOC FM Híbrido',
+                                y: {{ $linearScaleValues1[1] / $maxLinearScaleValue1 }} *
+                                    parseFloat($('#recoPotencia').val()) +
+                                    {{ $linearScaleValues2[1] / $maxLinearScaleValue2 }} * parseFloat($(
+                                        '#recoInterferencia').val())
+                            });
+                        @endif
+                        @if ($loop->first)
+                            newData.push({
+                                name: 'DAB',
+                                y: {{ $linearScaleValues1[2] / $maxLinearScaleValue1 }} *
+                                    parseFloat($('#recoPotencia').val()) +
+                                    {{ $linearScaleValues2[2] / $maxLinearScaleValue2 }} * parseFloat($(
+                                        '#recoInterferencia').val())
+                            });
                         @endif
                     @endforeach
 
                     // Actualiza los datos de la serie en la gráfica
                     chart.series[0].setData(newData);
+                    updateTable(newData, '#example3');
+                }
+
+                function updateTable(newData, table) {
+                    $(table + ' tbody tr').each(function(index) {
+                        if (newData[index]) {
+                            var category = newData[index].name;
+                            var scoreFinal = newData[index].y.toFixed(2);
+                            $(this).find('td:eq(4)').text(scoreFinal);
+                            $(this).find('td:eq(0)').text(category);
+                        }
+                    });
                 }
 
                 // Calculate Potencia Normalizada
@@ -1023,7 +1027,8 @@
                     },
                     yAxis: {
                         title: {
-                            text: 'Potencias (dBu)',
+                            // text: 'Potencias (dBu)',
+                            enabled: false,
                         },
                         min: 0, // Establecer el valor mínimo en el eje Y
                         // max: 200, // Establecer el valor máximo en el eje Y
@@ -1067,7 +1072,7 @@
                     var recoPotencia = parseFloat($(this).val());
 
                     // Actualiza la gráfica con el nuevo valor de recoPotencia
-                    updateChart(recoPotencia);
+                    updateChart();
                 });
             });
         </script>
@@ -1080,49 +1085,57 @@
 
                     // Itera sobre los puntos de la serie
                     @foreach ($promPotenciasMede as $promedioPot)
-                        @if ($promedioPot->promedioPot1 != 0 || $promedioPot->promedioPot2 != 0 || $promedioPot->promedioPot3 != 0)
-                            @if ($loop->first)
-                                newData.push({
-                                    name: 'IBOC AM Híbrido',
-                                    y: {{ $promedioPot->promedioPot1 / $promedioPot->promedioPot2 }} *
-                                        parseFloat(
-                                            $('#recoPotencia').val()) +
-                                        {{ $promedioPot->promedioPot4 / $promedioPot->promedioPot6 }} *
-                                        parseFloat(
-                                            $('#recoInterferencia').val())
-                                });
-                            @endif
-                            @if ($loop->first)
-                                newData.push({
-                                    name: 'IBOC FM Híbrido',
-                                    y: {{ $promedioPot->promedioPot2 / $promedioPot->promedioPot2 }} *
-                                        parseFloat(
-                                            $('#recoPotencia').val()) +
-                                        {{ $promedioPot->promedioPot5 / $promedioPot->promedioPot6 }} *
-                                        parseFloat(
-                                            $('#recoInterferencia')
-                                            .val())
-                                });
-                            @endif
-                            @if ($loop->first)
-                                newData.push({
-                                    name: 'DAB',
-                                    y: {{ $promedioPot->promedioPot3 / $promedioPot->promedioPot2 }} *
-                                        parseFloat(
-                                            $('#recoPotencia').val()) +
-                                        {{ $promedioPot->promedioPot6 / $promedioPot->promedioPot6 }} *
-                                        parseFloat(
-                                            $('#recoInterferencia')
-                                            .val())
-                                });
-                            @endif
+
+                        @if ($loop->first)
+                            @php
+                                $linearScaleValues1 = [pow(10, $promedioPot->promedioPot1 / 20) * 0.775, pow(10, $promedioPot->promedioPot2 / 20) * 0.775, pow(10, $promedioPot->promedioPot3 / 20) * 0.775];
+                                $linearScaleValues2 = [pow(10, $promedioPot->promedioPot4 / 20) * 0.775, pow(10, $promedioPot->promedioPot5 / 20) * 0.775, pow(10, $promedioPot->promedioPot6 / 20) * 0.775];
+                                $maxLinearScaleValue1 = max($linearScaleValues1);
+                                $maxLinearScaleValue2 = max($linearScaleValues2);
+                            @endphp
+                            newData.push({
+                                name: 'IBOC AM Híbrido',
+                                y: {{ $linearScaleValues1[0] / $maxLinearScaleValue1 }} *
+                                    parseFloat($('#recoPotencia').val()) +
+                                    {{ $linearScaleValues2[0] / $maxLinearScaleValue2 }} *
+                                    parseFloat($('#recoInterferencia').val())
+                            });
+                        @endif
+                        @if ($loop->first)
+                            newData.push({
+                                name: 'IBOC FM Híbrido',
+                                y: {{ $linearScaleValues1[1] / $maxLinearScaleValue1 }} *
+                                    parseFloat($('#recoPotencia').val()) +
+                                    {{ $linearScaleValues2[1] / $maxLinearScaleValue2 }} * parseFloat($(
+                                        '#recoInterferencia').val())
+                            });
+                        @endif
+                        @if ($loop->first)
+                            newData.push({
+                                name: 'DAB',
+                                y: {{ $linearScaleValues1[2] / $maxLinearScaleValue1 }} *
+                                    parseFloat($('#recoPotencia').val()) +
+                                    {{ $linearScaleValues2[2] / $maxLinearScaleValue2 }} * parseFloat($(
+                                        '#recoInterferencia').val())
+                            });
                         @endif
                     @endforeach
 
                     // Actualiza los datos de la serie en la gráfica
                     chart.series[0].setData(newData);
+                    updateTable(newData, '#example4');
                 }
 
+                function updateTable(newData, table) {
+                    $(table + ' tbody tr').each(function(index) {
+                        if (newData[index]) {
+                            var category = newData[index].name;
+                            var scoreFinal = newData[index].y.toFixed(2);
+                            $(this).find('td:eq(4)').text(scoreFinal);
+                            $(this).find('td:eq(0)').text(category);
+                        }
+                    });
+                }
                 // Calculate Potencia Normalizada
                 var table = $('#example4').DataTable();
 
@@ -1173,7 +1186,8 @@
                     },
                     yAxis: {
                         title: {
-                            text: 'Potencias (dBu)',
+                            // text: 'Potencias (dBu)',
+                            enabled: false,
                         },
                         min: 0, // Establecer el valor mínimo en el eje Y
                         // max: 200, // Establecer el valor máximo en el eje Y
@@ -1217,7 +1231,7 @@
                     var recoPotencia = parseFloat($(this).val());
 
                     // Actualiza la gráfica con el nuevo valor de recoPotencia
-                    updateChart(recoPotencia);
+                    updateChart();
                 });
             });
         </script>

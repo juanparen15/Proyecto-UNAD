@@ -435,7 +435,7 @@
                 },
                 yAxis: {
                     title: {
-                        text: 'Potencias (dBu)',
+                        text: 'Potencia (dBu)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     // max: 200, // Establecer el valor máximo en el eje Y
@@ -533,7 +533,7 @@
                 },
                 yAxis: {
                     title: {
-                        text: 'Potencias (dBu)',
+                        text: 'SNR (dB)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     // max: 200, // Establecer el valor máximo en el eje Y
@@ -637,7 +637,7 @@
 
                 yAxis: {
                     title: {
-                        text: 'Potencias (dBu)',
+                        text: 'Potencia (dBu)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -751,7 +751,7 @@
                 yAxis: {
                     title: {
                         // enabled: false,
-                        text: 'Potencias (dBu)',
+                        text: 'SNR (dB)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -866,9 +866,9 @@
                     //     enabled: true
                     // },
                     categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
-                    title: {
-                        text: 'Potencias (Dby)'
-                    }
+                    // title: {
+                    //     // text: 'Potencias (Dby)'
+                    // }
                 },
 
                 yAxis: {
@@ -876,7 +876,7 @@
                         followPointer: true
                     },
                     title: {
-                        text: 'Interferencias'
+                        text: 'Potencia (dBu)'
                     },
                     in: 0, // Establecer el valor mínimo en el eje Y
                     max: 200,
@@ -896,7 +896,7 @@
                     stickyTracking: true,
                     cursor: 'pointer',
                     colorByPoint: true,
-                    name: 'Interferencias',
+                    name: 'Potencia (dBu)',
                     data: [
                         [
                             @foreach ($potencias as $pot1)
@@ -967,9 +967,9 @@
                     //     enabled: true
                     // },
                     categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
-                    title: {
-                        text: 'Potencias (Dby)'
-                    }
+                    // title: {
+                    //     text: 'Potencias (Dby)'
+                    // }
                 },
 
                 yAxis: {
@@ -977,7 +977,7 @@
                         followPointer: true
                     },
                     title: {
-                        text: 'Interferencias'
+                        text: 'SNR (dB)'
                     },
                     in: 0, // Establecer el valor mínimo en el eje Y
                     // max: 200,
@@ -1001,7 +1001,7 @@
                     stickyTracking: true,
                     cursor: 'pointer',
                     colorByPoint: true,
-                    name: 'Interferencias',
+                    name: 'SNR (dB)',
                     data: [
                         [
                             @foreach ($potencias as $pot4)
@@ -1061,7 +1061,7 @@
                 },
                 yAxis: {
                     title: {
-                        text: 'Potencias (dBu)',
+                        text: 'Potencia (dBu)',
                     }
                 },
                 credits: {
@@ -1150,7 +1150,7 @@
                 },
                 yAxis: {
                     title: {
-                        text: 'Potencias (dBu)',
+                        text: 'SNR (dB)',
                     }
                 },
                 credits: {
@@ -1255,7 +1255,7 @@
 
                 yAxis: {
                     title: {
-                        text: 'Potencias (dBu)',
+                        text: 'Potencia (dBu)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -1369,7 +1369,7 @@
                 yAxis: {
                     title: {
                         // enabled: false,
-                        text: 'Potencias (dBu)',
+                        text: 'SNR (dB)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -1482,9 +1482,9 @@
                     //     enabled: true
                     // },
                     categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
-                    title: {
-                        text: 'Potencias (Dby)'
-                    }
+                    // title: {
+                    //     text: 'Potencias (Dby)'
+                    // }
                 },
 
                 yAxis: {
@@ -1492,7 +1492,7 @@
                         followPointer: true
                     },
                     title: {
-                        text: 'Interferencias'
+                        text: 'Potencia (dBu)'
                     },
                     plotLines: [{
                         value: 932,
@@ -1513,7 +1513,7 @@
                     stickyTracking: true,
                     cursor: 'pointer',
                     colorByPoint: true,
-                    name: 'Interferencias',
+                    name: 'Potencia (dBu)',
                     data: [
                         [
                             @foreach ($potenciasBuca as $pot1)
@@ -1586,9 +1586,9 @@
                     //     enabled: true
                     // },
                     categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
-                    title: {
-                        text: 'Potencias (Dby)'
-                    }
+                    // title: {
+                    //     text: 'Potencias (Dby)'
+                    // }
                 },
 
                 yAxis: {
@@ -1596,7 +1596,7 @@
                         followPointer: true
                     },
                     title: {
-                        text: 'Interferencias'
+                        text: 'SNR (dB)'
                     },
                     plotLines: [{
                         value: 932,
@@ -1618,7 +1618,7 @@
                     stickyTracking: true,
                     cursor: 'pointer',
                     colorByPoint: true,
-                    name: 'Interferencias',
+                    name: 'SNR (dB)',
                     data: [
                         [
                             @foreach ($potenciasBuca as $pot4)
@@ -1682,7 +1682,7 @@
                 },
                 yAxis: {
                     title: {
-                        text: 'Potencias (dBu)',
+                        text: 'Potencia (dBu)',
                     }
                 },
                 credits: {
@@ -1772,7 +1772,7 @@
                 },
                 yAxis: {
                     title: {
-                        text: 'Potencias (dBu)',
+                        text: 'SNR (dB)',
                     }
                 },
                 credits: {
@@ -1877,7 +1877,7 @@
 
                 yAxis: {
                     title: {
-                        text: 'Potencias (dBu)',
+                        text: 'Potencia (dBu)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -1991,7 +1991,7 @@
                 yAxis: {
                     title: {
                         // enabled: false,
-                        text: 'Potencias (dBu)',
+                        text: 'SNR (dB)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -2106,9 +2106,9 @@
                     //     enabled: true
                     // },
                     categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
-                    title: {
-                        text: 'Potencias (Dby)'
-                    }
+                    // title: {
+                    //     text: 'Potencias (Dby)'
+                    // }
                 },
 
                 yAxis: {
@@ -2116,7 +2116,7 @@
                         followPointer: true
                     },
                     title: {
-                        text: 'Interferencias'
+                        text: 'Potencia (dBu)'
                     },
                     in: 0, // Establecer el valor mínimo en el eje Y
                     // max: 200,
@@ -2138,7 +2138,7 @@
                     stickyTracking: true,
                     cursor: 'pointer',
                     colorByPoint: true,
-                    name: 'Interferencias',
+                    name: 'Potencia (dBu)',
                     data: [
                         [
                             @foreach ($potenciasCali as $pot1)
@@ -2212,9 +2212,9 @@
                     //     enabled: true
                     // },
                     categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
-                    title: {
-                        text: 'Potencias (Dby)'
-                    }
+                    // title: {
+                    //     text: 'Potencias (Dby)'
+                    // }
                 },
 
                 yAxis: {
@@ -2222,7 +2222,7 @@
                         followPointer: true
                     },
                     title: {
-                        text: 'Interferencias'
+                        text: 'SNR (dB)'
                     },
                     in: 0, // Establecer el valor mínimo en el eje Y
                     // max: 200,
@@ -2246,7 +2246,7 @@
                     stickyTracking: true,
                     cursor: 'pointer',
                     colorByPoint: true,
-                    name: 'Interferencias',
+                    name: 'SNR (dB)',
                     data: [
                         [
                             @foreach ($potenciasCali as $pot4)
@@ -2306,7 +2306,7 @@
                 },
                 yAxis: {
                     title: {
-                        text: 'Potencias (dBu)'
+                        text: 'Potencia (dBu)'
                     }
                 },
                 credits: {
@@ -2396,7 +2396,7 @@
                 },
                 yAxis: {
                     title: {
-                        text: 'Potencias (dBu)'
+                        text: 'SNR (dB)'
                     }
                 },
                 credits: {
@@ -2501,7 +2501,7 @@
 
                 yAxis: {
                     title: {
-                        text: 'Potencias (dBu)',
+                        text: 'Potencia (dBu)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -2615,7 +2615,7 @@
                 yAxis: {
                     title: {
                         // enabled: false,
-                        text: 'Potencias (dBu)',
+                        text: 'SNR (dB)',
                     },
                     min: 0, // Establecer el valor mínimo en el eje Y
                     max: 200, // Establecer el valor máximo en el eje Y
@@ -2730,9 +2730,9 @@
                     //     enabled: true
                     // },
                     categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
-                    title: {
-                        text: 'Potencias (Dby)'
-                    }
+                    // title: {
+                    //     text: 'Potencias (Dby)'
+                    // }
                 },
 
                 yAxis: {
@@ -2740,7 +2740,7 @@
                         followPointer: true
                     },
                     title: {
-                        text: 'Interferencias'
+                        text: 'Potencia (dBu)'
                     },
                     in: 0, // Establecer el valor mínimo en el eje Y
                     // max: 200,
@@ -2764,7 +2764,7 @@
                     stickyTracking: true,
                     cursor: 'pointer',
                     colorByPoint: true,
-                    name: 'Interferencias',
+                    name: 'Potencia (dBu)',
                     data: [
                         [
                             @foreach ($potenciasMede as $pot1)
@@ -2836,9 +2836,9 @@
                     //     enabled: true
                     // },
                     categories: ['IBOC AM Híbrido', 'IBOC FM Híbrido', 'DAB'],
-                    title: {
-                        text: 'Potencias (Dby)'
-                    }
+                    // title: {
+                    //     text: 'Potencias (Dby)'
+                    // }
                 },
 
                 yAxis: {
@@ -2846,7 +2846,7 @@
                         followPointer: true
                     },
                     title: {
-                        text: 'Interferencias'
+                        text: 'SNR (dB)'
                     },
                     in: 0, // Establecer el valor mínimo en el eje Y
                     // max: 200,
@@ -2870,7 +2870,7 @@
                     stickyTracking: true,
                     cursor: 'pointer',
                     colorByPoint: true,
-                    name: 'Interferencias',
+                    name: 'SNR (dB)',
                     data: [
                         [
                             @foreach ($potenciasMede as $pot4)
