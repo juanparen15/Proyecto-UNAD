@@ -62,6 +62,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
+                                            <label>Ponderación para Potencia</label>
                                             <input placeholder="Ponderación para Potencia" type="number" step="0.1"
                                                 min="0" max="1" id="recoPotencia" name="recoPotencia"
                                                 value="{{ old('recoPotencia') }}"
@@ -74,6 +75,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
+                                            <label>Ponderación para Interferencia</label>
                                             <input disabled placeholder="Ponderación para Interferencia" type="text"
                                                 id="recoInterferencia" name="recoInterferencia"
                                                 value="{{ old('recoInterferencia') }}"
