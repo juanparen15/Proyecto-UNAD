@@ -559,39 +559,6 @@
                 });
             });
         </script>
-        {{-- <script>
-            $(document).ready(function() {
-                $('#recoPotencia').change(function() {
-                    var recoPotencia = parseFloat($(this).val());
-                    var recoInterferencia = parseFloat($('#recoInterferencia').val());
-
-                    // Variable para almacenar la suma de la potencia normalizada de la segunda tabla
-                    var potenciaNormalizada2Sum = 0;
-
-                    // Itera sobre las filas de la primera tabla y suma la potencia normalizada
-                    $('table:first tbody tr').each(function() {
-                        var potenciaNormalizada = parseFloat($(this).find('td:eq(3)').text());
-                        // Aquí puedes hacer algo con potenciaNormalizada de la primera tabla si es necesario
-                    });
-
-                    // Itera sobre las filas de la segunda tabla y suma la potencia normalizada
-                    $('table:last tbody tr').each(function() {
-                        var potenciaNormalizada2 = parseFloat($(this).find('td:eq(3)').text());
-                        potenciaNormalizada2Sum =
-                            potenciaNormalizada2; // Acumula la potencia normalizada de la segunda tabla
-                    });
-
-                    // Calcula el score final utilizando la suma de la potencia normalizada
-                    $('tbody tr').each(function() {
-                        var potenciaNormalizada = parseFloat($(this).find('td:eq(3)').text());
-                        var scoreFinal = potenciaNormalizada * recoPotencia +
-                            potenciaNormalizada2Sum * recoInterferencia;
-                        // $(this).find('td:eq(4)').text(scoreFinal.toFixed(2));
-                    });
-                });
-            });
-        </script> --}}
-
         <script>
             $(document).ready(function() {
                 // Define una función para actualizar la gráfica
