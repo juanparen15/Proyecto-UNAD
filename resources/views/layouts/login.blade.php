@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
-{{-- <link rel="shortcut icon" href="adminlte/dist/img/AdminLTELogo.ico" /> --}}
+<link rel="shortcut icon" href="adminlte/dist/img/logo-crc_0.svg" />
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-{{-- <-- SWEET ALERT 2 --> --}}
+    {{-- <-- SWEET ALERT 2 --> --}}
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
     <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
 
