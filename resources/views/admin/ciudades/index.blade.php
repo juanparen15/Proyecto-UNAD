@@ -64,16 +64,21 @@
                                         <td>{{ $ciudad->id }}</td>
                                         <td>{{ $ciudad->detciudad }}</td>
                                         <td>
-                                            <form action="{{ route('admin.ciudades.destroy', $ciudad) }}" method="POST">
+
+                                            <a class="btn btn-primary btn-sm"
+                                                href="{{ route('admin.ciudades.edit', $ciudad) }}">Editar</a>
+
+                                            <form id="deleteForm_{{ $ciudad->id }}"
+                                                action="{{ route('admin.ciudades.destroy', $ciudad) }}" method="POST"
+                                                style="display: inline;">
                                                 @csrf
-                                                @method('delete')
-
-                                                <a class="btn btn-primary btn-sm"
-                                                    href="{{ route('admin.ciudades.edit', $ciudad) }}">Editar</a>
-
-
-                                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash"></i> Eliminar
+                                                </button>
                                             </form>
+                                            {{-- <button type="submit" class="btn btn-danger btn-sm">Eliminar</button> --}}
+
                                         </td>
                                     </tr>
                                 @endforeach
@@ -103,7 +108,7 @@
                     });
                     Toast.fire({
                         icon: 'success',
-                        title: 'La Ciudad se Actualizo con Exito.'
+                        title: 'La Ciudad se Actualizó con Éxito.'
                     })
                 });
             </script>
@@ -119,21 +124,21 @@
                     });
                     Toast.fire({
                         icon: 'success',
-                        title: 'La Ciudad se Creó con Exito.'
+                        title: 'La Ciudad se Creó con Éxito.'
                     })
                 });
             </script>
         @endif
-        @if (session('flash') == 'eliminado')
+        {{-- @if (session('flash') == 'eliminado')
             <script>
                 Swal.fire(
                     '¡Eliminado!',
-                    'La Ciudad se Eliminó con Exito.',
+                    'La Ciudad se Eliminó con Éxito.',
                     'success'
                 )
             </script>
-        @endif
-        <script>
+        @endif --}}
+        {{-- <script>
             function enviar_formulario() {
                 Swal.fire({
                     title: '¿Estas seguro?',
@@ -150,6 +155,35 @@
                     }
                 })
             }
+        </script> --}}
+        <script>
+            @foreach ($ciudades as $ciudad)
+                document.getElementById('deleteForm_{{ $ciudad->id }}').addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const deleteForm = this;
+
+                    Swal.fire({
+                        title: "¿Estás seguro?",
+                        text: "¡No podrás revertir esto!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        cancelButtonText: "Cancelar",
+                        confirmButtonText: "¡Sí, eliminarlo!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                title: "Eliminado!",
+                                text: "La Ciudad se Eliminó con Éxito.",
+                                icon: "success"
+                            });
+                            // Envía el formulario de eliminación
+                            deleteForm.submit();
+                        }
+                    });
+                });
+            @endforeach
         </script>
         <!-- DataTables  & Plugins -->
         {!! Html::script('adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
