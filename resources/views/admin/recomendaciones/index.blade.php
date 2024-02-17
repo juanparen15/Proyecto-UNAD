@@ -43,6 +43,30 @@
                                         <i class="fas fa-chart-pie mr-1"></i>
                                         RADSODI
                                     </h3>
+                                    <div class="card text-start col-md-6 ml-md-auto">
+                                        Para el módulo de recomendaciones se consideran como indicadores de desempeño para
+                                        cada estándar digital las siguientes variables:
+                                        <div class="text-start">
+                                            • Promedio aritmético de potencia (dBu) de los 100 puntos de interés medidos en
+                                            la ciudad seleccionada.
+                                            <div class="text-start">
+                                                • Promedio aritmético de interferencia (dB) de los 100 puntos de interés
+                                                medidos en la ciudad seleccionada.
+                                                <div class="text-start">
+                                                    A partir de estas dos variables que nos indican la potencia de la señal
+                                                    captada por los receptores y la relación entre la potencia de la señal
+                                                    de interés y la potencia de la señal de ruido, se propone calcular un
+                                                    único indicador
+                                                    de desempeño.
+                                                    <div class="text-start">
+                                                        Este indicador es la suma ponderada de las dos variables
+                                                        normalizadas,
+                                                        representadas en escala lineal.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-2 ml-md-auto">
                                         <div class="form-group" style="width: 100%">
                                             <select class="form-control select2 @error('ciudad_id') is-invalid @enderror"
@@ -122,7 +146,8 @@
                                                                 <td></td>
                                                                 <td>{{ $promedioPot->promedioPot1 }}</td>
                                                                 <td>{{ $linearScaleValues[0] }}</td>
-                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 <td></td>
                                                             </tr>
 
@@ -130,7 +155,8 @@
                                                                 <td></td>
                                                                 <td>{{ $promedioPot->promedioPot2 }}</td>
                                                                 <td>{{ $linearScaleValues[1] }}</td>
-                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 <td></td>
                                                             </tr>
 
@@ -138,7 +164,8 @@
                                                                 <td></td>
                                                                 <td>{{ $promedioPot->promedioPot3 }}</td>
                                                                 <td>{{ $linearScaleValues[2] }}</td>
-                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 <td></td>
                                                             </tr>
                                                         @endif
@@ -167,7 +194,8 @@
                                                                 <td>IBOC AM Híbrido</td>
                                                                 <td>{{ $promedioPot->promedioPot4 }}</td>
                                                                 <td>{{ $linearScaleValues[0] }}</td>
-                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 {{-- <td></td> --}}
                                                             </tr>
 
@@ -175,7 +203,8 @@
                                                                 <td>IBOC FM Híbrido</td>
                                                                 <td>{{ $promedioPot->promedioPot5 }}</td>
                                                                 <td>{{ $linearScaleValues[1] }}</td>
-                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 {{-- <td></td> --}}
                                                             </tr>
 
@@ -183,7 +212,8 @@
                                                                 <td>DAB</td>
                                                                 <td>{{ $promedioPot->promedioPot6 }}</td>
                                                                 <td>{{ $linearScaleValues[2] }}</td>
-                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 {{-- <td></td> --}}
                                                             </tr>
                                                         @endif
@@ -225,7 +255,8 @@
                                                                 <td></td>
                                                                 <td>{{ $promedioPot->promedioPot1 }}</td>
                                                                 <td>{{ $linearScaleValues[0] }}</td>
-                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 <td></td>
                                                             </tr>
 
@@ -233,7 +264,8 @@
                                                                 <td></td>
                                                                 <td>{{ $promedioPot->promedioPot2 }}</td>
                                                                 <td>{{ $linearScaleValues[1] }}</td>
-                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 <td></td>
                                                             </tr>
 
@@ -241,7 +273,8 @@
                                                                 <td></td>
                                                                 <td>{{ $promedioPot->promedioPot3 }}</td>
                                                                 <td>{{ $linearScaleValues[2] }}</td>
-                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 <td></td>
                                                             </tr>
                                                         @endif
@@ -270,7 +303,8 @@
                                                                 <td>IBOC AM Híbrido</td>
                                                                 <td>{{ $promedioPot->promedioPot4 }}</td>
                                                                 <td>{{ $linearScaleValues[0] }}</td>
-                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 {{-- <td></td> --}}
                                                             </tr>
 
@@ -278,7 +312,8 @@
                                                                 <td>IBOC FM Híbrido</td>
                                                                 <td>{{ $promedioPot->promedioPot5 }}</td>
                                                                 <td>{{ $linearScaleValues[1] }}</td>
-                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 {{-- <td></td> --}}
                                                             </tr>
 
@@ -286,7 +321,8 @@
                                                                 <td>DAB</td>
                                                                 <td>{{ $promedioPot->promedioPot6 }}</td>
                                                                 <td>{{ $linearScaleValues[2] }}</td>
-                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 {{-- <td></td> --}}
                                                             </tr>
                                                         @endif
@@ -328,7 +364,8 @@
                                                                 <td></td>
                                                                 <td>{{ $promedioPot->promedioPot1 }}</td>
                                                                 <td>{{ $linearScaleValues[0] }}</td>
-                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 <td></td>
                                                             </tr>
 
@@ -336,7 +373,8 @@
                                                                 <td></td>
                                                                 <td>{{ $promedioPot->promedioPot2 }}</td>
                                                                 <td>{{ $linearScaleValues[1] }}</td>
-                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 <td></td>
                                                             </tr>
 
@@ -344,7 +382,8 @@
                                                                 <td></td>
                                                                 <td>{{ $promedioPot->promedioPot3 }}</td>
                                                                 <td>{{ $linearScaleValues[2] }}</td>
-                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 <td></td>
                                                             </tr>
                                                         @endif
@@ -373,7 +412,8 @@
                                                                 <td>IBOC AM Híbrido</td>
                                                                 <td>{{ $promedioPot->promedioPot4 }}</td>
                                                                 <td>{{ $linearScaleValues[0] }}</td>
-                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 {{-- <td></td> --}}
                                                             </tr>
 
@@ -381,7 +421,8 @@
                                                                 <td>IBOC FM Híbrido</td>
                                                                 <td>{{ $promedioPot->promedioPot5 }}</td>
                                                                 <td>{{ $linearScaleValues[1] }}</td>
-                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 {{-- <td></td> --}}
                                                             </tr>
 
@@ -389,7 +430,8 @@
                                                                 <td>DAB</td>
                                                                 <td>{{ $promedioPot->promedioPot6 }}</td>
                                                                 <td>{{ $linearScaleValues[2] }}</td>
-                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 {{-- <td></td> --}}
                                                             </tr>
                                                         @endif
@@ -402,7 +444,8 @@
                                 <div class="col-lg-12 col-16">
                                     <div class="small-box" data-ciudad="4">
                                         <figure class="highcharts-figure">
-                                            <div id="column4" style="margin-bottom: 1em;" class="chart-display"></div>
+                                            <div id="column4" style="margin-bottom: 1em;" class="chart-display">
+                                            </div>
                                         </figure>
                                     </div>
                                 </div>
@@ -431,7 +474,8 @@
                                                                 <td></td>
                                                                 <td>{{ $promedioPot->promedioPot1 }}</td>
                                                                 <td>{{ $linearScaleValues[0] }}</td>
-                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 <td></td>
                                                             </tr>
 
@@ -439,7 +483,8 @@
                                                                 <td></td>
                                                                 <td>{{ $promedioPot->promedioPot2 }}</td>
                                                                 <td>{{ $linearScaleValues[1] }}</td>
-                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 <td></td>
                                                             </tr>
 
@@ -447,7 +492,8 @@
                                                                 <td></td>
                                                                 <td>{{ $promedioPot->promedioPot3 }}</td>
                                                                 <td>{{ $linearScaleValues[2] }}</td>
-                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 <td></td>
                                                             </tr>
                                                         @endif
@@ -476,7 +522,8 @@
                                                                 <td>IBOC AM Híbrido</td>
                                                                 <td>{{ $promedioPot->promedioPot4 }}</td>
                                                                 <td>{{ $linearScaleValues[0] }}</td>
-                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[0] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 {{-- <td></td> --}}
                                                             </tr>
 
@@ -484,7 +531,8 @@
                                                                 <td>IBOC FM Híbrido</td>
                                                                 <td>{{ $promedioPot->promedioPot5 }}</td>
                                                                 <td>{{ $linearScaleValues[1] }}</td>
-                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[1] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 {{-- <td></td> --}}
                                                             </tr>
 
@@ -492,7 +540,8 @@
                                                                 <td>DAB</td>
                                                                 <td>{{ $promedioPot->promedioPot6 }}</td>
                                                                 <td>{{ $linearScaleValues[2] }}</td>
-                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}</td>
+                                                                <td>{{ $linearScaleValues[2] / $maxLinearScaleValue }}
+                                                                </td>
                                                                 {{-- <td></td> --}}
                                                             </tr>
                                                         @endif
