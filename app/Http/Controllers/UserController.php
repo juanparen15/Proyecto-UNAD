@@ -14,7 +14,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:admin', ['only' => ['index']]);
+        // $this->middleware('role:Admin', ['only' => ['index']]);
     }
 
     public function index()
@@ -28,7 +28,7 @@ class UserController extends Controller
         // $areas = Area::get();
         return view('admin.users.create', compact('roles'));
     }
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
         $request->validate([
             'username' => ['required'],
@@ -40,6 +40,21 @@ class UserController extends Controller
             'documento' => ['required'],
             // 'areas_id' => ['required']
         ]);
+
+        // Actualizar solo si se proporciona una nueva contraseña y se activa la opción "Cambiar contraseña"
+        if ($request->cambiar_pass == "SI" && $request->password) {
+            $request->validate([
+                'password' => ['required', 'confirmed'],
+            ]);
+
+            $user->update([
+                'password' => Hash::make($request->password),
+            ]);
+        }
+        // Actualizar roles solo si el usuario autenticado tiene el rol de "Admin"
+        if (auth()->user()->hasRole('Admin')) {
+            $user->syncRoles($request->role);
+        }
 
         $user = User::create([
             'username' => $request->username,
@@ -61,8 +76,6 @@ class UserController extends Controller
             $user->save();
         }
 
-
-        $user->assignRole($request->role);
         return redirect()->route('users.index')->with('flash', 'registrado');
     }
     public function show(User $user)
@@ -97,6 +110,11 @@ class UserController extends Controller
             ]);
         }
 
+        // Actualizar roles solo si el usuario autenticado tiene el rol de "Admin"
+        if (auth()->user()->hasRole('Admin')) {
+            $user->syncRoles($request->role);
+        }
+
         // Actualizar los otros campos sin considerar la contraseña
         $user->update([
             'username' => $request->username,
@@ -115,13 +133,6 @@ class UserController extends Controller
             $user->avatar = $name;
             $user->save();
         }
-
-        // Actualizar roles solo si el usuario autenticado tiene el rol de "admin"
-        if (auth()->user()->hasRole('Admin')) {
-            $user->syncRoles($request->role);
-        }
-
-
         return redirect()->route('users.index')->with('flash', 'actualizado');
     }
 
@@ -134,6 +145,21 @@ class UserController extends Controller
 
     public function updateProfile(User $user, Request $request)
     {
+        // Actualizar solo si se proporciona una nueva contraseña y se activa la opción "Cambiar contraseña"
+        if ($request->cambiar_pass == "SI" && $request->password) {
+            $request->validate([
+                'password' => ['required', 'confirmed'],
+            ]);
+
+            $user->update([
+                'password' => Hash::make($request->password),
+            ]);
+        }
+
+        // Actualizar roles solo si el usuario autenticado tiene el rol de "Admin"
+        if (auth()->user()->hasRole('Admin')) {
+            $user->syncRoles($request->role);
+        }
 
         $user->update([
             'username' => $request->username,

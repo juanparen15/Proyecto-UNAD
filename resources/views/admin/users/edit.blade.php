@@ -102,9 +102,9 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="telefono">Teléfono</label>
-                                    <input type="text" id="telefono" name="telefono"
+                                    <input type="number" id="telefono" name="telefono"
                                         value="{{ old('telefono', $user->telefono) }}"
-                                        class="form-control @error('name') is-invalid @enderror">
+                                        class="form-control @error('telefono') is-invalid @enderror">
                                     @error('telefono')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -117,7 +117,7 @@
                                     <label for="documento">Número de documento</label>
                                     <input type="number" id="documento" name="documento"
                                         value="{{ old('documento', $user->documento) }}"
-                                        class="form-control @error('name') is-invalid @enderror">
+                                        class="form-control @error('documento') is-invalid @enderror">
                                     @error('documento')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -286,7 +286,7 @@
                         $('#password-confirm').addClass('is-invalid');
                         $('#password-confirm').append(
                             '<span id="password-confirm-error" class="invalid-feedback" role="alert">Las contraseñas no coinciden</span>'
-                            );
+                        );
                     } else {
                         $('#password-confirm').removeClass('is-invalid');
                         $('#password-confirm-error').remove();
@@ -300,7 +300,7 @@
                         $('#password-confirm').addClass('is-invalid');
                         $('#password-confirm').append(
                             '<span id="password-confirm-error" class="invalid-feedback" role="alert">Las contraseñas no coinciden</span>'
-                            );
+                        );
                         event.preventDefault(); // Evitar que se envíe el formulario
                     }
                 });

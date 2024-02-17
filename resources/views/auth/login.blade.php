@@ -1,23 +1,23 @@
 @extends('layouts.login')
 @section('title', 'Login CRC-UNAD')
 @section('content')
-<script>
-const Toast = Swal.mixin({
-  toast: true,
-  position: "top-end",
-  showConfirmButton: false,
-  timer: 5000,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.onmouseenter = Swal.stopTimer;
-    toast.onmouseleave = Swal.resumeTimer;
-  }
-});
-Toast.fire({
-  icon: "info",
-  title: "Debe registrarse para acceder al sistema"
-});
-</script>    
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "info",
+            title: "Debe registrarse para acceder al sistema"
+        });
+    </script>
 
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
@@ -88,5 +88,5 @@ Toast.fire({
         </div>
 
         {!! Form::close() !!}
-    </div>    
+    </div>
 @endsection
