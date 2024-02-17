@@ -53,7 +53,7 @@
 
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label for="ciudad_id">CIUDAD:</label>
+                                <label for="ciudad_id">Ciudad:</label>
                                 <select class="form-control select2 @error('ciudad_id') is-invalid @enderror"
                                     name="ciudad_id" id="ciudad_id" style="width: 100%">
                                     <option value="" disabled selected>Seleccione una Ciudad:
