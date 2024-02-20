@@ -55,6 +55,18 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="{{ route('admin.fuentes.index') }}"
+                            class="nav-link 
+            {!! active_class(route('admin.fuentes.index')) !!}
+            ">
+                            <i class="nav-icon fas fa-solid fa-map-pin"></i>
+                            <p>
+                                TIPO DE SIMULACIÓN
+                            </p>
+                        </a>
+                    </li>
+
                     {{-- @if (auth()->user()->hasRole('Admin')) --}}
                     <li class="nav-item">
                         <a href="{{ route('planadquisiciones.show') }}"

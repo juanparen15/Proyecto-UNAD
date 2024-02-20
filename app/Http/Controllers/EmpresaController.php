@@ -101,12 +101,12 @@ class EmpresaController extends Controller
             'SNRAMHibrido',
             'SNRFMHibrido',
             'SNRDAB',
-            DB::raw("SUM(potenciaAM) as pot1"),
-            DB::raw("SUM(potenciaFM) as pot2"),
-            DB::raw("SUM(potenciaDABHibrido) as pot3"),
-            DB::raw("SUM(SNRAMHibrido) as pot4"),
-            DB::raw("SUM(SNRFMHibrido) as pot5"),
-            DB::raw("SUM(SNRDAB) as pot6")
+            DB::raw("AVG(potenciaAM) as pot1"),
+            DB::raw("AVG(potenciaFM) as pot2"),
+            DB::raw("AVG(potenciaDABHibrido) as pot3"),
+            DB::raw("AVG(SNRAMHibrido) as pot4"),
+            DB::raw("AVG(SNRFMHibrido) as pot5"),
+            DB::raw("AVG(SNRDAB) as pot6")
         )
             ->groupBy('potenciaAM', 'potenciaFM', 'potenciaDABHibrido', 'SNRAMHibrido', 'SNRFMHibrido', 'SNRDAB')
             ->get();

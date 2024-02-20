@@ -47,8 +47,8 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>NOMBRE ESTÁNDAR</th>
                                     <th>NOMBRE CIUDAD</th>
+                                    <th>NOMBRE ESTÁNDAR</th>
                                     <th>ACCIONES</th>
                                 </tr>
                             </thead>
@@ -56,17 +56,17 @@
                                 @foreach ($estandares as $estandar)
                                     <tr>
                                         <td>{{ $estandar->id }}</td>
-                                        <td>{{ $estandar->detestandar }}</td>
                                         <td>{{ $estandar->ciudad->detciudad }}</td>
+                                        <td>{{ $estandar->detestandar }}</td>
 
                                         <td width="10px">
-                                            <form action="{{ route('admin.estandares.destroy', $estandar) }}" method="POST">
+                                            <form action="{{ route('admin.estandares.destroy', $estandar) }}"
+                                                method="POST">
                                                 @csrf
                                                 @method('delete')
 
                                                 <a class="btn btn-primary btn-sm"
                                                     href="{{ route('admin.estandares.edit', $estandar) }}">Editar</a>
-
                                                 <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                                             </form>
                                         </td>
@@ -82,83 +82,83 @@
             <!-- /.container-fluid -->
         </div>
         <!-- /.content -->
-    {{-- </div> --}}
-@endsection
+        {{-- </div> --}}
+    @endsection
 
-@section('script')
-    <!-- SweetAlert2 -->
-    {!! Html::script('adminlte/plugins/sweetalert2/sweetalert2.min.js') !!}
-    @if (session('flash') == 'actualizado')
-        <script>
-            $(function () {
-                var Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000
+    @section('script')
+        <!-- SweetAlert2 -->
+        {!! Html::script('adminlte/plugins/sweetalert2/sweetalert2.min.js') !!}
+        @if (session('flash') == 'actualizado')
+            <script>
+                $(function() {
+                    var Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'El Estándar se Actualizó con Éxito.'
+                    })
                 });
-                Toast.fire({
-                    icon: 'success',
-                    title: 'El Estándar se Actualizó con Éxito.'
-                })
-            });
-        </script>
-    @endif
-    @if (session('flash') == 'registrado')
-        <script>
-            $(function () {
-                var Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000
+            </script>
+        @endif
+        @if (session('flash') == 'registrado')
+            <script>
+                $(function() {
+                    var Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'El Estándar se Creó con Éxito.'
+                    })
                 });
-                Toast.fire({
-                    icon: 'success',
-                    title: 'El Estándar se Creó con Éxito.'
-                })
-            });
-        </script>
-    @endif
-    @if (session('flash') == 'eliminado')
+            </script>
+        @endif
+        @if (session('flash') == 'eliminado')
+            <script>
+                Swal.fire(
+                    '¡Eliminado!',
+                    'El Estándar se Eliminó con Éxito.',
+                    'success'
+                )
+            </script>
+        @endif
         <script>
-            Swal.fire(
-                '¡Eliminado!',
-                'El Estándar se Eliminó con Éxito.',
-                'success'
-            )
+            function enviar_formulario() {
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "¡No podrás revertir esto!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, estoy seguro!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.delete_form.submit();
+                    }
+                })
+            }
         </script>
-    @endif
-    <script>
-        function enviar_formulario() {
-            Swal.fire({
-                title: '¿Estás seguro?',
-                text: "¡No podrás revertir esto!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, estoy seguro!',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.delete_form.submit();
-                }
-            })
-        }
-    </script>
-    <!-- DataTables & Plugins -->
-    {!! Html::script('adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
-    {!! Html::script('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') !!}
-    {!! Html::script('adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js') !!}
-    {!! Html::script('adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') !!}
-    {!! Html::script('adminlte/plugins/datatables-buttons/js/dataTables.buttons.min.js') !!}
-    {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') !!}
-    {!! Html::script('adminlte/plugins/jszip/jszip.min.js') !!}
-    {!! Html::script('adminlte/plugins/pdfmake/pdfmake.min.js') !!}
-    {!! Html::script('adminlte/plugins/pdfmake/vfs_fonts.js') !!}
-    {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.html5.min.js') !!}
-    {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.print.min.js') !!}
-    {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js') !!}
-    @include('includes._datatable_language')
-@endsection
+        <!-- DataTables & Plugins -->
+        {!! Html::script('adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-buttons/js/dataTables.buttons.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') !!}
+        {!! Html::script('adminlte/plugins/jszip/jszip.min.js') !!}
+        {!! Html::script('adminlte/plugins/pdfmake/pdfmake.min.js') !!}
+        {!! Html::script('adminlte/plugins/pdfmake/vfs_fonts.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.html5.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.print.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js') !!}
+        @include('includes._datatable_language')
+    @endsection

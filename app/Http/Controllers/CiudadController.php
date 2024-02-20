@@ -106,13 +106,7 @@ class CiudadController extends Controller
 
             // Eliminar la ciudad de la base de datos
             $ciudade->delete();
-
-            return redirect()->route('admin.ciudades.index')->with('flash', 'eliminado');
         }
-
-        // Si la carpeta no existe, probablemente ya ha sido eliminada anteriormente, así que solo eliminamos la ciudad de la base de datos
-        $ciudade->delete();
-
         return redirect()->route('admin.ciudades.index')->with('flash', 'eliminado');
     }
 }

@@ -22,4 +22,9 @@ class Fuente extends Model
   {
     return $this->belongsTo(Estandar::class);
   }
+  //Relacion Uno a Muchos (Inversa)
+  public function ciudad()
+  {
+    return $this->belongsTo(Ciudad::class, 'ciudad_id'); // Asegúrate de que el nombre de la clave foránea sea correcto
+  }
 }

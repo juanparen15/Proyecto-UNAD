@@ -1488,14 +1488,14 @@
                 },
 
                 yAxis: {
-                    tooltip: {
-                        followPointer: true
-                    },
+                    // tooltip: {
+                    //     followPointer: true
+                    // },
                     title: {
                         text: 'Potencia (dBu)'
                     },
                     plotLines: [{
-                        value: 932,
+                        // value: 932,
                         color: 'red',
                         width: 1,
                         label: {
@@ -1516,27 +1516,27 @@
                     name: 'Potencia (dBu)',
                     data: [
                         [
-                            @foreach ($potenciasBuca as $pot1)
+                            @foreach ($potenciasBuca as $pot)
                                 {
-                                    name: '{{ $pot1->potenciaAM }}',
+                                    name: '{{ $pot->$pot1 }}',
                                 },
-                                {{ $pot1->pot1 }},
+                                {{ $pot->pot1 }},
                             @endforeach
                         ],
                         [
-                            @foreach ($potenciasBuca as $pot2)
+                            @foreach ($potenciasBuca as $pot)
                                 {
-                                    name: '{{ $pot2->potenciaFM }}',
+                                    name: '{{ $pot->$pot2 }}',
                                 },
-                                {{ $pot2->pot2 }},
+                                {{ $pot->pot2 }},
                             @endforeach
                         ],
                         [
-                            @foreach ($potenciasBuca as $pot3)
+                            @foreach ($potenciasBuca as $pot)
                                 {
-                                    name: '{{ $pot3->potenciaDABHibrido }}',
+                                    name: '{{ $pot->$pot3 }}',
                                 },
-                                {{ $pot3->pot3 }},
+                                {{ $pot->pot3 }},
                             @endforeach
                         ],
                     ],
