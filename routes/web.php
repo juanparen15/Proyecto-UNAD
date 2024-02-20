@@ -38,7 +38,7 @@ Route::resource('dependencias', 'DependenciaController')->except([
 Route::resource('estandar', 'EstandarController')->except([
     'show',
 ])->names('admin.estandares');
-Route::resource('soporte', 'FuenteController')->except([
+Route::resource('tipo_simulacion', 'FuenteController')->except([
     'show',
 ])->names('admin.fuentes');
 Route::resource('mapas', 'PlanadquisicioneController')->names('planadquisiciones');

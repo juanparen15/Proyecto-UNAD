@@ -38,10 +38,24 @@ class CiudadController extends Controller
 
     public function store(StoreRequest $request)
     {
+
+        $slug = Str::slug($request->detciudad);
+
+        // Verificar si ya existe un Inventario con el mismo slug
+        $counter = 1;
+        while (Ciudad::where('slug', $slug)->exists()) {
+            $slug = Str::slug($request->detciudad . '-' . $counter, '-');
+            $counter++;
+        }
+        // Obtén el último ID en la tabla y agrega 1 para generar un número de orden único
+        $ultimoId = Ciudad::max('id') + 1;
+
+        $slugWithId = $slug . '-' . $ultimoId;
+
         // Crear la ciudad en la base de datos
         $ciudad = Ciudad::create([
             'detciudad' => $request->detciudad,
-            'slug' => Str::slug($request->detciudad, '-')
+            'slug' => $slugWithId
         ]);
 
         // Crear la carpeta para la ciudad utilizando el nombre ingresado
@@ -70,13 +84,27 @@ class CiudadController extends Controller
     public function update(UpdateRequest $request, Ciudad $ciudade)
     {
 
+        $slug = Str::slug($request->detciudad);
+
+        // Verificar si el nuevo slug ya existe para otro registro
+        $counter = 1;
+        while (Ciudad::where('slug', $slug)->where('id', '<>', $ciudade->id)->exists()) {
+            $slug = $slug . '-' . $counter;
+            $counter++;
+        }
+
+        // Obtén el último ID en la tabla y agrega 1 para generar un número de orden único
+        $ultimoId = Ciudad::max('id');
+
+        $slugWithId = $slug . '-' . $ultimoId;
+
         // Obtiene el nombre antiguo de la ciudad antes de la actualización
         $oldCiudad = $ciudade->detciudad;
 
         // Actualiza la ciudad en la base de datos
         $ciudade->update([
             'detciudad' => $request->detciudad,
-            'slug' => Str::slug($request->detciudad, '-')
+            'slug' => $slugWithId
         ]);
 
         // Verifica si el nombre de la ciudad ha cambiado

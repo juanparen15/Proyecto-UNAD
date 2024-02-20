@@ -59,15 +59,18 @@
                                         <td>{{ $estandar->ciudad->detciudad }}</td>
                                         <td>{{ $estandar->detestandar }}</td>
 
-                                        <td width="10px">
-                                            <form action="{{ route('admin.estandares.destroy', $estandar) }}"
-                                                method="POST">
+                                        <td>
+                                            <a class="btn btn-primary btn-sm"
+                                                href="{{ route('admin.estandares.edit', $estandar) }}">Editar</a>
+
+                                            <form id="deleteForm_{{ $estandar->id }}"
+                                                action="{{ route('admin.estandares.destroy', $estandar) }}" method="POST"
+                                                style="display: inline;">
                                                 @csrf
                                                 @method('delete')
-
-                                                <a class="btn btn-primary btn-sm"
-                                                    href="{{ route('admin.estandares.edit', $estandar) }}">Editar</a>
-                                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash"></i> Eliminar
+                                                </button>
                                             </form>
                                         </td>
                                     </tr>
@@ -120,32 +123,34 @@
                 });
             </script>
         @endif
-        @if (session('flash') == 'eliminado')
-            <script>
-                Swal.fire(
-                    '¡Eliminado!',
-                    'El Estándar se Eliminó con Éxito.',
-                    'success'
-                )
-            </script>
-        @endif
         <script>
-            function enviar_formulario() {
-                Swal.fire({
-                    title: '¿Estás seguro?',
-                    text: "¡No podrás revertir esto!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Sí, estoy seguro!',
-                    cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.delete_form.submit();
-                    }
-                })
-            }
+            @foreach ($estandares as $estandar)
+                document.getElementById('deleteForm_{{ $estandar->id }}').addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const deleteForm = this;
+
+                    Swal.fire({
+                        title: "¿Estás seguro?",
+                        text: "¡No podrás revertir esto!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        cancelButtonText: "Cancelar",
+                        confirmButtonText: "¡Sí, eliminarlo!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                title: "Eliminado!",
+                                text: "El Estándar se Eliminó con Éxito.",
+                                icon: "success"
+                            });
+                            // Envía el formulario de eliminación
+                            deleteForm.submit();
+                        }
+                    });
+                });
+            @endforeach
         </script>
         <!-- DataTables & Plugins -->
         {!! Html::script('adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
