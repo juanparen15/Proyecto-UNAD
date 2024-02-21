@@ -86,7 +86,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
-        Laracasts\Flash\FlashServiceProvider::class,
+        // Laracasts\Flash\FlashServiceProvider::class,
     ],
 
     /*
@@ -140,7 +140,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-        'Flash' => Laracasts\Flash\Flash::class,
+        // 'Flash' => Laracasts\Flash\Flash::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
     ],
     
