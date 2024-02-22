@@ -42,6 +42,8 @@ Route::resource('tipo_simulacion', 'FuenteController')->except([
     'show',
 ])->names('admin.fuentes');
 Route::resource('mapas', 'PlanadquisicioneController')->names('planadquisiciones');
+Route::resource('emisoras', 'EmisoraController')->names('admin.emisoras');
+
 Route::get('exportar_planadquisiciones_excel/{planadquisicion}', 'PlanadquisicioneController@exportar_planadquisiciones_excel')->name('exportar_planadquisiciones_excel');
 Route::get('importar_datos', function () {
     return view('admin.importar_datos');
@@ -84,23 +86,6 @@ Route::put('mapas/', 'PlanadquisicioneController@update')->name('planadquisicion
 Route::put('mapas/mostrar', 'PlanadquisicioneController@show')->name('planadquisiciones.show');
 Route::resource('recomendaciones', 'RecomendacionController');
 
-
-// Route::put('planadquisiciones/{planadquisicione}', 'PlanadquisicioneController@update')->name('planadquisiciones.update');
-
-
-// Route::get('inventario/areas/{areaId}', 'PlanadquisicioneController@indexByArea')->name('planadquisiciones.indexByArea');
-// Route::get('inventario/onlyadmin', 'PlanadquisicioneController@showOnlyAdmin')->name('planadquisiciones.showOnlyAdmin');
-// Route::get('inventario', 'PlanadquisicioneController@index')->name('planadquisiciones.index');
-// Route::get('inventario/area/{areaId}', 'PlanadquisicioneController@indexByArea')->name('planadquisiciones.indexByArea');
-
-// Route::get('ciudades/{ciudad}/editar', 'CiudadController@update')->name('admin.ciudades.update');
-// Route::get('ciudades/{ciudad}/editar', 'CiudadController@edit')->name('admin.ciudades.edit');
-
-
 // Route::get('/email/verify', 'Auth\VerificationController@show')->name('verification.notice');
 // Route::get('/email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');
 // Route::post('/email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

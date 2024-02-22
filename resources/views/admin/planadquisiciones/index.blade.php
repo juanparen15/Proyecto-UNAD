@@ -126,6 +126,7 @@
                                         <td>{{ $planadquisicion->fuente->detfuente }}</td>
                                         <td>{{ $planadquisicion->emisora->emisora ?? 'No Aplica' }}</td>
                                         <td>{{ $planadquisicion->kmz }}</td>
+                                        <td>{{ $planadquisicion->coordenadas }}</td>
                                         <td>
                                             <form action="{{ route('planadquisiciones.destroy', $planadquisicion) }}"
                                                 method="POST">

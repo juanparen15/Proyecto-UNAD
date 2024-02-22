@@ -60,9 +60,22 @@
                             class="nav-link 
             {!! active_class(route('admin.fuentes.index')) !!}
             ">
-                            <i class="nav-icon fas fa-solid fa-map-pin"></i>
+
+                            <i class="nav-icon fas fa-solid fa-route"></i>
                             <p>
                                 TIPO DE SIMULACIÓN
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('admin.emisoras.index') }}"
+                            class="nav-link 
+            {!! active_class(route('admin.emisoras.index')) !!}
+            ">
+                            <i class="nav-icon fas fa-solid fa-map-pin"></i>
+                            <p>
+                                EMISORA
                             </p>
                         </a>
                     </li>

@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckRole
 {
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $role)
     {
         if (Auth::check() && Auth::user()->hasRole('Admin')) {
             return $next($request);
         }
 
-        return redirect('/'); // Redirecciona a la página principal o donde desees
+        return redirect('/home'); // Redirecciona a la página principal o donde desees
     }
 }

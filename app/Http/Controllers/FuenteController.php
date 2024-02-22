@@ -18,14 +18,15 @@ class FuenteController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware([
-            'permission:admin.fuentes.store',
-            'permission:admin.fuentes.index',
-            'permission:admin.fuentes.create',
-            'permission:admin.fuentes.destroy',
-            'permission:admin.fuentes.update',
-            'permission:admin.fuentes.edit'
-        ]);
+        $this->middleware('role:Admin'); 
+        // $this->middleware([
+        //     'permission:admin.fuentes.store',
+        //     'permission:admin.fuentes.index',
+        //     'permission:admin.fuentes.create',
+        //     'permission:admin.fuentes.destroy',
+        //     'permission:admin.fuentes.update',
+        //     'permission:admin.fuentes.edit'
+        // ]);
     }
     public function index()
     {

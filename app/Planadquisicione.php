@@ -9,6 +9,7 @@ class Planadquisicione extends Model
 {
     protected $fillable = [
         'kmz',
+        'coordenada',
         'area_id',
         'tipoemisora_id',
         'emisora_id',

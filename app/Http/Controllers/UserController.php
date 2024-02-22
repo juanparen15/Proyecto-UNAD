@@ -15,6 +15,7 @@ class UserController extends Controller
     {
         $this->middleware('auth');
         // $this->middleware('role:Admin', ['only' => ['index']]);
+        $this->middleware('role:User', ['except' => ['show', 'edit']]);
     }
 
     public function index()

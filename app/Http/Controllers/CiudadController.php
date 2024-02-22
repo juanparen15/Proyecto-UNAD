@@ -14,14 +14,15 @@ class CiudadController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware([
-            'permission:admin.ciudades.store',
-            'permission:admin.ciudades.index',
-            'permission:admin.ciudades.create',
-            'permission:admin.ciudades.update',
-            'permission:admin.ciudades.destroy',
-            'permission:admin.ciudades.edit'
-        ]);
+        $this->middleware('role:Admin'); 
+        // $this->middleware([
+        //     'permission:admin.ciudades.store',
+        //     'permission:admin.ciudades.index',
+        //     'permission:admin.ciudades.create',
+        //     'permission:admin.ciudades.update',
+        //     'permission:admin.ciudades.destroy',
+        //     'permission:admin.ciudades.edit'
+        // ]);
     }
     public function index()
     {

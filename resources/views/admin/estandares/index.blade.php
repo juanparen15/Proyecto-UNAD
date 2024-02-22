@@ -47,8 +47,8 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>NOMBRE CIUDAD</th>
-                                    <th>NOMBRE ESTÁNDAR</th>
+                                    <th>CIUDAD</th>
+                                    <th>ESTÁNDAR</th>
                                     <th>ACCIONES</th>
                                 </tr>
                             </thead>

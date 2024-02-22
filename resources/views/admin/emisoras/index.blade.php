@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Lista de Tipo de Simulación')
+@section('title', 'Lista de Emisoras')
 @section('style')
     <!-- SweetAlert2 -->
     {!! Html::style('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') !!}
@@ -20,7 +20,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                            <li class="breadcrumb-item active">Agregar Tipo de Simulación</li>
+                            <li class="breadcrumb-item active">Agregar Emisora</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -33,11 +33,11 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Lista de Tipo de Simulación</h3>
+                        <h3 class="card-title">Lista de Emisoras</h3>
                         <div class="card-tools">
 
                             <a href="{{ route('admin.fuentes.create') }}" class="btn btn-primary">
-                                Agregar Tipo de Simulación
+                                Agregar Emisora
                             </a>
                         </div>
                     </div>
@@ -51,25 +51,27 @@
                                     <th>CIUDAD</th>
                                     <th>ESTÁNDAR</th>
                                     <th>TIPO DE SIMULACIÓN</th>
+                                    <th>EMISORA</th>
                                     <th>ACCIONES</th>
                                 </tr>
                             </thead>
                             <tbody>
 
 
-                                @foreach ($fuentes as $fuente)
+                                @foreach ($emisoras as $emisora)
                                     <tr>
-                                        <td>{{ $fuente->id }}</td>
-                                        <td>{{ $fuente->estandar->ciudad->detciudad }}</td>
-                                        <td>{{ $fuente->estandar->detestandar }}</td>
-                                        <td>{{ $fuente->detfuente }}</td>
+                                        <td>{{ $emisora->id }}</td>
+                                        <td>{{ $emisora->fuente->estandar->ciudad->detciudad }}</td>
+                                        <td>{{ $emisora->fuente->estandar->detestandar }}</td>
+                                        <td>{{ $emisora->fuente->detfuente }}</td>
+                                        <td>{{ $emisora->emisora }}</td>
 
                                         <td>
                                             <a class="btn btn-primary btn-sm"
-                                                href="{{ route('admin.fuentes.edit', $fuente) }}">Editar</a>
+                                                href="{{ route('admin.emisoras.edit', $emisora) }}">Editar</a>
 
-                                            <form id="deleteForm_{{ $fuente->id }}"
-                                                action="{{ route('admin.fuentes.destroy', $fuente) }}" method="POST"
+                                            <form id="deleteForm_{{ $emisora->id }}"
+                                                action="{{ route('admin.emisoras.destroy', $emisora) }}" method="POST"
                                                 style="display: inline;">
                                                 @csrf
                                                 @method('delete')
@@ -105,7 +107,7 @@
                     });
                     Toast.fire({
                         icon: 'success',
-                        title: 'El Tipo de Simulación se Actualizó con Éxito.'
+                        title: 'La Emisora se Actualizó con Éxito.'
                     })
                 });
             </script>
@@ -121,7 +123,7 @@
                     });
                     Toast.fire({
                         icon: 'success',
-                        title: 'El Tipo de Simulación se Creó con Éxito.'
+                        title: 'La Emisora se Creó con Éxito.'
                     })
                 });
             </script>
@@ -130,14 +132,14 @@
         <script>
             Swal.fire(
                 '¡Eliminado!',
-                'El Tipo de Simulación se Eliminó con Éxito.',
+                'La Emisora se Eliminó con Éxito.',
                 'success'
             )
         </script>
     @endif --}}
         <script>
-            @foreach ($fuentes as $fuente)
-                document.getElementById('deleteForm_{{ $fuente->id }}').addEventListener('submit', function(event) {
+            @foreach ($emisoras as $emisora)
+                document.getElementById('deleteForm_{{ $emisora->id }}').addEventListener('submit', function(event) {
                     event.preventDefault();
                     const deleteForm = this;
 
@@ -154,7 +156,7 @@
                         if (result.isConfirmed) {
                             Swal.fire({
                                 title: "Eliminado!",
-                                text: "El Tipo de Simulación se Eliminó con Éxito.",
+                                text: "La Emisora se Eliminó con Éxito.",
                                 icon: "success"
                             });
                             // Envía el formulario de eliminación

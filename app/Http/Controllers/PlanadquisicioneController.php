@@ -10,12 +10,15 @@ use App\Exports\PlanadquisicioneAllExport;
 use App\Exports\PlanadquisicioneExport;
 use App\Ciudad;
 use App\Emisora;
+use App\Http\Requests\Planadquisicione\StoreRequest;
+use App\Http\Requests\Planadquisicione\UpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class PlanadquisicioneController extends Controller
 {
@@ -28,6 +31,8 @@ class PlanadquisicioneController extends Controller
             // 'permission:planadquisiciones.index',
             // 'permission:supervisor.planadquisiciones.index',
         ]);
+        // $this->middleware('role:Admin');
+        $this->middleware('role:User', ['except' => ['show']]);
     }
 
     public function showOnlyAdmin()
@@ -42,48 +47,9 @@ class PlanadquisicioneController extends Controller
     public function index()
     {
 
-        // $user = auth()->user();
-        // if ($user->hasRole('Admin')) {
-        //     $planadquisiciones = Planadquisicione::get();
-        // } else {
-        //     $planadquisiciones = Planadquisicione::where('area_id', $user->area_id)->get();
-        // }
-
-
-        // if (session('showOnlyAdmin')) {
-        //     $adminId = auth()->user()->id;
-        //     $planadquisiciones = Planadquisicione::where('user_id', $adminId)->get();
-        //     // $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->get();
-        //     session()->forget('showOnlyAdmin');
-        // } else {
-        //     $planadquisiciones = Planadquisicione::get();
-        //     $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->get();
-        // }
-
-        // $minutes = 60; //  duración de la caché en minutos
         if (auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Supervisor')) {
             $planadquisiciones = Planadquisicione::get();
-            // $planadquisiciones = Planadquisicione::paginate(13);
-            // $planadquisiciones = Cache::remember('planadquisiciones', $minutes, function () {
-            //     return Planadquisicione::get();
-            // });
-            // $planadquisiciones = [];
-
-            // Planadquisicione::chunk(200, function ($resultados) use (&$planadquisiciones) {
-            //     $planadquisiciones = array_merge($planadquisiciones, $resultados->toArray());
-            // });
-
-
-            // $planadquisiciones = Cache::remember('planadquisiciones', $minutes, function () {
-            //     return Planadquisicione::get();
-            // });
-
-            // $planadquisiciones = Planadquisicione::limit(50)->get();
-            // $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->get();
         } else {
-            // $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->limit(13)->get();
-            // $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->get();
-            // $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->paginate(13);
             $planadquisiciones = Planadquisicione::get();
         }
         return view('admin.planadquisiciones.index', compact('planadquisiciones'));
@@ -118,16 +84,14 @@ class PlanadquisicioneController extends Controller
 
 
 
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
 
         $request->validate([
             'tipoemisora_id' => ['required'],
-            'emisora_id' => ['required'],
+            // 'emisora_id' => ['required'],
             // 'area_id' => ['required']
         ]);
-
-
 
         $slug = Str::slug($request->kmz);
 
@@ -142,21 +106,33 @@ class PlanadquisicioneController extends Controller
         $ultimoId = Planadquisicione::max('id') + 1;
 
         $slugWithId = $slug . '-' . $ultimoId;
-        // $slugWithId = $slug . '-';
 
-        // // Agregar el ID al slug
-        // $slugWithId = $slug . '-' . $counter;
-
-        // // Generar un sufijo único aleatorio (por ejemplo, un número aleatorio)
-        // $uniqueSuffix = uniqid();
-
-        // $slugWithId = $slug . '-' . $uniqueSuffix;
         $planadquisicione = Planadquisicione::create(array_merge($request->all(), [
-            // 'fechaInicial' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->fechaInicial)->format('Y-m-d'),
-            // 'fechaFinal' => \Carbon\Carbon::createFromFormat('d/m/Y', $request->fechaFinal)->format('Y-m-d'),
             'user_id' => auth()->user()->id,
+            'kmz' => $request->kmz,
+            'coordenada' => $request->coordenada,
             'slug' => $slugWithId,  // Utiliza el slug con el ID agregado
         ]));
+
+        // Obtener el nombre de la ciudad utilizando el ID
+        $nombreCiudad = Ciudad::findOrFail($request->ciudad_id)->detciudad;
+        $nombreEstandar = Estandar::findOrFail($request->estandar_id)->detestandar;
+        $nombreTipoEmisora = Fuente::findOrFail($request->tipoemisora_id)->detfuente;
+        $nombreEmisora = Emisora::findOrFail($request->emisora_id)->emisora;
+        $nombreCarpetaKmz = File::makeDirectory('kmz', 0777, true);
+
+        // Crear la carpeta para el estándar de la ciudad utilizando el nombre ingresado
+        if (!File::exists($nombreEmisora)) {
+            $carpetaKmz = public_path() . '/adminlte/simulaciones/' . $nombreCiudad . '/' . $nombreEstandar . '/' . $nombreTipoEmisora . '/' . $nombreEmisora . '/' . $nombreCarpetaKmz . '/' . $request->kmz;
+        } else {
+            $carpetaKmz = public_path() . '/adminlte/simulaciones/' . $nombreCiudad . '/' . $nombreEstandar . '/' . $nombreTipoEmisora . '/' . $nombreCarpetaKmz . '/' . $request->kmz;
+        }
+
+        // Verificar si la carpeta no existe y luego crearla
+        if (!File::exists($carpetaKmz)) {
+            File::makeDirectory($carpetaKmz, 0777, true);
+        }
+
         return redirect()->route('planadquisiciones.index')->with('flash', 'registrado');
     }
 
