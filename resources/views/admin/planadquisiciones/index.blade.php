@@ -81,14 +81,14 @@
 
 
                             @if (auth()->user()->hasRole('Admin'))
-                                <a href="{{ route('planadquisiciones.create') }}" class="btn btn-primary">
+                                <a href="{{ route('admin.planadquisiciones.create') }}" class="btn btn-primary">
                                     <i class="nav-icon fas fa-map"></i> Crear Mapas
                                 </a>
-                                <a href="{{ route('planadquisiciones.show') }}" class="btn btn-success">
+                                <a href="{{ route('admin.planadquisiciones.show') }}" class="btn btn-success">
                                     <i class="nav-icon fas fa-map"></i> Mostrar Mapas
                                 </a>
                             @elseif (auth()->user()->hasRole('User'))
-                                <a href="{{ route('planadquisiciones.show') }}" class="btn btn-success">
+                                <a href="{{ route('admin.planadquisiciones.show') }}" class="btn btn-success">
                                     <i class="nav-icon fas fa-map"></i> Mostrar Mapas
                                 </a>
                             @endif
@@ -121,14 +121,14 @@
                                 @foreach ($planadquisiciones as $planadquisicion)
                                     <tr>
                                         <td>{{ $planadquisicion->id }}</td>
-                                        <td>{{ $planadquisicion->fuente->estandar->ciudad->detciudad }}</td>
-                                        <td>{{ $planadquisicion->fuente->estandar->detestandar }}</td>
-                                        <td>{{ $planadquisicion->fuente->detfuente }}</td>
+                                        <td>{{ $planadquisicion->tipo->estandar->ciudad->detciudad }}</td>
+                                        <td>{{ $planadquisicion->tipo->estandar->detestandar }}</td>
+                                        <td>{{ $planadquisicion->tipo->detfuente }}</td>
                                         <td>{{ $planadquisicion->emisora->emisora ?? 'No Aplica' }}</td>
                                         <td>{{ $planadquisicion->kmz }}</td>
                                         <td>{{ $planadquisicion->coordenadas }}</td>
                                         <td>
-                                            <form action="{{ route('planadquisiciones.destroy', $planadquisicion) }}"
+                                            <form action="{{ route('admin.planadquisiciones.destroy', $planadquisicion) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('delete')
@@ -149,7 +149,7 @@
                                                 {{-- @can('planadquisiciones.edit') --}}
                                                 @if (auth()->user()->hasRole('Admin'))
                                                     <a class="btn btn-primary btn-sm"
-                                                        href="{{ route('planadquisiciones.edit', $planadquisicion) }}">Editar</a>
+                                                        href="{{ route('admin.planadquisiciones.edit', $planadquisicion) }}">Editar</a>
 
                                                     {{-- @endcan --}}
 

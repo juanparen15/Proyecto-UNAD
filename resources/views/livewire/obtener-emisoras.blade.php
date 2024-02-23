@@ -34,13 +34,13 @@
                     @enderror
                 </div>
             @endif
-            @if (!is_null($fuentes))
+            @if (!is_null($tipos))
                 <div class="form-group">
                     <label for="tipoemisora_id">Tipo de Emisora</label>
                     <select wire:model="selectedTipoemisora" class="form-control select2" style="width: 100%">
                         <option value="" disabled selected>Seleccione el Tipo de Emisora:</option>
-                        @foreach ($fuentes as $fuente)
-                            <option value="{{ $fuente->id }}">{{ $fuente->detfuente }}</option>
+                        @foreach ($tipos as $tipo)
+                            <option value="{{ $tipo->id }}">{{ $tipo->detfuente }}</option>
                         @endforeach
                     </select>
                 </div>

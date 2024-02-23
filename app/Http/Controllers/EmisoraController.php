@@ -9,6 +9,7 @@ use App\Fuente;
 use Illuminate\Http\Request;
 use App\Http\Requests\Emisora\StoreRequest;
 use App\Http\Requests\Emisora\UpdateRequest;
+use App\TipoSimulacion;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 
@@ -18,7 +19,7 @@ class EmisoraController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:Admin'); 
+        $this->middleware('role:Admin');
         // $this->middleware([
         //     'permission:admin.emisoras.store',
         //     'permission:admin.emisoras.index',
@@ -39,9 +40,9 @@ class EmisoraController extends Controller
     {
         $ciudades = Ciudad::get();
         $estandares = Estandar::get();
-        $fuentes = Fuente::get();
+        $tipos = TipoSimulacion::get();
 
-        return view('admin.emisoras.create', compact('estandares', 'ciudades', 'fuentes', 'emisora'));
+        return view('admin.emisoras.create', compact('estandares', 'ciudades', 'tipos', 'emisora'));
     }
 
     public function store(StoreRequest $request)
@@ -80,6 +81,18 @@ class EmisoraController extends Controller
         if (!File::exists($carpetaEmisora)) {
             File::makeDirectory($carpetaEmisora, 0777, true);
         }
+
+        // Rutas de origen y destino para los directorios que deseas copiar
+        $rutaCss = public_path('/adminlte/ExtensionesMapas/css');
+        $rutaJs = public_path('/adminlte/ExtensionesMapas/js');
+        $rutaWebFonts = public_path('/adminlte/ExtensionesMapas/webfonts');
+        $rutaDestino = $carpetaEmisora . '/'; // La carpeta de destino que ya has creado
+
+        // Copiar los directorios y su contenido
+        File::copyDirectory($rutaCss, $rutaDestino);
+        File::copyDirectory($rutaJs, $rutaDestino);
+        File::copyDirectory($rutaWebFonts, $rutaDestino);
+
         return redirect()->route('admin.emisoras.index')->with('flash', 'registrado');
     }
 

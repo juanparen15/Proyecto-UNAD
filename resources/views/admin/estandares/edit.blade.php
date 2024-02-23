@@ -32,7 +32,7 @@
             <div class="card card-primary">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="ciudad_id">CIUDAD </label>
+                        <label for="ciudad_id">CIUDAD:</label>
                         <select class="select2 @error('ciudad_id') is-invalid @enderror" name="ciudad_id" id="ciudad_id" style="width: 100%;">
                             <option disabled>Selecciona una Ciudad</option>
                             @foreach ($ciudades as $ciudad)

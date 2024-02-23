@@ -27,7 +27,7 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="form-group">
-                        <form action="{{ route('planadquisicione.import.excel') }}" method="POST"
+                        <form action="{{ route('admin.planadquisicione.import.excel') }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             {{-- <input type="file" name="file" class="custom-file-input" required> --}}
@@ -35,11 +35,12 @@
                                 <div class="custom-file" style="width: 100%">
                                     <input type="file" accept=".xls,.xlsx,.xlsm" name="file" class="custom-file-input"
                                         id="inputGroupFile01">
-                                    <label class="custom-file-label" style="width: 100%" for="inputGroupFile01">Seleccionar Archivo de
+                                    <label class="custom-file-label" style="width: 100%" for="inputGroupFile01">Seleccionar
+                                        Archivo de
                                         Excel</label>
                                 </div>
                                 <button id="importButton" class="btn btn-primary float-left">Importar Gráficas</button>
-                                <form action="{{ route('planadquisicione.delete.excel') }}" method="POST"
+                                <form action="{{ route('admin.planadquisicione.delete.excel') }}" method="POST"
                                     enctype="multipart/form-data" id="deleteForm">
                                     @csrf
                                     <button id="deleteButton" class="btn btn-danger float-left">Eliminar Gráficas</button>

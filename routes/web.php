@@ -38,10 +38,10 @@ Route::resource('dependencias', 'DependenciaController')->except([
 Route::resource('estandar', 'EstandarController')->except([
     'show',
 ])->names('admin.estandares');
-Route::resource('tipo_simulacion', 'FuenteController')->except([
+Route::resource('tipo_simulacion', 'TipoSimulacionController')->except([
     'show',
-])->names('admin.fuentes');
-Route::resource('mapas', 'PlanadquisicioneController')->names('planadquisiciones');
+])->names('admin.tipos');
+Route::resource('mapas', 'PlanadquisicioneController')->names('admin.planadquisiciones');
 Route::resource('emisoras', 'EmisoraController')->names('admin.emisoras');
 
 Route::get('exportar_planadquisiciones_excel/{planadquisicion}', 'PlanadquisicioneController@exportar_planadquisiciones_excel')->name('exportar_planadquisiciones_excel');
@@ -74,16 +74,22 @@ Route::get('/get-emisoras/{tipoemisora_id}', 'AjaxController@obtener_emisora');
 
 Route::resource('users', 'UserController')->names('users');
 // ================== rutas para importar datos 
-Route::post('potencia_import', 'ImportExcelController@potencia_import')->name('planadquisicione.import.excel');
+Route::post('potencia_import', 'ImportExcelController@potencia_import')->name('admin.planadquisicione.import.excel');
 // ================== RUTAS PARA ELIMINAR DASHBOARD =====================
-Route::post('potencia_delete', 'ImportExcelController@potencia_delete')->name('planadquisicione.delete.excel');
+Route::post('potencia_delete', 'ImportExcelController@potencia_delete')->name('admin.planadquisicione.delete.excel');
 
 
 //new
-Route::get('inventario-export', 'PlanadquisicioneController@export')->name('planadquisiciones.export');
+Route::get('inventario-export', 'PlanadquisicioneController@export')->name('admin.planadquisiciones.export');
 Route::put('update-profile/{user}', 'UserController@updateProfile')->name('update.profile');
-Route::put('mapas/', 'PlanadquisicioneController@update')->name('planadquisiciones.update');
-Route::put('mapas/mostrar', 'PlanadquisicioneController@show')->name('planadquisiciones.show');
+Route::put('mapas/{mapa}', 'PlanadquisicioneController@update')->name('admin.planadquisiciones.update');
+Route::put('mapas/', 'PlanadquisicioneController@index')->name('admin.planadquisiciones.index');
+Route::put('mapas/mostrar', 'PlanadquisicioneController@show')->name('admin.planadquisiciones.show');
+
+
+// Route::put('tipo_simulacion/', 'FuenteController@update')->name('admin.fuentes.update');
+// Route::put('tipo_simulacion/', 'TipoSimulacionController@update')->name('admin.tipos.update');
+
 Route::resource('recomendaciones', 'RecomendacionController');
 
 // Route::get('/email/verify', 'Auth\VerificationController@show')->name('verification.notice');

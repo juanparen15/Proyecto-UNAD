@@ -22,7 +22,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('admin.fuentes.index') }}">Tipo de Simulación</a>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.tipos.index') }}">Tipo de Simulación</a>
                             </li>
                             <li class="breadcrumb-item active">Crear Nuevo Tipo de Simulación</li>
                         </ol>
@@ -33,7 +33,7 @@
 
         <!-- Main content -->
         <section class="content">
-            {!! Form::open(['route' => 'admin.fuentes.store', 'method' => 'POST']) !!}
+            {!! Form::open(['route' => 'admin.tipos.store', 'method' => 'POST']) !!}
             <div class="card">
                 {{--  <div class="card-header">
               <h3 class="card-title">General</h3>

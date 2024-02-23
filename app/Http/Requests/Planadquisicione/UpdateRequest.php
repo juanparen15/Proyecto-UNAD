@@ -13,7 +13,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'kmz'=> 'required',
+            'coordenadaX'=> 'required',
+            'coordenadaY'=> 'required',
         ];
     }
 }

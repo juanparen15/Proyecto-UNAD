@@ -9,18 +9,20 @@ class Planadquisicione extends Model
 {
     protected $fillable = [
         'kmz',
-        'coordenada',
-        'area_id',
+        'coordenadaX',
+        'coordenadaY',
+        // 'area_id',
         'tipoemisora_id',
-        'emisora_id',
+        // 'emisora_id',
         'user_id',
         'slug'
     ];
     protected $with =[
         'user',
-        'fuente',
+        'tipo',
         'area',
         'emisora',
+        'estandar',
     ];
 
     // public function show($id, $slug)
@@ -51,9 +53,9 @@ class Planadquisicione extends Model
     }
     
     //Relacion Uno a Muchos (Inversa)
-    public function fuente()
+    public function tipo()
     {
-        return $this->belongsTo(Fuente::class, 'tipoemisora_id');
+        return $this->belongsTo(TipoSimulacion::class, 'tipoemisora_id');
     }
 
     //Relacion Uno a Muchos (Inversa)

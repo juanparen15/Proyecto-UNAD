@@ -46,7 +46,7 @@
 
         <!-- Main content -->
         <section class="content">
-            {!! Form::open(['route' => 'planadquisiciones.show', 'method' => 'POST']) !!}
+            {!! Form::open(['route' => 'admin.planadquisiciones.show', 'method' => 'POST']) !!}
             <div class="card" style="width: 100%;">
                 <div class="card-body">
                     <div class="form-row">
@@ -99,7 +99,7 @@
                             <div class="form-group">
                                 <input type="submit" value="Mostrar Mapa" class="btn btn-primary" style="width: 100%">
                                 @if (auth()->user()->hasRole('Admin'))
-                                    <a href="{{ route('planadquisiciones.index') }}" class="btn btn-success" style="width: 100%">
+                                    <a href="{{ route('admin.planadquisiciones.index') }}" class="btn btn-success" style="width: 100%">
                                         <i class="nav-icon fas fa-map"></i> Editar Mapas
                                     </a>
                                 @endif

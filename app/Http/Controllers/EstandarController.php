@@ -107,6 +107,8 @@ class EstandarController extends Controller
         // Guardar el nombre anterior del estándar
         $oldEstandarName = $estandar->detestandar;
 
+        dd($oldEstandarName);
+
         // Actualizar los datos del estándar en la base de datos
         $estandar->update([
             'detestandar' => $request->detestandar,

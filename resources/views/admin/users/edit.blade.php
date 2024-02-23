@@ -151,9 +151,9 @@
                                     <div class="form-group">
                                         <label for="role">Rol</label>
                                         <select id="role" name="role"
-                                            class="select2 @error('role') is-invalid @enderror" multiple="multiple"
+                                            class="select2 @error('role') is-invalid @enderror"
                                             data-placeholder="Selecciona un rol" style="width: 100%;">
-                                            {{-- <option selected disabled>Selecciona area</option> --}}
+                                            <option selected disabled>Selecciona Rol</option>
                                             @foreach ($roles as $role)
                                                 <option value="{{ $role->name }}"
                                                     {{ collect(old('role', $user->getRoleNames()))->contains($role->name) ? 'selected' : '' }}>

@@ -18,7 +18,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('planadquisiciones.index') }}">Mapa</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.planadquisiciones.index') }}">Mapa</a></li>
                             <li class="breadcrumb-item active">Editar Mapa</li>
                         </ol>
                     </div>
@@ -29,7 +29,7 @@
         <!-- Main content -->
         <section class="content">
             {{-- {!! Form::model($planadquisicione, ['route' => ['planadquisiciones.update', $planadquisicione], 'method' => 'PUT']) !!} --}}
-            {!! Form::model($inventario, ['route' => ['planadquisiciones.update', $inventario->id], 'method' => 'PUT']) !!}
+            {!! Form::model($inventario, ['route' => ['admin.planadquisiciones.update', $inventario->id], 'method' => 'PUT']) !!}
 
             <div class="card card-primary">
                 {{-- <div class="card-header">

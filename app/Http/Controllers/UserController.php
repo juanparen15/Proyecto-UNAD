@@ -23,11 +23,10 @@ class UserController extends Controller
         $users = User::orderBy('id', 'DESC')->get();
         return view('admin.users.index', compact('users'));
     }
-    public function create()
+    public function create(User $user)
     {
         $roles = Role::all();
-        // $areas = Area::get();
-        return view('admin.users.create', compact('roles'));
+        return view('admin.users.create', compact('user','roles'));
     }
     public function store(Request $request, User $user)
     {

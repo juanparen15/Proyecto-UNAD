@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Ciudad;
-use App\Emisora;
 use App\Estandar;
 use App\Fuente;
 use Illuminate\Http\Request;
@@ -18,7 +17,7 @@ class FuenteController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:Admin'); 
+        $this->middleware('role:Admin');
         // $this->middleware([
         //     'permission:admin.fuentes.store',
         //     'permission:admin.fuentes.index',
@@ -35,14 +34,12 @@ class FuenteController extends Controller
     }
 
 
-    public function create(Fuente $fuente)
+    public function create()
     {
         $ciudades = Ciudad::get();
         $estandares = Estandar::get();
-        $fuentes = Fuente::get();
-        $emisoras = Emisora::get();
 
-        return view('admin.fuentes.create', compact('estandares', 'ciudades', 'fuentes', 'emisoras', 'fuente'));
+        return view('admin.fuentes.create', compact('estandares', 'ciudades'));
     }
 
     public function store(StoreRequest $request)
@@ -75,10 +72,11 @@ class FuenteController extends Controller
 
         // Crear la carpeta para el estándar de la ciudad utilizando el nombre ingresado
         $carpetaFuente = public_path() . '/adminlte/simulaciones/' . $nombreCiudad . '/' . $nombreEstandar . '/' . $request->detfuente;
-
+        $kmz = 'kmz';
         // Verificar si la carpeta no existe y luego crearla
         if (!File::exists($carpetaFuente)) {
             File::makeDirectory($carpetaFuente, 0777, true);
+            File::makeDirectory($carpetaFuente . '/' . $kmz, 0777, true);
         }
         return redirect()->route('admin.fuentes.index')->with('flash', 'registrado');
     }
@@ -86,28 +84,34 @@ class FuenteController extends Controller
 
     public function show(Fuente $fuente)
     {
+        return view('admin.fuentes.show', compact('fuente'));
+    }
+
+
+    public function edit(Fuente $fuentes, $slug)
+    {
+        $fuentes = Fuente::where('slug', $slug)->firstOrFail();
         $ciudades = Ciudad::get();
-        $estandares = Estandar::get();
-        $fuentes = Fuente::get();
-        $emisoras = Emisora::get();
+        // $estandares = Estandar::get();
+        $estandares = Estandar::where('ciudad_id', $fuentes->estandar->ciudad_id)->get();
+        // $fuentes = Fuente::get();
 
-        return view('admin.fuentes.show', compact('estandares', 'ciudades', 'fuentes', 'emisoras', 'fuente'));
+        // dd($fuentes);
+
+        return view('admin.fuentes.edit', compact('estandares', 'ciudades', 'fuentes'));
     }
 
 
-    public function edit(Fuente $soporte)
+    public function update(UpdateRequest $request, Fuente $fuentes)
     {
-        return view('admin.fuentes.edit', compact('soporte'));
-    }
 
+        // $fuente = Fuente::all();
 
-    public function update(UpdateRequest $request, Fuente $soporte)
-    {
         $slug = Str::slug($request->detfuente);
 
         // Verificar si el nuevo slug ya existe para otro registro
         $counter = 1;
-        while (Fuente::where('slug', $slug)->where('id', '<>', $soporte->id)->exists()) {
+        while (Fuente::where('slug', $slug)->where('id', '<>', $fuentes->id)->exists()) {
             $slug = $slug . '-' . $counter;
             $counter++;
         }
@@ -118,13 +122,13 @@ class FuenteController extends Controller
         $slugWithId = $slug . '-' . $ultimoId;
 
         // Guardar el nombre anterior del estándar
-        $oldTipoEmisoraName = $soporte->detfuente;
+        $oldTipoEmisoraName = $fuentes->detfuente;
 
 
-        $soporte->update([
+        $fuentes->update([
             'detfuente' => $request->detfuente,
             'slug' => $slugWithId,
-            'estandar_id' => $request->estandar_id
+            'estandar_id' => $request->estandar_id,
         ]);
 
         // Verificar si el nombre del estándar ha cambiado
@@ -138,29 +142,30 @@ class FuenteController extends Controller
             $newFolderPath = public_path() . '/adminlte/simulaciones/' . $nombreCiudad . '/' . $nombreEstandar . '/' . $request->detfuente;
 
             if (File::exists($oldFolderPath)) {
+                // sleep(5); // Espera 5 segundos
                 File::move($oldFolderPath, $newFolderPath);
             }
         }
         return redirect()->route('admin.fuentes.index')->with('flash', 'actualizado');
     }
 
-    public function destroy(Fuente $soporte)
+    public function destroy(Fuente $fuentes)
     {
 
         // Obtener el nombre de la ciudad utilizando el ID del estándar
-        $nombreCiudad = $soporte->estandar->ciudad->detciudad;
-        $nombreEstandar = $soporte->estandar->detestandar;
+        $nombreCiudad = $fuentes->estandar->ciudad->detciudad;
+        $nombreEstandar = $fuentes->estandar->detestandar;
 
         // Ruta de la carpeta asociada al estándar
-        $folderPath = public_path() . '/adminlte/simulaciones/' . $nombreCiudad . '/' . $nombreEstandar . '/' . $soporte->detfuente;
+        $folderPath = public_path() . '/adminlte/simulaciones/' . $nombreCiudad . '/' . $nombreEstandar . '/' . $fuentes->detfuente;
 
         // Verificar si la carpeta existe antes de intentar eliminarla
         if (File::exists($folderPath)) {
             // Eliminar la carpeta asociada al estándar
             File::deleteDirectory($folderPath);
         }
-        $soporte->delete();
-        
+        $fuentes->delete();
+
         return redirect()->route('admin.fuentes.index')->with('flash', 'eliminado');
     }
 }

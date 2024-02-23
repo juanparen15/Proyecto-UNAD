@@ -45,6 +45,9 @@
                 </section>
             </div>
         </div>
-        <center><img style="width: 62%; height: 100%;" src="{{ asset('homeland/images/Logo_de_la_UNAD.png') }}">
+        {{-- <center><img style="width: 62%; height: 100%;" src="{{ asset('homeland/images/Logo_de_la_UNAD.png') }}"> --}}
+        <center>
+            <img style="width: 60%; height: 100%;" src="{{ asset('adminlte/dist/img/Logo-UNAD1.png') }}">
+            {{-- <img style="width: 50%; height: 100%;" src="{{ asset('adminlte/dist/img/logo_min_ciencias_0.png') }}"> --}}
         </center>
     @endsection

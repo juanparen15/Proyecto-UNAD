@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Fuente;
+namespace App\Http\Requests\TipoSimulacion;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,6 +25,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'detfuente' => 'required',
+            'estandar_id' => 'required',
         ];
     }
 }

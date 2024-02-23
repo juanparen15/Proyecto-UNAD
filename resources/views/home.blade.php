@@ -49,8 +49,18 @@
                         </div>
                 </div>
                 </section>
-                <center><img style="width: 50%; height: 100%;" src="{{ asset('homeland/images/Logo_de_la_UNAD.png') }}">
-                </center>
+                <div class="card-group">
+
+                    <div class="card-img col-lg-7 col-7 mx-auto d-block">
+                        <img style="width: 100%; height: 90%;" class="img-fluid"
+                            src="{{ asset('adminlte/dist/img/Logo-UNAD1.png') }}">
+                    </div>
+                    {{-- <div class="card-img col-lg-9 col-9 mx-auto d-block"> --}}
+                    {{-- <img style="width: 100%; height: 100%;" class="img-fluid"
+                        src="{{ asset('adminlte/dist/img/Logo-UNAD1.png') }}"> --}}
+                    {{-- </div> --}}
+                </div>
             </div>
         </div>
+        {{-- </div> --}}
     @endsection

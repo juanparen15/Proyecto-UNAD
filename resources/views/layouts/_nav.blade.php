@@ -55,10 +55,10 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="{{ route('admin.fuentes.index') }}"
+                    {{-- <li class="nav-item">
+                        <a href="{{ route('admin.tipos.index') }}"
                             class="nav-link 
-            {!! active_class(route('admin.fuentes.index')) !!}
+            {!! active_class(route('admin.tipos.index')) !!}
             ">
 
                             <i class="nav-icon fas fa-solid fa-route"></i>
@@ -78,13 +78,13 @@
                                 EMISORA
                             </p>
                         </a>
-                    </li>
+                    </li> --}}
 
                     {{-- @if (auth()->user()->hasRole('Admin')) --}}
                     <li class="nav-item">
-                        <a href="{{ route('planadquisiciones.show') }}"
+                        <a href="{{ route('admin.planadquisiciones.show') }}"
                             class="nav-link 
-            {!! active_class(route('planadquisiciones.show')) !!}
+            {!! active_class(route('admin.planadquisiciones.show')) !!}
             ">
                             <i class="nav-icon fas fa-map"></i>
                             <p>

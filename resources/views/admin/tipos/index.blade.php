@@ -36,7 +36,7 @@
                         <h3 class="card-title">Lista de Tipo de Simulación</h3>
                         <div class="card-tools">
 
-                            <a href="{{ route('admin.fuentes.create') }}" class="btn btn-primary">
+                            <a href="{{ route('admin.tipos.create') }}" class="btn btn-primary">
                                 Agregar Tipo de Simulación
                             </a>
                         </div>
@@ -57,19 +57,19 @@
                             <tbody>
 
 
-                                @foreach ($fuentes as $fuente)
+                                @foreach ($tipos as $tipo)
                                     <tr>
-                                        <td>{{ $fuente->id }}</td>
-                                        <td>{{ $fuente->estandar->ciudad->detciudad }}</td>
-                                        <td>{{ $fuente->estandar->detestandar }}</td>
-                                        <td>{{ $fuente->detfuente }}</td>
+                                        <td>{{ $tipo->id }}</td>
+                                        <td>{{ $tipo->estandar->ciudad->detciudad }}</td>
+                                        <td>{{ $tipo->estandar->detestandar }}</td>
+                                        <td>{{ $tipo->detfuente }}</td>
 
                                         <td>
                                             <a class="btn btn-primary btn-sm"
-                                                href="{{ route('admin.fuentes.edit', $fuente) }}">Editar</a>
+                                                href="{{ route('admin.tipos.edit', $tipo) }}">Editar</a>
 
-                                            <form id="deleteForm_{{ $fuente->id }}"
-                                                action="{{ route('admin.fuentes.destroy', $fuente) }}" method="POST"
+                                            <form id="deleteForm_{{ $tipo->id }}"
+                                                action="{{ route('admin.tipos.destroy', $tipo) }}" method="POST"
                                                 style="display: inline;">
                                                 @csrf
                                                 @method('delete')
@@ -136,8 +136,8 @@
         </script>
     @endif --}}
         <script>
-            @foreach ($fuentes as $fuente)
-                document.getElementById('deleteForm_{{ $fuente->id }}').addEventListener('submit', function(event) {
+            @foreach ($tipos as $tipo)
+                document.getElementById('deleteForm_{{ $tipo->id }}').addEventListener('submit', function(event) {
                     event.preventDefault();
                     const deleteForm = this;
 

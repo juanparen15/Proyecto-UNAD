@@ -13,7 +13,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,15 +24,9 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'caja'=> 'required',
-            'carpeta'=> 'required',
-            'tomo'=> 'required',
-            'otro'=> 'required',
-            'folio'=> 'required',
-            'nota'=> 'required',
-            'fuente_id'=> 'required',
-            'ciudad_id'=> 'required',
-            'familias_id'=> 'required',
+            'kmz'=> 'required',
+            'coordenadaX'=> 'required',
+            'coordenadaY'=> 'required',
         ];
     }
 }

@@ -10,7 +10,7 @@ class Emisora extends Model
     protected $fillable = ['id', 'tipoemisora_id', 'emisora', 'slug'];
   
     protected $with =[
-      'fuente',
+      'tipo',
   ];
     public function getRouteKeyName()
     {
@@ -21,8 +21,8 @@ class Emisora extends Model
     {
       return $this->hasMany(Planadquisicione::class);
     }
-    public function fuente()
+    public function tipo()
     {
-      return $this->belongsTo(Fuente::class, 'tipoemisora_id');
+      return $this->belongsTo(TipoSimulacion::class, 'tipoemisora_id');
     }
   }

@@ -36,7 +36,7 @@
                         <h3 class="card-title">Lista de Emisoras</h3>
                         <div class="card-tools">
 
-                            <a href="{{ route('admin.fuentes.create') }}" class="btn btn-primary">
+                            <a href="{{ route('admin.tipos.create') }}" class="btn btn-primary">
                                 Agregar Emisora
                             </a>
                         </div>

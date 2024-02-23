@@ -18,7 +18,9 @@
             title: "Debe registrarse para acceder al sistema"
         });
     </script>
-
+    <div class="card-img col-lg-14 col-14 mx-auto d-block">
+        <img class="img-fluid" src="{{ asset('adminlte/dist/img/logo_min_ciencias_1.png') }}" alt="Responsive image">
+    </div>
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
             <a href="{{ route('welcome') }}" class="h2"><b>CRC-UNAD
@@ -88,5 +90,9 @@
         </div>
 
         {!! Form::close() !!}
+    </div>
+
+    <div class="card-img col-lg-9 col-9 mx-auto d-block">
+        <img class="img-fluid" src="{{ asset('adminlte/dist/img/Logo-UNAD1.png') }}">
     </div>
 @endsection

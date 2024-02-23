@@ -12,6 +12,7 @@ use App\Ciudad;
 use App\Emisora;
 use App\Http\Requests\Planadquisicione\StoreRequest;
 use App\Http\Requests\Planadquisicione\UpdateRequest;
+use App\TipoSimulacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
@@ -75,11 +76,10 @@ class PlanadquisicioneController extends Controller
         $ciudades = Ciudad::get();
         $estandares = Estandar::get();
         // $areas = collect([$userArea]); // Crear una colección con el área del usuario
-        $fuentes = Fuente::get();
+        $tipos = TipoSimulacion::get();
         $emisoras = Emisora::get();
-        // $requiproyectos = Requiproyecto::where('areas_id', auth()->user()->area->id)->pluck('detproyeto', 'id');
 
-        return view('admin.planadquisiciones.create', compact('estandares', 'ciudades', 'fuentes', 'emisoras', 'inventario'));
+        return view('admin.planadquisiciones.create', compact('estandares', 'ciudades', 'tipos', 'emisoras', 'inventario'));
     }
 
 
@@ -87,11 +87,11 @@ class PlanadquisicioneController extends Controller
     public function store(StoreRequest $request)
     {
 
-        $request->validate([
-            'tipoemisora_id' => ['required'],
-            // 'emisora_id' => ['required'],
-            // 'area_id' => ['required']
-        ]);
+        // $request->validate([
+        //     'tipoemisora_id' => ['required'],
+        //     // 'emisora_id' => ['required'],
+        //     // 'area_id' => ['required']
+        // ]);
 
         $slug = Str::slug($request->kmz);
 
@@ -107,33 +107,231 @@ class PlanadquisicioneController extends Controller
 
         $slugWithId = $slug . '-' . $ultimoId;
 
-        $planadquisicione = Planadquisicione::create(array_merge($request->all(), [
+        // Crear el Planadquisicione con los datos proporcionados
+        $planadquisicione = Planadquisicione::create([
             'user_id' => auth()->user()->id,
             'kmz' => $request->kmz,
-            'coordenada' => $request->coordenada,
+            'coordenadaX' => $request->coordenadaX,
+            'coordenadaY' => $request->coordenadaY,
+            'tipoemisora_id' => $request->tipoemisora_id,
             'slug' => $slugWithId,  // Utiliza el slug con el ID agregado
-        ]));
+        ]);
 
-        // Obtener el nombre de la ciudad utilizando el ID
+        // Obtener el nombre de la ciudad, estándar, tipo de emisora y emisora utilizando los IDs proporcionados
         $nombreCiudad = Ciudad::findOrFail($request->ciudad_id)->detciudad;
         $nombreEstandar = Estandar::findOrFail($request->estandar_id)->detestandar;
-        $nombreTipoEmisora = Fuente::findOrFail($request->tipoemisora_id)->detfuente;
+        $nombreTipoEmisora = TipoSimulacion::findOrFail($request->tipoemisora_id)->detfuente;
         $nombreEmisora = Emisora::findOrFail($request->emisora_id)->emisora;
-        $nombreCarpetaKmz = File::makeDirectory('kmz', 0777, true);
 
-        // Crear la carpeta para el estándar de la ciudad utilizando el nombre ingresado
-        if (!File::exists($nombreEmisora)) {
-            $carpetaKmz = public_path() . '/adminlte/simulaciones/' . $nombreCiudad . '/' . $nombreEstandar . '/' . $nombreTipoEmisora . '/' . $nombreEmisora . '/' . $nombreCarpetaKmz . '/' . $request->kmz;
-        } else {
-            $carpetaKmz = public_path() . '/adminlte/simulaciones/' . $nombreCiudad . '/' . $nombreEstandar . '/' . $nombreTipoEmisora . '/' . $nombreCarpetaKmz . '/' . $request->kmz;
+        // Definir el nombre de la carpeta "kmz"
+        $nombreCarpetaKmz = 'kmz';
+
+
+        // Construir la ruta base para la carpeta de destino
+        $carpetaBaseDestino = public_path() . '/adminlte/simulaciones/' . $nombreCiudad . '/' . $nombreEstandar . '/' . $nombreTipoEmisora . '/' . $nombreCarpetaKmz . '/' .  $request->kmz;
+        $carpetaDestino = public_path() . '/adminlte/simulaciones/' . $nombreCiudad . '/' . $nombreEstandar . '/' . $nombreTipoEmisora . '/';
+
+        // Verificar si la carpeta de destino no existe y luego crearla
+        if (!File::exists($carpetaBaseDestino)) {
+            File::makeDirectory($carpetaBaseDestino, 0777, true);
         }
 
-        // Verificar si la carpeta no existe y luego crearla
-        if (!File::exists($carpetaKmz)) {
-            File::makeDirectory($carpetaKmz, 0777, true);
-        }
 
-        return redirect()->route('planadquisiciones.index')->with('flash', 'registrado');
+        // // Determinar la carpeta de destino dependiendo de si la emisora ya existe o no
+        // if (!File::exists($nombreEmisora)) {
+        //     $carpetaDestino = $carpetaBaseDestino . '/' . $nombreCarpetaKmz;
+        // } else {
+        //     $carpetaDestino = $carpetaBaseDestino . '/' . $nombreEmisora . '/' . $nombreCarpetaKmz;
+        // }
+
+        // Definir la ruta de destino para los directorios que deseas copiar
+        $rutaCss = public_path('/adminlte/ExtensionesMapas/css');
+        $rutaJs = public_path('/adminlte/ExtensionesMapas/js');
+        $rutaWebFonts = public_path('/adminlte/ExtensionesMapas/webfonts');
+
+        // Copiar los directorios y su contenido a la carpeta de destino
+        File::copyDirectory($rutaCss, $carpetaDestino);
+        File::copyDirectory($rutaJs, $carpetaDestino);
+        File::copyDirectory($rutaWebFonts, $carpetaDestino);
+
+        // // Mover el archivo .kmz a la carpeta de destino
+        // $input = $request->all();
+        // if ($request->hasFile('kmz')) {
+        //     $file = $request->file('kmz');
+        //     $nombreKmz = 'Signal level.kmz'; // Nombre deseado del archivo .kmz
+
+        //     // Construir la ruta completa donde se guardará el archivo .kmz
+        //     $rutaDestinoKmz = $carpetaDestino . '/' . $nombreKmz;
+
+        //     // Mover el archivo .kmz a la ubicación de destino
+        //     $file->move(public_path($rutaDestinoKmz));
+        //     $input['kmz'] = $rutaDestinoKmz;
+        // }
+
+
+        // Actualizar el modelo Planadquisicione con los datos y la ruta del archivo .kmz actualizados
+        // $planadquisicione->update($input);
+
+
+        // $input = $request->all();
+        // if ($request->hasFile('kmz')) {
+        //     $file = $request->file('kmz');
+        //     $extension = $file->getClientOriginalExtension();
+        //     // $nombreKmz = time() . $file->getClientOriginalName() . $extension;
+        //     $nombreKmz = 'Signal level' . $extension;
+        //     $file->move(public_path($carpetaKmz), $nombreKmz);
+        //     $input['kmz'] = $nombreKmz;
+        // }
+
+        // $rutaCoordenada = public_path('/adminlte/simulaciones/' . );
+        // $rutaDestino = $nombreEmisora; // La carpeta de destino que ya has creado
+
+        // Crear el archivo index.html dentro de la carpeta de la emisora
+        // $contenidoIndex = '<!doctype html>
+        //  <html lang="en">
+
+        //  <head>
+        //      <meta charset="utf-8">
+        //      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        //      <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        //      <meta name="mobile-web-app-capable" content="yes">
+        //      <meta name="apple-mobile-web-app-capable" content="yes">
+        //      <link rel="stylesheet" href="css/leaflet.css">
+        //      <link rel="stylesheet" href="css/qgis2web.css">
+        //      <link rel="stylesheet" href="css/fontawesome-all.min.css">
+        //      <!-- Leaflet (JS/CSS) -->
+        //      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
+        //      <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+        //      <!-- Leaflet-KMZ -->
+        //      <script src="https://unpkg.com/leaflet-kmz@latest/dist/leaflet-kmz.js"></script>
+        //      <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        //      <style>
+        //          html,
+        //          body,
+        //          #map {
+        //              height: 100vh;
+        //              margin: 0;
+        //              padding: 0;
+        //              z-index: 0;
+        //          }
+
+        //          .legend {
+        //              background-color: #ffffff73;
+        //              padding: 10px;
+        //              color: black;
+        //              border: 1px solid #ccc;
+        //              border-radius: 5px;
+        //              max-height: 270px;
+        //              overflow-y: auto;
+        //          }
+
+        //          @media only screen and (max-width: 600px) {
+        //              .legend {
+        //                  max-height: 250px;
+        //                  max-width: 130px;
+        //                  overflow-y: auto;
+        //              }
+        //          }
+        //      </style>
+        //  </head>
+
+        //  <body>
+        //      <div id="map">
+        //      </div>
+        //      <script src="js/qgis2web_expressions.js"></script>
+        //      <script src="js/leaflet.rotatedMarker.js"></script>
+        //      <script src="js/leaflet.pattern.js"></script>
+        //      <script src="js/leaflet-hash.js"></script>
+        //      <script src="js/Autolinker.min.js"></script>
+        //      <script src="js/rbush.min.js"></script>
+        //      <script src="js/labelgun.min.js"></script>
+        //      <script src="js/labels.js"></script>
+        //      <script>
+        //          var map = L.map(\'map\', {
+        //              zoomControl: true, maxZoom: 11, minZoom: 1
+        //          }).fitBounds([[' . $request->coordenadaX . ', ' . $request->coordenadaY . '], [' . $request->coordenadaX . ', ' . $request->coordenadaY . ']]);
+        //          var hash = new L.Hash(map);
+        //          map.attributionControl.setPrefix(\'<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>\');
+        //          var autolinker = new Autolinker({ truncate: { length: 30, location: \'smart\' } });
+        //          var bounds_group = new L.featureGroup([]);
+        //          function setBounds() {
+        //          }
+        //          map.createPane(\'pane_GoogleHybrid_0\');
+        //          map.getPane(\'pane_GoogleHybrid_0\').style.zIndex = 0;
+        //          var layer_GoogleHybrid_0 = L.tileLayer(\'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}\', {
+        //              pane: \'pane_GoogleHybrid_0\',
+        //              opacity: 1.0,
+        //              attribution: \'<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>\',
+        //              minZoom: 1,
+        //              maxZoom: 28,
+        //              minNativeZoom: 0,
+        //              maxNativeZoom: 20
+        //          });
+        //          layer_GoogleHybrid_0;
+        //          map.addLayer(layer_GoogleHybrid_0);
+        //          var control = L.control.layers(null, null, { collapsed: true }).addTo(map);
+
+        //          // Objeto para rastrear las capas cargadas
+        //          var loadedLayers = {};
+
+        //          // Función para cargar KMZ y agregar al control de capas con nombre personalizado
+        //          function loadKmz(url, layerName) {
+        //              // Verificar si la capa ya está cargada
+        //              if (!loadedLayers[layerName]) {
+        //                  // Crear nueva capa Leaflet para el KMZ
+        //                  var kmzLayer = L.kmzLayer().addTo(map);
+
+        //                  // Cargar el KMZ
+        //                  kmzLayer.load(url);
+
+        //                  // Escuchar el evento \'load\' de la capa KMZ
+        //                  kmzLayer.on(\'load\', function (e) {
+        //                      // Agregar la capa al control de capas con el nombre personalizado
+        //                      control.addOverlay(e.layer, layerName);
+        //                  });
+
+        //                  // Marcar la capa como cargada
+        //                  loadedLayers[layerName] = kmzLayer;
+        //              }
+        //          }
+
+        //          // Cargar y asignar nombres a los KMZ
+        //          loadKmz(\'kmz/Radioelectric elements.kmz\', \'Elementos de Radio\');
+        //          loadKmz(\'kmz/Signal level.kmz\', \'Nivel de Señal\');
+
+        //          var legends = {
+        //              signalLevel:
+        //                  \'<table cellpadding="0" cellspacing="0" ><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ffffff;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-∞ , -75) dBm (Sin señal)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#ff0000;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-75 , -65) dBm (Señal baja)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#e1f622;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-65 , -55) dBm (Señal Intermedia)</div></td></tr><tr><td><div style="border: 1px solid black; width:16px; height:9px;background-color:#009600;"></div></td><td><div style="margin-left: 10px;" class="info_txt04">[-55 , ∞) dBm (Señal excelente)</div></td></tr></table>\',
+        //          };
+
+        //          // Objeto para rastrear los controles de leyenda creados
+        //          var legendControls = {};
+
+        //          function addLegend(map, legendHTML, title, position) {
+        //              var legendControl = L.control({ position: position });
+        //              legendControl = L.control.layers(null, null, { collapsed: true }).addTo(map);
+
+        //              legendControl.onAdd = function (map) {
+        //                  var div = L.DomUtil.create(\'div\', \'legend\');
+        //                  div.innerHTML = \'<h4>\' + title + \'</h4>\' + legendHTML;
+        //                  return div;
+        //              };
+
+        //              legendControl.addTo(map);
+        //              return legendControl;
+        //          }
+
+        //          // Ejemplo de llamadas a addLegend
+        //          addLegend(map, legends.signalLevel, \'Nivel de Señal\', \'bottomright\');
+        //          setBounds();
+        //      </script>
+        //  </body>
+
+        //  </html>';
+
+        // file_put_contents($rutaDestino . '/index.html', $contenidoIndex);
+
+        return redirect()->route('admin.planadquisiciones.index')->with('flash', 'registrado');
     }
 
 
@@ -146,12 +344,12 @@ class PlanadquisicioneController extends Controller
     {
         $ciudades = Ciudad::get();
         $estandares = Estandar::get();
-        $fuentes = Fuente::get();
+        $tipos = TipoSimulacion::get();
         $emisoras = Emisora::get();
         // $planadquisicione = Planadquisicione::with('user', 'fuentes', 'ciudades', 'estandares', 'emisoras')
         //     ->find($inventario);
 
-        return view('admin.planadquisiciones.show', compact('estandares', 'ciudades', 'fuentes', 'emisoras', 'inventario'));
+        return view('admin.planadquisiciones.show', compact('estandares', 'ciudades', 'tipos', 'emisoras', 'inventario'));
     }
 
     public function edit(Planadquisicione $inventario)
@@ -159,44 +357,44 @@ class PlanadquisicioneController extends Controller
         // $userArea = $inventario->user->area; // Obtener el área asociada al usuario
         $ciudades = Ciudad::get();
         $estandares = Estandar::get();
-        $fuentes = Fuente::get();
+        $tipos = TipoSimulacion::get();
         $emisoras = Emisora::get();
-        return view('admin.planadquisiciones.edit', compact('estandares', 'ciudades', 'fuentes', 'emisoras', 'inventario'));
+        return view('admin.planadquisiciones.edit', compact('estandares', 'ciudades', 'tipos', 'emisoras', 'inventario'));
     }
 
     // public function update(Request $request, Planadquisicione $inventario)
-    public function update(Request $request, Planadquisicione $planadquisicione)
+    public function update(UpdateRequest $request, Planadquisicione $planadquisicione)
 
     {
 
         $request->validate([
-            'kmz' => ['requerid'],
+            // 'kmz' => ['requerid'],
             'tipoemisora_id' => ['required'],
-            'emisora_id' => ['required'],
+            // 'emisora_id' => ['required'],
         ]);
 
-        // Obtener los nombres de ciudad, estándar, tipo de emisora y emisora
-        $ciudad = $planadquisicione->ciudad->detciudad;
-        $estandar = $planadquisicione->fuente->estandar->detestandar;
-        $tipoEmisora = $planadquisicione->fuente->detfuente;
-        $emisora = $planadquisicione->emisora->emisora ?? 'No Aplica';
+        // // Obtener los nombres de ciudad, estándar, tipo de emisora y emisora
+        // $ciudad = $planadquisicione->ciudad->detciudad;
+        // $estandar = $planadquisicione->fuente->estandar->detestandar;
+        // $tipoEmisora = $planadquisicione->fuente->detfuente;
+        // $emisora = $planadquisicione->emisora->emisora ?? 'No Aplica';
 
-        // Construir la ruta donde se guardará el archivo KMZ
-        if ($emisora == "No Aplica") {
-            $filePath = "adminlte/simulaciones/{$ciudad}/{$estandar}/{$tipoEmisora}/kmz/";
-        } else {
-            $filePath = "adminlte/simulaciones/{$ciudad}/{$estandar}/{$tipoEmisora}/{$emisora}/kmz/";
-        }
+        // // Construir la ruta donde se guardará el archivo KMZ
+        // if ($emisora == "No Aplica") {
+        //     $filePath = "adminlte/simulaciones/{$ciudad}/{$estandar}/{$tipoEmisora}/kmz/";
+        // } else {
+        //     $filePath = "adminlte/simulaciones/{$ciudad}/{$estandar}/{$tipoEmisora}/{$emisora}/kmz/";
+        // }
 
 
-        $input = $request->all();
-        if ($request->hasFile('kmz')) {
-            $file = $request->file('kmz');
-            $extension = $file->getClientOriginalExtension();
-            $nombreKmz = time() . $file->getClientOriginalName() . $extension;
-            $file->move(public_path() . $filePath, $nombreKmz);
-            $input['kmz'] = $nombreKmz;
-        }
+        // $input = $request->all();
+        // if ($request->hasFile('kmz')) {
+        //     $file = $request->file('kmz');
+        //     $extension = $file->getClientOriginalExtension();
+        //     $nombreKmz = time() . $file->getClientOriginalName() . $extension;
+        //     $file->move(public_path() . $filePath, $nombreKmz);
+        //     $input['kmz'] = $nombreKmz;
+        // }
 
         $slug = Str::slug($request->kmz);
 
@@ -218,13 +416,13 @@ class PlanadquisicioneController extends Controller
 
         // ... (código para manejar la relación muchos a muchos si es necesario)
 
-        return redirect()->route('planadquisiciones.index')->with('flash', 'actualizado');
+        return redirect()->route('admin.planadquisiciones.index')->with('flash', 'actualizado');
     }
 
     public function destroy(Planadquisicione $planadquisicion)
     {
         $planadquisicion->delete();
-        return redirect()->route('planadquisiciones.index')->with('flash', 'eliminado');
+        return redirect()->route('admin.planadquisiciones.index')->with('flash', 'eliminado');
     }
 
     // public function retirar_producto(Planadquisicione $planadquisicione,Producto $producto){

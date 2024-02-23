@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Area;
 use App\Clase;
 use App\Estandar;
-use App\Fuente;
 use App\Emisora;
 use App\Producto;
 use App\Tipoproceso;
 use App\Planadquisicione;
+use App\TipoSimulacion;
 use Illuminate\Http\Request;
 
 class AjaxController extends Controller
@@ -30,7 +30,7 @@ class AjaxController extends Controller
 
         if ($request->ajax()) {
             try {
-                $tipoEmisora = Fuente::where('estandar_id', $request->estandar_id)->get();
+                $tipoEmisora = TipoSimulacion::where('estandar_id', $request->estandar_id)->get();
                 return response()->json($tipoEmisora);
             } catch (\Exception $e) {
                 return response()->json(['error' => $e->getMessage()], 500);

@@ -19,6 +19,10 @@ class Estandar extends Model
   {
     return $this->belongsTo(Ciudad::class);
   }
-
+  //Relacion Uno a Muchos 
+  public function tipos()
+  {
+    return $this->hasMany(TipoSimulacion::class);
+  }
 
 }

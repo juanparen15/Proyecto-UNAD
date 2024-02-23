@@ -18,7 +18,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('home')}}">Inicio</a></li>
-              <li class="breadcrumb-item"><a href="{{route('admin.fuentes.index')}}">Soporte Documental</a></li>
+              <li class="breadcrumb-item"><a href="{{route('admin.tipos.index')}}">Soporte Documental</a></li>
               <li class="breadcrumb-item active">Editar el Soporte Documental</li>
             </ol>
           </div>
@@ -28,7 +28,7 @@
 
     <!-- Main content -->
     <section class="content">
-        {!! Form::model($soporte, ['route'=>['admin.fuentes.update',$soporte],'method'=>'PUT']) !!}
+        {!! Form::model($tipos, ['route'=>['admin.tipos.update',$tipos],'method'=>'PUT']) !!}
         <div class="card card-primary">
             {{--  <div class="card-header">
               <h3 class="card-title">General</h3>

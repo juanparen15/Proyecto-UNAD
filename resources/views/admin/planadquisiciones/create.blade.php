@@ -18,7 +18,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('planadquisiciones.index') }}">Mapa</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.planadquisiciones.index') }}">Mapa</a></li>
                             <li class="breadcrumb-item active">Crear Mapa</li>
                         </ol>
                     </div>
@@ -28,7 +28,8 @@
 
         <!-- Main content -->
         <section class="content">
-            {!! Form::model($inventario, ['route' => ['planadquisiciones.create', $inventario->id], 'method' => 'PUT']) !!}
+            {{-- {!! Form::model($inventario, ['route' => ['planadquisiciones.create', $inventario->id], 'method' => 'PUT']) !!} --}}
+            {!! Form::open(['route' => 'admin.planadquisiciones.store', 'method' => 'POST']) !!}
 
             <div class="card card-primary">
                 {{-- <div class="card-header">
@@ -85,6 +86,22 @@
                                     style="width: 100%">
                                     <option value="" disabled selected>Seleccione la Emisora:</option>
                                 </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="coordenadaX">COORDENADA X:</label>
+                                <input type="text" id="coordenadaX" name="coordenadaX" class="form-control"
+                                    style="width: 100%">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="coordenadaY">COORDENADA Y:</label>
+                                <input type="text" id="coordenadaY" name="coordenadaY" class="form-control"
+                                    style="width: 100%">
                             </div>
                         </div>
 
