@@ -121,10 +121,11 @@
                                         </figure>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-16">
+                                {{-- <div class="col-lg-12 col-16"> --}}
+                                <div class="card-body table-responsive">
                                     <div class="small-box" data-ciudad="1">
-                                        <figure class="highcharts-figure">
-                                            <table id="example" class="display" style="width:100%">
+                                        {{-- <figure class="highcharts-figure"> --}}
+                                            <table id="example" class="display responsive nowrap" style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th>Estándar</th>
@@ -220,7 +221,7 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                        </figure>
+                                        {{-- </figure> --}}
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-16">
@@ -669,7 +670,9 @@
                     });
                 }
                 // Calculate Potencia Normalizada
-                var table = $('#example').DataTable();
+                var table = $('#example').DataTable({
+                    responsive: true
+                });
 
                 var chartData = [];
 

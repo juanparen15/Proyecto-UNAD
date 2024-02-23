@@ -129,9 +129,9 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a href="{{ route('planadquisiciones.show') }}"
+                        <a href="{{ route('admin.planadquisiciones.show') }}"
                             class="nav-link 
-            {!! active_class(route('planadquisiciones.show')) !!}
+            {!! active_class(route('admin.planadquisiciones.show')) !!}
             ">
                             <i class="nav-icon fas fa-map"></i>
                             <p>
