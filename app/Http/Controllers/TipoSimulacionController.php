@@ -104,17 +104,21 @@ class TipoSimulacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(TipoSimulacion $tipos, $slug)
+    public function edit(TipoSimulacion $tipos)
     {
-        $tipos = TipoSimulacion::where('slug', $slug)->firstOrFail();
-        $ciudades = Ciudad::get();
-        // $estandares = Estandar::get();
-        $estandares = Estandar::where('ciudad_id', $tipos->estandar->ciudad_id)->get();
+        // $tipos = TipoSimulacion::where('slug', $slug)->firstOrFail();
+        // $ciudades = Ciudad::where($tipos->estandar->ciudad)->get();
+        $ciudades = Ciudad::all();
+        // $estandares = Estandar::where($tipos->estandar_id)->get();
+        $estandares = Estandar::all();
+        // $estandares = Estandar::where('ciudad_id', $tipos->estandar->ciudad_id)->get();
         // $fuentes = Fuente::get();
+
+        // $tipos = TipoSimulacion::with('ciudad')->get();
 
         // dd($tipos);
 
-        return view('admin.tipos.edit', compact('estandares', 'ciudades', 'tipos', 'tipos'));
+        return view('admin.tipos.edit', compact('estandares', 'ciudades', 'tipos'));
     }
 
     /**

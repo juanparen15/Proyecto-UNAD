@@ -19,7 +19,7 @@
         });
     </script>
     <div class="card-img col-lg-14 col-14 mx-auto d-block">
-        <img class="img-fluid" src="{{ asset('adminlte/dist/img/logo_min_ciencias_1.png') }}" alt="Responsive image">
+        <img class="img-fluid" src="{{ asset('adminlte/dist/img/logo_min_ciencias_0.png') }}" alt="Responsive image">
     </div>
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
@@ -92,7 +92,17 @@
         {!! Form::close() !!}
     </div>
 
-    <div class="card-img col-lg-9 col-9 mx-auto d-block">
-        <img class="img-fluid" src="{{ asset('adminlte/dist/img/Logo-UNAD1.png') }}">
+    <div class="container">
+        <div class="row">
+            {{-- <div class="col-7 col-md-7 ml-auto  "> --}}
+            <div class="col-7">
+                <img class="img-fluid" src="{{ asset('adminlte/dist/img/logo_CRC.png') }}">
+            </div>
+            {{-- <div class="box card-img col-lg-5 col-5 ml-auto d-block"> --}}
+            {{-- <div class="col-5 col-md-5 ml-auto"> --}}
+            <div class="col order-12">
+                <img class="img-fluid" src="{{ asset('adminlte/dist/img/Logo-UNAD1.png') }}">
+            </div>
+        </div>
     </div>
 @endsection

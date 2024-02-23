@@ -22,7 +22,7 @@ class Estandar extends Model
   //Relacion Uno a Muchos 
   public function tipos()
   {
-    return $this->hasMany(TipoSimulacion::class);
+    return $this->belongsToMany(TipoSimulacion::class);
   }
 
 }

@@ -29,7 +29,9 @@
 
         <!-- Main content -->
         <section class="content">
-            {!! Form::model($tipos, ['route' => ['admin.tipos.update', $tipos], 'method' => 'PUT']) !!}
+            {!! Form::model([$tipos, 'route' => ['admin.tipos.update', $tipos->id], 'method' => 'PUT']) !!}
+            {{-- <form action="{{$tipos, route('admin.tipos.update', $tipos) }}" method="PUT"> --}}
+            @csrf
             <div class="card card-primary">
                 <div class="card-body">
                     <div class="form-group">
@@ -37,11 +39,13 @@
                         <select class="select2 @error('ciudad_id') is-invalid @enderror" name="ciudad_id" id="ciudad_id"
                             style="width: 100%;">
                             <option disabled>Selecciona una Ciudad</option>
-                            @foreach ($ciudades as $ciudad)
+                            @foreach ($tipos as $tipo)
+                            @foreach ($tipo->ciudades as $ciudad)
                                 <option value="{{ $ciudad->id }}"
-                                    {{ old('ciudad_id', $tipos->estandar->ciudad_id) == $ciudad->id ? 'selected' : '' }}>
+                                    {{ old('ciudad_id', $tipos->estandar_id->ciudad_id) == $ciudad->id ? 'selected' : '' }}>
                                     {{ $ciudad->detciudad }}
                                 </option>
+                            @endforeach
                             @endforeach
                         </select>
                         @error('ciudad_id')
@@ -69,11 +73,14 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        {!! Form::label('detfuente', 'NOMBRE TIPO SIMULACIÓN') !!}
-                        {!! Form::text('detfuente', null, [
+                        <label for="estandar_id">TIPO DE SIMULACIÓN:</label>
+                        <input  type="text" name="detfuente" class="form-control" value="{{ old('detfuente', $tipos->detfuente)}}">
+                        {{-- {!! Form::label('detfuente', 'NOMBRE TIPO SIMULACIÓN') !!} --}}
+                      
+                        {{-- {!! Form::text('detfuente', null, [
                             'class' => 'form-control',
                             'placeholder' => 'Ingrese el Nombre del Tipo de Simulación',
-                        ]) !!}
+                        ]) !!} --}}
                         @error('detfuente')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -90,6 +97,7 @@
                 </div>
             </div>
             {!! Form::close() !!}
+            {{-- </form> --}}
         </section>
         <!-- /.content -->
         {{-- </div> --}}

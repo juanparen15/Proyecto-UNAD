@@ -67,6 +67,19 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="estandar_id">TIPO DE SIMULACIÓN:</label>
+                        <input  type="text" name="detfuente" class="form-control" value="{{ old('detfuente')}}">
+                        {{-- {!! Form::label('detfuente', 'NOMBRE TIPO SIMULACIÓN') !!} --}}
+                      
+                        {{-- {!! Form::text('detfuente', null, [
+                            'class' => 'form-control',
+                            'placeholder' => 'Ingrese el Nombre del Tipo de Simulación',
+                        ]) !!} --}}
+                        @error('detfuente')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    {{-- <div class="form-group">
                         {!! Form::label('detfuente', 'NOMBRE DEL TIPO DE SIMULACIÓN') !!}
                         {!! Form::text('detfuente', null, [
                             'class' => 'form-control',
@@ -75,7 +88,7 @@
                         @error('detfuente')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
-                    </div>
+                    </div> --}}
 
                 </div>
                 <!-- /.card-body -->

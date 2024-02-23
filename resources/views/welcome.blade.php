@@ -1,7 +1,7 @@
 @extends('layouts.principal')
 @section('title', 'CRC-UNAD')
 @section('style')
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lumen/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lumen/bootstrap.min.css">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
     {!! Html::style('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') !!}
@@ -21,6 +21,7 @@
                     <div class="col-sm-6">
                         {{-- <h1 class="m-0">Panel Administrador</h1> --}}
                     </div>
+
                     {{-- <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item active">Inicio</li>
@@ -32,22 +33,40 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <section class="col-lg-12 connectedSortable">
-                        {{-- <div class="card"> --}}
-                            {{-- <div class="card-header">
+                    {{-- <section class="col-lg-12 connectedSortable"> --}}
+
+                    {{-- <div class="card"> --}}
+                    {{-- <div class="card-header">
                                 <h3 class="card-title">
                                     <i class="fas fa-chart-pie mr-1"></i>
                                     CRC-UNAD
                                 </h3>
                             </div> --}}
-                        {{-- </div> --}}
+                    {{-- </div> --}}
+                    {{-- </div> --}}
+                    {{-- </section> --}}
                 </div>
-                </section>
             </div>
-        </div>
-        {{-- <center><img style="width: 62%; height: 100%;" src="{{ asset('homeland/images/Logo_de_la_UNAD.png') }}"> --}}
-        <center>
-            <img style="width: 60%; height: 100%;" src="{{ asset('adminlte/dist/img/Logo-UNAD1.png') }}">
-            {{-- <img style="width: 50%; height: 100%;" src="{{ asset('adminlte/dist/img/logo_min_ciencias_0.png') }}"> --}}
-        </center>
-    @endsection
+            <div class="container">
+                <div class="container-fluid">
+                    <div class="row">
+                        {{-- <div class="col-7 col-md-7 ml-auto  "> --}}
+                        <div class="col-lg-12 ml-auto d-block">
+                            <center>
+                                <img class="img-fluid" src="{{ asset('adminlte/dist/img/logo_CRC.png') }}">
+                            </center>
+                        </div>
+                        {{-- <div class="box card-img col-lg-5 col-5 ml-auto d-block"> --}}
+                        {{-- <div class="col-5 col-md-5 ml-auto"> --}}
+                        <div class="col-lg-12 ml-auto d-block">
+                            <center><img class="img-fluid" src="{{ asset('adminlte/dist/img/logo_min_ciencias_0.png') }}">
+                            </center>
+                        </div>
+                        <div class="col-lg-12 ml-auto d-block">
+                            <center><img class="img-fluid" src="{{ asset('adminlte/dist/img/Logo-UNAD2.png') }}">
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endsection

@@ -49,17 +49,33 @@
                         </div>
                 </div>
                 </section>
-                <div class="card-group">
+                <div class="container-fluid">
+                    <div class="row">
+                        {{-- <div class="col-7 col-md-7 ml-auto  "> --}}
+                        <div class="col-lg-12 ml-auto d-block">
+                            <center>
+                                <img class="img-fluid" src="{{ asset('adminlte/dist/img/logo_CRC.png') }}">
+                            </center>
+                        </div>
+                        {{-- <div class="box card-img col-lg-5 col-5 ml-auto d-block"> --}}
+                        {{-- <div class="col-5 col-md-5 ml-auto"> --}}
+                        <div class="col-lg-6 ml-auto d-block">
+                            <center><img class="img-fluid" src="{{ asset('adminlte/dist/img/logo_min_ciencias_0.png') }}">
+                            </center>
+                        </div>
+                        <div class="col-lg-6 ml-auto d-block">
+                            <center><img class="img-fluid" src="{{ asset('adminlte/dist/img/Logo-UNAD2.png') }}">
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="card-group"> --}}
 
-                    <div class="card-img col-lg-7 col-7 mx-auto d-block">
+                    {{-- <div class="card-img col-lg-7 col-7 mx-auto d-block">
                         <img style="width: 100%; height: 90%;" class="img-fluid"
                             src="{{ asset('adminlte/dist/img/Logo-UNAD1.png') }}">
-                    </div>
-                    {{-- <div class="card-img col-lg-9 col-9 mx-auto d-block"> --}}
-                    {{-- <img style="width: 100%; height: 100%;" class="img-fluid"
-                        src="{{ asset('adminlte/dist/img/Logo-UNAD1.png') }}"> --}}
-                    {{-- </div> --}}
-                </div>
+                    </div> --}}
+                {{-- </div> --}}
             </div>
         </div>
         {{-- </div> --}}

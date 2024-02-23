@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RecomendacionController;
+use App\Http\Controllers\TipoSimulacionController;
 use App\Mail\TestMail;
 use App\User;
 use Illuminate\Support\Facades\Route;
@@ -88,9 +89,11 @@ Route::put('mapas/mostrar', 'PlanadquisicioneController@show')->name('admin.plan
 
 
 // Route::put('tipo_simulacion/', 'FuenteController@update')->name('admin.fuentes.update');
-// Route::put('tipo_simulacion/', 'TipoSimulacionController@update')->name('admin.tipos.update');
+// Route::patch('/tipo_simulacion/', 'TipoSimulacionController@update')->name('admin.tipos.update');
 
 Route::resource('recomendaciones', 'RecomendacionController');
+
+Route::put('/tipo_simulacion/{tipos}', [TipoSimulacionController::class, 'update'])->name('admin.tipos.update');
 
 // Route::get('/email/verify', 'Auth\VerificationController@show')->name('verification.notice');
 // Route::get('/email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');
