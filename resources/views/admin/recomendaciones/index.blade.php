@@ -122,9 +122,9 @@
                                     </div>
                                 </div>
                                 {{-- <div class="col-lg-12 col-16"> --}}
-                                <div class="card-body table-responsive">
+                                <div class="card-body table-responsive nowrap">
                                     <div class="small-box" data-ciudad="1">
-                                        {{-- <figure class="highcharts-figure"> --}}
+                                        <figure class="highcharts-figure">
                                             <table id="example" class="display responsive nowrap" style="width:100%">
                                                 <thead>
                                                     <tr>
@@ -221,7 +221,7 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                        {{-- </figure> --}}
+                                        </figure>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-16">
@@ -231,10 +231,10 @@
                                         </figure>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-16">
+                                <div class="card-body table-responsive nowrap">
                                     <div class="small-box" data-ciudad="2">
                                         <figure class="highcharts-figure">
-                                            <table id="example2" class="display" style="width:100%">
+                                            <table id="example2" class="display responsive nowrap" style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th>Estándar</th>
@@ -340,10 +340,10 @@
                                         </figure>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-16">
+                                <div class="card-body table-responsive nowrap">
                                     <div class="small-box" data-ciudad="3">
                                         <figure class="highcharts-figure">
-                                            <table id="example3" class="display" style="width:100%">
+                                            <table id="example3" class="display responsive nowrap" style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th>Estándar</th>
@@ -450,10 +450,10 @@
                                         </figure>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-16">
+                                <div class="card-body table-responsive nowrap">
                                     <div class="small-box" data-ciudad="4">
                                         <figure class="highcharts-figure">
-                                            <table id="example4" class="display" style="width:100%">
+                                            <table id="example4" class="display responsive nowrap" style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th>Estándar</th>
