@@ -33,10 +33,12 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="ciudad_id">CIUDAD:</label>
-                        <select class="select2 @error('ciudad_id') is-invalid @enderror" name="ciudad_id" id="ciudad_id" style="width: 100%;">
+                        <select class="select2 @error('ciudad_id') is-invalid @enderror" name="ciudad_id" id="ciudad_id"
+                            style="width: 100%;">
                             <option disabled>Selecciona una Ciudad</option>
                             @foreach ($ciudades as $ciudad)
-                                <option value="{{ $ciudad->id }}" {{ old('ciudad_id', $estandar->ciudad_id) == $ciudad->id ? 'selected' : '' }}>
+                                <option value="{{ $ciudad->id }}"
+                                    {{ old('ciudad_id', $estandar->ciudad_id) == $ciudad->id ? 'selected' : '' }}>
                                     {{ $ciudad->detciudad }}
                                 </option>
                             @endforeach

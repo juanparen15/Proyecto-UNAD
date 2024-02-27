@@ -29,23 +29,24 @@
 
         <!-- Main content -->
         <section class="content">
-            {!! Form::model([$tipos, 'route' => ['admin.tipos.update', $tipos->id], 'method' => 'PUT']) !!}
-            {{-- <form action="{{$tipos, route('admin.tipos.update', $tipos) }}" method="PUT"> --}}
-            @csrf
-            <div class="card card-primary">
-                <div class="card-body">
-                    <div class="form-group">
+            {{-- {!! Form::model([$tipo, 'route' => ['admin.tipos.update', $tipo], 'method' => 'PUT']) !!} --}}
+            <form method="POST" action="{{ route('admin.tipos.update', $tipo) }}">
+                @csrf
+                @method('PUT')
+                {{-- <form action="{{$tipos, route('admin.tipos.update', $tipos) }}" method="PUT"> --}}
+                {{-- @csrf --}}
+                <div class="card card-primary">
+                    <div class="card-body">
+                        <div class="form-group">
                         <label for="ciudad_id">CIUDAD:</label>
                         <select class="select2 @error('ciudad_id') is-invalid @enderror" name="ciudad_id" id="ciudad_id"
                             style="width: 100%;">
                             <option disabled>Selecciona una Ciudad</option>
-                            @foreach ($tipos as $tipo)
-                            @foreach ($tipo->ciudades as $ciudad)
+                            @foreach ($ciudades as $ciudad)
                                 <option value="{{ $ciudad->id }}"
-                                    {{ old('ciudad_id', $tipos->estandar_id->ciudad_id) == $ciudad->id ? 'selected' : '' }}>
+                                    {{ old('ciudad_id', $tipo->estandar->ciudad_id) == $ciudad->id ? 'selected' : '' }}>
                                     {{ $ciudad->detciudad }}
                                 </option>
-                            @endforeach
                             @endforeach
                         </select>
                         @error('ciudad_id')
@@ -54,50 +55,51 @@
                             </span>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="estandar_id">ESTÁNDAR:</label>
-                        <select class="select2 @error('estandar_id') is-invalid @enderror" name="estandar_id"
-                            id="estandar_id" style="width: 100%;">
-                            <option value="" disabled selected>Seleccione un Estándar:</option>
-                            @foreach ($estandares as $estandar)
-                                <option value="{{ $estandar->id }}"
-                                    {{ old('estandar_id', $tipos->estandar_id) == $estandar->id ? 'selected' : '' }}>
-                                    {{ $estandar->detestandar }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('estandar_id')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="estandar_id">TIPO DE SIMULACIÓN:</label>
-                        <input  type="text" name="detfuente" class="form-control" value="{{ old('detfuente', $tipos->detfuente)}}">
-                        {{-- {!! Form::label('detfuente', 'NOMBRE TIPO SIMULACIÓN') !!} --}}
-                      
-                        {{-- {!! Form::text('detfuente', null, [
+                        <div class="form-group">
+                            <label for="estandar_id">ESTÁNDAR:</label>
+                            <select class="select2 @error('estandar_id') is-invalid @enderror" name="estandar_id"
+                                id="estandar_id" style="width: 100%;">
+                                <option value="" disabled selected>Seleccione un Estándar:</option>
+                                @foreach ($estandares as $estandar)
+                                    <option value="{{ $estandar->id }}"
+                                        {{ old('estandar_id', $tipo->estandar_id) == $estandar->id ? 'selected' : '' }}>
+                                        {{ $estandar->detestandar }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('estandar_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="estandar_id">TIPO DE SIMULACIÓN:</label>
+                            <input type="text" name="detfuente" class="form-control"
+                                value="{{ old('detfuente', $tipo->detfuente) }}">
+                            {{-- {!! Form::label('detfuente', 'NOMBRE TIPO SIMULACIÓN') !!} --}}
+
+                            {{-- {!! Form::text('detfuente', null, [
                             'class' => 'form-control',
                             'placeholder' => 'Ingrese el Nombre del Tipo de Simulación',
                         ]) !!} --}}
-                        @error('detfuente')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
+                            @error('detfuente')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
 
+                    </div>
+                    <!-- /.card-body -->
                 </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-            <div class="row">
-                <div class="col-12 mb-2">
-                    <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancel</a>
-                    <input type="submit" value="Actualizar" class="btn btn-primary float-right">
+                <!-- /.card -->
+                <div class="row">
+                    <div class="col-12 mb-2">
+                        <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancel</a>
+                        <input type="submit" value="Actualizar" class="btn btn-primary float-right">
+                    </div>
                 </div>
-            </div>
-            {!! Form::close() !!}
-            {{-- </form> --}}
+                {{-- {!! Form::close() !!} --}}
+            </form>
         </section>
         <!-- /.content -->
         {{-- </div> --}}

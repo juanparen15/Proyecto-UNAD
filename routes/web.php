@@ -39,9 +39,8 @@ Route::resource('dependencias', 'DependenciaController')->except([
 Route::resource('estandar', 'EstandarController')->except([
     'show',
 ])->names('admin.estandares');
-Route::resource('tipo_simulacion', 'TipoSimulacionController')->except([
-    'show',
-])->names('admin.tipos');
+
+Route::resource('tipo_simulacion', 'TipoSimulacionController')->names('admin.tipos');
 Route::resource('mapas', 'PlanadquisicioneController')->names('admin.planadquisiciones');
 Route::resource('emisoras', 'EmisoraController')->names('admin.emisoras');
 
@@ -94,6 +93,14 @@ Route::put('mapas/mostrar', 'PlanadquisicioneController@show')->name('admin.plan
 Route::resource('recomendaciones', 'RecomendacionController');
 
 Route::put('/tipo_simulacion/{tipos}', [TipoSimulacionController::class, 'update'])->name('admin.tipos.update');
+// Route::delete('/tipo_simulacion/{tipos}', [TipoSimulacionController::class, 'destroy'])->name('admin.tipos.destroy');
+// Route::delete('/tipo_simulacion/{tipos}/', 'TipoSimulacionController@destroy')->name('admin.tipos.destroy');
+// Route::delete('/tipo_simulacion/{id}/{slug}', 'TipoSimulacionController@destroy')->name('admin.tipos.destroy');
+
+
+
+// Route::put('/tipo_simulacion/{tipo}', 'TipoSimulacionController@update')->name('admin.tipos.update');
+
 
 // Route::get('/email/verify', 'Auth\VerificationController@show')->name('verification.notice');
 // Route::get('/email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');

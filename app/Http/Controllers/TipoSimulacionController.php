@@ -93,9 +93,9 @@ class TipoSimulacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(TipoSimulacion $tipos)
+    public function show(TipoSimulacion $tipo)
     {
-        return view('admin.tipos.show', compact('tipos'));
+        return view('admin.tipos.show', compact('tipo'));
     }
 
     /**
@@ -104,21 +104,22 @@ class TipoSimulacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(TipoSimulacion $tipos)
+    public function edit(TipoSimulacion $tipo, $slug)
     {
+        $tipo = TipoSimulacion::where('slug', $slug)->firstOrFail();
+        $ciudades = Ciudad::get();
+        // $estandares = Estandar::get();
+        $estandares = Estandar::where('ciudad_id', $tipo->estandar->ciudad_id)->get();
         // $tipos = TipoSimulacion::where('slug', $slug)->firstOrFail();
         // $ciudades = Ciudad::where($tipos->estandar->ciudad)->get();
-        $ciudades = Ciudad::all();
+        // $ciudades = Ciudad::all();
         // $estandares = Estandar::where($tipos->estandar_id)->get();
-        $estandares = Estandar::all();
-        // $estandares = Estandar::where('ciudad_id', $tipos->estandar->ciudad_id)->get();
-        // $fuentes = Fuente::get();
+        // $estandares = Estandar::all();
+        // $tipos = TipoSimulacion::all();
 
-        // $tipos = TipoSimulacion::with('ciudad')->get();
+        // dd($tipo);
 
-        // dd($tipos);
-
-        return view('admin.tipos.edit', compact('estandares', 'ciudades', 'tipos'));
+        return view('admin.tipos.edit', compact('estandares', 'ciudades',  'tipo'));
     }
 
     /**
@@ -128,15 +129,21 @@ class TipoSimulacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, TipoSimulacion $tipos)
+    public function update(UpdateRequest $request, TipoSimulacion $tipo, $slug)
     {
-        $oldTipoEmisoraName = $tipos->detfuente; // Obtén el valor anterior
+
+        // $tipo = TipoSimulacion::where('slug', $slug)->firstOrFail();
+        $tipo = $tipo->where('slug', $slug)->firstOrFail();
+        $ciudades = Ciudad::get();
+        $estandares = Estandar::where('ciudad_id', $tipo->estandar->ciudad_id)->get();
+        $oldTipoEmisoraName = $tipo->detfuente;
+
 
         $slug = Str::slug($request->detfuente);
 
         // Verificar si el nuevo slug ya existe para otro registro
         $counter = 1;
-        while (TipoSimulacion::where('slug', $slug)->where('id', '<>', $tipos->id)->exists()) {
+        while (TipoSimulacion::where('slug', $slug)->where('id', '<>', $tipo->id)->exists()) {
             $slug = $slug . '-' . $counter;
             $counter++;
         }
@@ -148,13 +155,13 @@ class TipoSimulacionController extends Controller
 
 
 
-        $tipos->update([
+        $tipo->update([
             'detfuente' => $request->detfuente,
             'slug' => $slugWithId,
             'estandar_id' => $request->estandar_id,
         ]);
 
-        dd($oldTipoEmisoraName);
+        // dd($oldTipoEmisoraName);
 
         // Verificar si el nombre del estándar ha cambiado
         if ($oldTipoEmisoraName !== $request->detfuente) {
@@ -167,11 +174,11 @@ class TipoSimulacionController extends Controller
             $newFolderPath = public_path() . '/adminlte/simulaciones/' . $nombreCiudad . '/' . $nombreEstandar . '/' . $request->detfuente;
 
             if (File::exists($oldFolderPath)) {
-                // sleep(5); // Espera 5 segundos
+                // sleep(1); // Espera 5 segundos
                 File::move($oldFolderPath, $newFolderPath);
             }
         }
-        return redirect()->route('admin.tipos.index')->with('flash', 'actualizado');
+        return redirect()->route('admin.tipos.index', compact('ciudades', 'estandares', 'tipo'))->with('flash', 'actualizado');
     }
 
     /**
@@ -180,22 +187,30 @@ class TipoSimulacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipoSimulacion $tipos)
+    public function destroy(TipoSimulacion $tipo)
     {
-        // Obtener el nombre de la ciudad utilizando el ID del estándar
-        $nombreCiudad = $tipos->estandar->ciudad->detciudad;
-        $nombreEstandar = $tipos->estandar->detestandar;
+        // No es necesario buscar $request ya que $tipo ya es la instancia correcta de TipoSimulacion
+        $ciudades = Ciudad::get();
+        $estandares = Estandar::get();
+        $tipos = TipoSimulacion::get();
 
+        // Verificar si la relación estandar es válida y si tiene una ciudad asociada
+        foreach ($tipos as $tipo) {
+            $nombreCiudad = $tipo->estandar->ciudad->detciudad;
+            $nombreEstandar = $tipo->estandar->detestandar;
+        }
         // Ruta de la carpeta asociada al estándar
-        $folderPath = public_path() . '/adminlte/simulaciones/' . $nombreCiudad . '/' . $nombreEstandar . '/' . $tipos->detfuente;
+        $folderPath = public_path() . '/adminlte/simulaciones/' . $nombreCiudad . '/' . $nombreEstandar . '/' . $tipo->detfuente;
 
         // Verificar si la carpeta existe antes de intentar eliminarla
         if (File::exists($folderPath)) {
             // Eliminar la carpeta asociada al estándar
             File::deleteDirectory($folderPath);
+            // Eliminar el registro de TipoSimulacion
         }
-        $tipos->delete();
+        $tipo->delete();
 
-        return redirect()->route('admin.tipos.index')->with('flash', 'eliminado');
+
+        return redirect()->route('admin.tipos.index', compact('ciudades', 'estandares'))->with('flash', 'El registro fue eliminado correctamente');
     }
 }

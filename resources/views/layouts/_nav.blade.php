@@ -55,7 +55,7 @@
                         </a>
                     </li>
 
-                    {{-- <li class="nav-item">
+                    <li class="nav-item">
                         <a href="{{ route('admin.tipos.index') }}"
                             class="nav-link 
             {!! active_class(route('admin.tipos.index')) !!}
@@ -78,7 +78,7 @@
                                 EMISORA
                             </p>
                         </a>
-                    </li> --}}
+                    </li>
 
                     {{-- @if (auth()->user()->hasRole('Admin')) --}}
                     <li class="nav-item">

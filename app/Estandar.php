@@ -17,12 +17,12 @@ class Estandar extends Model
   //Relacion Uno a Muchos (Inversa)
   public function ciudad()
   {
-    return $this->belongsTo(Ciudad::class);
+    return $this->belongsTo(Ciudad::class, 'ciudad_id');
   }
   //Relacion Uno a Muchos 
   public function tipos()
   {
-    return $this->belongsToMany(TipoSimulacion::class);
+    return $this->hasMany(TipoSimulacion::class);
   }
 
 }
