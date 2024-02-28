@@ -105,7 +105,7 @@
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
 
-                        <table id="example2" class="table table-hover text-nowrap" style="width: 100%">
+                        <table id="example2" class="table table-striped text-nowrap" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -178,6 +178,8 @@
     @section('script')
         <!-- SweetAlert2 -->
         {!! Html::script('adminlte/plugins/sweetalert2/sweetalert2.min.js') !!}
+        {{-- {!! Html::script('adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') !!} --}}
 
         @if (session('flash') == 'registrado')
             <script>

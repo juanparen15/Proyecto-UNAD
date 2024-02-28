@@ -1,12 +1,14 @@
 @extends('layouts.admin')
 @section('title', 'Lista Estándar')
 @section('style')
-    <!-- SweetAlert2 -->
-    {!! Html::style('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') !!}
-    <!-- DataTables -->
-    {!! Html::style('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') !!}
-    {!! Html::style('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') !!}
-    {!! Html::style('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') !!}
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+{!! Html::style('adminlte/plugins/select2/css/select2.min.css') !!}
+{!! Html::style('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') !!}
+{!! Html::style('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') !!}
+<!-- DataTables -->
+{!! Html::style('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') !!}
+{!! Html::style('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') !!}
+{!! Html::style('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') !!}
 @endsection
 
 @section('content')
@@ -43,7 +45,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
-                        <table id="example2" class="table table-hover text-nowrap" style="width: 100%">
+                        <table id="example2" class="table table-striped text-nowrap" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -91,6 +93,8 @@
     @section('script')
         <!-- SweetAlert2 -->
         {!! Html::script('adminlte/plugins/sweetalert2/sweetalert2.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') !!}
         @if (session('flash') == 'actualizado')
             <script>
                 $(function() {
@@ -152,7 +156,6 @@
                 });
             @endforeach
         </script>
-        <!-- DataTables & Plugins -->
         {!! Html::script('adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
         {!! Html::script('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') !!}
         {!! Html::script('adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js') !!}

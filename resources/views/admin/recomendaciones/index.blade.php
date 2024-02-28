@@ -122,10 +122,11 @@
                                     </div>
                                 </div>
                                 {{-- <div class="col-lg-12 col-16"> --}}
-                                <div class="card-body table-responsive nowrap">
+                                <div class="card-body table-responsive">
                                     <div class="small-box" data-ciudad="1">
                                         <figure class="highcharts-figure">
-                                            <table id="example" class="display responsive nowrap" style="width:100%">
+                                            <table id="example" class="display table table-striped text-nowrap"
+                                                style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th>Estándar</th>
@@ -234,7 +235,8 @@
                                 <div class="card-body table-responsive nowrap">
                                     <div class="small-box" data-ciudad="2">
                                         <figure class="highcharts-figure">
-                                            <table id="example2" class="display responsive nowrap" style="width:100%">
+                                            <table id="example2" class="display table table-striped text-nowrap"
+                                                style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th>Estándar</th>
@@ -343,7 +345,8 @@
                                 <div class="card-body table-responsive nowrap">
                                     <div class="small-box" data-ciudad="3">
                                         <figure class="highcharts-figure">
-                                            <table id="example3" class="display responsive nowrap" style="width:100%">
+                                            <table id="example3" class="table table-striped text-nowrap"
+                                                style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th>Estándar</th>
@@ -453,7 +456,8 @@
                                 <div class="card-body table-responsive nowrap">
                                     <div class="small-box" data-ciudad="4">
                                         <figure class="highcharts-figure">
-                                            <table id="example4" class="display responsive nowrap" style="width:100%">
+                                            <table id="example4" class="table table-striped text-nowrap"
+                                                style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th>Estándar</th>
@@ -564,8 +568,8 @@
         <!-- Select2 -->
         {!! Html::script('adminlte/plugins/select2/js/select2.full.min.js') !!}
         <!-- DataTables -->
-        {!! Html::script('adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
-        {!! Html::script('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') !!}
+        {{-- {!! Html::script('adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') !!} --}}
 
         <script>
             $(function() {
@@ -669,10 +673,17 @@
                         }
                     });
                 }
-                // Calculate Potencia Normalizada
-                var table = $('#example').DataTable({
-                    responsive: true
-                });
+                // // Calculate Potencia Normalizada
+                // var table = $('#example').DataTable({
+                //     "paging": true,
+                //     "ordering": true,
+                //     "info": true,
+                //     "autoWidth": false,
+                //     "responsive": true,
+                //     "language": {
+                //         "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                //     }
+                // });
 
                 var chartData = [];
 
@@ -839,7 +850,7 @@
                 }
 
                 // Calculate Potencia Normalizada
-                var table = $('#example2').DataTable();
+                // var table = $('#example2').DataTable();
 
                 var chartData = [];
 
@@ -999,7 +1010,7 @@
                 }
 
                 // Calculate Potencia Normalizada
-                var table = $('#example3').DataTable();
+                // var table = $('#example3').DataTable();
 
                 var chartData = [];
 
@@ -1157,8 +1168,17 @@
                         }
                     });
                 }
-                // Calculate Potencia Normalizada
-                var table = $('#example4').DataTable();
+                // // Calculate Potencia Normalizada
+                // var table = $('#example4').DataTable({
+                //     "paging": true,
+                //     "ordering": true,
+                //     "info": true,
+                //     "autoWidth": false,
+                //     "responsive": true,
+                //     "language": {
+                //         "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                //     }
+                // });
 
                 var chartData = [];
 
@@ -1256,4 +1276,18 @@
                 });
             });
         </script>
+        {!! Html::script('adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-buttons/js/dataTables.buttons.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') !!}
+        {!! Html::script('adminlte/plugins/jszip/jszip.min.js') !!}
+        {!! Html::script('adminlte/plugins/pdfmake/pdfmake.min.js') !!}
+        {!! Html::script('adminlte/plugins/pdfmake/vfs_fonts.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.html5.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.print.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js') !!}
+        @include('includes._datatable_language')
+
     @endsection

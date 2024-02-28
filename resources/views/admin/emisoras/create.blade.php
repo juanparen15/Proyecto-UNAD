@@ -67,12 +67,20 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        {!! Form::label('detfuente', 'NOMBRE DEL TIPO DE SIMULACIÓN') !!}
-                        {!! Form::text('detfuente', null, [
+                        <label for="tipoemisora_id">Tipo de Simulación</label>
+                        <select id="tipoemisora_id" name="tipoemisora_id"
+                            class="form-control select2 @error('tipoemisora_id') is-invalid @enderror" style="width: 100%"
+                            required>
+                            <option value="" disabled selected>Seleccione el Tipo de Simulación:</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('emisora', 'NOMBRE DE LA EMISORA') !!}
+                        {!! Form::text('emisora', null, [
                             'class' => 'form-control',
-                            'placeholder' => 'Ingrese el Nombre del Tipo de Simulación',
+                            'placeholder' => 'Ingrese el Nombre de la Emisora',
                         ]) !!}
-                        @error('detfuente')
+                        @error('emisora')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
@@ -146,6 +154,71 @@
                 } else {
                     // Si no se selecciona ninguna ciudad, limpia la lista de estandares
                     $('#estandar_id').empty();
+                }
+            });
+            // Evento cuando cambia la opción en la lista de estandares
+            estandar_id.change(function() {
+                var estandar_id = $(this).val();
+                if (estandar_id) {
+                    // Realiza una solicitud AJAX para obtener los tipos de emisora
+                    $.get('/get-tipos-emisora/' + estandar_id, function(data) {
+
+                        // Limpia la lista de tipos de emisora y añade los nuevos
+                        $('#tipoemisora_id').empty();
+                        // Agrega la opción predeterminada
+                        $('#tipoemisora_id').append(
+                            '<option disabled selected>Seleccione el Tipo de Simulación:</option>'
+                        );
+
+                        $('#emisora_id').empty();
+
+                        $('#emisora_id').append(
+                            '<option disabled selected>Seleccione la Emisora:</option>'
+                        );
+                        $.each(data, function(key, value) {
+                            $('#tipoemisora_id').append('<option value="' + value.id +
+                                '" name="' + value.detfuente + '">' + value.detfuente +
+                                '</option>');
+                        });
+                        // Selecciona automáticamente la primera opción
+                        $('#tipoemisora_id').val($('#tipoemisora_id option:first').val());
+                    });
+                } else {
+                    // Si no se selecciona ningún estandar, limpia la lista de tipos de emisora
+                    $('#tipoemisora_id').empty();
+                }
+            });
+
+            tipoemisora_id.change(function() {
+                var tipoemisora_id = $(this).val();
+                if (tipoemisora_id) {
+                    // console.log('Tipo de Emisora:', tipoemisora_id);
+                    if ($('#tipoemisora_id option:selected').attr('name') === 'Multicobertura' || $(
+                            '#tipoemisora_id option:selected').attr('name') === 'Interferencia') {
+                        $('.emisora_id').hide();
+                        $('#emisora_id').empty();
+                    } else {
+                        $('.emisora_id').show();
+                        // Realiza una solicitud AJAX para obtener los tipos de emisora
+                        $.get('/get-emisoras/' + tipoemisora_id, function(data) {
+
+                            // Limpia la lista de tipos de emisora y añade los nuevos
+                            $('#emisora_id').empty();
+                            // Agrega la opción predeterminada
+                            $('#emisora_id').append(
+                                '<option disabled selected>Seleccione la Emisora:</option>'
+                            );
+                            $.each(data, function(key, value) {
+                                $('#emisora_id').append('<option value="' + value.id +
+                                    '" name="' + value.emisora + '">' + value.emisora +
+                                    '</option>');
+                            });
+                            // Selecciona automáticamente la primera opción
+                            $('#emisora_id').val($('#emisora_id option:first').val());
+                        });
+                    }
+                } else {
+                    $('#emisora_id').empty();
                 }
             });
         });

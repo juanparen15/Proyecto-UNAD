@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmisoraController;
 use App\Http\Controllers\RecomendacionController;
 use App\Http\Controllers\TipoSimulacionController;
 use App\Mail\TestMail;
@@ -93,6 +94,8 @@ Route::put('mapas/mostrar', 'PlanadquisicioneController@show')->name('admin.plan
 Route::resource('recomendaciones', 'RecomendacionController');
 
 Route::put('/tipo_simulacion/{tipos}', [TipoSimulacionController::class, 'update'])->name('admin.tipos.update');
+// Route::put('/emisoras/{emisora}', [EmisoraController::class, 'update'])->name('admin.emisoras.update');
+
 // Route::delete('/tipo_simulacion/{tipos}', [TipoSimulacionController::class, 'destroy'])->name('admin.tipos.destroy');
 // Route::delete('/tipo_simulacion/{tipos}/', 'TipoSimulacionController@destroy')->name('admin.tipos.destroy');
 // Route::delete('/tipo_simulacion/{id}/{slug}', 'TipoSimulacionController@destroy')->name('admin.tipos.destroy');

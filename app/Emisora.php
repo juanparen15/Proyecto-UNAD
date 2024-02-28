@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Emisora extends Model
 {
-    // public $incrementing = false;
+  public $incrementing = false;
+  public $table = 'emisoras';
+  public $connection = 'mysql';
     protected $fillable = ['id', 'tipoemisora_id', 'emisora', 'slug'];
   
     protected $with =[

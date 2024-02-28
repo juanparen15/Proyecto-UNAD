@@ -25,6 +25,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'emisora' => 'required',
+            'tipoemisora_id' => 'required',
         ];
     }
     

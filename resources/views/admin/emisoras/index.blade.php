@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Lista de Emisoras')
 @section('style')
-    <!-- SweetAlert2 -->
     {!! Html::style('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') !!}
     <!-- DataTables -->
     {!! Html::style('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') !!}
@@ -36,14 +35,14 @@
                         <h3 class="card-title">Lista de Emisoras</h3>
                         <div class="card-tools">
 
-                            <a href="{{ route('admin.tipos.create') }}" class="btn btn-primary">
+                            <a href="{{ route('admin.emisoras.create') }}" class="btn btn-primary">
                                 Agregar Emisora
                             </a>
                         </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
-                        <table id="example2" class="table table-hover text-nowrap">
+                        <table id="example2" class="table table-striped text-nowrap" style="width:100%">
                             <thead>
                                 <tr>
 
@@ -61,9 +60,9 @@
                                 @foreach ($emisoras as $emisora)
                                     <tr>
                                         <td>{{ $emisora->id }}</td>
-                                        <td>{{ $emisora->fuente->estandar->ciudad->detciudad }}</td>
-                                        <td>{{ $emisora->fuente->estandar->detestandar }}</td>
-                                        <td>{{ $emisora->fuente->detfuente }}</td>
+                                        <td>{{ $emisora->tipo->estandar->ciudad->detciudad }}</td>
+                                        <td>{{ $emisora->tipo->estandar->detestandar }}</td>
+                                        <td>{{ $emisora->tipo->detfuente }}</td>
                                         <td>{{ $emisora->emisora }}</td>
 
                                         <td>
@@ -84,6 +83,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {{-- {{ $emisoras->links() }} --}}
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -96,6 +96,9 @@
     @section('script')
         <!-- SweetAlert2 -->
         {!! Html::script('adminlte/plugins/sweetalert2/sweetalert2.min.js') !!}
+        {{-- {!! Html::script('adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
+        {!! Html::script('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') !!} --}}
+
         @if (session('flash') == 'actualizado')
             <script>
                 $(function() {
@@ -180,4 +183,5 @@
         {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.print.min.js') !!}
         {!! Html::script('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js') !!}
         @include('includes._datatable_language')
+
     @endsection

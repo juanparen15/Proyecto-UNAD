@@ -43,7 +43,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
-                        <table id="example2" class="table table-hover text-nowrap">
+                        <table id="example2" class="table table-striped text-nowrap">
                             <thead>
                                 <tr>
 
@@ -94,6 +94,7 @@
     @section('script')
         <!-- SweetAlert2 -->
         {!! Html::script('adminlte/plugins/sweetalert2/sweetalert2.min.js') !!}
+
         @if (session('flash') == 'actualizado')
             <script>
                 $(function() {

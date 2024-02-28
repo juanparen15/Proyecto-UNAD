@@ -25,6 +25,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'emisora' => 'required',
+            'tipoemisora_id' => 'required',
         ];
     }
 }
