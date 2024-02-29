@@ -92,6 +92,8 @@
                                                 value="{{ old('recoPotencia') }}"
                                                 class="form-control @error('recoPotencia') is-invalid @enderror"
                                                 style="width: 100%" inputmode="decimal" pattern="^(0(\.[0-9])?|1(\.0)?)$">
+                                            <span style="font-size: 11pt" id="recoPotencia-error" class="invalid-feedback" role="alert"></span>
+                                            <!-- Mensaje de error -->
                                             @error('recoPotencia')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -601,14 +603,18 @@
                 });
                 $('#recoPotencia').on('input', function() {
                     var val = parseFloat($(this).val());
+                    var errorSpan = $('#recoPotencia-error');
                     if (isNaN(val) || val < 0 || val > 1) {
                         $(this).addClass('is-invalid');
                         document.getElementById('recoInterferencia').value = '';
+                        errorSpan.text('El valor debe ser menor o igual a 1'); // Establecer el mensaje de error
                     } else {
                         $(this).removeClass('is-invalid');
+                        errorSpan.text(''); // Limpiar el mensaje de error si es válido
                         var recoPotencia = $(this).val();
                         var recoInterferencia = (1 - recoPotencia).toFixed(1);
                         document.getElementById('recoInterferencia').value = recoInterferencia;
+
                     }
                 });
             });

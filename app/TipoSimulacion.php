@@ -9,7 +9,22 @@ class TipoSimulacion extends Model
     public $incrementing = false;
     public $table = 'tipo_simulacions';
     public $connection = 'mysql';
-    protected $fillable = ['id', 'estandar_id', 'detfuente', 'slug'];
+    protected $fillable = [
+        'id',
+        'estandar_id',
+        'detfuente',
+        'kmz',
+        'kmzRadio',
+        'kmzBest',
+        'kmzOver',
+        'kmzInterferencia',
+        'leyendaSignal',
+        'leyendaBest',
+        'leyendaOver',
+        'coordenadaX',
+        'coordenadaY',
+        'slug'
+    ];
 
     public function getRouteKeyName()
     {

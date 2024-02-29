@@ -9,7 +9,7 @@ class Emisora extends Model
   public $incrementing = false;
   public $table = 'emisoras';
   public $connection = 'mysql';
-    protected $fillable = ['id', 'tipoemisora_id', 'emisora', 'slug'];
+    protected $fillable = ['id', 'tipoemisora_id', 'emisora', 'kmz', 'coordenadaX', 'coordenadaY', 'slug'];
   
     protected $with =[
       'tipo',

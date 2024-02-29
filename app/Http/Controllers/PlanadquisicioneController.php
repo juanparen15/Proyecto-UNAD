@@ -26,13 +26,8 @@ class PlanadquisicioneController extends Controller
     public function __construct()
     {
 
-        $this->middleware([
-            'auth',
-            // $this->middleware('role:supervisor', ['only' => ['index']]),
-            // 'permission:planadquisiciones.index',
-            // 'permission:supervisor.planadquisiciones.index',
-        ]);
-        // $this->middleware('role:Admin');
+        $this->middleware(['auth',]);
+        $this->middleware('role:Admin', ['except' => ['show']]);
         $this->middleware('role:User', ['except' => ['show']]);
     }
 

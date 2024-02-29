@@ -79,20 +79,22 @@ class EmisoraController extends Controller
             File::makeDirectory($carpetaEmisora . '/' . $js, 0777, true);
             File::makeDirectory($carpetaEmisora . '/' . $web, 0777, true);
             File::makeDirectory($carpetaEmisora . '/' . $kmz, 0777, true);
+
+            // Rutas de origen y destino para los directorios que deseas copiar
+            $rutaCss = public_path('/adminlte/ExtensionesMapas/css');
+            $rutaJs = public_path('/adminlte/ExtensionesMapas/js');
+            $rutaWebFonts = public_path('/adminlte/ExtensionesMapas/webfonts');
+            $rutaDestinoCss = $carpetaEmisora . '/' . $css; // La carpeta de destino que ya has creado
+            $rutaDestinoJs = $carpetaEmisora . '/' . $js; // La carpeta de destino que ya has creado
+            $rutaDestinoWeb = $carpetaEmisora . '/' . $web; // La carpeta de destino que ya has creado
+
+            // Copiar los directorios y su contenido
+            File::copyDirectory($rutaCss, $rutaDestinoCss);
+            File::copyDirectory($rutaJs, $rutaDestinoJs);
+            File::copyDirectory($rutaWebFonts, $rutaDestinoWeb);
         }
 
-        // Rutas de origen y destino para los directorios que deseas copiar
-        $rutaCss = public_path('/adminlte/ExtensionesMapas/css');
-        $rutaJs = public_path('/adminlte/ExtensionesMapas/js');
-        $rutaWebFonts = public_path('/adminlte/ExtensionesMapas/webfonts');
-        $rutaDestinoCss = $carpetaEmisora . '/' . $css; // La carpeta de destino que ya has creado
-        $rutaDestinoJs = $carpetaEmisora . '/' . $js; // La carpeta de destino que ya has creado
-        $rutaDestinoWeb = $carpetaEmisora . '/' . $web; // La carpeta de destino que ya has creado
 
-        // Copiar los directorios y su contenido
-        File::copyDirectory($rutaCss, $rutaDestinoCss);
-        File::copyDirectory($rutaJs, $rutaDestinoJs);
-        File::copyDirectory($rutaWebFonts, $rutaDestinoWeb);
 
         return redirect()->route('admin.emisoras.index')->with('flash', 'registrado');
     }

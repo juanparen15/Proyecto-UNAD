@@ -9,10 +9,13 @@ class CheckRole
 {
     public function handle($request, Closure $next, $role)
     {
-        if (Auth::check() && Auth::user()->hasRole('Admin')) {
-            return $next($request);
+        // Verificar si el usuario está autenticado y tiene el rol especificado
+        if (Auth::check() && Auth::user()->hasRole($role)) {
+            // Si la acción actual no está en la lista de acciones excluidas, continuar con la solicitud
+                return $next($request);
         }
 
-        return redirect('/home'); // Redirecciona a la página principal o donde desees
+        // Redireccionar al usuario si no cumple con los requisitos
+        return redirect('/home');
     }
 }

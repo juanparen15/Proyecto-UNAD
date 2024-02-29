@@ -1,9 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Usuarios')
 @section('style')
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lumen/bootstrap.min.css">
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- SweetAlert2 -->
     {!! Html::style('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') !!}
     <!-- DataTables -->
@@ -58,7 +55,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
-                        <table id="example2" class="table table-hover text-nowrap">
+                        <table id="example2" class="table table-striped text-nowrap">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -101,16 +98,15 @@
                                                 <i class="fas fa-pencil-alt"></i> Editar
                                             </a>
                                             <form id="deleteForm_{{ $user->id }}"
-                                                action="{{ route('users.destroy', $user->id) }}" method="POST"
+                                                action="{{ route('users.destroy', $user) }}" method="POST"
                                                 style="display: inline;">
                                                 @csrf
-                                                @method('DELETE')
+                                                @method('delete')
                                                 <button type="submit" class="btn btn-danger btn-sm">
                                                     <i class="fas fa-trash"></i> Eliminar
                                                 </button>
                                             </form>
                                         </td>
-
                                     </tr>
                                 @endforeach
                             </tbody>

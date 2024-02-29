@@ -10,14 +10,12 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
-        // $this->middleware('role:Admin', ['only' => ['index']]);
-        $this->middleware('role:User', ['except' => ['show', 'edit']]);
+        $this->middleware('role:User', ['except' => ['show', 'edit', 'create', 'index', 'destroy', 'update']]);
+        $this->middleware('role:Admin', ['except' => ['show', 'edit', 'update']]);
     }
-
     public function index()
     {
         $users = User::orderBy('id', 'DESC')->get();
@@ -26,7 +24,7 @@ class UserController extends Controller
     public function create(User $user)
     {
         $roles = Role::all();
-        return view('admin.users.create', compact('user','roles'));
+        return view('admin.users.create', compact('user', 'roles'));
     }
     public function store(Request $request, User $user)
     {

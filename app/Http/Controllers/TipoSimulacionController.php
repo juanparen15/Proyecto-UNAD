@@ -64,26 +64,273 @@ class TipoSimulacionController extends Controller
 
         $slugWithId = $slug . '-' . $ultimoId;
 
+        $nombreKmz = 'Signal level.kmz'; // Nombre deseado del archivo .kmz
+        $nombreKmzRadio = 'Radioelectric elements.kmz';
+        $nombreKmzBest = 'Best server.kmz';
+        $nombreKmzOver = 'Overlapping.kmz';
+        $nombreKmzInter = 'Interference level (CI).kmz';
 
         $tipoemisora = TipoSimulacion::create([
             'detfuente' => $request->detfuente,
             'slug' => $slugWithId,
-            'estandar_id' => $request->estandar_id
+            'kmz' => $nombreKmz,
+            'kmzRadio' => $nombreKmzRadio,
+            'kmzBest' => $nombreKmzBest,
+            'kmzOver' => $nombreKmzOver,
+            'kmzInterferencia' => $nombreKmzInter,
+            'leyendaSignal' => $request->leyendaSignal,
+            'leyendaBest' => $request->leyendaBest,
+            'leyendaOver' => $request->leyendaOver,
+            'estandar_id' => $request->estandar_id,
+            'coordenadaX' => $request->coordenadaX,
+            'coordenadaY' => $request->coordenadaY
         ]);
-
 
         // Obtener el nombre de la ciudad utilizando el ID
         $nombreCiudad = Ciudad::findOrFail($request->ciudad_id)->detciudad;
         $nombreEstandar = Estandar::findOrFail($request->estandar_id)->detestandar;
 
         // Crear la carpeta para el estándar de la ciudad utilizando el nombre ingresado
-        $carpetaFuente = public_path() . '/adminlte/simulaciones/' . $nombreCiudad . '/' . $nombreEstandar . '/' . $request->detfuente;
+        $carpetaTipo = public_path() . '/adminlte/simulaciones/' . $nombreCiudad . '/' . $nombreEstandar . '/' . $request->detfuente;
         $kmz = 'kmz';
+        $css = 'css';
+        $js = 'js';
+        $web = 'webfonts';
         // Verificar si la carpeta no existe y luego crearla
-        if (!File::exists($carpetaFuente)) {
-            File::makeDirectory($carpetaFuente, 0777, true);
-            File::makeDirectory($carpetaFuente . '/' . $kmz, 0777, true);
+        if (!File::exists($carpetaTipo)) {
+            File::makeDirectory($carpetaTipo, 0777, true);
         }
+
+        if (ucfirst(strtolower($request->detfuente)) == "Multicobertura" || ucfirst(strtolower($request->detfuente)) == "Interferencia") {
+            File::makeDirectory($carpetaTipo . '/' . $css, 0777, true);
+            File::makeDirectory($carpetaTipo . '/' . $js, 0777, true);
+            File::makeDirectory($carpetaTipo . '/' . $web, 0777, true);
+            File::makeDirectory($carpetaTipo . '/' . $kmz, 0777, true);
+
+            // Rutas de origen y destino para los directorios que deseas copiar
+            $rutaCss = public_path('/adminlte/ExtensionesMapas/css');
+            $rutaJs = public_path('/adminlte/ExtensionesMapas/js');
+            $rutaWebFonts = public_path('/adminlte/ExtensionesMapas/webfonts');
+            $rutaDestinoCss = $carpetaTipo . '/' . $css; // La carpeta de destino que ya has creado
+            $rutaDestinoJs = $carpetaTipo . '/' . $js; // La carpeta de destino que ya has creado
+            $rutaDestinoWeb = $carpetaTipo . '/' . $web; // La carpeta de destino que ya has creado
+            $rutaDestinoKmz = $carpetaTipo . '/' . $kmz; // La carpeta de destino que ya has creado
+
+            // Copiar los directorios y su contenido
+            File::copyDirectory($rutaCss, $rutaDestinoCss);
+            File::copyDirectory($rutaJs, $rutaDestinoJs);
+            File::copyDirectory($rutaWebFonts, $rutaDestinoWeb);
+        }
+
+
+
+        // Mover el archivo .kmz a la carpeta de destino
+        // $input = $request->all();
+        if (ucfirst(strtolower($request->detfuente)) == "Multicobertura") {
+            if ($request->hasFile('kmz', 'kmzRadio', 'kmzBest', 'kmzOver')) {
+                $file = $request->file('kmz');
+                $fileRadio = $request->file('kmzRadio');
+                $fileBest = $request->file('kmzBest');
+                $fileOver = $request->file('kmzOver');
+                // Mover el archivo .kmz a la ubicación de destino
+                $file->move($rutaDestinoKmz, $nombreKmz);
+                $fileRadio->move($rutaDestinoKmz, $nombreKmzRadio);
+                $fileBest->move($rutaDestinoKmz, $nombreKmzBest);
+                $fileOver->move($rutaDestinoKmz, $nombreKmzOver);
+                // Guardar solo el nombre del archivo en la base de datos
+                $tipoemisora->kmz = $nombreKmz;
+                $tipoemisora->kmzRadio = $nombreKmzRadio;
+                $tipoemisora->kmzBest = $nombreKmzBest;
+                $tipoemisora->kmzOver = $nombreKmzOver;
+                $tipoemisora->save();
+            }
+        }
+        if (ucfirst(strtolower($request->detfuente)) == "Interferencia") {
+            if ($request->hasFile('kmzRadio', 'kmzInterferencia')) {
+                $fileRadio = $request->file('kmzRadio');
+                $fileInter = $request->file('kmzInterferencia');
+                // Mover el archivo .kmz a la ubicación de destino
+                $fileRadio->move($rutaDestinoKmz, $nombreKmzRadio);
+                $fileInter->move($rutaDestinoKmz, $nombreKmzInter);
+                // Guardar solo el nombre del archivo en la base de datos
+                $tipoemisora->kmzRadio = $nombreKmzRadio;
+                $tipoemisora->kmzInterferencia = $nombreKmzInter;
+                $tipoemisora->save();
+            }
+        }
+
+        // Crear el archivo index.html dentro de la carpeta de la emisora
+        $contenidoIndex = '<!doctype html>
+         <html lang="en">
+
+         <head>
+             <meta charset="utf-8">
+             <meta http-equiv="X-UA-Compatible" content="IE=edge">
+             <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+             <meta name="mobile-web-app-capable" content="yes">
+             <meta name="apple-mobile-web-app-capable" content="yes">
+             <link rel="stylesheet" href="css/leaflet.css">
+             <link rel="stylesheet" href="css/qgis2web.css">
+             <link rel="stylesheet" href="css/fontawesome-all.min.css">
+             <!-- Leaflet (JS/CSS) -->
+             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
+             <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+             <!-- Leaflet-KMZ -->
+             <script src="https://unpkg.com/leaflet-kmz@latest/dist/leaflet-kmz.js"></script>
+             <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+             <style>
+                 html,
+                 body,
+                 #map {
+                     height: 100vh;
+                     margin: 0;
+                     padding: 0;
+                     z-index: 0;
+                 }
+
+                 .legend {
+                     background-color: #ffffff73;
+                     padding: 10px;
+                     color: black;
+                     border: 1px solid #ccc;
+                     border-radius: 5px;
+                     max-height: 270px;
+                     overflow-y: auto;
+                 }
+
+                 @media only screen and (max-width: 600px) {
+                     .legend {
+                         max-height: 250px;
+                         max-width: 130px;
+                         overflow-y: auto;
+                     }
+                 }
+             </style>
+         </head>
+
+         <body>
+             <div id="map">
+             </div>
+             <script src="js/qgis2web_expressions.js"></script>
+             <script src="js/leaflet.rotatedMarker.js"></script>
+             <script src="js/leaflet.pattern.js"></script>
+             <script src="js/leaflet-hash.js"></script>
+             <script src="js/Autolinker.min.js"></script>
+             <script src="js/rbush.min.js"></script>
+             <script src="js/labelgun.min.js"></script>
+             <script src="js/labels.js"></script>
+             <script>
+                 var map = L.map(\'map\', {
+                     zoomControl: true, maxZoom: 11, minZoom: 1
+                 }).fitBounds([[' . $request->coordenadaX . ', ' . $request->coordenadaY . '], [' . $request->coordenadaX . ', ' . $request->coordenadaY . ']]);
+                 var hash = new L.Hash(map);
+                 map.attributionControl.setPrefix(\'<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>\');
+                 var autolinker = new Autolinker({ truncate: { length: 30, location: \'smart\' } });
+                 var bounds_group = new L.featureGroup([]);
+                 function setBounds() {
+                 }
+                 map.createPane(\'pane_GoogleHybrid_0\');
+                 map.getPane(\'pane_GoogleHybrid_0\').style.zIndex = 0;
+                 var layer_GoogleHybrid_0 = L.tileLayer(\'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}\', {
+                     pane: \'pane_GoogleHybrid_0\',
+                     opacity: 1.0,
+                     attribution: \'<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>\',
+                     minZoom: 1,
+                     maxZoom: 28,
+                     minNativeZoom: 0,
+                     maxNativeZoom: 20
+                 });
+                 layer_GoogleHybrid_0;
+                 map.addLayer(layer_GoogleHybrid_0);
+                 var control = L.control.layers(null, null, { collapsed: true }).addTo(map);
+
+                 // Objeto para rastrear las capas cargadas
+                 var loadedLayers = {};
+
+                 // Función para cargar KMZ y agregar al control de capas con nombre personalizado
+                 function loadKmz(url, layerName) {
+                     // Verificar si la capa ya está cargada
+                     if (!loadedLayers[layerName]) {
+                         // Crear nueva capa Leaflet para el KMZ
+                         var kmzLayer = L.kmzLayer().addTo(map);
+
+                         // Cargar el KMZ
+                         kmzLayer.load(url);
+
+                         // Escuchar el evento \'load\' de la capa KMZ
+                         kmzLayer.on(\'load\', function (e) {
+                             // Agregar la capa al control de capas con el nombre personalizado
+                             control.addOverlay(e.layer, layerName);
+                         });
+
+                         // Marcar la capa como cargada
+                         loadedLayers[layerName] = kmzLayer;
+                     }
+                 }
+                 // Condicional para cargar los KMZ según el tipo de fuente
+        ';
+
+        // Condiciones para cada tipo de fuente
+        if (ucfirst(strtolower($request->detfuente)) == "Interferencia") {
+            $contenidoIndex .= '
+        loadKmz(\'kmz/Radioelectric elements.kmz\', \'Elementos de Radio\');
+        loadKmz(\'kmz/Interference level (CI).kmz\', \'Nivel de Interferencia\');
+    ';
+        } elseif (ucfirst(strtolower($request->detfuente)) == "Multicobertura") {
+            $contenidoIndex .= '
+        loadKmz(\'kmz/Radioelectric elements.kmz\', \'Elementos de Radio\');
+        loadKmz(\'kmz/Signal level.kmz\', \'Nivel de Señal\');
+        loadKmz(\'kmz/Best server.kmz\', \'Mejor Servidor\');
+        loadKmz(\'kmz/Overlapping.kmz\', \'Solapamiento\');
+    ';
+        }
+        $contenidoIndex .= 'var legends = {
+                     signalLevel:
+                         \'' . $request->leyendaSignal . '\',
+
+                     bestServer:
+                        \'' . $request->leyendaBest . '\',
+         
+                     overlapping:
+                         \'' . $request->leyendaOver . '\',
+                 };
+
+                 // Objeto para rastrear los controles de leyenda creados
+                 var legendControls = {};
+
+                 function addLegend(map, legendHTML, title, position) {
+                     var legendControl = L.control({ position: position });
+                     legendControl = L.control.layers(null, null, { collapsed: true }).addTo(map);
+
+                     legendControl.onAdd = function (map) {
+                         var div = L.DomUtil.create(\'div\', \'legend\');
+                         div.innerHTML = \'<h4>\' + title + \'</h4>\' + legendHTML;
+                         return div;
+                     };
+
+                     legendControl.addTo(map);
+                     return legendControl;
+                 }
+                 ';
+        // Condiciones para cada tipo de fuente
+        if (ucfirst(strtolower($request->detfuente)) == "Interferencia") {
+            $contenidoIndex .= '
+            addLegend(map, legends.signalLevel, \'Nivel de Interferencia\', \'bottomright\');
+    ';
+        } elseif (ucfirst(strtolower($request->detfuente)) == "Multicobertura") {
+            $contenidoIndex .= '
+            addLegend(map, legends.signalLevel, \'Nivel de Señal\', \'bottomright\');
+            addLegend(map, legends.overlapping, \'Solapamiento\', \'bottomright\');
+            addLegend(map, legends.bestServer, \'Mejor Servidor\', \'bottomright\');
+    ';
+        }
+        $contenidoIndex .= 'setBounds();
+        </script>
+        </body>
+        </html>';
+
+        file_put_contents($carpetaTipo . '/index.html', $contenidoIndex);
+
         return redirect()->route('admin.tipos.index')->with('flash', 'registrado');
     }
 
@@ -108,16 +355,8 @@ class TipoSimulacionController extends Controller
     {
         $tipo = TipoSimulacion::where('slug', $slug)->firstOrFail();
         $ciudades = Ciudad::get();
-        // $estandares = Estandar::get();
         $estandares = Estandar::where('ciudad_id', $tipo->estandar->ciudad_id)->get();
-        // $tipos = TipoSimulacion::where('slug', $slug)->firstOrFail();
-        // $ciudades = Ciudad::where($tipos->estandar->ciudad)->get();
-        // $ciudades = Ciudad::all();
-        // $estandares = Estandar::where($tipos->estandar_id)->get();
-        // $estandares = Estandar::all();
-        // $tipos = TipoSimulacion::all();
 
-        // dd($tipo);
 
         return view('admin.tipos.edit', compact('estandares', 'ciudades',  'tipo'));
     }
@@ -159,6 +398,9 @@ class TipoSimulacionController extends Controller
             'detfuente' => $request->detfuente,
             'slug' => $slugWithId,
             'estandar_id' => $request->estandar_id,
+            'kmz' => $request->kmz,
+            'coordenadaX' => $request->coordenadaX,
+            'coordenadaY' => $request->coordenadaY
         ]);
 
         // dd($oldTipoEmisoraName);
@@ -176,6 +418,38 @@ class TipoSimulacionController extends Controller
             if (File::exists($oldFolderPath)) {
                 // sleep(1); // Espera 5 segundos
                 File::move($oldFolderPath, $newFolderPath);
+            }
+            $css = 'css';
+            $js = 'js';
+            $web = 'webfonts';
+            $kmz = 'kmz';
+
+            if (ucfirst(strtolower($request->detfuente)) != "Multicobertura" || ucfirst(strtolower($request->detfuente)) != "Interferencia") {
+                File::deleteDirectory($newFolderPath . '/' . $css);
+                File::deleteDirectory($newFolderPath . '/' . $js);
+                File::deleteDirectory($newFolderPath . '/' . $web);
+                File::deleteDirectory($newFolderPath . '/' . $kmz);
+            }
+
+            if (ucfirst(strtolower($request->detfuente)) == "Multicobertura" || ucfirst(strtolower($request->detfuente)) == "Interferencia") {
+
+                File::makeDirectory($newFolderPath . '/' . $css, 0777, true);
+                File::makeDirectory($newFolderPath . '/' . $js, 0777, true);
+                File::makeDirectory($newFolderPath . '/' . $web, 0777, true);
+                File::makeDirectory($newFolderPath . '/' . $kmz, 0777, true);
+
+                // Rutas de origen y destino para los directorios que deseas copiar
+                $rutaCss = public_path('/adminlte/ExtensionesMapas/css');
+                $rutaJs = public_path('/adminlte/ExtensionesMapas/js');
+                $rutaWebFonts = public_path('/adminlte/ExtensionesMapas/webfonts');
+                $rutaDestinoCss = $newFolderPath . '/' . $css; // La carpeta de destino que ya has creado
+                $rutaDestinoJs = $newFolderPath . '/' . $js; // La carpeta de destino que ya has creado
+                $rutaDestinoWeb = $newFolderPath . '/' . $web; // La carpeta de destino que ya has creado
+
+                // Copiar los directorios y su contenido
+                File::copyDirectory($rutaCss, $rutaDestinoCss);
+                File::copyDirectory($rutaJs, $rutaDestinoJs);
+                File::copyDirectory($rutaWebFonts, $rutaDestinoWeb);
             }
         }
         return redirect()->route('admin.tipos.index', compact('ciudades', 'estandares', 'tipo'))->with('flash', 'actualizado');

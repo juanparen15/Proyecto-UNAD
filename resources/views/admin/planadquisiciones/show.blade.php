@@ -98,11 +98,11 @@
 
                             <div class="form-group">
                                 <input type="submit" value="Mostrar Mapa" class="btn btn-primary" style="width: 100%">
-                                @if (auth()->user()->hasRole('Admin'))
+                                {{-- @if (auth()->user()->hasRole('Admin'))
                                     <a href="{{ route('admin.planadquisiciones.index') }}" class="btn btn-success" style="width: 100%">
                                         <i class="nav-icon fas fa-map"></i> Editar Mapas
                                     </a>
-                                @endif
+                                @endif --}}
                                 <a href="{{ URL::previous() }}" class="btn btn-secondary" style="width: 100%">Cancelar</a>
                             </div>
                         </div>
@@ -270,13 +270,13 @@
                     if (selectedEmisora) {
                         // Si se ha seleccionado una emisora, mostrar emisora
                         nuevaURL =
-                            // `{{ asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/${encodeURIComponent(selectedEmisora)}/index.html`;
-                            `{{ secure_asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/${encodeURIComponent(selectedEmisora)}/index.html`;
+                            `{{ asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/${encodeURIComponent(selectedEmisora)}/index.html`;
+                            // `{{ secure_asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/${encodeURIComponent(selectedEmisora)}/index.html`;
                     } else if (selectedType) {
                         // Si no se ha seleccionado una emisora pero se ha seleccionado un tipo, mostrar el tipo de emisora
                         nuevaURL =
-                            // `{{ asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/index.html`;
-                            `{{ secure_asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/index.html`;
+                            `{{ asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/index.html`;
+                            // `{{ secure_asset('adminlte/simulaciones') }}/${encodeURIComponent(selectedCity)}/${encodeURIComponent(selectedStandard)}/${encodeURIComponent(selectedType)}/index.html`;
                     }
                     // Actualizar la fuente del iframe con la nueva URL
                     $('#simulacionIframe').attr('src', nuevaURL);

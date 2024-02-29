@@ -17,14 +17,6 @@ class EstandarController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('role:Admin'); 
-        // $this->middleware([
-        //     'permission:admin.estandares.index',
-        //     'permission:admin.estandares.store',
-        //     'permission:admin.estandares.create',
-        //     'permission:admin.estandares.update',
-        //     'permission:admin.estandares.destroy',
-        //     'permission:admin.estandares.edit'
-        // ]);
     }
     public function index()
     {
