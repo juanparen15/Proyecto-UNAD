@@ -103,7 +103,7 @@
                         </div>
                         <div class="form-group">
                             <label for="leyendaSignal">LEYENDA DE NIVEL DE SEÑAL:</label>
-                            <textarea id="leyendaSignal" name="leyendaSignal" class="form-control" style="width: 100%"></textarea>
+                            <textarea id="leyendaSignal" name="leyendaSignal" class="form-control" style="width: 100%" rows="5"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="kmz">ARCHIVO KMZ (NIVEL DE SEÑAL):</label>
@@ -120,7 +120,7 @@
                         </div>
                         <div class="form-group">
                             <label for="leyendaBest">LEYENDA DE MEJOR SERVIDOR:</label>
-                            <textarea id="leyendaBest" name="leyendaBest" class="form-control" style="width: 100%"></textarea>
+                            <textarea id="leyendaBest" name="leyendaBest" class="form-control" style="width: 100%" rows="5"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="kmzBest">ARCHIVO KMZ (MEJOR SERVIDOR):</label>
@@ -137,7 +137,7 @@
                         </div>
                         <div class="form-group">
                             <label for="leyendaOver">LEYENDA DE SOLAPAMIENTO:</label>
-                            <textarea id="leyendaOver" name="leyendaOver" class="form-control" style="width: 100%"></textarea>
+                            <textarea id="leyendaOver" name="leyendaOver" class="form-control" style="width: 100%" rows="5"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="kmzOver">ARCHIVO KMZ (SOLAPAMIENTO):</label>
@@ -181,7 +181,7 @@
                         </div>
                         <div class="form-group">
                             <label for="leyendaSignal">LEYENDA DE NIVEL DE INTERFERENCIA:</label>
-                            <textarea id="leyendaSignal" name="leyendaSignal" class="form-control" style="width: 100%"></textarea>
+                            <textarea id="leyendaSignal" name="leyendaSignal" class="form-control" style="width: 100%" rows="5"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="kmzInterferencia">ARCHIVO KMZ (NIVEL DE INTERFERENCIA):</label>
