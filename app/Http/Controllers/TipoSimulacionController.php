@@ -122,8 +122,6 @@ class TipoSimulacionController extends Controller
             File::copyDirectory($rutaWebFonts, $rutaDestinoWeb);
         }
 
-
-
         // Mover el archivo .kmz a la carpeta de destino
         // $input = $request->all();
         if (ucfirst(strtolower($request->detfuente)) == "Multicobertura") {
@@ -432,7 +430,6 @@ class TipoSimulacionController extends Controller
             $newFolderPath = public_path() . '/adminlte/simulaciones/' . $nombreCiudad . '/' . $nombreEstandar . '/' . $request->detfuente;
 
             if (File::exists($oldFolderPath)) {
-                // sleep(1); // Espera 5 segundos
                 File::move($oldFolderPath, $newFolderPath);
             }
             $css = 'css';
@@ -511,7 +508,8 @@ class TipoSimulacionController extends Controller
 
         $newFolderPath = public_path() . '/adminlte/simulaciones/' . $nombreCiudad . '/' . $nombreEstandar . '/' . $request->detfuente;
         // Crear el archivo index.html dentro de la carpeta de la emisora
-        $contenidoIndex = '<!doctype html>
+        if (ucfirst(strtolower($request->detfuente)) == "Multicobertura" || ucfirst(strtolower($request->detfuente)) == "Interferencia") {
+            $contenidoIndex = '<!doctype html>
          <html lang="en">
 
          <head>
@@ -621,21 +619,21 @@ class TipoSimulacionController extends Controller
                  // Condicional para cargar los KMZ según el tipo de fuente
         ';
 
-        // Condiciones para cada tipo de fuente
-        if (ucfirst(strtolower($request->detfuente)) == "Interferencia") {
-            $contenidoIndex .= '
+            // Condiciones para cada tipo de fuente
+            if (ucfirst(strtolower($request->detfuente)) == "Interferencia") {
+                $contenidoIndex .= '
         loadKmz(\'kmz/Radioelectric elements.kmz\', \'Elementos de Radio\');
         loadKmz(\'kmz/Interference level (CI).kmz\', \'Nivel de Interferencia\');
     ';
-        } elseif (ucfirst(strtolower($request->detfuente)) == "Multicobertura") {
-            $contenidoIndex .= '
+            } elseif (ucfirst(strtolower($request->detfuente)) == "Multicobertura") {
+                $contenidoIndex .= '
         loadKmz(\'kmz/Radioelectric elements.kmz\', \'Elementos de Radio\');
         loadKmz(\'kmz/Signal level.kmz\', \'Nivel de Señal\');
         loadKmz(\'kmz/Best server.kmz\', \'Mejor Servidor\');
         loadKmz(\'kmz/Overlapping.kmz\', \'Solapamiento\');
     ';
-        }
-        $contenidoIndex .= 'var legends = {
+            }
+            $contenidoIndex .= 'var legends = {
                      signalLevel:
                          \'' . $request->leyendaSignal . '\',
 
@@ -663,25 +661,25 @@ class TipoSimulacionController extends Controller
                      return legendControl;
                  }
                  ';
-        // Condiciones para cada tipo de fuente
-        if (ucfirst(strtolower($request->detfuente)) == "Interferencia") {
-            $contenidoIndex .= '
+            // Condiciones para cada tipo de fuente
+            if (ucfirst(strtolower($request->detfuente)) == "Interferencia") {
+                $contenidoIndex .= '
             addLegend(map, legends.signalLevel, \'Nivel de Interferencia\', \'bottomright\');
     ';
-        } elseif (ucfirst(strtolower($request->detfuente)) == "Multicobertura") {
-            $contenidoIndex .= '
+            } elseif (ucfirst(strtolower($request->detfuente)) == "Multicobertura") {
+                $contenidoIndex .= '
             addLegend(map, legends.signalLevel, \'Nivel de Señal\', \'bottomright\');
             addLegend(map, legends.overlapping, \'Solapamiento\', \'bottomright\');
             addLegend(map, legends.bestServer, \'Mejor Servidor\', \'bottomright\');
     ';
-        }
-        $contenidoIndex .= 'setBounds();
+            }
+            $contenidoIndex .= 'setBounds();
         </script>
         </body>
         </html>';
 
-        file_put_contents($newFolderPath . '/index.html', $contenidoIndex);
-
+            file_put_contents($newFolderPath . '/index.html', $contenidoIndex);
+        }
         return redirect()->route('admin.tipos.index', compact('ciudades', 'estandares', 'tipo'))->with('flash', 'actualizado');
     }
 
