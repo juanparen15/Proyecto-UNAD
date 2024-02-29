@@ -43,7 +43,7 @@
                     <div class="form-group">
                         <label for="ciudad_id">CIUDAD:</label>
                         <select class="form-control select2 @error('ciudad_id') is-invalid @enderror" name="ciudad_id"
-                            id="ciudad_id" style="width: 100%">
+                            id="ciudad_id" style="width: 100%" required>
                             <option value="" disabled selected>Seleccione una Ciudad:
                             </option>
                             @foreach ($ciudades as $ciudad)
@@ -68,7 +68,7 @@
                     </div>
                     <div class="form-group detfuente">
                         <label for="detfuente">TIPO DE SIMULACIÓN:</label>
-                        <input type="text" name="detfuente" id="detfuente" class="form-control"
+                        <input required type="text" name="detfuente" id="detfuente" class="form-control"
                             value="{{ old('detfuente') }}">
                         <span id="detfuente-error" class="invalid-feedback" role="alert"></span> <!-- Mensaje de error -->
                         @error('detfuente')
@@ -103,7 +103,7 @@
                         </div>
                         <div class="form-group">
                             <label for="leyendaSignal">LEYENDA DE NIVEL DE SEÑAL:</label>
-                            <textarea type="text" id="leyendaSignal" name="leyendaSignal" class="form-control" style="width: 100%"></textarea>
+                            <textarea id="leyendaSignal" name="leyendaSignal" class="form-control" style="width: 100%"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="kmz">ARCHIVO KMZ (NIVEL DE SEÑAL):</label>
@@ -114,13 +114,13 @@
                                             type="file" id="kmz" lang="es">
                                     </span>
                                 </label>
-                                <input class="form-control" id="kmz" readonly="readonly" name="kmz"
-                                    type="text" value="" lang="es">
+                                <input class="form-control" id="kmz" readonly="readonly" name="kmz" type="text"
+                                    value="" lang="es">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="leyendaBest">LEYENDA DE MEJOR SERVIDOR:</label>
-                            <textarea type="text" id="leyendaBest" name="leyendaBest" class="form-control" style="width: 100%"></textarea>
+                            <textarea id="leyendaBest" name="leyendaBest" class="form-control" style="width: 100%"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="kmzBest">ARCHIVO KMZ (MEJOR SERVIDOR):</label>
@@ -136,8 +136,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="leyendaOver">LEYENDA DE MEJOR SERVIDOR:</label>
-                            <textarea type="text" id="leyendaOver" name="leyendaOver" class="form-control" style="width: 100%"></textarea>
+                            <label for="leyendaOver">LEYENDA DE SOLAPAMIENTO:</label>
+                            <textarea id="leyendaOver" name="leyendaOver" class="form-control" style="width: 100%"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="kmzOver">ARCHIVO KMZ (SOLAPAMIENTO):</label>
@@ -181,7 +181,7 @@
                         </div>
                         <div class="form-group">
                             <label for="leyendaSignal">LEYENDA DE NIVEL DE INTERFERENCIA:</label>
-                            <textarea type="text" id="leyendaSignal" name="leyendaSignal" class="form-control" style="width: 100%"></textarea>
+                            <textarea id="leyendaSignal" name="leyendaSignal" class="form-control" style="width: 100%"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="kmzInterferencia">ARCHIVO KMZ (NIVEL DE INTERFERENCIA):</label>

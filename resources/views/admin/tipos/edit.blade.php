@@ -39,8 +39,8 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="ciudad_id">CIUDAD:</label>
-                            <select required class="select2 @error('ciudad_id') is-invalid @enderror" name="ciudad_id" id="ciudad_id"
-                                style="width: 100%;">
+                            <select required class="select2 @error('ciudad_id') is-invalid @enderror" name="ciudad_id"
+                                id="ciudad_id" style="width: 100%;">
                                 <option disabled>Selecciona una Ciudad</option>
                                 @foreach ($ciudades as $ciudad)
                                     <option value="{{ $ciudad->id }}"
@@ -83,30 +83,127 @@
                         </div>
                         <div id="coordenadas_fields" style="display: none;">
                             <div class="form-group">
-                                <label for="coordenadaX">COORDENADA X:</label>
+                                <label for="coordenadaX">COORDENADA (X) DE LA CIUDAD:</label>
                                 <input type="text" id="coordenadaX" name="coordenadaX" class="form-control"
-                                    style="width: 100%">
+                                    value="{{ old('coordenadaX', $tipo->coordenadaX) }}" style="width: 100%">
                             </div>
 
                             <div class="form-group">
-                                <label for="coordenadaY">COORDENADA Y:</label>
+                                <label for="coordenadaY">COORDENADA (Y) DE LA CIUDAD:</label>
                                 <input type="text" id="coordenadaY" name="coordenadaY" class="form-control"
-                                    style="width: 100%">
+                                    value="{{ old('coordenadaY', $tipo->coordenadaY) }}" style="width: 100%">
                             </div>
-
                             <div class="form-group">
-                                <label for="kmz">ARCHIVO KMZ:</label>
+                                <label for="kmzRadio">ARCHIVO KMZ (ELEMENTOS DE RADIO):</label>
                                 <div class="input-group">
                                     <label class="input-group-btn">
                                         <span class="btn btn-primary btn-file">
-                                            Examinar <input accept=".kmz" class="hidden" name="kmz" type="file"
-                                                id="kmz">
+                                            Examinar <input accept=".kmz" class="custom-file-input" name="kmzRadioFile"
+                                                type="file" id="kmzRadioFile" lang="es">
                                         </span>
                                     </label>
-                                    <input class="form-control" id="kmz_captura" readonly="readonly" name="kmz_captura"
-                                        type="text" value="">
+                                    <input class="form-control" id="kmzRadio" readonly="readonly" name="kmzRadio"
+                                        type="text" lang="es" value="{{ old('kmzRadio', $tipo->kmzRadio) }}">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="leyendaSignal">LEYENDA DE NIVEL DE SEÑAL:</label>
+                                <textarea id="leyendaSignal" name="leyendaSignal" class="form-control" style="width: 100%" rows="5">{{ old('leyendaSignal', $tipo->leyendaSignal) }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="kmz">ARCHIVO KMZ (NIVEL DE SEÑAL):</label>
+                                <div class="input-group">
+                                    <label class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
+                                            Examinar <input accept=".kmz" class="custom-file-input" name="kmzFile"
+                                                type="file" id="kmzFile" lang="es">
+                                        </span>
+                                    </label>
+                                    <input class="form-control" id="kmz" readonly="readonly" name="kmz"
+                                        type="text" lang="es" value="{{ old('kmz', $tipo->kmz) }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="leyendaBest">LEYENDA DE MEJOR SERVIDOR:</label>
+                                <textarea id="leyendaBest" name="leyendaBest" class="form-control" style="width: 100%" rows="5">{{ old('leyendaBest', $tipo->leyendaBest) }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="kmzBest">ARCHIVO KMZ (MEJOR SERVIDOR):</label>
+                                <div class="input-group">
+                                    <label class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
+                                            Examinar <input accept=".kmz" class="custom-file-input" name="kmzBestFile"
+                                                type="file" id="kmzBestFile" lang="es">
+                                        </span>
+                                    </label>
+                                    <input class="form-control" id="kmzBest" readonly="readonly" name="kmzBest"
+                                        type="text" lang="es" value="{{ old('kmzBest', $tipo->kmzBest) }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="leyendaOver">LEYENDA DE SOLAPAMIENTO:</label>
+                                <textarea id="leyendaOver" name="leyendaOver" class="form-control" style="width: 100%" rows="5">{{ old('leyendaOver', $tipo->leyendaOver) }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="kmzOver">ARCHIVO KMZ (SOLAPAMIENTO):</label>
+                                <div class="input-group">
+                                    <label class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
+                                            Examinar <input accept=".kmz" class="custom-file-input" name="kmzOverFile"
+                                                type="file" id="kmzOverFile" lang="es">
+                                        </span>
+                                    </label>
+                                    <input class="form-control" id="kmzOver" readonly="readonly" name="kmzOver"
+                                        type="text" lang="es" value="{{ old('kmzOver', $tipo->kmzOver) }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="coordenadas_fields_Inter" style="display: none;">
+                            <div class="form-group">
+                                <label for="coordenadaX">COORDENADA (X) DE LA CIUDAD:</label>
+                                <input type="text" id="coordenadaX" name="coordenadaX" class="form-control"
+                                    style="width: 100%" value="{{ old('coordenadaX', $tipo->coordenadaX) }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="coordenadaY">COORDENADA (Y) DE LA CIUDAD:</label>
+                                <input type="text" id="coordenadaY" name="coordenadaY" class="form-control"
+                                    style="width: 100%" value="{{ old('coordenadaY', $tipo->coordenadaY) }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="kmzRadio">ARCHIVO KMZ (ELEMENTOS DE RADIO):</label>
+                                <div class="input-group">
+                                    <label class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
+                                            Examinar <input accept=".kmz" class="custom-file-input" name="kmzRadioFile"
+                                                type="file" id="kmzRadioFile" lang="es">
+                                        </span>
+                                    </label>
+                                    <input class="form-control" id="kmzRadio" readonly="readonly" name="kmzRadio"
+                                        type="text" value="{{ old('kmzRadio', $tipo->kmzRadio) }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="leyendaSignal">LEYENDA DE NIVEL DE INTERFERENCIA:</label>
+                                <textarea id="leyendaSignal" name="leyendaSignal" class="form-control" style="width: 100%" rows="5">{{ old('leyendaSignal', $tipo->leyendaSignal) }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="kmzInterferencia">ARCHIVO KMZ (NIVEL DE INTERFERENCIA):</label>
+                                <div class="input-group">
+                                    <label class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
+                                            Examinar <input accept=".kmz" class="custom-file-input"
+                                                name="kmzInterferenciaFile" type="file" id="kmzInterferenciaFile"
+                                                lang="es">
+                                        </span>
+                                    </label>
+                                    <input class="form-control" id="kmzInterferencia" readonly="readonly"
+                                        name="kmzInterferencia" type="text"
+                                        value="{{ old('kmzInterferencia', $tipo->kmzInterferencia) }}">
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -139,22 +236,82 @@
             })
         </script>
         <script>
+            $(document).ready(function() {
+                $('#detfuente').on('input', function() {
+                    var tipo = $(this).val().toLowerCase(); // Convertir a minúsculas para comparar
+                    var errorSpan = $('#detfuente-error'); // Obtener el span del mensaje de error
+                    if (tipo !== "multicobertura" && tipo !== "interferencia" && tipo !==
+                        "cobertura individual") {
+                        $(this).addClass('is-invalid');
+                        errorSpan.text('El Tipo de Simulación es Inválido'); // Establecer el mensaje de error
+                    } else {
+                        $(this).removeClass('is-invalid');
+                        errorSpan.text(''); // Limpiar el mensaje de error si es válido
+                    }
+                });
+            });
+        </script>
+        {{-- <script>
+            document.getElementById('detfuente').addEventListener('input', function() {
+                var detfuenteValue = this.value.toLowerCase();
+                var coordenadasFields = document.getElementById('coordenadas_fields');
+                var coordenadasFieldsInter = document.getElementById('coordenadas_fields_Inter');
+
+                if (detfuenteValue.includes('multicobertura')) {
+                    coordenadasFields.style.display = 'block';
+                } else {
+                    coordenadasFields.style.display = 'none';
+                }
+
+                if (detfuenteValue.includes('interferencia')) {
+                    coordenadasFieldsInter.style.display = 'block';
+                } else {
+                    coordenadasFieldsInter.style.display = 'none';
+                }
+            });
+        </script> --}}
+        <script>
             document.addEventListener('DOMContentLoaded', function() {
                 var detfuenteInput = document.getElementById('detfuente');
                 var coordenadasFields = document.getElementById('coordenadas_fields');
+                var coordenadasFieldsInter = document.getElementById('coordenadas_fields_Inter');
 
                 detfuenteInput.addEventListener('input', function() {
                     var detfuenteValue = this.value.toLowerCase();
 
-                    if (detfuenteValue.includes('multicobertura') || detfuenteValue.includes('interferencia')) {
+                    if (detfuenteValue.includes('multicobertura')) {
                         coordenadasFields.style.display = 'block';
                     } else {
                         coordenadasFields.style.display = 'none';
+                    }
+                    if (detfuenteValue.includes('interferencia')) {
+                        coordenadasFieldsInter.style.display = 'block';
+                    } else {
+                        coordenadasFieldsInter.style.display = 'none';
                     }
                 });
 
                 // Ejecutar el evento 'input' en la carga de la página para verificar el valor inicial de 'detfuente'
                 detfuenteInput.dispatchEvent(new Event('input'));
+            });
+        </script>
+        <script>
+            $(document).on('change', '.btn-file :file', function() {
+                var input = $(this);
+                var numFiles = input.get(0).files ? input.get(0).files.length : 1;
+                var label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                input.trigger('fileselect', [numFiles, label]);
+            });
+            $(document).ready(function() {
+                $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+                    var input = $(this).parents('.input-group').find(':text');
+                    var log = numFiles > 1 ? numFiles + ' files selected' : label;
+                    if (input.length) {
+                        input.val(log);
+                    } else {
+                        if (log) alert(log);
+                    }
+                });
             });
         </script>
         <script>
