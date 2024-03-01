@@ -28,132 +28,137 @@
 
         <!-- Main content -->
         <section class="content">
-            {!! Form::model($emisora, ['route' => ['admin.emisoras.update', $emisora], 'method' => 'PUT']) !!}
-            <div class="card card-primary">
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="ciudad_id">CIUDAD:</label>
-                        <select class="select2 @error('ciudad_id') is-invalid @enderror" name="ciudad_id" id="ciudad_id"
-                            style="width: 100%;">
-                            <option disabled>Selecciona una Ciudad</option>
-                            @foreach ($ciudades as $ciudad)
-                                <option value="{{ $ciudad->id }}"
-                                    {{ old('ciudad_id', $emisora->tipo->estandar->ciudad_id) == $ciudad->id ? 'selected' : '' }}>
-                                    {{ $ciudad->detciudad }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('ciudad_id')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="estandar_id">ESTÁNDAR:</label>
-                        <select required class="select2 @error('estandar_id') is-invalid @enderror" name="estandar_id"
-                            id="estandar_id" style="width: 100%;">
-                            <option value="" disabled selected>Seleccione un Estándar:</option>
-                            @foreach ($estandares as $estandar)
-                                <option value="{{ $estandar->id }}"
-                                    {{ old('estandar_id', $emisora->tipo->estandar_id) == $estandar->id ? 'selected' : '' }}>
-                                    {{ $estandar->detestandar }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('estandar_id')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div hidden class="form-group tipoemisora_id">
-                        <label for="tipoemisora_id">TIPO DE SIMULACIÓN:</label>
-                        <select class="select2 @error('tipoemisora_id') is-invalid @enderror" name="tipoemisora_id"
-                            id="tipoemisora_id" style="width: 100%;" required>
-                            <option value="" disabled selected>Seleccione el Tipo de Simulación:</option>
-                            @foreach ($tipos as $tipo)
-                                <option value="{{ $tipo->id }}"
-                                    {{ old('tipoemisora_id', $emisora->tipoemisora_id) == $tipo->id ? 'selected' : '' }}>
-                                    {{ $tipo->detfuente }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @if ($emisora->exists)
-                            <small class="text-danger" style="font-size: 10pt">No cambiar el Tipo de Simulación (Altera el
-                                orden de los mapas).</small>
-                        @endif
-                        <span id="tipoemisora_id-error" class="invalid-feedback" role="alert"></span>
-                        <!-- Mensaje de error -->
-                        @error('tipoemisora_id')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="form-group emisora">
-                        <label for="emisora">NOMBRE DE LA EMISORA:</label>
-                        <input required type="text" name="emisora" id="emisora" class="form-control"
-                            value="{{ old('emisora', $emisora->emisora) }}">
-                        <span id="emisora-error" class="invalid-feedback" role="alert"></span> <!-- Mensaje de error -->
-                        @error('emisora')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="coordenadas_fields" id="coordenadas_fields" style="display: block;">
+            {{-- {!! Form::model($emisora, ['route' => ['admin.emisoras.update', $emisora], 'method' => 'PUT']) !!} --}}
+            <form method="POST" action="{{ route('admin.emisoras.update', $emisora) }}" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="card card-primary">
+                    <div class="card-body">
                         <div class="form-group">
-                            <label for="coordenadaX">COORDENADA (X) DE LA CIUDAD:</label>
-                            <input type="text" id="coordenadaX" name="coordenadaX" class="form-control"
-                                style="width: 100%" value="{{ old('coordenadaX', $emisora->coordenadaX) }}">
+                            <label for="ciudad_id">CIUDAD:</label>
+                            <select class="select2 @error('ciudad_id') is-invalid @enderror" name="ciudad_id" id="ciudad_id"
+                                style="width: 100%;">
+                                <option disabled>Selecciona una Ciudad</option>
+                                @foreach ($ciudades as $ciudad)
+                                    <option value="{{ $ciudad->id }}"
+                                        {{ old('ciudad_id', $emisora->tipo->estandar->ciudad_id) == $ciudad->id ? 'selected' : '' }}>
+                                        {{ $ciudad->detciudad }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('ciudad_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-
                         <div class="form-group">
-                            <label for="coordenadaY">COORDENADA (Y) DE LA CIUDAD:</label>
-                            <input type="text" id="coordenadaY" name="coordenadaY" class="form-control"
-                                style="width: 100%" value="{{ old('coordenadaY', $emisora->coordenadaY) }}">
+                            <label for="estandar_id">ESTÁNDAR:</label>
+                            <select required class="select2 @error('estandar_id') is-invalid @enderror" name="estandar_id"
+                                id="estandar_id" style="width: 100%;">
+                                <option value="" disabled selected>Seleccione un Estándar:</option>
+                                @foreach ($estandares as $estandar)
+                                    <option value="{{ $estandar->id }}"
+                                        {{ old('estandar_id', $emisora->tipo->estandar_id) == $estandar->id ? 'selected' : '' }}>
+                                        {{ $estandar->detestandar }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('estandar_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
+                        <div hidden class="form-group tipoemisora_id">
+                            <label for="tipoemisora_id">TIPO DE SIMULACIÓN:</label>
+                            <select class="select2 @error('tipoemisora_id') is-invalid @enderror" name="tipoemisora_id"
+                                id="tipoemisora_id" style="width: 100%;" required>
+                                <option value="" disabled selected>Seleccione el Tipo de Simulación:</option>
+                                @foreach ($tipos as $tipo)
+                                    <option value="{{ $tipo->id }}"
+                                        {{ old('tipoemisora_id', $emisora->tipoemisora_id) == $tipo->id ? 'selected' : '' }}>
+                                        {{ $tipo->detfuente }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @if ($emisora->exists)
+                                <small class="text-danger" style="font-size: 10pt">No cambiar el Tipo de Simulación (Altera
+                                    el
+                                    orden de los mapas).</small>
+                            @endif
+                            <span id="tipoemisora_id-error" class="invalid-feedback" role="alert"></span>
+                            <!-- Mensaje de error -->
+                            @error('tipoemisora_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group emisora">
+                            <label for="emisora">NOMBRE DE LA EMISORA:</label>
+                            <input required type="text" name="emisora" id="emisora" class="form-control"
+                                value="{{ old('emisora', $emisora->emisora) }}">
+                            <span id="emisora-error" class="invalid-feedback" role="alert"></span>
+                            <!-- Mensaje de error -->
+                            @error('emisora')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="coordenadas_fields" id="coordenadas_fields" style="display: block;">
+                            <div class="form-group">
+                                <label for="coordenadaX">COORDENADA (X) DE LA CIUDAD:</label>
+                                <input type="text" id="coordenadaX" name="coordenadaX" class="form-control"
+                                    style="width: 100%" value="{{ old('coordenadaX', $emisora->coordenadaX) }}">
+                            </div>
 
-                        <div class="form-group">
-                            <label for="kmzRadio">ARCHIVO KMZ (ELEMENTOS DE RADIO):</label>
-                            <div class="input-group">
-                                <label class="input-group-btn">
-                                    <span class="btn btn-primary btn-file">
-                                        Examinar <input accept=".kmz" class="custom-file-input" name="kmzRadioFile"
-                                            type="file" id="kmzRadioFile" lang="es">
-                                    </span>
-                                </label>
-                                <input class="form-control" id="kmzRadio" readonly="readonly" name="kmzRadio"
-                                    type="text" value="{{ old('kmzRadio', $emisora->kmzRadio) }}" lang="es">
+                            <div class="form-group">
+                                <label for="coordenadaY">COORDENADA (Y) DE LA CIUDAD:</label>
+                                <input type="text" id="coordenadaY" name="coordenadaY" class="form-control"
+                                    style="width: 100%" value="{{ old('coordenadaY', $emisora->coordenadaY) }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="kmzRadio">ARCHIVO KMZ (ELEMENTOS DE RADIO):</label>
+                                <div class="input-group">
+                                    <label class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
+                                            Examinar <input accept=".kmz" class="custom-file-input" name="kmzRadioFile"
+                                                type="file" id="kmzRadioFile" lang="es">
+                                        </span>
+                                    </label>
+                                    <input class="form-control" id="kmzRadio" readonly="readonly" name="kmzRadio"
+                                        type="text" value="{{ old('kmzRadio', $emisora->kmzRadio) }}" lang="es">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="leyendaSignal">LEYENDA DE NIVEL DE SEÑAL:</label>
+                                <textarea id="leyendaSignal" name="leyendaSignal" class="form-control" style="width: 100%" rows="5">{{ old('leyendaSignal', $emisora->leyendaSignal) }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="kmz">ARCHIVO KMZ (NIVEL DE SEÑAL):</label>
+                                <div class="input-group">
+                                    <label class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
+                                            Examinar <input accept=".kmz" class="custom-file-input" name="kmzFile"
+                                                type="file" id="kmzFile" lang="es">
+                                        </span>
+                                    </label>
+                                    <input class="form-control" id="kmz" readonly="readonly" name="kmz"
+                                        type="text" value="{{ old('kmz', $emisora->kmz) }}" lang="es">
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="leyendaSignal">LEYENDA DE NIVEL DE SEÑAL:</label>
-                            <textarea id="leyendaSignal" name="leyendaSignal" class="form-control" style="width: 100%" rows="5">{{ old('leyendaSignal', $emisora->leyendaSignal) }}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="kmz">ARCHIVO KMZ (NIVEL DE SEÑAL):</label>
-                            <div class="input-group">
-                                <label class="input-group-btn">
-                                    <span class="btn btn-primary btn-file">
-                                        Examinar <input accept=".kmz" class="custom-file-input" name="kmzFile"
-                                            type="file" id="kmzFile" lang="es">
-                                    </span>
-                                </label>
-                                <input class="form-control" id="kmz" readonly="readonly" name="kmz"
-                                    type="text" value="{{ old('kmz', $emisora->kmz) }}" lang="es">
-                            </div>
-                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+                <div class="row">
+                    <div class="col-12 mb-2">
+                        <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancel</a>
+                        <input type="submit" value="Actualizar" class="btn btn-primary float-right">
                     </div>
                 </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-            <div class="row">
-                <div class="col-12 mb-2">
-                    <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancel</a>
-                    <input type="submit" value="Actualizar" class="btn btn-primary float-right">
-                </div>
-            </div>
-            {!! Form::close() !!}
-            {{-- </form> --}}
+                {{-- {!! Form::close() !!} --}}
+            </form>
         </section>
         <!-- /.content -->
         {{-- </div> --}}

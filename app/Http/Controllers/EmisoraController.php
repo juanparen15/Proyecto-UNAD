@@ -330,6 +330,8 @@ class EmisoraController extends Controller
             'tipoemisora_id' => $request->tipoemisora_id
         ]);
 
+        // Obtener el modelo actualizado
+        // $emisoraFile = Emisora::find($emisora->id);
         // Verificar si el nombre del estándar ha cambiado
         if ($oldEmisoraName !== $request->emisora) {
             // Obtener el nombre de la ciudad utilizando el ID
@@ -375,24 +377,6 @@ class EmisoraController extends Controller
                 File::makeDirectory($newFolderPath . '/' . $kmz, 0777, true);
             }
         }
-
-        if ($request->hasFile('kmz') || $request->hasFile('kmzRadio')) {
-            $file = $request->file('kmz');
-            $fileRadio = $request->file('kmzRadio');
-            // Mover el archivo .kmz a la ubicación de destino
-            if ($file) {
-                $file->move($rutaDestinoKmz, $nombreKmz);
-                // Guardar solo el nombre del archivo en la base de datos
-                $emisora->kmz = $nombreKmz;
-            }
-            if ($fileRadio) {
-                $fileRadio->move($rutaDestinoKmz, $nombreKmzRadio);
-                // Guardar solo el nombre del archivo en la base de datos
-                $emisora->kmzRadio = $nombreKmzRadio;
-            }
-            $emisora->save();
-        }
-
         $nombreCiudad = Ciudad::findOrFail($request->ciudad_id)->detciudad;
         $nombreEstandar = Estandar::findOrFail($request->estandar_id)->detestandar;
         $nombreTipoEmisora = TipoSimulacion::findOrFail($request->tipoemisora_id)->detfuente;
@@ -400,6 +384,28 @@ class EmisoraController extends Controller
         // Renombrar la carpeta del estándar
         $oldFolderPath = public_path() . '/adminlte/simulaciones/' . $nombreCiudad . '/' . $nombreEstandar . '/' . $nombreTipoEmisora . '/' . $oldEmisoraName;
         $newFolderPath = public_path() . '/adminlte/simulaciones/' . $nombreCiudad . '/' . $nombreEstandar . '/' . $nombreTipoEmisora . '/' . $request->emisora;
+        $css = 'css';
+        $js = 'js';
+        $web = 'webfonts';
+        $kmz = 'kmz';
+        $rutaDestinoCss = $newFolderPath . '/' . $css; // La carpeta de destino que ya has creado
+        $rutaDestinoJs = $newFolderPath . '/' . $js; // La carpeta de destino que ya has creado
+        $rutaDestinoWeb = $newFolderPath . '/' . $web; // La carpeta de destino que ya has creado
+        $rutaDestinoKmz = $newFolderPath . '/' . $kmz; // La carpeta de destino que ya has creado
+
+        if ($request->hasFile('kmz') || $request->hasFile('kmzRadio')) {
+            $file = $request->file('kmz');
+            $fileRadio = $request->file('kmzRadio');
+            // Mover el archivo .kmz a la ubicación de destino
+            $file->move($rutaDestinoKmz, $nombreKmz);
+            // Guardar solo el nombre del archivo en la base de datos
+            $emisora->kmz = $nombreKmz;
+
+            $fileRadio->move($rutaDestinoKmz, $nombreKmzRadio);
+            // Guardar solo el nombre del archivo en la base de datos
+            $emisora->kmzRadio = $nombreKmzRadio;
+            $emisora->save();
+        }
         // Crear el archivo index.html dentro de la carpeta de la emisora
         $contenidoIndex = '<!doctype html>
  <html lang="en">
@@ -550,7 +556,7 @@ class EmisoraController extends Controller
 
         file_put_contents($newFolderPath . '/index.html', $contenidoIndex);
 
-        return redirect()->route('admin.emisoras.index', compact('ciudades', 'estandares', 'tipos', 'emisora'))->with('flash', 'actualizado');
+        return redirect()->route('admin.emisoras.index', compact('ciudades', 'estandares', 'tipos'))->with('flash', 'actualizado');
     }
 
     public function destroy(Emisora $emisora)

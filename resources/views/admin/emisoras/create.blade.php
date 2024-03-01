@@ -50,11 +50,33 @@
             toast: true,
             position: "top-center",
             width: 760,
-            height: 515,
+            // height: 515,
             responsive: true,
             html: '<iframe width="660" height="415" src="{{ asset('adminlte/dist/video/Ejemplo Leyenda KMZ.mp4') }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
         }).bindClickHandler("leyenda");
     </script>
+    <style>
+        iframe {
+            width: 100%;
+            /* height: 100%; */
+        }
+
+        /* Pantallas de 320px o superior */
+        @media (min-width: 320px) {
+            iframe {
+                width: 100%;
+                /* height: 100%; */
+            }
+        }
+
+        /* Pantalla 768px o superior */
+        @media (min-width: 768px) {
+            iframe {
+                width: 100%;
+                /* height: 100%; */
+            }
+        }
+    </style>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
