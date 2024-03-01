@@ -126,32 +126,26 @@
     @if (session('flash') == 'actualizado')
         <script>
             $(function() {
-                var Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-start',
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Usuario actualizado correctamente.'
-                })
+                Swal.fire({
+                        title: "Actualizado!",
+                        text: "El Usuario se Actualizó con Éxito.",
+                        icon: "success",
+                        timer: 3000,
+                        showConfirmButton: true,
+                    });
             });
         </script>
     @endif
     @if (session('flash') == 'registrado')
         <script>
             $(function() {
-                var Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-start',
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Usuario registrado correctamente.'
-                })
+                Swal.fire({
+                        title: "Registrado!",
+                        text: "El Usuario se Registró con Éxito.",
+                        icon: "success",
+                        timer: 3000,
+                        showConfirmButton: true,
+                    });
             });
         </script>
     @endif
@@ -175,7 +169,7 @@
                     if (result.isConfirmed) {
                         Swal.fire({
                             title: "Eliminado!",
-                            text: "El usuario han sido eliminado.",
+                            text: "El Usuario han sido eliminado.",
                             icon: "success"
                         });
                         // Envía el formulario de eliminación

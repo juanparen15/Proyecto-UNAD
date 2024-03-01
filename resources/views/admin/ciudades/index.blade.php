@@ -105,32 +105,26 @@
         @if (session('flash') == 'actualizado')
             <script>
                 $(function() {
-                    var Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000
+                    Swal.fire({
+                        title: "Actualizado!",
+                        text: "La Ciudad se Actualizó con Éxito.",
+                        icon: "success",
+                        timer: 3000,
+                        showConfirmButton: true,
                     });
-                    Toast.fire({
-                        icon: 'success',
-                        title: 'La Ciudad se Actualizó con Éxito.'
-                    })
                 });
             </script>
         @endif
         @if (session('flash') == 'registrado')
             <script>
                 $(function() {
-                    var Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000
+                    Swal.fire({
+                        title: "Registrado!",
+                        text: "La Ciudad se Registró con Éxito.",
+                        icon: "success",
+                        timer: 3000,
+                        showConfirmButton: true,
                     });
-                    Toast.fire({
-                        icon: 'success',
-                        title: 'La Ciudad se Creó con Éxito.'
-                    })
                 });
             </script>
         @endif
