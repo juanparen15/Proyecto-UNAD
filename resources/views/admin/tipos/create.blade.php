@@ -10,6 +10,51 @@
     {!! Html::style('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') !!}
 @endsection
 @section('content')
+    <script>
+        Swal.bindClickHandler();
+        /* Bind a mixin to a click handler */
+        Swal.mixin({
+            icon: "info",
+            toast: true,
+            position: "top-center",
+            title: 'Se debe agregar la coordenada X en números decimales.',
+            text: 'Ejemplo: 4.60971',
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        }).bindClickHandler("coordenadaX");
+
+        Swal.bindClickHandler();
+        /* Bind a mixin to a click handler */
+        Swal.mixin({
+            icon: "info",
+            toast: true,
+            position: "top-center",
+            title: 'Se debe agregar la coordenada Y en números decimales.',
+            text: 'Ejemplo: -74.08175',
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        }).bindClickHandler("coordenadaY");
+
+        Swal.bindClickHandler();
+        /* Bind a mixin to a click handler */
+        Swal.mixin({
+            // icon: "info",
+            toast: true,
+            position: "top-center",
+            width: 760,
+            height: 515,
+            responsive: true,
+            html: '<iframe width="660" height="415" src="{{ asset('adminlte/dist/video/Ejemplo Leyenda KMZ.mp4') }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+        }).bindClickHandler("leyenda");
+    </script>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -68,28 +113,37 @@
                     </div>
                     <div class="form-group detfuente">
                         <label for="detfuente">TIPO DE SIMULACIÓN:</label>
-                        <input required type="text" name="detfuente" id="detfuente" class="form-control"
-                            value="{{ old('detfuente') }}">
+                        <select id="detfuente" name="detfuente"
+                            class="form-control select2 @error('detfuente') is-invalid @enderror" style="width: 100%"
+                            required>
+                            <option value="" disabled selected>Seleccione el Tipo de Simulación:</option>
+                            <option value="Cobertura Individual">Cobertura Individual</option>
+                            <option value="Multicobertura">Multicobertura</option>
+                            <option value="Interferencia">Interferencia</option>
+                        </select>
+                        {{-- <input required type="text" name="detfuente" id="detfuente" class="form-control"
+                            value="{{ old('detfuente') }}"> --}}
                         <span id="detfuente-error" class="invalid-feedback" role="alert"></span> <!-- Mensaje de error -->
                         @error('detfuente')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-
                     <div id="coordenadas_fields" style="display: none;">
                         <div class="form-group">
                             <label for="coordenadaX">COORDENADA (X) DE LA CIUDAD:</label>
+                            <i class="btn btn-primary fas fa-question" coordenadaX="#my-template"></i>
                             <input type="text" id="coordenadaX" name="coordenadaX" class="form-control"
                                 style="width: 100%">
                         </div>
 
                         <div class="form-group">
                             <label for="coordenadaY">COORDENADA (Y) DE LA CIUDAD:</label>
+                            <i class="btn btn-primary fas fa-question" coordenadaY="#my-template"></i>
                             <input type="text" id="coordenadaY" name="coordenadaY" class="form-control"
                                 style="width: 100%">
                         </div>
                         <div class="form-group">
-                            <label for="kmzRadio">ARCHIVO KMZ (ELEMENTOS DE RADIO):</label>
+                            <label for="kmzRadio">ARCHIVO KMZ DE (ELEMENTOS DE RADIO):</label>
                             <div class="input-group">
                                 <label class="input-group-btn">
                                     <span class="btn btn-primary btn-file">
@@ -103,10 +157,11 @@
                         </div>
                         <div class="form-group">
                             <label for="leyendaSignal">LEYENDA DE NIVEL DE SEÑAL:</label>
+                            <i class="btn btn-primary fas fa-question" leyenda="#my-template"></i>
                             <textarea id="leyendaSignal" name="leyendaSignal" class="form-control" style="width: 100%" rows="5"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="kmz">ARCHIVO KMZ (NIVEL DE SEÑAL):</label>
+                            <label for="kmz">ARCHIVO KMZ DE (NIVEL DE SEÑAL):</label>
                             <div class="input-group">
                                 <label class="input-group-btn">
                                     <span class="btn btn-primary btn-file">
@@ -114,16 +169,17 @@
                                             type="file" id="kmz" lang="es">
                                     </span>
                                 </label>
-                                <input class="form-control" id="kmz" readonly="readonly" name="kmz" type="text"
-                                    value="" lang="es">
+                                <input class="form-control" id="kmz" readonly="readonly" name="kmz"
+                                    type="text" value="" lang="es">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="leyendaBest">LEYENDA DE MEJOR SERVIDOR:</label>
+                            <i class="btn btn-primary fas fa-question" leyenda="#my-template"></i>
                             <textarea id="leyendaBest" name="leyendaBest" class="form-control" style="width: 100%" rows="5"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="kmzBest">ARCHIVO KMZ (MEJOR SERVIDOR):</label>
+                            <label for="kmzBest">ARCHIVO KMZ DE (MEJOR SERVIDOR):</label>
                             <div class="input-group">
                                 <label class="input-group-btn">
                                     <span class="btn btn-primary btn-file">
@@ -137,10 +193,11 @@
                         </div>
                         <div class="form-group">
                             <label for="leyendaOver">LEYENDA DE SOLAPAMIENTO:</label>
+                            <i class="btn btn-primary fas fa-question" leyenda="#my-template"></i>
                             <textarea id="leyendaOver" name="leyendaOver" class="form-control" style="width: 100%" rows="5"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="kmzOver">ARCHIVO KMZ (SOLAPAMIENTO):</label>
+                            <label for="kmzOver">ARCHIVO KMZ DE (SOLAPAMIENTO):</label>
                             <div class="input-group">
                                 <label class="input-group-btn">
                                     <span class="btn btn-primary btn-file">
@@ -156,18 +213,20 @@
                     <div id="coordenadas_fields_Inter" style="display: none;">
                         <div class="form-group">
                             <label for="coordenadaX">COORDENADA (X) DE LA CIUDAD:</label>
+                            <i class="btn btn-primary fas fa-question" coordenadaX="#my-template"></i>
                             <input type="text" id="coordenadaX" name="coordenadaX" class="form-control"
                                 style="width: 100%">
                         </div>
 
                         <div class="form-group">
                             <label for="coordenadaY">COORDENADA (Y) DE LA CIUDAD:</label>
+                            <i class="btn btn-primary fas fa-question" coordenadaY="#my-template"></i>
                             <input type="text" id="coordenadaY" name="coordenadaY" class="form-control"
                                 style="width: 100%">
                         </div>
 
                         <div class="form-group">
-                            <label for="kmzRadio">ARCHIVO KMZ (ELEMENTOS DE RADIO):</label>
+                            <label for="kmzRadio">ARCHIVO KMZ DE (ELEMENTOS DE RADIO):</label>
                             <div class="input-group">
                                 <label class="input-group-btn">
                                     <span class="btn btn-primary btn-file">
@@ -181,10 +240,11 @@
                         </div>
                         <div class="form-group">
                             <label for="leyendaSignal">LEYENDA DE NIVEL DE INTERFERENCIA:</label>
+                            <i class="btn btn-primary fas fa-question" leyenda="#my-template"></i>
                             <textarea id="leyendaSignal" name="leyendaSignal" class="form-control" style="width: 100%" rows="5"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="kmzInterferencia">ARCHIVO KMZ (NIVEL DE INTERFERENCIA):</label>
+                            <label for="kmzInterferencia">ARCHIVO KMZ DE (NIVEL DE INTERFERENCIA):</label>
                             <div class="input-group">
                                 <label class="input-group-btn">
                                     <span class="btn btn-primary btn-file">
@@ -221,12 +281,42 @@
 
                 //Initialize Select2 Elements
                 $('.select2').select2()
-
             })
         </script>
         <script>
             $(document).ready(function() {
-                $('#detfuente').on('input', function() {
+                $('#detfuente').on('change', function() {
+                    var tipo = $(this).val().toLowerCase(); // Convertir a minúsculas para comparar
+                    var errorSpan = $('#detfuente-error'); // Obtener el span del mensaje de error
+                    if (tipo !== "multicobertura" && tipo !== "interferencia" && tipo !==
+                        "cobertura individual") {
+                        $(this).addClass('is-invalid');
+                        errorSpan.text('El Tipo de Simulación es Inválido'); // Establecer el mensaje de error
+                    } else {
+                        $(this).removeClass('is-invalid');
+                        errorSpan.text(''); // Limpiar el mensaje de error si es válido
+
+                        var coordenadasFields = $('#coordenadas_fields');
+                        var coordenadasFieldsInter = $('#coordenadas_fields_Inter');
+
+                        if (tipo.includes('multicobertura')) {
+                            coordenadasFields.show();
+                        } else {
+                            coordenadasFields.hide();
+                        }
+
+                        if (tipo.includes('interferencia')) {
+                            coordenadasFieldsInter.show();
+                        } else {
+                            coordenadasFieldsInter.hide();
+                        }
+                    }
+                });
+            });
+        </script>
+        {{-- <script>
+            $(document).ready(function() {
+                $('#detfuente').on('change', function() {
                     var tipo = $(this).val().toLowerCase(); // Convertir a minúsculas para comparar
                     var errorSpan = $('#detfuente-error'); // Obtener el span del mensaje de error
                     if (tipo !== "multicobertura" && tipo !== "interferencia" && tipo !==
@@ -241,7 +331,7 @@
             });
         </script>
         <script>
-            document.getElementById('detfuente').addEventListener('input', function() {
+            document.getElementById('detfuente').addEventListener('change', function() {
                 var detfuenteValue = this.value.toLowerCase();
                 var coordenadasFields = document.getElementById('coordenadas_fields');
                 var coordenadasFieldsInter = document.getElementById('coordenadas_fields_Inter');
@@ -258,7 +348,7 @@
                     coordenadasFieldsInter.style.display = 'none';
                 }
             });
-        </script>
+        </script> --}}
         <script>
             $(document).on('change', '.btn-file :file', function() {
                 var input = $(this);

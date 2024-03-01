@@ -10,6 +10,51 @@
     {!! Html::style('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') !!}
 @endsection
 @section('content')
+    <script>
+        Swal.bindClickHandler();
+        /* Bind a mixin to a click handler */
+        Swal.mixin({
+            icon: "info",
+            toast: true,
+            position: "top-center",
+            title: 'Se debe agregar la coordenada X en números decimales.',
+            text: 'Ejemplo: 4.60971',
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        }).bindClickHandler("coordenadaX");
+
+        Swal.bindClickHandler();
+        /* Bind a mixin to a click handler */
+        Swal.mixin({
+            icon: "info",
+            toast: true,
+            position: "top-center",
+            title: 'Se debe agregar la coordenada Y en números decimales.',
+            text: 'Ejemplo: -74.08175',
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        }).bindClickHandler("coordenadaY");
+
+        Swal.bindClickHandler();
+        /* Bind a mixin to a click handler */
+        Swal.mixin({
+            // icon: "info",
+            toast: true,
+            position: "top-center",
+            width: 760,
+            height: 515,
+            responsive: true,
+            html: '<iframe width="660" height="415" src="{{ asset('adminlte/dist/video/Ejemplo Leyenda KMZ.mp4') }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+        }).bindClickHandler("leyenda");
+    </script>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -81,12 +126,14 @@
                     <div class="coordenadas_fields" id="coordenadas_fields" style="display: block;">
                         <div class="form-group">
                             <label for="coordenadaX">COORDENADA (X) DE LA CIUDAD:</label>
+                            <i class="btn btn-primary fas fa-question" coordenadaX="#my-template"></i>
                             <input type="text" id="coordenadaX" name="coordenadaX" class="form-control"
                                 style="width: 100%">
                         </div>
 
                         <div class="form-group">
                             <label for="coordenadaY">COORDENADA (Y) DE LA CIUDAD:</label>
+                            <i class="btn btn-primary fas fa-question" coordenadaY="#my-template"></i>
                             <input type="text" id="coordenadaY" name="coordenadaY" class="form-control"
                                 style="width: 100%">
                         </div>
@@ -106,6 +153,7 @@
                         </div>
                         <div class="form-group">
                             <label for="leyendaSignal">LEYENDA DE NIVEL DE SEÑAL:</label>
+                            <i class="btn btn-primary fas fa-question" leyenda="#my-template"></i>
                             <textarea id="leyendaSignal" name="leyendaSignal" class="form-control" style="width: 100%" rows="5"></textarea>
                         </div>
                         <div class="form-group">

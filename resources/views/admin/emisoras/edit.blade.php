@@ -67,10 +67,10 @@
                             </span>
                         @enderror
                     </div>
-                    <div class="form-group">
+                    <div hidden class="form-group tipoemisora_id">
                         <label for="tipoemisora_id">TIPO DE SIMULACIÓN:</label>
                         <select class="select2 @error('tipoemisora_id') is-invalid @enderror" name="tipoemisora_id"
-                            id="tipoemisora_id" style="width: 100%;">
+                            id="tipoemisora_id" style="width: 100%;" required>
                             <option value="" disabled selected>Seleccione el Tipo de Simulación:</option>
                             @foreach ($tipos as $tipo)
                                 <option value="{{ $tipo->id }}"
@@ -80,14 +80,15 @@
                             @endforeach
                         </select>
                         @if ($emisora->exists)
-                            <small class="text-danger" style="font-size: 10pt">No cambiar el Tipo de Simulación (Altera el orden de los mapas).</small>
+                            <small class="text-danger" style="font-size: 10pt">No cambiar el Tipo de Simulación (Altera el
+                                orden de los mapas).</small>
                         @endif
+                        <span id="tipoemisora_id-error" class="invalid-feedback" role="alert"></span>
+                        <!-- Mensaje de error -->
                         @error('tipoemisora_id')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <span class="text-danger">{{ $message }}</span>
                         @enderror
-                    </div> 
+                    </div>
                     <div class="form-group emisora">
                         <label for="emisora">NOMBRE DE LA EMISORA:</label>
                         <input required type="text" name="emisora" id="emisora" class="form-control"
@@ -191,6 +192,57 @@
             });
         </script>
         {{-- <script>
+            $(document).ready(function() {
+                $('#tipoemisora_id').on('change', function() {
+                    var tipo = $(this).val().toLowerCase(); // Convertir a minúsculas para comparar
+                    var errorSpan = $('#tipoemisora_id-error'); // Obtener el span del mensaje de error
+                    var coordenadasFields = $('#coordenadas_fields');
+
+                    if (tipo.includes('multicobertura')) {
+                        coordenadasFields.hide();
+                    } else {
+                        coordenadasFields.show();
+                    }
+                    if (tipo.includes('interferencia')) {
+                        coordenadasFieldsInter.hide();
+                        coordenadasFields.hide();
+                    } else {
+                        coordenadasFieldsInter.show();
+                        coordenadasFields.show();
+                    }
+                });
+            });
+        </script> --}}
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var detfuenteInput = document.getElementById('tipoemisora_id');
+                var coordenadasFields = document.getElementById('coordenadas_fields');
+
+                detfuenteInput.addEventListener('select', function() {
+                    var detfuenteValue = this.value.toLowerCase();
+
+                    // if (detfuenteValue.includes('cobertura individual')) {
+                    //     coordenadasFields.style.display = 'block';
+                    // } else {
+                    //     coordenadasFields.style.display = 'none';
+                    // }
+                    if (detfuenteValue.includes('multicobertura')) {
+                        coordenadasFields.style.display = 'none';
+                    } else {
+                        coordenadasFields.style.display = 'block';
+                    }
+                    if (detfuenteValue.includes('interferencia')) {
+                        coordenadas_fields.style.display = 'none';
+                    } else {
+                        coordenadas_fields.style.display = 'block';
+                    }
+                });
+
+                // Ejecutar el evento 'input' en la carga de la página para verificar el valor inicial de 'detfuente'
+                detfuenteInput.dispatchEvent(new Event('select'));
+            });
+        </script>
+        {{-- <script>
             document.addEventListener('DOMContentLoaded', function() {
                 var detemisoraInput = document.getElementById('emisora');
                 var coordenadasFields = document.getElementById('coordenadas_fields');
@@ -290,34 +342,34 @@
                         $('#tipoemisora_id').empty();
                     }
                 });
-                tipoemisora_id.change(function() {
-                    // var tipoemisora_id = $(this).val();
-                    var tipoemisora_id = this.value.toLowerCase();
-                    if (tipoemisora_id) {
-                        // console.log('Tipo de Emisora:', tipoemisora_id);
-                        if ($('#tipoemisora_id option:selected').attr('name') === 'Multicobertura' || $(
-                                '#tipoemisora_id option:selected').attr('name') === 'Interferencia') {
-                            $('.emisora').hide();
-                            $('.coordenadas_fields').hide();
-                            $('#emisora').empty();
-                            $('#coordenadaX').empty();
-                            $('#coordenadaY').empty();
-                            $('#kmzRadio').empty();
-                            $('#leyendaSignal').empty();
-                            $('#kmzInterferencia').empty();
-                        } else {
-                            $('.emisora').show();
-                            $('.coordenadas_fields').show();
-                        }
-                    } else {
-                        $('#emisora').empty();
-                        $('#coordenadaX').empty();
-                        $('#coordenadaY').empty();
-                        $('#kmzRadio').empty();
-                        $('#leyendaSignal').empty();
-                        $('#kmzInterferencia').empty();
-                    }
-                });
+                // tipoemisora_id.change(function() {
+                //     // var tipoemisora_id = $(this).val();
+                //     var tipoemisora_id = this.value.toLowerCase();
+                //     if (tipoemisora_id) {
+                //         // console.log('Tipo de Emisora:', tipoemisora_id);
+                //         if ($('#tipoemisora_id option:selected').attr('name') === 'Multicobertura' || $(
+                //                 '#tipoemisora_id option:selected').attr('name') === 'Interferencia') {
+                //             $('.emisora').hide();
+                //             $('.coordenadas_fields').hide();
+                //             $('#emisora').empty();
+                //             $('#coordenadaX').empty();
+                //             $('#coordenadaY').empty();
+                //             // $('#kmzRadio').empty();
+                //             $('#leyendaSignal').empty();
+                //             // $('#kmzInterferencia').empty();
+                //         } else {
+                //             $('.emisora').show();
+                //             $('.coordenadas_fields').show();
+                //         }
+                //     } else {
+                //         $('#emisora').empty();
+                //         $('#coordenadaX').empty();
+                //         $('#coordenadaY').empty();
+                //         // $('#kmzRadio').empty();
+                //         $('#leyendaSignal').empty();
+                //         // $('#kmzInterferencia').empty();
+                //     }
+                // });
             });
         </script>
 

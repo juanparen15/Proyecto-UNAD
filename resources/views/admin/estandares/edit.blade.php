@@ -49,7 +49,37 @@
                             </span>
                         @enderror
                     </div>
-                    <div class="form-group">
+                    <div class="form-group detestandar">
+                        <label for="detestandar">ESTÁNDAR:</label>
+                        <select id="detestandar" name="detestandar"
+                            class="form-control select2 @error('detestandar') is-invalid @enderror" style="width: 100%"
+                            required>
+                            <option value="" disabled selected>Selecciona un Estándar</option>
+                            <option value="IBOC-FM"
+                                {{ old('detestandar', $estandar->detestandar) == 'IBOC-FM' ? 'selected' : '' }}>IBOC-FM
+                            </option>
+                            <option value="IBOC-AM"
+                                {{ old('detestandar', $estandar->detestandar) == 'IBOC-AM' ? 'selected' : '' }}>IBOC-AM
+                            </option>
+                            <option value="DAB"
+                                {{ old('detestandar', $estandar->detestandar) == 'DAB' ? 'selected' : '' }}>
+                                DAB</option>
+                            <option value="TDT (DVB T2)"
+                                {{ old('detestandar', $estandar->detestandar) == 'TDT (DVB T2)' ? 'selected' : '' }}>TDT
+                                (DVB
+                                T2)</option>
+                            <option value="AM_A"
+                                {{ old('detestandar', $estandar->detestandar) == 'AM_A' ? 'selected' : '' }}>AM_A</option>
+                            <option value="FM_A"
+                                {{ old('detestandar', $estandar->detestandar) == 'FM_A' ? 'selected' : '' }}>FM_A</option>
+                        </select>
+                        <span id="detestandar-error" class="invalid-feedback" role="alert"></span>
+                        <!-- Mensaje de error -->
+                        @error('detestandar')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    {{-- <div class="form-group">
                         {!! Form::label('detestandar', 'NOMBRE ESTÁNDAR') !!}
                         {!! Form::text('detestandar', null, [
                             'class' => 'form-control',
@@ -58,7 +88,7 @@
                         @error('detestandar')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
-                    </div>
+                    </div> --}}
 
                 </div>
                 <!-- /.card-body -->

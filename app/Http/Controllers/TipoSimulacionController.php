@@ -465,41 +465,39 @@ class TipoSimulacionController extends Controller
                 File::copyDirectory($rutaJs, $rutaDestinoJs);
                 File::copyDirectory($rutaWebFonts, $rutaDestinoWeb);
             }
-
-
-            // Mover el archivo .kmz a la carpeta de destino
-            // $input = $request->all();
-            if (ucfirst(strtolower($request->detfuente)) == "Multicobertura") {
-                if ($request->hasFile('kmz', 'kmzRadio', 'kmzBest', 'kmzOver')) {
-                    $file = $request->file('kmz');
-                    $fileRadio = $request->file('kmzRadio');
-                    $fileBest = $request->file('kmzBest');
-                    $fileOver = $request->file('kmzOver');
-                    // Mover el archivo .kmz a la ubicación de destino
-                    $file->move($rutaDestinoKmz, $nombreKmz);
-                    $fileRadio->move($rutaDestinoKmz, $nombreKmzRadio);
-                    $fileBest->move($rutaDestinoKmz, $nombreKmzBest);
-                    $fileOver->move($rutaDestinoKmz, $nombreKmzOver);
-                    // Guardar solo el nombre del archivo en la base de datos
-                    $tipoemisora->kmz = $nombreKmz;
-                    $tipoemisora->kmzRadio = $nombreKmzRadio;
-                    $tipoemisora->kmzBest = $nombreKmzBest;
-                    $tipoemisora->kmzOver = $nombreKmzOver;
-                    $tipoemisora->save();
-                }
+        }
+        // Mover el archivo .kmz a la carpeta de destino
+        // $input = $request->all();
+        if (ucfirst(strtolower($request->detfuente)) == "Multicobertura") {
+            if ($request->hasFile('kmz', 'kmzRadio', 'kmzBest', 'kmzOver')) {
+                $file = $request->file('kmz');
+                $fileRadio = $request->file('kmzRadio');
+                $fileBest = $request->file('kmzBest');
+                $fileOver = $request->file('kmzOver');
+                // Mover el archivo .kmz a la ubicación de destino
+                $file->move($rutaDestinoKmz, $nombreKmz);
+                $fileRadio->move($rutaDestinoKmz, $nombreKmzRadio);
+                $fileBest->move($rutaDestinoKmz, $nombreKmzBest);
+                $fileOver->move($rutaDestinoKmz, $nombreKmzOver);
+                // Guardar solo el nombre del archivo en la base de datos
+                $tipoemisora->kmz = $nombreKmz;
+                $tipoemisora->kmzRadio = $nombreKmzRadio;
+                $tipoemisora->kmzBest = $nombreKmzBest;
+                $tipoemisora->kmzOver = $nombreKmzOver;
+                $tipoemisora->save();
             }
-            if (ucfirst(strtolower($request->detfuente)) == "Interferencia") {
-                if ($request->hasFile('kmzRadio', 'kmzInterferencia')) {
-                    $fileRadio = $request->file('kmzRadio');
-                    $fileInter = $request->file('kmzInterferencia');
-                    // Mover el archivo .kmz a la ubicación de destino
-                    $fileRadio->move($rutaDestinoKmz, $nombreKmzRadio);
-                    $fileInter->move($rutaDestinoKmz, $nombreKmzInter);
-                    // Guardar solo el nombre del archivo en la base de datos
-                    $tipoemisora->kmzRadio = $nombreKmzRadio;
-                    $tipoemisora->kmzInterferencia = $nombreKmzInter;
-                    $tipoemisora->save();
-                }
+        }
+        if (ucfirst(strtolower($request->detfuente)) == "Interferencia") {
+            if ($request->hasFile('kmzRadio', 'kmzInterferencia')) {
+                $fileRadio = $request->file('kmzRadio');
+                $fileInter = $request->file('kmzInterferencia');
+                // Mover el archivo .kmz a la ubicación de destino
+                $fileRadio->move($rutaDestinoKmz, $nombreKmzRadio);
+                $fileInter->move($rutaDestinoKmz, $nombreKmzInter);
+                // Guardar solo el nombre del archivo en la base de datos
+                $tipoemisora->kmzRadio = $nombreKmzRadio;
+                $tipoemisora->kmzInterferencia = $nombreKmzInter;
+                $tipoemisora->save();
             }
         }
         // Obtener el nombre de la ciudad utilizando el ID

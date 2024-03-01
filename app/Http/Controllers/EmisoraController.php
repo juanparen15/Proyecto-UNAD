@@ -319,7 +319,7 @@ class EmisoraController extends Controller
         $nombreKmzRadio = 'Radioelectric elements.kmz';
         $nombreKmz = 'Signal level.kmz'; // Nombre deseado del archivo .kmz
 
-        $emisora = $emisora->update([
+        $emisora->update([
             'emisora' => $request->emisora,
             'kmzRadio' => $nombreKmzRadio,
             'kmz' => $nombreKmz,
@@ -374,19 +374,25 @@ class EmisoraController extends Controller
             if (!File::exists($rutaDestinoKmz)) {
                 File::makeDirectory($newFolderPath . '/' . $kmz, 0777, true);
             }
+        }
 
-            if ($request->hasFile('kmz', 'kmzRadio')) {
-                $file = $request->file('kmz');
-                $fileRadio = $request->file('kmzRadio');
-                // Mover el archivo .kmz a la ubicación de destino
+        if ($request->hasFile('kmz') || $request->hasFile('kmzRadio')) {
+            $file = $request->file('kmz');
+            $fileRadio = $request->file('kmzRadio');
+            // Mover el archivo .kmz a la ubicación de destino
+            if ($file) {
                 $file->move($rutaDestinoKmz, $nombreKmz);
-                $fileRadio->move($rutaDestinoKmz, $nombreKmzRadio);
                 // Guardar solo el nombre del archivo en la base de datos
                 $emisora->kmz = $nombreKmz;
-                $emisora->kmzRadio = $nombreKmzRadio;
-                $emisora->save();
             }
+            if ($fileRadio) {
+                $fileRadio->move($rutaDestinoKmz, $nombreKmzRadio);
+                // Guardar solo el nombre del archivo en la base de datos
+                $emisora->kmzRadio = $nombreKmzRadio;
+            }
+            $emisora->save();
         }
+
         $nombreCiudad = Ciudad::findOrFail($request->ciudad_id)->detciudad;
         $nombreEstandar = Estandar::findOrFail($request->estandar_id)->detestandar;
         $nombreTipoEmisora = TipoSimulacion::findOrFail($request->tipoemisora_id)->detfuente;

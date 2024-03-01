@@ -6,6 +6,51 @@
     {!! Html::style('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') !!}
 @endsection
 @section('content')
+    <script>
+        Swal.bindClickHandler();
+        /* Bind a mixin to a click handler */
+        Swal.mixin({
+            icon: "info",
+            toast: true,
+            position: "top-center",
+            title: 'Se debe agregar la coordenada X en números decimales.',
+            text: 'Ejemplo: 4.60971',
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        }).bindClickHandler("coordenadaX");
+
+        Swal.bindClickHandler();
+        /* Bind a mixin to a click handler */
+        Swal.mixin({
+            icon: "info",
+            toast: true,
+            position: "top-center",
+            title: 'Se debe agregar la coordenada Y en números decimales.',
+            text: 'Ejemplo: -74.08175',
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        }).bindClickHandler("coordenadaY");
+
+        Swal.bindClickHandler();
+        /* Bind a mixin to a click handler */
+        Swal.mixin({
+            // icon: "info",
+            toast: true,
+            position: "top-center",
+            width: 760,
+            height: 515,
+            responsive: true,
+            html: '<iframe width="660" height="415" src="{{ asset('adminlte/dist/video/Ejemplo Leyenda KMZ.mp4') }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+        }).bindClickHandler("leyenda");
+    </script>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -73,23 +118,51 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="estandar_id">TIPO DE SIMULACIÓN:</label>
                             <input required type="text" name="detfuente" id="detfuente" class="form-control"
                                 value="{{ old('detfuente', $tipo->detfuente) }}">
                             @error('detfuente')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
+                        </div> --}}
+                        <div class="form-group detfuente">
+                            <label for="detfuente">TIPO DE SIMULACIÓN:</label>
+                            <select id="detfuente" name="detfuente"
+                                class="form-control select2 @error('detfuente') is-invalid @enderror" style="width: 100%"
+                                required>
+                                <option value="" disabled selected>Seleccione el Tipo de Simulación:</option>
+                                <option value="Cobertura Individual"
+                                    {{ old('detfuente', $tipo->detfuente) == 'Cobertura Individual' ? 'selected' : '' }}>
+                                    Cobertura Individual
+                                </option>
+                                <option value="Multicobertura"
+                                    {{ old('detfuente', $tipo->detfuente) == 'Multicobertura' ? 'selected' : '' }}>
+                                    Multicobertura</option>
+                                <option value="Interferencia"
+                                    {{ old('detfuente', $tipo->detfuente) == 'Interferencia' ? 'selected' : '' }}>
+                                    Interferencia</option>
+                            </select>
+                            {{-- <input required type="text" name="detfuente" id="detfuente" class="form-control"
+                                value="{{ old('detfuente') }}"> --}}
+                            <span id="detfuente-error" class="invalid-feedback" role="alert"></span>
+                            <!-- Mensaje de error -->
+                            @error('detfuente')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
+
                         <div id="coordenadas_fields" style="display: none;">
                             <div class="form-group">
                                 <label for="coordenadaX">COORDENADA (X) DE LA CIUDAD:</label>
+                                <i class="btn btn-primary fas fa-question" coordenadaX="#my-template"></i>
                                 <input type="text" id="coordenadaX" name="coordenadaX" class="form-control"
                                     value="{{ old('coordenadaX', $tipo->coordenadaX) }}" style="width: 100%">
                             </div>
 
                             <div class="form-group">
                                 <label for="coordenadaY">COORDENADA (Y) DE LA CIUDAD:</label>
+                                <i class="btn btn-primary fas fa-question" coordenadaY="#my-template"></i>
                                 <input type="text" id="coordenadaY" name="coordenadaY" class="form-control"
                                     value="{{ old('coordenadaY', $tipo->coordenadaY) }}" style="width: 100%">
                             </div>
@@ -108,6 +181,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="leyendaSignal">LEYENDA DE NIVEL DE SEÑAL:</label>
+                                <i class="btn btn-primary fas fa-question" leyenda="#my-template"></i>
                                 <textarea id="leyendaSignal" name="leyendaSignal" class="form-control" style="width: 100%" rows="5">{{ old('leyendaSignal', $tipo->leyendaSignal) }}</textarea>
                             </div>
                             <div class="form-group">
@@ -125,6 +199,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="leyendaBest">LEYENDA DE MEJOR SERVIDOR:</label>
+                                <i class="btn btn-primary fas fa-question" leyenda="#my-template"></i>
                                 <textarea id="leyendaBest" name="leyendaBest" class="form-control" style="width: 100%" rows="5">{{ old('leyendaBest', $tipo->leyendaBest) }}</textarea>
                             </div>
                             <div class="form-group">
@@ -142,6 +217,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="leyendaOver">LEYENDA DE SOLAPAMIENTO:</label>
+                                <i class="btn btn-primary fas fa-question" leyenda="#my-template"></i>
                                 <textarea id="leyendaOver" name="leyendaOver" class="form-control" style="width: 100%" rows="5">{{ old('leyendaOver', $tipo->leyendaOver) }}</textarea>
                             </div>
                             <div class="form-group">
@@ -161,12 +237,14 @@
                         <div id="coordenadas_fields_Inter" style="display: none;">
                             <div class="form-group">
                                 <label for="coordenadaX">COORDENADA (X) DE LA CIUDAD:</label>
+                                <i class="btn btn-primary fas fa-question" coordenadaX="#my-template"></i>
                                 <input type="text" id="coordenadaX" name="coordenadaX" class="form-control"
                                     style="width: 100%" value="{{ old('coordenadaX', $tipo->coordenadaX) }}">
                             </div>
 
                             <div class="form-group">
                                 <label for="coordenadaY">COORDENADA (Y) DE LA CIUDAD:</label>
+                                <i class="btn btn-primary fas fa-question" coordenadaY="#my-template"></i>
                                 <input type="text" id="coordenadaY" name="coordenadaY" class="form-control"
                                     style="width: 100%" value="{{ old('coordenadaY', $tipo->coordenadaY) }}">
                             </div>
@@ -186,6 +264,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="leyendaSignal">LEYENDA DE NIVEL DE INTERFERENCIA:</label>
+                                <i class="btn btn-primary fas fa-question" leyenda="#my-template"></i>
                                 <textarea id="leyendaSignal" name="leyendaSignal" class="form-control" style="width: 100%" rows="5">{{ old('leyendaSignal', $tipo->leyendaSignal) }}</textarea>
                             </div>
                             <div class="form-group">
@@ -237,6 +316,37 @@
         </script>
         <script>
             $(document).ready(function() {
+                $('#detfuente').on('change', function() {
+                    var tipo = $(this).val().toLowerCase(); // Convertir a minúsculas para comparar
+                    var errorSpan = $('#detfuente-error'); // Obtener el span del mensaje de error
+                    if (tipo !== "multicobertura" && tipo !== "interferencia" && tipo !==
+                        "cobertura individual") {
+                        $(this).addClass('is-invalid');
+                        errorSpan.text('El Tipo de Simulación es Inválido'); // Establecer el mensaje de error
+                    } else {
+                        $(this).removeClass('is-invalid');
+                        errorSpan.text(''); // Limpiar el mensaje de error si es válido
+
+                        var coordenadasFields = $('#coordenadas_fields');
+                        var coordenadasFieldsInter = $('#coordenadas_fields_Inter');
+
+                        if (tipo.includes('multicobertura')) {
+                            coordenadasFields.show();
+                        } else {
+                            coordenadasFields.hide();
+                        }
+
+                        if (tipo.includes('interferencia')) {
+                            coordenadasFieldsInter.show();
+                        } else {
+                            coordenadasFieldsInter.hide();
+                        }
+                    }
+                });
+            });
+        </script>
+        {{-- <script>
+            $(document).ready(function() {
                 $('#detfuente').on('input', function() {
                     var tipo = $(this).val().toLowerCase(); // Convertir a minúsculas para comparar
                     var errorSpan = $('#detfuente-error'); // Obtener el span del mensaje de error
@@ -250,9 +360,9 @@
                     }
                 });
             });
-        </script>
+        </script> --}}
         {{-- <script>
-            document.getElementById('detfuente').addEventListener('input', function() {
+            document.getElementById('detfuente').addEventListener('select', function() {
                 var detfuenteValue = this.value.toLowerCase();
                 var coordenadasFields = document.getElementById('coordenadas_fields');
                 var coordenadasFieldsInter = document.getElementById('coordenadas_fields_Inter');
@@ -276,7 +386,7 @@
                 var coordenadasFields = document.getElementById('coordenadas_fields');
                 var coordenadasFieldsInter = document.getElementById('coordenadas_fields_Inter');
 
-                detfuenteInput.addEventListener('input', function() {
+                detfuenteInput.addEventListener('select', function() {
                     var detfuenteValue = this.value.toLowerCase();
 
                     if (detfuenteValue.includes('multicobertura')) {
@@ -292,7 +402,7 @@
                 });
 
                 // Ejecutar el evento 'input' en la carga de la página para verificar el valor inicial de 'detfuente'
-                detfuenteInput.dispatchEvent(new Event('input'));
+                detfuenteInput.dispatchEvent(new Event('select'));
             });
         </script>
         <script>

@@ -36,7 +36,7 @@
             </div>  --}}
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="ciudad_id">CIUDAD</label>
+                        <label for="ciudad_id">CIUDAD:</label>
                         <select class="select2 @error('ciudad_id') is-invalid @enderror" name="ciudad_id"
                             id="ciudad_id" style="width: 100%;">
 
@@ -54,6 +54,26 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label for="detestandar">ESTÁNDAR:</label>
+                        <select id="detestandar" name="detfuente"
+                            class="form-control select2 @error('detestandar') is-invalid @enderror" style="width: 100%"
+                            required>
+                            <option value="" disabled selected>Selecciona un Estándar</option>
+                            <option value="IBOC-FM">IBOC-FM</option>
+                            <option value="IBOC-AM">IBOC-AM</option>
+                            <option value="DAB">DAB</option>
+                            <option value="TDT (DVB T2)">TDT (DVB T2)</option>
+                            <option value="AM_A">AM_A</option>
+                            <option value="FM_A">FM_A</option>
+                        </select>
+                        {{-- <input required type="text" name="detfuente" id="detfuente" class="form-control"
+                            value="{{ old('detfuente') }}"> --}}
+                        <span id="detestandar-error" class="invalid-feedback" role="alert"></span> <!-- Mensaje de error -->
+                        @error('detestandar')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    {{-- <div class="form-group">
                       {!! Form::label('detestandar', 'NOMBRE ESTÁNDAR ') !!}
                       {!! Form::text('detestandar', null, [
                           'class' => 'form-control',
@@ -62,7 +82,7 @@
                       @error('detestandar')
                           <span class="text-danger">{{ $message }}</span>
                       @enderror
-                  </div>
+                  </div> --}}
 
 
                 </div>
